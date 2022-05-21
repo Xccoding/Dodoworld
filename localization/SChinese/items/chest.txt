@@ -1,0 +1,2 @@
+"DOTA_Tooltip_ability_item_wraith_king_chest"   "<font color='#BEBEBE'>【普通·护甲】</font>死亡骑士新兵护甲"
+"DOTA_Tooltip_ability_item_wraith_king_chest_bonus_armor"   "+$bonus_armor"

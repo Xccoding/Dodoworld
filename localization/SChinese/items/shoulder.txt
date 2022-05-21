@@ -1,0 +1,4 @@
+"DOTA_Tooltip_ability_item_abaddon_shoulder"   "<font color='#BEBEBE'>【普通·肩部】</font>魔霭新兵护肩"
+"DOTA_Tooltip_ability_item_abaddon_shoulder_bonus_armor"   "+$bonus_armor"
+"DOTA_Tooltip_ability_item_wraith_king_shoulder"   "<font color='#BEBEBE'>【普通·肩部】</font>冥寒新兵护肩"
+"DOTA_Tooltip_ability_item_wraith_king_shoulder_bonus_armor"   "+$bonus_armor"

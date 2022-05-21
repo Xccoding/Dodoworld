@@ -1,0 +1,89 @@
+"DOTAAbilities"
+{
+	//魔霭新兵头盔
+    "item_abaddon_helmet"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"item_abaddon_helmet"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"Model"							"models/heroes/abaddon/helmet.vmdl"
+		"ScriptFile"					"items/helmet/item_abaddon_helmet"
+
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+        "AbilityCooldown"				"0.0"
+
+		"ItemCost"						"100"
+		"ItemPurchasable"				"1"
+		"ItemShopTags"					"attack"
+		"ItemQuality"					"component"
+		"ItemStackable"					"0"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"0"
+		"ItemKillable"					"0"
+        "ItemSellable"					"1"
+		"ItemCastOnPickup"				"0"
+        "AllowedInBackpack"				"0"
+        "ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+        "IsTempestDoubleClonable"		"0"
+        "ItemIsNeutralDrop"				"0"
+		"ItemDroppable"					"1"
+        "CustomShop"					"1"
+        "SideShop"                      "0"
+        "SecretShop"					"0"
+		"RequiresCustomShop"			"1"
+		"RequiredCustomShopName"		"shashire_equip_shop"
+
+		"AbilityValues"
+        {
+			"bonus_armor"	"2"
+        }	
+	}
+
+	//冥寒新兵头盔
+    "item_wraith_king_helmet"
+	{
+		"BaseClass"						"item_lua"
+		"AbilityTextureName"			"item_wraith_king_helmet"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"Model"							"models/heroes/abaddon/helmet.vmdl"
+		"ScriptFile"					"items/helmet/item_abaddon_helmet"
+
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+        "AbilityCooldown"				"0.0"
+
+		"ItemCost"						"100"
+		"ItemPurchasable"				"1"
+		"ItemShopTags"					"attack"
+		"ItemQuality"					"component"
+		"ItemStackable"					"0"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"0"
+		"ItemKillable"					"0"
+        "ItemSellable"					"1"
+		"ItemCastOnPickup"				"0"
+        "AllowedInBackpack"				"0"
+        "ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+        "IsTempestDoubleClonable"		"0"
+        "ItemIsNeutralDrop"				"0"
+		"ItemDroppable"					"1"
+        "CustomShop"					"1"
+        "SideShop"                      "0"
+        "SecretShop"					"0"
+		"RequiresCustomShop"			"1"
+		"RequiredCustomShopName"		"shashire_equip_shop"
+
+		"AbilityValues"
+        {
+			"bonus_armor"	"2"
+        }	
+	}
+
+}

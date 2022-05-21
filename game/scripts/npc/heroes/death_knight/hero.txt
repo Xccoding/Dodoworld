@@ -1,0 +1,106 @@
+"DOTAHeroes"
+{
+    "npc_dota_hero_blood_death_knight"
+	{
+        "override_hero" "npc_dota_hero_abaddon"
+		"Ability1"	"death_knight_midnight_pulse"
+		"Ability2"	"death_knight_hellfire_blast"
+		"Ability3"	"death_knight_chaos_strike"
+		"Ability4"	"death_knight_gravekeepers_cloak"
+		"Ability5"	"death_knight_reality_rift"
+		"Ability6"	"death_knight_borrowed_time"
+
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Ability17"	""
+		"Ability18"	""
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"		"0"
+		"MagicalResistance"		"0"
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"BaseAttackSpeed"		"100"
+		"AttackDamageMin"		"0"
+		"AttackDamageMax"		"0"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"		"1.700000"
+		"AttackAnimationPoint"		"0.560000"
+		"AttackAcquisitionRange"		"600"
+		"AttackRange"		"100"
+		//"ProjectileModel"		"particles/base_attacks/ranged_hero.vpcf"
+		"ProjectileSpeed"		"0"
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"20"
+		"AttributeStrengthGain"		"2"
+		"AttributeBaseIntelligence"		"10"
+		"AttributeIntelligenceGain"		"1"
+		"AttributeBaseAgility"		"12"
+		"AttributeAgilityGain"		"1"
+
+		// Bounty
+		//-------------------------------------------------------------------------------------------------------------
+		"BountyXP"		"0"
+		"BountyGoldMin"		"0"
+		"BountyGoldMax"		"0"
+
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
+		"RingRadius"		"70"
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"		"300"
+		"MovementTurnRate"		"3.000000"
+		"HasAggressiveStance"		"0"
+
+		// Status
+		//-------------------------------------------------------------------------------------------------------------
+		"StatusHealth"		"168"
+		"StatusMana"		"100"
+		"StatusManaRegen"	"0"
+		"StatusHealthRegen"	"1"
+
+		// Vision
+		//-------------------------------------------------------------------------------------------------------------
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"1200"
+
+		//Inventory
+		"HasInventory"		"1"	
+	}
+
+	"npc_dota_hero_frost_death_knight"
+	{
+        "override_hero" "npc_dota_hero_skeleton_king"
+		"Ability1"	"death_knight_mortal_strike"
+		"Ability2"	"death_knight_frost_nova"
+		"Ability3"	"death_knight_frost_shield"
+		"Ability4"	"death_knight_bulldoze"
+		"Ability5"	"death_knight_sonic_wave"
+		"Ability6"	"death_knight_flamethrower"
+
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Ability17"	""
+		"Ability18"	""
+	}
+}

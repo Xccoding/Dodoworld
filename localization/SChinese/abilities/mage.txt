@@ -1,0 +1,57 @@
+"DOTA_Tooltip_ability_mage_fireblast"	"火焰爆轰"
+"DOTA_Tooltip_ability_mage_fireblast_Description"	"以一波火焰轰击目标，造成【%sp_factor%%%法术强度】点魔法伤害。<br>不会打断其他技能施法，必定造成暴击。"
+
+"DOTA_Tooltip_ability_mage_searing_arrows"	"灼热之箭"
+"DOTA_Tooltip_ability_mage_searing_arrows_Description"	"激活后，失去你的全部攻击力，攻击距离固定为%attack_range_override%，攻击间隔提升至%attack_time_override%，将你的攻击替换成燃烧的箭矢，箭矢造成【%sp_factor%%%法术强度】点魔法伤害且具有克敌机先。<br>每当灼热之箭未能造成暴击，它就会额外获得%bonus_crit_chance%%%的魔法暴击几率，直至它暴击。"
+"DOTA_Tooltip_modifier_mage_searing_arrows"	"灼热之箭"
+"DOTA_Tooltip_modifier_mage_searing_arrows_Description"	"灼热之箭额外拥有%dMODIFIER_PROPERTY_TOOLTIP%%%暴击几率"
+
+"DOTA_Tooltip_ability_mage_light_strike_array"	"光击阵"
+"DOTA_Tooltip_ability_mage_light_strike_array_Description"	"经过%spell_time%秒施法前摇后，召唤一根火柱，燃烧目标区域内的所有敌人，造成【%sp_factor%%%法术强度】点魔法伤害，并使他们的移动速度降低%slow_down_pct%%%，持续%duration%秒。"
+"DOTA_Tooltip_modifier_mage_light_strike_array"	"光击阵"
+"DOTA_Tooltip_modifier_mage_light_strike_array_Description"	"移动速度降低"
+
+"DOTA_Tooltip_ability_mage_laguna_blade"	"神灭斩"
+"DOTA_Tooltip_ability_mage_laguna_blade_Description"	"经过%spell_time%秒施法前摇后，对目标射出一道炙热的闪电，造成【%sp_factor%%%法术强度】点魔法伤害。"
+
+"DOTA_Tooltip_ability_mage_fiery_soul"	"炽魂"
+"DOTA_Tooltip_ability_mage_fiery_soul_Description"	"被动：每当你的连续两个技能造成魔法暴击，就会立刻重置光击阵和神灭斩的冷却时间，并使下一次光击阵或神灭斩变为瞬发，且累积%combo_multiple%%%的液态火伤害。\n主动：将自己包裹在火焰中，提高%bonus_magical_crit_chance%%%的魔法暴击几率，持续%duration%秒。"
+"DOTA_Tooltip_modifier_mage_fiery_soul"	"炽魂"
+"DOTA_Tooltip_modifier_mage_fiery_soul_Description"	"你的技能已经连续暴击%dMODIFIER_PROPERTY_TOOLTIP%次"
+"DOTA_Tooltip_modifier_mage_fiery_soul_buff"	"炽魂"
+"DOTA_Tooltip_modifier_mage_fiery_soul_buff_Description"	"魔法暴击几率提高"
+"DOTA_Tooltip_modifier_mage_fiery_soul_combo"	"炽魂：瞬发"
+"DOTA_Tooltip_modifier_mage_fiery_soul_combo_Description"	"下一次光击阵或神灭斩变为瞬发，且累积%dMODIFIER_PROPERTY_TOOLTIP%%%的液态火伤害"
+
+"DOTA_Tooltip_ability_mage_hellfire_blast"	"明火暴击"
+"DOTA_Tooltip_ability_mage_hellfire_blast_Description"	"被动：每当你的技能造成直接伤害，就会对目标施加液态火，在%duration%秒内造成额外伤害。\n液态火：<br>持续造成魔法伤害，伤害总量为技能伤害的【%int_factor_tooltip% x 智力】%%，可叠加。\n主动：向目标发射一颗大火球，对%radius%范围内的所有敌人造成【%sp_factor%%%法术强度】点魔法伤害，并将目标身上的【液态火】扩散到周围的敌人身上。<br>大火球必定暴击。"
+"DOTA_Tooltip_modifier_mage_hellfire_blast"	"明火暴击：液态火伤害"
+"DOTA_Tooltip_modifier_mage_hellfire_blast_Description"	"所有技能额外造成%fMODIFIER_PROPERTY_TOOLTIP%%%的液态火伤害"
+"DOTA_Tooltip_modifier_mage_hellfire_blast_debuff"	"液态火"
+"DOTA_Tooltip_modifier_mage_hellfire_blast_debuff_Description"	"每秒受到%fMODIFIER_PROPERTY_TOOLTIP%点魔法伤害"
+
+"DOTA_Tooltip_ability_mage_arcane_orb"	"奥术天球"
+"DOTA_Tooltip_ability_mage_arcane_orb_Description"	"激活后，失去你的全部攻击力，攻击距离固定为%attack_range_override%，攻击间隔提升至%attack_time_override%，将你的攻击替换成高速的奥术法球，法球造成【%sp_factor%%%法术强度】点魔法伤害且具有克敌机先，每次攻击会消耗%mana_cost_pct%%%的最大魔法值，并使你获得%stack_per_time%层奥术至尊。\n奥术至尊：<br>每层使奥术天球的伤害提高%arcane_bonus_damage_pct%%%，消耗的魔法值提高%arcane_mana_cost_pct%%%，攻击间隔降低%arcane_bonus_attack_time%%%；最多叠加%max_stack%层。"
+
+"DOTA_Tooltip_ability_mage_concussive_shot"	"震荡光弹"
+"DOTA_Tooltip_ability_mage_concussive_shot_Description"	"主动：向视野内最近的%target_count%名敌人发射光弹，造成【%sp_factor%%%法术强度】点魔法伤害。同时消耗你的所有奥术至尊层数，每消耗一层：增加%arcane_bonus_target_count%个额外目标，使光弹的伤害增加%arcane_bonus_damage_pct%%%，并为你恢复%arcane_mana_get_pct%%%最大魔法值。\n被动：每次命中敌人的共鸣脉冲或奥术天球都会使你获得%stack_per_time%层奥术至尊，强化你的技能；最多叠加%max_stack%层。"
+"DOTA_Tooltip_modifier_mage_concussive_shot"	"奥术至尊"
+"DOTA_Tooltip_modifier_mage_concussive_shot_Description"	"使奥术天球的伤害提高%dMODIFIER_PROPERTY_TOOLTIP%%%，魔法消耗提高%dMODIFIER_PROPERTY_TOOLTIP%%%，攻击间隔减少%dMODIFIER_PROPERTY_TOOLTIP%%%；<br>使震荡光弹额外击中%dMODIFIER_PROPERTY_TOOLTIP%个目标，伤害提高%dMODIFIER_PROPERTY_TOOLTIP%%%，为你恢复%fMODIFIER_PROPERTY_TOOLTIP%%%最大魔法值"
+
+"DOTA_Tooltip_ability_mage_resonant_pulse"	"共鸣脉冲"
+"DOTA_Tooltip_ability_mage_resonant_pulse_Description"	"对周身释放一道脉冲，对%radius%范围内的敌人造成【%sp_factor%%%法术强度】点魔法伤害。<br>如果共鸣脉冲击中了至少一名敌人，使你增加%stack_per_time%层奥术至尊层数。"
+
+"DOTA_Tooltip_ability_mage_arcane_bolt"	"奥法鹰隼"
+"DOTA_Tooltip_ability_mage_arcane_bolt_Description"	"主动：持续施法-向目标连续发射%base_count%枚奥术鹰隼，每枚造成【%sp_factor%%%法术强度】点魔法伤害。\n被动：每消耗%energy_threshold%%%的最大魔法值，就有%energy_chance%%%几率使你获得%stack_per_time%层奥术。\n奥术：<br>使你的下一次共鸣脉冲或奥法鹰隼不消耗魔法值，并使奥法鹰隼的施法时间减少%energy_duration_reduce_pct%%%，同时增加%energy_bonus_count%枚鹰隼数量。最多叠加%max_stack%层。"
+"DOTA_Tooltip_modifier_mage_arcane_bolt"	"奥术"
+"DOTA_Tooltip_modifier_mage_arcane_bolt_Description"	"使你的下%dMODIFIER_PROPERTY_TOOLTIP%次共鸣脉冲或奥法鹰隼不消耗魔法值，同时强化奥法鹰隼"
+
+"DOTA_Tooltip_ability_mage_ancient_seal"	"上古封印"
+"DOTA_Tooltip_ability_mage_ancient_seal_Description"	"用上古符文标记一个目标，累积你对目标伤害的%save_pct%%%，持续%duration%秒；标记结束时会释放一道神智冲击波，对%radius%范围内的所有敌人造成已累积的伤害。施放时使你立即获得%stack_per_time%层奥术至尊。"
+"DOTA_Tooltip_modifier_mage_ancient_seal"	"上古封印"
+"DOTA_Tooltip_modifier_mage_ancient_seal_Description"	"已经累积%dMODIFIER_PROPERTY_TOOLTIP%点魔法伤害"
+
+"DOTA_Tooltip_ability_mage_equilibrium"	"精华变迁"
+"DOTA_Tooltip_ability_mage_equilibrium_Description"	"主动：持续施法-使你获得%bonus_mana_regen_pct%%%的魔法恢复增强，持续%duration%秒。\n被动：使你的最大魔法值提高【%max_mana_int_factor% x 智力】%%，并获得同等的魔法恢复增强。同时使奥术至尊的伤害提高效果增强【%arcane_buff_bonus_damage% x 智力】%%"
+"DOTA_Tooltip_modifier_mage_equilibrium"	"精华变迁"
+"DOTA_Tooltip_modifier_mage_equilibrium_Description"	"最大魔法值提升%fMODIFIER_PROPERTY_EXTRA_MANA_PERCENTAGE%%%，获得%fMODIFIER_PROPERTY_MP_REGEN_AMPLIFY_PERCENTAGE%%%的魔法恢复增强，奥术至尊的伤害提升效果增强%dMODIFIER_PROPERTY_TOOLTIP%%%"

@@ -1,0 +1,11 @@
+#DHPS_Counter {
+  align: center center;
+  width: 100%;
+  height: 100%;
+  background-color: none;
+}
+#DHPS_Counter #DPS_Counter {
+  width: 100%;
+  height: 400px;
+  background-color: #00000091;
+}

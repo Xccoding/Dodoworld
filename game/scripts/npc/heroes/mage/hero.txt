@@ -1,0 +1,44 @@
+"DOTAHeroes"
+{
+    "npc_dota_hero_fire_mage"
+	{
+        "override_hero" "npc_dota_hero_lina"
+		"Ability1"	"mage_fireblast"
+		"Ability2"	"mage_searing_arrows"
+		"Ability3"	"mage_light_strike_array"
+		"Ability4"	"mage_laguna_blade"
+		"Ability5"	"mage_fiery_soul"
+		"Ability6"	"mage_hellfire_blast"
+
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Ability17"	""
+		"Ability18"	""
+	}
+
+	"npc_dota_hero_arcane_mage"
+	{
+        "override_hero" "npc_dota_hero_silencer"
+		"Ability1"	"mage_arcane_orb"
+		"Ability2"	"mage_concussive_shot"
+		"Ability3"	"mage_resonant_pulse"
+		"Ability4"	"mage_arcane_bolt"
+		"Ability5"	"mage_ancient_seal"
+		"Ability6"	"mage_equilibrium"
+
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Ability17"	""
+		"Ability18"	""
+	}
+}

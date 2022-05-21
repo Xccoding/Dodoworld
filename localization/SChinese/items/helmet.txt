@@ -1,0 +1,4 @@
+"DOTA_Tooltip_ability_item_abaddon_helmet"   "<font color='#BEBEBE'>【普通·头部】</font>魔霭新兵头盔"
+"DOTA_Tooltip_ability_item_abaddon_helmet_bonus_armor"   "+$bonus_armor"
+"DOTA_Tooltip_ability_item_wraith_king_helmet"   "<font color='#BEBEBE'>【普通·头部】</font>冥寒新兵头盔"
+"DOTA_Tooltip_ability_item_wraith_king_helmet_bonus_armor"   "+$bonus_armor"

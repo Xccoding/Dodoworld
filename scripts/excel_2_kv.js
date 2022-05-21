@@ -4,7 +4,7 @@ const program = require("commander");
 const chokidar = require("chokidar");
 const path = require("path");
 const xlsx = require("node-xlsx");
-const { pinyin } = require("pinyin-pro");
+// const { pinyin } = require("pinyin-pro");
 const { read_all_files, read_sub_directories } = require("./utils");
 
 // 需要读取的excel路径

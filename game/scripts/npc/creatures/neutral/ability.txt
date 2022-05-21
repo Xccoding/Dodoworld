@@ -1,0 +1,72 @@
+"DOTAAbilities"
+{
+
+	//追踪术
+	"neutral_creep_track"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"bounty_hunter_track"
+		"ScriptFile"	"units/abilities/neutral/neutral_creep_track"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		//"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"5"
+		"AbilityCastRange"				"700"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.3"
+		
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+		}
+
+		"AbilityValues"
+        {
+            "duration"  "20"
+			"armor_reduce"	"3"
+        }
+	}
+
+	//浸毒武器
+	"neutral_creep_envenomed_weapon"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"gnoll_assassin_envenomed_weapon"
+		"ScriptFile"	"units/abilities/neutral/neutral_creep_envenomed_weapon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		//"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"8"
+		"AbilityManaCost"				"0"
+		// "AbilityCastRange"				"700"
+		// "AbilityCastRangeBuffer"		"250"
+		// "AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		// "AbilityCastPoint"				"0.3"
+		
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+		}
+
+		"AbilityValues"
+        {
+            "duration"  "3"
+			"ap_factor"	"10"
+			"miss_pct"	"30"
+			"dot_interval"  "1"
+        }
+	}
+
+}

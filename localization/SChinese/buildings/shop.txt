@@ -1,0 +1,3 @@
+"shashire_equip_shop"   "沙夏尔装备商人"
+"DOTA_Subshop_shashire_equip_shop_weapon"   "沙夏尔武器"
+"DOTA_Subshop_shashire_equip_shop_armor"   "沙夏尔护甲"

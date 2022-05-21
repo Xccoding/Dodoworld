@@ -1,0 +1,43 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flNoDrawTimeToGoToSleep = 12.0
+	m_bShouldSort = false
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/death_knight/death_knight_frost_nova_flash.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/death_knight/death_knight_frost_nova_d.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/death_knight/death_knight_frost_nova_e.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/death_knight/death_knight_frost_nova_f.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/death_knight/death_knight_frost_nova_h.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/death_knight/death_knight_frost_nova_g.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/death_knight/death_knight_frost_nova_flash_d.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/death_knight/death_knight_frost_nova_flash_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/death_knight/death_knight_frost_nova_flash_c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/death_knight/death_knight_frost_nova_sphere_1.vpcf"
+		},
+	]
+	m_PreEmissionOperators = [  ]
+	m_nBehaviorVersion = 12
+}

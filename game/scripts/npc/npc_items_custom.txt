@@ -1,1 +1,9 @@
-#base "lua_items.txt"
+#base items/weapon/items.txt
+#base items/offhand/items.txt
+#base items/shoulder/items.txt
+#base items/cape/items.txt
+#base items/chest/items.txt
+
+"DOTAAbilities"
+{
+}

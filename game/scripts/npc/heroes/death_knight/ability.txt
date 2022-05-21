@@ -1,0 +1,458 @@
+"DOTAAbilities"
+{
+	//血DK午夜凋零
+    "death_knight_midnight_pulse"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"death_knight_midnight_pulse"
+		"ScriptFile"	"heroes/abilities/death_knight/blood/death_knight_midnight_pulse"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"10"
+		"AbilityCastRange"				"900"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"				"0.3"
+		
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+		}
+
+		"AbilityValues"
+        {
+            "duration"  "10"
+			"ap_factor"	"4"
+			"damage_tick"	"1"
+			"radius"	"500"
+			"pulse_bonus_target_count"	"3"
+			"reset_chance"		"10"
+        }
+	}
+
+	//血DK冥火暴击
+	"death_knight_hellfire_blast"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"skeleton_king_hellfire_blast"
+		"ScriptFile"	"heroes/abilities/death_knight/blood/death_knight_hellfire_blast"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"1.5"
+		"AbilityManaCost"				"10"
+		"AbilityCastRange"				"500"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCharges"				"3"
+		"AbilityChargeRestoreTime"		"10"
+		
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+		}
+
+		"AbilityValues"
+        {
+            "debuff_duration"  "24"
+			"ap_factor_hit"	"43"
+			"dot_interval"	"3"
+			"ap_factor_dot"	"8"
+			"speed"			"1000"
+			"search_radius"			"600"
+			"bonus_target_count"	"1"
+			"pulse_bonus_target_count"	"3"
+			"reset_chance"		"10"
+        }
+	}
+
+	//血DK混沌一击
+	"death_knight_chaos_strike"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"death_knight_chaos_strike"
+		"ScriptFile"	"heroes/abilities/death_knight/blood/death_knight_chaos_strike"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ATTACK | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityCooldown"				"8"
+		"AbilityManaCost"				"35"
+		//"AbilityCastRange"				"500"
+		//"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.0"
+		
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+		}
+
+		"AbilityValues"
+        {
+			"ap_factor"	"46"
+			"damage_record_time"	"5"
+			"min_heal_percent"	"5"
+			"heal_percent"	"40"
+			"str_factor"	"16"
+			"str_factor_tooltip"	"0.16"
+			"shield_duration"	"15"
+        }
+	}
+
+	//血DK陵卫斗篷
+	"death_knight_gravekeepers_cloak"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"visage_gravekeepers_cloak"
+		"ScriptFile"	"heroes/abilities/death_knight/blood/death_knight_gravekeepers_cloak"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		//"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		//"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"10"
+		//"AbilityCastRange"				"500"
+		//"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"				"0.2"
+		
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+		}
+
+		"AbilityValues"
+        {
+			"max_stack"	"16"
+			"first_stack"	"12"
+			"stack_per_tick"	"4"
+			"bonus_armor_str_factor"	"70"
+			"bonus_attack_speed"	"10"
+			"incoming_damage_pct"	"25"
+			"duration"	"4"
+			"cloak_cooldown"	"10"
+        }
+	}
+
+	//血DK实相裂隙
+	"death_knight_reality_rift"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"death_knight_reality_rift"
+		"ScriptFile"	"heroes/abilities/death_knight/blood/death_knight_reality_rift"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"5"
+		"AbilityCastRange"				"650"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"				"0.3"
+		
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
+		}
+
+		"AbilityValues"
+        {
+			"duration"	"10"
+        }
+	}
+
+	//血DK回光返照
+	"death_knight_borrowed_time"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"abaddon_borrowed_time"
+		"ScriptFile"	"heroes/abilities/death_knight/blood/death_knight_borrowed_time"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		//"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		//"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityCooldown"				"50"
+		"AbilityManaCost"				"0"
+		//"AbilityCastRange"				"500"
+		//"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"				"0.2"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+		}
+
+		"AbilityValues"
+        {
+			"duration"	"7"
+			"bonus_status_resistance"	"100"
+			"hp_factor"	"30"
+        }
+	}
+
+	//冰DK本命一击
+	"death_knight_mortal_strike"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"death_knight_mortal_strike"
+		"ScriptFile"	"heroes/abilities/death_knight/frost/death_knight_mortal_strike"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ATTACK | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityCooldown"				"1.5"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"500"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.0"
+		"AbilityCharges"				"3"
+		"AbilityChargeRestoreTime"		"10"
+		
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
+		}
+
+		"AbilityValues"
+        {
+			"ap_factor"	"66"
+			"crit_chance"	"150"
+			"crit_duration"	"15"
+			"nova_free_chance"	"45"
+			"nova_bonus_damage_pct"	"300"
+			"nova_free_duration"	"15"
+			"bulldoze_stack"	"2"
+			"mana_get_pct"	"20"
+        }
+	}
+
+	//冰DK寒霜爆发
+	"death_knight_frost_nova"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"lich_frost_nova"
+		"ScriptFile"	"heroes/abilities/death_knight/frost/death_knight_frost_nova"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"650"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"0.3"
+		
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+		}
+
+		"AbilityValues"
+        {
+			"ap_factor_hit"	"14"
+			"duration"	"24"
+			"dot_interval"	"3"
+			"ap_factor_dot"	"21"
+			"main_target_damage_pct"	"25"
+			"nova_free_chance"	"45"
+			"nova_bonus_damage_pct"	"300"
+			"nova_free_duration"	"15"
+			"radius"	"500"
+			"mana_get_pct"	"10"
+			"mana_get_pct_tick"	"1"
+        }
+	}
+
+	//冰DK冰霜魔盾
+	"death_knight_frost_shield"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"lich_frost_shield"
+		"ScriptFile"	"heroes/abilities/death_knight/frost/death_knight_frost_shield"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"500"
+		//"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"				"0.3"
+		
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+		}
+
+		"AbilityValues"
+        {
+			"duration"	"10"
+			"ap_factor"	"5.7"
+			"radius"	"500"
+			"debuff_duration"	"1"
+			"slow_down_pct"	"20"
+			"dot_interval"	"1"
+			"bonus_armor_pct"	"3"
+			"mana_get_pct"	"10"
+        }
+	}
+
+	//冰DK威吓
+	"death_knight_bulldoze"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"spirit_breaker_bulldoze"
+		"ScriptFile"	"heroes/abilities/death_knight/frost/death_knight_bulldoze"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		//"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		//"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityCooldown"				"60"
+		"AbilityManaCost"				"0"
+		//"AbilityCastRange"				"500"
+		//"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"				"0.3"
+		
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts"
+		}
+
+		"AbilityValues"
+        {
+			"duration"	"12"
+			"bonus_str_pct"	"10"
+			"bonus_str_stack_pct"	"1"
+			"stack_mortal_strike"	"2"
+			"stack_others"	"1"
+			"str_factor"	"16"
+			"str_factor_tooltip"	"0.16"
+        }
+	}
+
+	//冰DK超声冲击波
+    "death_knight_sonic_wave"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"queen_of_pain/arcana/queenofpain_sonic_wave_alt2"
+		"ScriptFile"	"heroes/abilities/death_knight/frost/death_knight_sonic_wave"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCooldown"				"120"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"600"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"0.3"
+		
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts"
+		}
+
+		"AbilityValues"
+        {
+			"ap_factor"	"320"
+			"distance"	"1000"
+			"width_start"	"350"
+			"width_end"	"700"
+			"slow_down_pct"		"50"
+			"duration"  "5"
+			"speed"	"1700"
+        }
+	}
+
+	//冰DK冰冻吐息
+	"death_knight_flamethrower"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"death_knight_flamethrower"
+		"ScriptFile"	"heroes/abilities/death_knight/frost/death_knight_flamethrower"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityCooldown"				"40"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"400"
+		//"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"				"0.3"
+		
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_winter_wyvern.vsndevts"
+		}
+
+		"AbilityValues"
+        {
+			"ap_factor"	"49"
+			"distance"	"400"
+			"angle"	"60"
+			"dot_interval"	"1"
+			"mana_cost_pct"	"16"
+        }
+	}
+
+
+}
