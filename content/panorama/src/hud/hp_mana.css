@@ -20,7 +20,7 @@
 }
 #HealthProgressBar #hp_maxhp {
   align: center center;
-  text-shadow: 0px 0px 4px 6 #000000;
+  text-shadow: 0px 0px 4px 5 #000000;
   color: white;
   font-family: monospaceNumbersFont;
   font-size: 16px;
@@ -28,7 +28,7 @@
 }
 #HealthProgressBar #hp_regen {
   horizontal-align: right;
-  text-shadow: 0px 0px 4px 6 #000000;
+  text-shadow: 0px 0px 4px 5 #000000;
   color: white;
   font-family: monospaceNumbersFont;
   font-size: 16px;
@@ -50,7 +50,7 @@
 }
 #ManaProgressBar #mp_maxmp {
   align: center center;
-  text-shadow: 0px 0px 4px 6 #000000;
+  text-shadow: 0px 0px 4px 5 #000000;
   color: white;
   font-family: monospaceNumbersFont;
   font-size: 16px;
@@ -58,7 +58,7 @@
 }
 #ManaProgressBar #mp_regen {
   horizontal-align: right;
-  text-shadow: 0px 0px 4px 6 #000000;
+  text-shadow: 0px 0px 4px 5 #000000;
   color: white;
   font-family: monospaceNumbersFont;
   font-size: 16px;
