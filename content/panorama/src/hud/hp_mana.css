@@ -1,7 +1,7 @@
 #HealthManaRoot {
-  width: 700px;
+  width: 400px;
   height: 100px;
-  margin-top: 150px;
+  margin-top: 160px;
   vertical-align: middle;
   horizontal-align: center;
 }
@@ -17,6 +17,7 @@
   border-style: solid;
   border-width: 3px;
   height: 32px;
+  width: 195px;
 }
 #HealthProgressBar #hp_maxhp {
   align: center center;
@@ -47,6 +48,7 @@
   border-style: solid;
   border-width: 3px;
   height: 32px;
+  width: 195px;
 }
 #ManaProgressBar #mp_maxmp {
   align: center center;
@@ -65,7 +67,7 @@
   z-index: 1;
 }
 #ManaProgressBar #ManaBarBG {
-  background-color: gradient(linear, 0% 0%, 0% 100%, from(#2b873a), color-stop(0.4, #41ce41), to(#0e4111));
+  background-color: gradient(linear, 0% 0%, 0% 100%, from(#1d2155), color-stop(0.4, #2947ce), to(#1d2155));
   height: 100%;
   overflow: noclip;
 }

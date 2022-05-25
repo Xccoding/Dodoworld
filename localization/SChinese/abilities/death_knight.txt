@@ -1,3 +1,6 @@
+"npc_dota_hero_abaddon"	"死亡骑士"
+"npc_dota_hero_skeleton_king"	"死亡骑士"
+
 "DOTA_Tooltip_ability_death_knight_midnight_pulse"	"凋零迷雾"
 "DOTA_Tooltip_ability_death_knight_midnight_pulse_Description"	"用迷雾侵蚀一片区域，每%damage_tick%秒对其中的敌人造成【%ap_factor%%%攻击力】点魔法伤害，持续%duration%秒。\n当你站在凋零迷雾中时，额外对附近的%pulse_bonus_target_count%名敌人施放冥火暴击。<br>每次攻击冥火诅咒作用下的敌人有%reset_chance%%%几率重置凋零迷雾的冷却时间。"
 "DOTA_Tooltip_modifier_death_knight_midnight_pulse_buff"	"迷雾凋零"

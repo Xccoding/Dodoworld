@@ -1,0 +1,13 @@
+#ChangeSchools {
+  width: 400px;
+  height: 300px;
+  background-color: green;
+  align: center center;
+  opacity: 0;
+  transform: translateY(300px) translateX(300px);
+  transition: transform 0.3s ease-in-out 0s, opacity 0.25s ease-in-out 0s;
+}
+#ChangeSchools.ShowChangeSchools {
+  opacity: 1;
+  transform: translateY(0px);
+}

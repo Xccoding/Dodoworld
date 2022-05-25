@@ -63,7 +63,7 @@ function DHPS_Counter(){
         return PlayerHPS
     }
 
-    $.Msg(HPSdata)
+    // $.Msg(HPSdata)
     return <Panel id="DHPS_Counter">
         <DPS_Counter DPSdata={DPSdata}/>
         <HPS_Counter HPSdata={HPSdata}/>

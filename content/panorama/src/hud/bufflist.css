@@ -1,8 +1,8 @@
 #Buffs {
-  width: 900px;
+  width: 500px;
   height: 200px;
   align: center bottom;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
   flow-children: right;
 }
 #Buffpanel {
@@ -10,20 +10,20 @@
   height: 100%;
 }
 #BuffList {
-  width: 420px;
+  width: 210px;
   height: 90px;
   align: left center;
   flow-children: right-wrap;
 }
 #DebuffList {
-  width: 420px;
+  width: 210px;
   height: 90px;
   align: right center;
   flow-children: left-wrap;
 }
 .CustomBuff {
-  width: 40px;
-  height: 80px;
+  width: 35px;
+  height: 50px;
 }
 .CustomBuff .BuffBorder {
   background-color: black;
@@ -44,17 +44,17 @@
   text-shadow: 0px 0px 4px 6 #000000;
   color: white;
   font-family: monospaceNumbersFont;
-  font-size: 16px;
+  font-size: 15px;
   visibility: collapse;
 }
 .CustomBuff.has_stacks #StackCount {
   visibility: visible;
 }
 .CustomBuff #BuffTime {
-  margin-top: 40px;
+  margin-top: 35px;
   horizontal-align: center;
   text-shadow: 0px 0px 4px 6 #000000;
   color: white;
   font-family: monospaceNumbersFont;
-  font-size: 16px;
+  font-size: 15px;
 }

@@ -1,0 +1,18 @@
+#Right_bottom_button {
+  width: 400px;
+  height: 70px;
+  background-color: white;
+  align: right bottom;
+  margin-right: 400px;
+}
+#Right_bottom_button TextButton {
+  width: 90px;
+  height: 40px;
+  background-image: url("s2r://panorama/images/events/aghanim/blessing_icons/blessing_book_agility_icon_dormant.vtex");
+  background-size: 100%;
+  text-shadow: 0px 0px 4px 5 #000000;
+  color: white;
+  font-family: monospaceNumbersFont;
+  font-size: 16px;
+  overflow: noclip noclip;
+}

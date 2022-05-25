@@ -1,0 +1,6 @@
+"levels_formula" {
+    "level_factor" "100"
+    "other_param"   "150"
+}
+ 
+    
