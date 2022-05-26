@@ -16,6 +16,9 @@
 #ChangeSchools_button:hover {
   brightness: 1.5;
 }
+#ChangeSchools_button:active {
+  sound: "ui_generic_button_click";
+}
 #ChangeSchools_button Label {
   align: center bottom;
   text-shadow: 0px 0px 4px 5 #000000;

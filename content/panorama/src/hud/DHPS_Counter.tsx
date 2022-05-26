@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { render } from '@demon673/react-panorama';
-import ReactUtils from "./React_utils";
+import ReactUtils from "../utils/React_utils";
 
 function DHPS_Counter(){
     const [DPSdata, SetDPSdata] = useState<{player_index: PlayerID, DPS_number: number}[]>(UpdateDPS)

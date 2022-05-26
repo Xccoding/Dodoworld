@@ -1,1 +1,3 @@
-"Hud_ChangeSchools" "流派"
+"Hud_ChangeSchools_button" "流派"
+"Hud_ChangeSchools_title"   "流派"
+"choose_school" "选择流派"

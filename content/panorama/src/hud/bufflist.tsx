@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { render } from '@demon673/react-panorama';
-import ReactUtils from "./React_utils";
-import Utils from "./Utils";
+import ReactUtils from "../utils/React_utils";
+import Utils from "../utils/Utils";
 
 function Buffpanel(){
     const player = Players.GetLocalPlayer()
@@ -97,7 +97,7 @@ function Buff({buff_index}: {buff_index:number}){
     let backgroundColor = `none`
     if(fDuration > 0){
         backgroundColor = `rgba(0,0,0,${((fDuration - fTimeRemain)/ fDuration).toFixed(2)})`
-        // backgroundColor = Utils.RGBToHex(backgroundColor)
+        backgroundColor = Utils.RGBToHex(backgroundColor)
     }
     
     let iStackCount = Buffs.GetStackCount(hero, thisBuff);

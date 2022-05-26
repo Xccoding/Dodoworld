@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { render, useGameEvent } from '@demon673/react-panorama';
-import ReactUtils from "./React_utils";
+import ReactUtils from "../utils/React_utils";
 
 const MIN_ABILITY_SLOT = 0
 const MAX_ABILITY_SLOT = 18
@@ -40,11 +40,14 @@ function ChangeSchools(){
 
 
     return <Panel id='ChangeSchools'>
+        <Label id='ChangeSchools_title' text={$.Localize("#Hud_ChangeSchools_title")}/>
+        <Panel id='SchoolsList'>
         {
             schools_array.map((schools_name, schools_index)=>{
                 return <Schools key={schools_name} schools_name={schools_name} schools_index={schools_index}/>
             })
         }
+        </Panel>
     </Panel>
 }
 
@@ -61,13 +64,13 @@ function Schools({schools_name, schools_index}: {schools_name: string, schools_i
     }
 
     return <Panel id='schools'>
-        <Label id='schools_name'/>
-        <Label id='schools_desc'/>
+        <Label id='schools_name' text={$.Localize("#"+schools_name)}/>
+        <Label id='schools_desc' text={$.Localize("#"+schools_name+"_desc")}/>
         <Panel id='schools_abilities'>
         {
             abilities.map((ability_name)=>{
                 // $.Msg(ability_name)
-                return <DOTAAbilityImage key={ability_name} abilityname={ability_name}
+                return <DOTAAbilityImage key={ability_name} className="schools_abilities_panel" abilityname={ability_name}
                 onmouseover={p=>{
                     $.DispatchEvent("DOTAShowAbilityTooltipForEntityIndex", p, ability_name, Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()))
                 }}
@@ -78,7 +81,7 @@ function Schools({schools_name, schools_index}: {schools_name: string, schools_i
             })
         }
         </Panel>
-        <TextButton id='choose_school'></TextButton>
+        <TextButton id='choose_school' text={$.Localize("#choose_school")}></TextButton>
     </Panel>
 }
 

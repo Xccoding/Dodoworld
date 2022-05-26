@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { render } from '@demon673/react-panorama';
-import ReactUtils from "./React_utils";
+import ReactUtils from "../utils/React_utils";
 
 const ButtonList = {
     "Hud_ChangeSchools": "ChangeSchools"
@@ -12,7 +12,7 @@ function Right_bottom_button(){
             Object.entries(ButtonList).map(([button_name, hud_name])=>
             {
                 
-                return <TextButton key={button_name} id={`${hud_name}_button`} text={$.Localize("#"+button_name)} 
+                return <TextButton key={button_name} id={`${hud_name}_button`} text={$.Localize("#"+button_name+"_button")} 
                 onactivate={()=>{
                     let hud_toggle = $(`#${hud_name}`)
                     if(hud_toggle != undefined){
