@@ -1,14 +1,29 @@
 #ChangeSchools{
-    width: 400px;
-    height: 300px;
+    width: 500px;
+    height: 500px;
     background-color: green;
     align: center center;
     opacity: 0;
     transform: translateY(300px) translateX(300px);
     transition: transform 0.3s ease-in-out 0s, opacity 0.25s ease-in-out 0s;
+    flow-children: right;
 
     &.ShowChangeSchools {
 		opacity: 1;
 		transform: translateY(0px);
 	}
+}
+
+#schools{
+  height: 400px;
+  width: 150px;
+
+
+  #schools_abilities{
+    flow-children: right-wrap;
+    height: 100px;
+    width: 100%;
+  }
+
+
 }

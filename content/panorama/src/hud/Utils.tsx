@@ -19,4 +19,23 @@ namespace Utils{
 	}
 }
 
+function print(...args: any[]) {
+	if (!Game.IsInToolsMode()) {
+		return;
+	}
+	let s = "";
+	let a = [...args];
+	a.forEach(e => {
+		if (s != "") {
+			s += "\t";
+		}
+		if (typeof (e) == "object") {
+			s = s + JSON.stringify(e);
+		} else {
+			s = s + String(e);
+		}
+	});
+	$.Msg(s);
+}
+
 export default Utils;

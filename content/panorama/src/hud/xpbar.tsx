@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { render } from '@demon673/react-panorama';
-import ReactUtils from "../utils/React_utils";
+import ReactUtils from "./React_utils";
 
 function Xpbar(){
     const [xpbar, setxp] = useState(updatexp)

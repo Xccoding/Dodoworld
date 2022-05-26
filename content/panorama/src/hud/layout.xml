@@ -11,7 +11,10 @@
         <include src="./xpbar.tsx"/>
         <include src="./ChangeSchools.tsx"/>
         <include src="./right_bottom_button.tsx" />
+        <include src="./Utils.tsx" />
+        <!-- <include src="content\panorama\src\utils\Utils.tsx" /> -->
         <!-- Synchronized file from kv files by sync_kv.js, if it is not used, please delete the following line -->
+        <include src="file://{resources}/scripts/utils.js" />
         <include src="file://{resources}/scripts/sync_keyvalues.js" />
     </scripts>
     <styles>
@@ -59,6 +62,7 @@
             <Image class="Hidden" src="file://{images}/spellicons/mage_light_strike_array.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/spellicons/mage_resonant_pulse.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/spellicons/goose.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/buttons/ChangeSchools_button.png" hittest="false" />
 	    </Panel>
     </Panel>
     
