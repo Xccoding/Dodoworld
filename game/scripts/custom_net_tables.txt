@@ -4,5 +4,6 @@
     [
         "unit_attribute",
         "DHPS",
+        "hero_schools",
     ]
 }

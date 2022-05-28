@@ -1,0 +1,6 @@
+"schools_duty"{
+    "death_knight_0"    "4"
+    "death_knight_1"    "1"
+    "mage_0"            "1"
+    "mage_1"            "1"
+}

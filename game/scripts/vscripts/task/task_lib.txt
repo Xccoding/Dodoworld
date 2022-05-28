@@ -1,0 +1,42 @@
+"task_lib"
+{
+    "1001"
+    {
+        "name"  "task_example"
+        "01"
+        {
+            "type"  "kill"
+            "kill_targets"
+            {
+                "01"
+                {
+                    "kill_amount" ""
+                    "kill_type" ""
+                }
+                "02"
+                {
+                    "kill_amount" ""
+                    "kill_type" ""
+                }
+            }
+        }
+        "02"
+        {
+            "type"  "interact"
+            "interact_targets"
+            {
+                "01"
+                {
+                    "interact_amount" ""
+                    "interact_type" ""
+                }
+                "02"
+                {
+                    "interact_amount" ""
+                    "interact_type" ""
+                }
+            }
+        }
+        
+    }
+}

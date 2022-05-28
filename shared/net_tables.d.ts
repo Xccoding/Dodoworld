@@ -15,4 +15,9 @@ declare interface CustomNetTableDeclarations {
             HPS: number;
         }  
     };
+    hero_schools: {
+        [player_index: number]:{
+            schools_index: number;
+        }
+    }
 }

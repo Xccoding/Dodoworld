@@ -1,4 +1,9 @@
-"death_knight_0"    "雾霭（坦克）"
+"Hud_ChangeSchools_desc"    "你可以在战斗外随意切换流派。"
+"schools_duty_dps"  "（输出）"
+"schools_duty_tank"  "（坦克）"
+"schools_duty_healer"  "（治疗）"
+
+"death_knight_0"    "雾霭"
 "death_knight_0_desc"   "黑暗的守护者，操控神秘的迷雾来抵御攻击，能使用一把武器和一面盾牌。\n可用武器：单手剑，单手斧或单手锤，以及盾牌" 
-"death_knight_1"    "冥寒（输出）"
+"death_knight_1"    "冥寒"
 "death_knight_1_desc"   "冰冻末日的使者，引导冥寒之力，能使用两把武器。\n可用武器：两把单手剑，单手斧或单手锤" 

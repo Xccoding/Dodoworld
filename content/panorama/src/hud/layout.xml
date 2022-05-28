@@ -2,19 +2,15 @@
     <scripts>
         <include src="./script.tsx" />
         <include src="./hide.tsx"/>
-        <include src="./portrait.tsx"/>
-        <include src="./hero_cast.tsx"/>
-        <include src="./hp_mana.tsx"/>
-        <include src="./abilities_panel.tsx"/>
-        <include src="./bufflist.tsx"/>
-        <include src="./DHPS_Counter.tsx"/>
-        <include src="./xpbar.tsx"/>
-        <include src="./ChangeSchools.tsx"/>
-        <include src="./right_bottom_button.tsx" />
-        <!-- <include src="./Utils.tsx" /> -->
-        <!-- <include src="content\panorama\src\utils\Utils.tsx" /> -->
+        <!-- <include src="./portrait.tsx"/> -->
+        <!-- <include src="./hero_cast.tsx"/> -->
+        <!-- <include src="./hp_mana.tsx"/> -->
+        <!-- <include src="./bufflist.tsx"/> -->
+        <!-- <include src="./DHPS_Counter.tsx"/> -->
+        <!-- <include src="./xpbar.tsx"/> -->
+        <!-- <include src="./ChangeSchools.tsx"/> -->
+        <!-- <include src="./right_bottom_button.tsx" /> -->
         <!-- Synchronized file from kv files by sync_kv.js, if it is not used, please delete the following line -->
-        <!-- <include src="file://{resources}/scripts/utils.js" /> -->
         <include src="file://{resources}/scripts/sync_keyvalues.js" />
     </scripts>
     <styles>
@@ -25,22 +21,23 @@
 		<include src="s2r://panorama/styles/hud/dota_hud_stat_branch.vcss_c"></include>		
 		<include src="s2r://panorama/styles/hud/dota_hud_ability_panel.vcss_c"></include>
         <include src="./main_style.css" />
-        <include src="./bufflist.css" />
-        <include src="./hp_mana.css" />
-        <include src="./DHPS_Counter.css" />
-        <include src="./xpbar.css" />
-        <include src="./ChangeSchools.css" />
-        <include src="./right_bottom_button.css" />
+        <include src="./bufflist/bufflist.css" />
+        <include src="./hp_mana/hp_mana.css" />
+        <include src="./DHPS_Counter/DHPS_Counter.css" />
+        <include src="./xpbar/xpbar.css" />
+        <include src="./ChangeSchools/ChangeSchools.css" />
+        <include src="./right_bottom_button/right_bottom_button.css" />
     </styles>
     <Panel class="root" hittest="false" >
         <!-- 动作条、血条和buff栏 -->
         <Panel id="ActionPanel">
             <DOTAAbilityList id="abilities" hittest="false"/>
-            <Panel id="HealthManaRoot" hittest="false"/>
-            <Panel id="Buffs" hittest="false"/>
+            <Panel id="HealthManaRoot"/>
+            <Panel id="Buffs"/>
             <Panel id="XpbarRoot" hittest="false"/>
             <Panel id="ActionPanel_BG" hittest="false"/>
         </Panel>
+        <Panel id="Right_bottom_button_Root"/>
         <!-- DPS和HPS统计 -->
         <Panel id="DHPS_CounterRoot" hittest="false"/>
 
@@ -62,7 +59,11 @@
             <Image class="Hidden" src="file://{images}/spellicons/mage_light_strike_array.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/spellicons/mage_resonant_pulse.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/spellicons/goose.png" hittest="false" />
+            <!-- 控件 -->
             <Image class="Hidden" src="file://{images}/buttons/ChangeSchools_button.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/position_healer.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/position_tank.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/position_dps.png" hittest="false" />
 	    </Panel>
     </Panel>
     

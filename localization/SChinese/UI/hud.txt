@@ -1,3 +1,11 @@
 "Hud_ChangeSchools_button" "流派"
+
+"hud_text_tooltip_Hud_ChangeSchools"    "切换你的流派"
+"hud_text_tooltip_HealthBar"    "生命值降至0就会死亡"
+"hud_text_tooltip_ManaBar_mage"    "魔法值，恢复速度受智力影响"
+"hud_text_tooltip_ManaBar_death_knight"    "符文能量，不会自然恢复，但你的部分技能可以产生符文能量"
+
 "Hud_ChangeSchools_title"   "流派"
 "choose_school" "选择流派"
+"current_school" "当前流派"
+"dota_hud_error_change_schools_in_combat"   "不能在战斗中切换流派"

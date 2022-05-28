@@ -1,0 +1,1 @@
+_G.task_lib = LoadKeyValues("scripts/vscripts/task/task_lib.txt")

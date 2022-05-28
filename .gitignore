@@ -24,7 +24,6 @@ game/resource/word_filter_cache_1.dat
 
 
 !scripts/**/*.*
-game/scripts/vscripts
 
 
 # kv 生成
