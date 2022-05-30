@@ -8,6 +8,7 @@ require('GameConfig')
 
 _G.UnitLevels = LoadKeyValues("scripts/npc/levels.txt")
 _G.RoleAbilities = LoadKeyValues("scripts/npc/role_abilities.txt")
+_G.SchoolsUsemana = LoadKeyValues("scripts/npc/schools_usemana.txt")
 
 function Precache( context )
 	--[[
@@ -39,7 +40,7 @@ function DodoWorld:InitGameMode()
 	require('abilities_required_lvl')
 	level_table = {[0] = 0}
 
-	for lvl = 1, MAX_UNIT_LEVEL do
+	for lvl = 1, MAX_UNIT_LEVEL - 1 do
 		level_table[lvl] = lvl * UnitLevels.level_factor + UnitLevels.other_param
 	end
 

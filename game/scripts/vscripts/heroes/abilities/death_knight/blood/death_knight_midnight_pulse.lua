@@ -70,14 +70,18 @@ end
 function modifier_death_knight_midnight_pulse:OnIntervalThink()
 	local hCaster = self:GetCaster()
 	local hParent = self:GetParent()
+	local hAbility = self:GetAbility()
 	if IsServer() then
+		if hAbility == nil then
+			self:Destroy()
+		end
 		local enemies = FindUnitsInRadius(hCaster:GetTeamNumber(), hParent:GetAbsOrigin(), nil, self.radius, self:GetAbility():GetAbilityTargetTeam(), self:GetAbility():GetAbilityTargetType(), self:GetAbility():GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 		for _, enemy in pairs(enemies) do
 			if enemy ~= nil and enemy:IsAlive() then
 				ApplyDamage({
 					victim = enemy,
 					attacker = hCaster,
-					damage = hCaster:GetDamageforAbility(true) * self.ap_factor * 0.01,
+					damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_AP) * self.ap_factor * 0.01,
 					damage_type = DAMAGE_TYPE_MAGICAL,
 					ability = self,
 					damage_flags = DOTA_DAMAGE_FLAG_DIRECT,

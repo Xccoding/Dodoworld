@@ -78,7 +78,7 @@ function mage_arcane_bolt:OnProjectileHit_ExtraData(hTarget, vLocation, ExtraDat
     ApplyDamage({
         victim = hTarget,
         attacker = hCaster,
-        damage = hCaster:GetDamageforAbility(false) * sp_factor * 0.01,
+        damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * sp_factor * 0.01,
         damage_type = DAMAGE_TYPE_MAGICAL,
         ability = self,
         damage_flags = DOTA_DAMAGE_FLAG_DIRECT,

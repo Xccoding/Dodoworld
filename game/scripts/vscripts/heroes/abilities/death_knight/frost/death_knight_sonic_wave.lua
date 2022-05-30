@@ -41,7 +41,7 @@ function death_knight_sonic_wave:OnProjectileHit_ExtraData(hTarget, vLocation, E
 		ApplyDamage({
             victim = hTarget,
             attacker = hCaster,
-            damage = hCaster:GetDamageforAbility(true) * ap_factor * 0.01,
+            damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_AP) * ap_factor * 0.01,
             damage_type = DAMAGE_TYPE_MAGICAL,
             ability = hAbility,
             damage_flags = DOTA_DAMAGE_FLAG_DIRECT,

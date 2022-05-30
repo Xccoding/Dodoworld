@@ -41,6 +41,7 @@
         {
 			"bonus_attack"	"3"
 			"attack_time"	"1.75"
+			"bonus_attack_range"	"50"
         }	
 	}
 
@@ -85,6 +86,7 @@
         {
 			"bonus_attack"	"3"
 			"attack_time"	"1.75"
+			"bonus_attack_range"	"50"
         }	
 	}
 

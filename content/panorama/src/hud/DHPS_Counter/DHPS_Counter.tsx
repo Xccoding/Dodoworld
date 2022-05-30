@@ -20,7 +20,6 @@ export function DHPS_Counter(){
             const DHPS_info = All_DHPS[index]
             const unit_index = Number(DHPS_info.key) as EntityIndex
             const DPS_playerid = Entities.GetPlayerOwnerID(unit_index)
-            
             const DPS_number = DHPS_info.value.DPS
             if(DPS_number > 0){
                 let pos = PlayerDPS.findIndex((value)=>{

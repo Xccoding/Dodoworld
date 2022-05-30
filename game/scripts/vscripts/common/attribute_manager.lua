@@ -1,4 +1,8 @@
 require('modifiers.Cmodifier')
+
+--link英雄属性modifier
+LinkLuaModifier( "modifier_hero_attribute", "common/combat/modifiers/modifier_hero_attribute.lua", LUA_MODIFIER_MOTION_NONE )
+
 local BaseNPC
 if IsServer() then
     BaseNPC = CDOTA_BaseNPC
@@ -53,13 +57,34 @@ function BaseNPC:GetUnitAttribute(attrName, params, calculate_type)
     return attr
 end
 
+function BaseNPC:IsUseMana()
+    local unit = self
+    local label = unit:GetUnitLabel()
+    local current_schools = CustomNetTables:GetTableValue("hero_schools", tostring(unit:GetPlayerOwnerID())).schools_index or 0
+    local unit_key = label.."_schools_"..current_schools
+
+    if SchoolsUsemana[unit_key] ~= nil then
+        if SchoolsUsemana[unit_key] == 0 then
+            return false
+        elseif SchoolsUsemana[unit_key] == 1 then
+            return true
+        end
+    end
+    return false
+
+end
+
 if IsServer() then
     --获取技能伤害基数
-    function CDOTA_BaseNPC:GetDamageforAbility( bIsAP )
+    function CDOTA_BaseNPC:GetDamageforAbility( iCalculate_type )
         local dmg = self:GetAverageTrueAttackDamage(self)
         --暂时都计算主属性
         if self:IsRealHero() then
-            dmg = self:GetPrimaryStatValue()
+            if iCalculate_type == ABILITY_DAMAGE_CALCULATE_TYPE_AP then
+                dmg = self:GetAverageTrueAttackDamage(self)
+            elseif iCalculate_type == ABILITY_DAMAGE_CALCULATE_TYPE_SP then
+                dmg = self:GetUnitAttribute(SPELL_POWER, {}, MODIFIER_CALCULATE_TYPE_SUM)
+            end
         end
         return dmg
     end

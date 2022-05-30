@@ -52,6 +52,6 @@
 "DOTA_Tooltip_modifier_mage_ancient_seal_Description"	"已经累积%dMODIFIER_PROPERTY_TOOLTIP%点魔法伤害"
 
 "DOTA_Tooltip_ability_mage_equilibrium"	"精华变迁"
-"DOTA_Tooltip_ability_mage_equilibrium_Description"	"主动：持续施法-使你获得%bonus_mana_regen_pct%%%的魔法恢复增强，持续%duration%秒。\n被动：使你的最大魔法值提高【%max_mana_int_factor% x 智力】%%，并获得同等的魔法恢复增强。同时使奥术至尊的伤害提高效果增强【%arcane_buff_bonus_damage% x 智力】%%"
+"DOTA_Tooltip_ability_mage_equilibrium_Description"	"主动：持续施法-使你获得%bonus_mana_regen_pct%%%的魔法恢复增强，持续%duration%秒。\n被动：使你的最大魔法值提高【%max_mana_int_factor%%% x 智力】%%，并获得同等的魔法恢复增强。同时使奥术至尊的伤害提高效果增强【%arcane_buff_bonus_damage%%% x 智力】%%"
 "DOTA_Tooltip_modifier_mage_equilibrium"	"精华变迁"
 "DOTA_Tooltip_modifier_mage_equilibrium_Description"	"最大魔法值提升%fMODIFIER_PROPERTY_EXTRA_MANA_PERCENTAGE%%%，获得%fMODIFIER_PROPERTY_MP_REGEN_AMPLIFY_PERCENTAGE%%%的魔法恢复增强，奥术至尊的伤害提升效果增强%dMODIFIER_PROPERTY_TOOLTIP%%%"

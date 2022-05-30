@@ -57,7 +57,7 @@ function mage_hellfire_blast:OnProjectileHit_ExtraData(hTarget, vLocation, Extra
             ApplyDamage({
                 victim = enemy,
                 attacker = hCaster,
-                damage = hCaster:GetDamageforAbility(false) * sp_factor * 0.01,
+                damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * sp_factor * 0.01,
                 damage_type = DAMAGE_TYPE_MAGICAL,
                 ability = self,
                 damage_flags = DOTA_DAMAGE_FLAG_DIRECT,

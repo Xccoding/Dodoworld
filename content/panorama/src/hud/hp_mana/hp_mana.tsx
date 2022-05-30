@@ -48,6 +48,23 @@ export function HealthMana(){
 
 function HealthBar({max_health, health, health_regen, percent}:{max_health: number, health: number, health_regen: number, percent: number}){
     let width = `${percent * 100}%`
+    // 处理数字长度
+    let health_unit = ""
+    let max_health_unit = ""
+    let health_regen_unit = ""
+    if(max_health >= 10000){
+        max_health = Number((max_health * 0.0001).toFixed(1))
+        max_health_unit = "万"
+    }
+    if(health >= 10000){
+        health = Number((health * 0.0001).toFixed(1))
+        health_unit = "万"
+    }
+    if(health_regen >= 10000){
+        health_regen = Number((health_regen * 0.0001).toFixed(1))
+        health_regen_unit = "万"
+    }
+
     return <ProgressBar id ="HealthProgressBar" value={percent} onmouseover={p=>{
         $.DispatchEvent("DOTAShowTextTooltip", p, $.Localize("#hud_text_tooltip_HealthBar"))
     }
@@ -57,8 +74,8 @@ function HealthBar({max_health, health, health_regen, percent}:{max_health: numb
             $.DispatchEvent("DOTAHideTextTooltip")
         }
     }>
-        <Label id="hp_maxhp" text={`${health} /  ${max_health}`}></Label>
-        <Label id="hp_regen" text={`+ ${health_regen.toFixed(1)}`}></Label>
+        <Label id="hp_maxhp" text={`${health + health_unit} /  ${max_health + max_health_unit}`}></Label>
+        <Label id="hp_regen" text={`+ ${health_regen.toFixed(1) + health_regen_unit}`}></Label>
         <Panel id="HealthBarBG" style={{width}} ></Panel>
     </ProgressBar>
 }
@@ -73,6 +90,23 @@ function ManaBar({max_mana, mana, mana_regen, percent}:{max_mana: number, mana: 
         bShowMpRegen = false
     }
 
+    // 处理数字长度
+    let mana_unit = ""
+    let max_mana_unit = ""
+    let mana_regen_unit = ""
+    if(max_mana >= 10000){
+        max_mana = Number((max_mana * 0.0001).toFixed(1))
+        max_mana_unit = "万"
+    }
+    if(mana >= 10000){
+        mana = Number((mana * 0.0001).toFixed(1))
+        mana_unit = "万"
+    }
+    if(mana_regen >= 10000){
+        mana_regen = Number((mana_regen * 0.0001).toFixed(1))
+        mana_regen_unit = "万"
+    }
+
     return <ProgressBar id ="ManaProgressBar" value={percent} onmouseover={p=>{
         $.DispatchEvent("DOTAShowTextTooltip", p, $.Localize("#hud_text_tooltip_ManaBar_" + hero_label))
     }
@@ -82,9 +116,9 @@ function ManaBar({max_mana, mana, mana_regen, percent}:{max_mana: number, mana: 
             $.DispatchEvent("DOTAHideTextTooltip")
         }
     }>
-        <Label id="mp_maxmp" text={`${mana} /  ${max_mana}`}></Label>
+        <Label id="mp_maxmp" text={`${mana + mana_unit} /  ${max_mana + max_mana_unit}`}></Label>
         {
-            bShowMpRegen ? <Label id="mp_regen" text={`+ ${mana_regen.toFixed(1)}`}></Label> : <></>
+            bShowMpRegen ? <Label id="mp_regen" text={`+ ${mana_regen.toFixed(1) + mana_regen_unit}`}></Label> : <></>
         }
         <Panel id="ManaBarBG" className={"ManaBarBG_" + hero_label} style={{width}}></Panel>
     </ProgressBar>

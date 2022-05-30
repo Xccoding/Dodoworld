@@ -65,7 +65,7 @@ function modifier_neutral_creep_envenomed_weapon_debuff:OnIntervalThink()
 		ApplyDamage({
 				victim = hParent,
 				attacker = hCaster,
-				damage = hCaster:GetDamageforAbility(true) * self.ap_factor * 0.01,
+				damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_AP) * self.ap_factor * 0.01,
 				damage_type = DAMAGE_TYPE_PHYSICAL,
 				ability = hAbility,
 				damage_flags = DOTA_DAMAGE_FLAG_INDIRECT,

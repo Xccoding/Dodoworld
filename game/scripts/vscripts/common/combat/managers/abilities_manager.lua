@@ -1,6 +1,6 @@
 
 function InitSchools()
-    for playerID = 0,DOTA_MAX_TEAM_PLAYERS - 1 do
+    for playerID = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
         CustomNetTables:SetTableValue("hero_schools", tostring(playerID), {schools_index = 0})
     end
 end
@@ -14,7 +14,6 @@ end
 function RefreshAbilitiesToRole(params)
     local unit = EntIndexToHScript(params.entindex)
     local new_schools = params.new_schools or 0
-    
 
     for i = MIN_ABILITY_SLOT, MAX_ABILITY_SLOT do
         if unit:GetAbilityByIndex(i) ~= nil then
@@ -29,22 +28,25 @@ function RefreshAbilitiesToRole(params)
         end
     end
 
-    local abilities_to_add = RoleAbilities[unit:GetUnitLabel().."_"..tostring(new_schools)]
-    for i = 1, 6 do
-        if abilities_to_add["Ability"..i] ~= nil then
-            local add_ability = unit:AddAbility(abilities_to_add["Ability"..tostring(i)])
-            add_ability:SetAbilityIndex(i - 1)
-            -- unit:SetAbilityByIndex(add_ability, i)
+    local abilities_to_add = RoleAbilities[unit:GetUnitLabel().."_schools_"..tostring(new_schools)]
+    if abilities_to_add ~= nil then
+        for i = 1, 6 do
+            if abilities_to_add["Ability"..i] ~= nil then
+                local add_ability = unit:AddAbility(abilities_to_add["Ability"..tostring(i)])
+                add_ability:SetAbilityIndex(i - 1)
+                -- unit:SetAbilityByIndex(add_ability, i)
+            end
         end
+    
+        --更新网表
+        CustomNetTables:SetTableValue("hero_schools", tostring(unit:GetPlayerOwnerID()), {schools_index = new_schools})
+        -- for i = MIN_ABILITY_SLOT, MAX_ABILITY_SLOT do
+        --     if unit:GetAbilityByIndex(i) ~= nil then
+        --         print(unit:GetAbilityByIndex(i):GetAbilityName())
+        --     end
+        -- end
     end
-
-    --更新网表
-    CustomNetTables:SetTableValue("hero_schools", tostring(unit:GetPlayerOwnerID()), {schools_index = new_schools})
-    -- for i = MIN_ABILITY_SLOT, MAX_ABILITY_SLOT do
-    --     if unit:GetAbilityByIndex(i) ~= nil then
-    --         print(unit:GetAbilityByIndex(i):GetAbilityName())
-    --     end
-    -- end
+ 
 end
 
 function CDOTA_BaseNPC:AutoUpgradeAbilities()

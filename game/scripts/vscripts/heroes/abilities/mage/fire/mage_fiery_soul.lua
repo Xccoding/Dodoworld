@@ -102,7 +102,7 @@ function modifier_mage_fiery_soul:C_OnSpellNotCrit( params )
 					bAlready_record = true
 				else
 					if record.hAbility == hAbility then
-						print(record.time,GameRules:GetGameTime(),"not equal time")
+						-- print(record.time,GameRules:GetGameTime(),"not equal time")
 					end
 				end
 			end

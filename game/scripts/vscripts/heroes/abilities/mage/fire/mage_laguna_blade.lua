@@ -10,12 +10,26 @@ function mage_laguna_blade:GetCastAnimation()
 		return ACT_DOTA_CAST_ABILITY_3
 	end
 end
-function mage_laguna_blade:GetBehavior()
+-- function mage_laguna_blade:GetBehavior()
+--     local hCaster = self:GetCaster()
+--     if hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
+--         return tonumber(tostring(self.BaseClass.GetBehavior(self))) + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+--     end
+-- 	return tonumber(tostring(self.BaseClass.GetBehavior(self)))
+-- end
+function mage_laguna_blade:GetCastPoint()
     local hCaster = self:GetCaster()
     if hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
-        return tonumber(tostring(self.BaseClass.GetBehavior(self))) + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+        return 0
     end
-	return tonumber(tostring(self.BaseClass.GetBehavior(self)))
+    return tonumber(tostring(self.BaseClass.GetCastPoint(self)))
+end
+function mage_laguna_blade:GetPlaybackRateOverride()
+    local hCaster = self:GetCaster()
+    if hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
+        return 1000
+    end
+    return tonumber(tostring(self.BaseClass.GetPlaybackRateOverride(self)))
 end
 function mage_laguna_blade:GetAbilityTextureName()
     local hCaster = self:GetCaster()
@@ -27,7 +41,9 @@ function mage_laguna_blade:GetAbilityTextureName()
 end
 function mage_laguna_blade:OnAbilityPhaseStart()
     local hCaster = self:GetCaster()
-	EmitSoundOnEntityForPlayer("Hero_StormSpirit.ElectricVortex", hCaster, hCaster:GetPlayerOwnerID())
+    if not hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
+        EmitSoundOnEntityForPlayer("Hero_StormSpirit.ElectricVortex", hCaster, hCaster:GetPlayerOwnerID())
+    end
     self.particleID_pre = ParticleManager:CreateParticleForPlayer("particles/units/heroes/hero_wisp/wisp_tether.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster, hCaster:GetPlayerOwner())
     ParticleManager:SetParticleControlEnt(self.particleID_pre, 0, hCaster, PATTACH_POINT_FOLLOW, "attach_attack1", Vector(0, 0, 0), false)
     ParticleManager:SetParticleControlEnt(self.particleID_pre, 1, hCaster, PATTACH_POINT_FOLLOW, "attach_attack2", Vector(0, 0, 0), false)
@@ -68,7 +84,7 @@ function mage_laguna_blade:OnSpellStart()
         {
             victim = hTarget,
 			attacker = hCaster,
-			damage = hCaster:GetDamageforAbility(false) * sp_factor * 0.01,
+			damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * sp_factor * 0.01,
 			damage_type = DAMAGE_TYPE_MAGICAL,
 			ability = self,
 			damage_flags = flags,

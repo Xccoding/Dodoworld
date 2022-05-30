@@ -1,44 +1,49 @@
+#ChangeSchools_Root{
+  width: 100%;
+  height: 100%;
+}
+
 #ChangeSchools{
     width: 600px;
     height: 460px;
     background-color: rgba(0, 0, 0, 0.274);
     border-radius: 7px;
     align: center center;
-    opacity: 0;
     transform: translateY(300px) translateX(300px);
     transition: transform 0.3s ease-in-out 0s, opacity 0.25s ease-in-out 0s;
+    opacity: 0;
 
     &.ShowChangeSchools {
-		opacity: 1;
-		transform: translateY(0px);
-	}
+    opacity: 1;
+    transform: translateY(0px);
+    }
 
-  #ChangeSchools_title{
-    align: center top;
-    text-shadow: 0px 0px 4px 5 #1a1818;
-    color: rgb(207, 207, 207);
-    font-family: monospaceNumbersFont;
-    font-size: 24px;
-    overflow: noclip noclip; 
-  }
+    #ChangeSchools_title{
+      align: center top;
+      text-shadow: 0px 0px 4px 5 #1a1818;
+      color: rgb(207, 207, 207);
+      font-family: monospaceNumbersFont;
+      font-size: 24px;
+      overflow: noclip noclip; 
+    }
 
-  #ChangeSchools_desc{
-    align: center top;
-    margin-top: 40px;
-    text-shadow: 0px 0px 3px 4 #1a1818;
-    color: rgb(170, 170, 170);
-    font-family: monospaceNumbersFont;
-    font-size: 16px;
-    overflow: noclip noclip; 
-  }
+    #ChangeSchools_desc{
+      align: center top;
+      margin-top: 40px;
+      text-shadow: 0px 0px 3px 4 #1a1818;
+      color: rgb(170, 170, 170);
+      font-family: monospaceNumbersFont;
+      font-size: 16px;
+      overflow: noclip noclip; 
+    }
 
-  #SchoolsList{
-    margin-top: 30px;
-    align: center center;
-    width: 100%;
-    height: 100%;
-    flow-children: right;
-  }
+    #SchoolsList{
+      margin-top: 30px;
+      align: center center;
+      width: 100%;
+      height: 100%;
+      flow-children: right;
+    }
 }
 
 #schools{

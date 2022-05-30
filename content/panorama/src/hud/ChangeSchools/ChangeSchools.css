@@ -1,12 +1,16 @@
+#ChangeSchools_Root {
+  width: 100%;
+  height: 100%;
+}
 #ChangeSchools {
   width: 600px;
   height: 460px;
   background-color: rgba(0, 0, 0, 0.274);
   border-radius: 7px;
   align: center center;
-  opacity: 0;
   transform: translateY(300px) translateX(300px);
   transition: transform 0.3s ease-in-out 0s, opacity 0.25s ease-in-out 0s;
+  opacity: 0;
 }
 #ChangeSchools.ShowChangeSchools {
   opacity: 1;

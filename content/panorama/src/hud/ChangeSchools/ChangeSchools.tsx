@@ -36,9 +36,9 @@ export function ChangeSchools(){
         let schools: string[] = []
         let hero_label = Entities.GetUnitLabel(Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()))
         for (let index = MIN_SCHOOLS_INDEX; index < MAX_SCHOOLS_INDEX; index++) {
-            if((GameUI.CustomUIConfig() as any).role_abilities?.role_abilities_pool[`${hero_label}_${index}`] != undefined)
+            if((GameUI.CustomUIConfig() as any).role_abilities?.role_abilities_pool[`${hero_label}_schools_${index}`] != undefined)
             {
-                schools.push(`${hero_label}_${index}`)
+                schools.push(`${hero_label}_schools_${index}`)
             }
         }
         return schools
@@ -116,3 +116,5 @@ function Schools({schools_name, schools_index, Schools_selected}: {schools_name:
         }}></TextButton>
     </Panel>
 }
+
+// {render(<ChangeSchools />, $.GetContextPanel());}

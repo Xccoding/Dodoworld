@@ -3,7 +3,12 @@
 "schools_duty_tank"  "（坦克）"
 "schools_duty_healer"  "（治疗）"
 
-"death_knight_0"    "雾霭"
-"death_knight_0_desc"   "黑暗的守护者，操控神秘的迷雾来抵御攻击，能使用一把武器和一面盾牌。\n可用武器：单手剑，单手斧或单手锤，以及盾牌" 
-"death_knight_1"    "冥寒"
-"death_knight_1_desc"   "冰冻末日的使者，引导冥寒之力，能使用两把武器。\n可用武器：两把单手剑，单手斧或单手锤" 
+"death_knight_schools_0"    "雾霭"
+"death_knight_schools_0_desc"   "黑暗的守护者，操控神秘的迷雾来抵御攻击，能使用一把武器和一面盾牌。\n可用武器：单手剑，单手斧或单手锤，以及盾牌" 
+"death_knight_schools_1"    "冥寒"
+"death_knight_schools_1_desc"   "冰冻末日的使者，引导冥寒之力，能使用两把武器。\n可用武器：两把单手剑，单手斧或单手锤" 
+
+"mage_schools_0"    "火焰"
+"mage_schools_0_desc"   "使用灼热的火球和烈焰烧尽敌人，能使用一把武器。\n可用武器：法杖，单手锤或匕首" 
+"mage_schools_1"    "奥术"
+"mage_schools_1_desc"   "操纵奥术之力，以压倒性的能量毁灭敌人，能使用一把武器。\n可用武器：法杖，单手锤或匕首" 

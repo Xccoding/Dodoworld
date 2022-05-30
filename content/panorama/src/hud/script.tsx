@@ -6,6 +6,7 @@ import { DHPS_Counter } from './DHPS_Counter/DHPS_Counter'
 import { HealthMana } from './hp_mana/hp_mana'
 import { Right_bottom_button } from './right_bottom_button/right_bottom_button'
 import { Xpbar } from './xpbar/xpbar'
+import { Backpack } from './Backpack/Backpack';
 import { print}  from './Utils'
 
 render(<Buffpanel />, $("#Buffs")); 
@@ -14,7 +15,10 @@ render(<HealthMana />, $("#HealthManaRoot"));
 
 render(<Xpbar />, $("#XpbarRoot")); 
 render(<Right_bottom_button />, $("#Right_bottom_button_Root"));
-render(<ChangeSchools />, $.GetContextPanel());
+render(<ChangeSchools />, $("#ChangeSchools_Root"));
+render(<Backpack />, $("#Backpack_Root"));
+
+
 
 // function ReactPanoramaPanel(){
     

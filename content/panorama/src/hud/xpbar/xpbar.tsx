@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { render } from '@demon673/react-panorama';
 import ReactUtils from "../../utils/React_utils";
 
+const MAX_HERO_LEVEL = 60
+
 export function Xpbar(){
     const [xpbar, setxp] = useState(updatexp)
 
@@ -24,6 +26,10 @@ export function Xpbar(){
             total_xp -= past_xp
         }
 
+        if(level == MAX_HERO_LEVEL){
+            total_xp = 0
+        }
+
         return [current_xp, total_xp, level]
     }
 
@@ -32,7 +38,10 @@ export function Xpbar(){
 		return Math.max(1 / 30, Game.GetGameFrameTime());
 	}, []);
 
-    let width = `${xpbar[0] / xpbar[1] * 100}%`
+    let width = "100%"
+    if(xpbar[2] < MAX_HERO_LEVEL){
+        width = `${xpbar[0] / xpbar[1] * 100}%`
+    }
     let hero_name = ""
     let hero = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer())
     if(hero != -1){
@@ -41,7 +50,7 @@ export function Xpbar(){
 
     return <ProgressBar id='xpbar' value={xpbar[0] / xpbar[1]}>
         <Label id='xpbar_level' text={`${$.Localize("#"+hero_name)} ${xpbar[2]}级`}/>
-        <Label id='xpbar_number' text={`${xpbar[0]} / ${xpbar[1]}`}/>
+        <Label id='xpbar_number' text={ xpbar[2] < MAX_HERO_LEVEL ? `${xpbar[0]} / ${xpbar[1]}`: $.Localize("#hud_xpbar_max_level")}/>
         <Panel id='xpbar_BG' style={{width}}/>
     </ProgressBar>
 }

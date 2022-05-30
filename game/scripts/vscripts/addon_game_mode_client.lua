@@ -1,0 +1,1 @@
+_G.SchoolsUsemana = LoadKeyValues("scripts/npc/schools_usemana.txt")

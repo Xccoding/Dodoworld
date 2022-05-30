@@ -25,7 +25,7 @@ function death_knight_frost_nova:OnSpellStart()
     local duration = self:GetSpecialValueFor("duration")
     local nova_bonus_damage_pct = self:GetSpecialValueFor("nova_bonus_damage_pct")
     local mana_get_pct = self:GetSpecialValueFor("mana_get_pct")
-    local fDamage = hCaster:GetDamageforAbility(true) * ap_factor_hit * 0.01
+    local fDamage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_AP) * ap_factor_hit * 0.01
 
     if hCaster:HasModifier("modifier_death_knight_mortal_strike_free_nova") then
         fDamage = fDamage * (100 + nova_bonus_damage_pct) * 0.01
@@ -110,7 +110,7 @@ function modifier_death_knight_frost_nova:OnIntervalThink()
     if IsServer() then
         local hCaster = self:GetCaster()
         local hTarget = self:GetParent()
-        local fDamage = hCaster:GetDamageforAbility(true) * self.ap_factor_dot * 0.01
+        local fDamage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_AP) * self.ap_factor_dot * 0.01
 
         ApplyDamage({
             victim = hTarget,

@@ -86,7 +86,7 @@ function modifier_mage_arcane_orb:OnAttackLanded( params )
 		local hTarget = params.target
 		local hAbility = self:GetAbility()
 		local arcane_buff = hCaster:FindModifierByName("modifier_mage_concussive_shot")
-		local fDamage = hCaster:GetDamageforAbility(false) * self.sp_factor * 0.01
+		local fDamage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * self.sp_factor * 0.01
 		local equilibrium = hCaster:FindAbilityByName("mage_equilibrium")
 		local equilibrium_pct = 0
 		if hTarget:IsNull() or hTarget == nil or (not hTarget:IsAlive()) then

@@ -101,7 +101,7 @@ function modifier_mage_searing_arrows:OnAttackLanded( params )
 			ApplyDamage({
 					victim = hTarget,
 					attacker = hCaster,
-					damage = hCaster:GetDamageforAbility(false) * self.sp_factor * 0.01,
+					damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * self.sp_factor * 0.01,
 					damage_type = DAMAGE_TYPE_MAGICAL,
 					ability = hAbility,
 					damage_flags = DOTA_DAMAGE_FLAG_DIRECT,

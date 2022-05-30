@@ -1,6 +1,6 @@
 #Buffs {
   width: 500px;
-  height: 90px;
+  height: 108px;
   align: center bottom;
   margin-bottom: 160px;
   flow-children: right;
@@ -10,20 +10,21 @@
   height: 100%;
 }
 #BuffList {
-  width: 210px;
-  height: 90px;
+  width: 200px;
+  height: 108px;
   align: left center;
   flow-children: right-wrap;
 }
 #DebuffList {
-  width: 210px;
-  height: 90px;
+  width: 200px;
+  height: 108px;
   align: right center;
   flow-children: left-wrap;
 }
 .CustomBuff {
   width: 35px;
   height: 50px;
+  margin: 2px;
 }
 .CustomBuff .BuffBorder {
   background-color: black;

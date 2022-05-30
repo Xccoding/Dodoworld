@@ -14,12 +14,26 @@ end
 function mage_light_strike_array:GetAOERadius()
 	return self:GetSpecialValueFor("radius")
 end
-function mage_light_strike_array:GetBehavior()
-	local hCaster = self:GetCaster()
+-- function mage_light_strike_array:GetBehavior()
+-- 	local hCaster = self:GetCaster()
+--     if hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
+--         return tonumber(tostring(self.BaseClass.GetBehavior(self))) + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+--     end
+-- 	return tonumber(tostring(self.BaseClass.GetBehavior(self)))
+-- end
+function mage_light_strike_array:GetCastPoint()
+    local hCaster = self:GetCaster()
     if hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
-        return tonumber(tostring(self.BaseClass.GetBehavior(self))) + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+        return 0
     end
-	return tonumber(tostring(self.BaseClass.GetBehavior(self)))
+    return tonumber(tostring(self.BaseClass.GetCastPoint(self)))
+end
+function mage_light_strike_array:GetPlaybackRateOverride()
+    local hCaster = self:GetCaster()
+    if hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
+        return 1000
+    end
+    return tonumber(tostring(self.BaseClass.GetPlaybackRateOverride(self)))
 end
 function mage_light_strike_array:GetAbilityTextureName()
     local hCaster = self:GetCaster()
@@ -79,7 +93,7 @@ function mage_light_strike_array:OnSpellStart()
 			ApplyDamage({
 				victim = enemy,
 				attacker = hCaster,
-				damage = hCaster:GetDamageforAbility(false) * sp_factor * 0.01,
+				damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * sp_factor * 0.01,
 				damage_type = DAMAGE_TYPE_MAGICAL,
 				ability = self,
 				damage_flags = flags,

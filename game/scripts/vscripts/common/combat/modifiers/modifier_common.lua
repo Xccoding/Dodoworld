@@ -30,27 +30,8 @@ function modifier_common:RemoveOnDeath()
 end
 function modifier_common:OnCreated(params)
     self.damage_records = {}
-    if IsServer() then
-        self:SetHasCustomTransmitterData(true)
-        self.base_attack_time = 1.70
-        -- self:StartIntervalThink(1)
-    end
 end
-function modifier_common:OnIntervalThink()
-    if IsServer() then
-        -- self.base_attack_time = self:GetParent():GetUnitAttribute(BASE_ATTACK_TIME, {}, MODIFIER_CALCULATE_TYPE_MAX)
-        -- self:SendBuffRefreshToClients()
-        -- print("s", self.base_attack_time)
-    end
-end
-function modifier_common:AddCustomTransmitterData()
-    return {
-        base_attack_time = self.base_attack_time
-    }
-end
-function modifier_common:HandleCustomTransmitterData(data)
-    self.base_attack_time = data.base_attack_time
-end
+
 function modifier_common:OnTakeDamageKillCredit(params)
     local hAttacker = params.attacker
     local hVictim = params.target
@@ -131,16 +112,20 @@ function modifier_common:GetModifierTotalDamageOutgoing_Percentage( params )
     --普通攻击伤害
     if params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
         local crit_chance = 0
+        local crit_damage = CDOTA_BASE_CRIT_DAMAGE
         if params.damage_type == DAMAGE_TYPE_PHYSICAL then
             crit_chance = hAttacker:GetUnitAttribute(BONUS_PHYSICAL_CRIT_CHANCE, params, MODIFIER_CALCULATE_TYPE_SUM)
-        else
+            crit_damage = hAttacker:GetUnitAttribute(BONUS_PHYSICAL_CRIT_DAMAGE, params, MODIFIER_CALCULATE_TYPE_SUM)
+        elseif params.damage_type == DAMAGE_TYPE_MAGICAL then
             crit_chance = hAttacker:GetUnitAttribute(BONUS_MAGICAL_CRIT_CHANCE, params, MODIFIER_CALCULATE_TYPE_SUM)
+            crit_damage = hAttacker:GetUnitAttribute(BONUS_MAGICAL_CRIT_DAMAGE, params, MODIFIER_CALCULATE_TYPE_SUM)
         end
+        print(crit_chance)
         if RandomFloat(0, 100) < crit_chance then
             table.insert(self.damage_records, {crit = true, record = params.record})
             CFireModifierEvent(hAttacker, CMODIFIER_EVENT_ON_ATTACK_CRIT, params)
             CFireModifierEvent(hVictim, CMODIFIER_EVENT_ON_ATTACK_CRIT, params)
-            return 50--TODO暴击伤害倍率修改
+            return crit_damage
         else
             table.insert(self.damage_records, {crit = false, record = params.record})
             CFireModifierEvent(hAttacker, CMODIFIER_EVENT_ON_ATTACK_NOTCRIT, params)
@@ -149,20 +134,23 @@ function modifier_common:GetModifierTotalDamageOutgoing_Percentage( params )
         end
     end
 
-    --技能攻击伤害
+    --技能伤害
     if params.damage_category == DOTA_DAMAGE_CATEGORY_SPELL then
         local crit_chance = 0
+        local crit_damage = CDOTA_BASE_CRIT_DAMAGE
         if params.damage_type == DAMAGE_TYPE_PHYSICAL then
             crit_chance = hAttacker:GetUnitAttribute(BONUS_PHYSICAL_CRIT_CHANCE, params, MODIFIER_CALCULATE_TYPE_SUM)
+            crit_damage = hAttacker:GetUnitAttribute(BONUS_PHYSICAL_CRIT_DAMAGE, params, MODIFIER_CALCULATE_TYPE_SUM)
         else
             crit_chance = hAttacker:GetUnitAttribute(BONUS_MAGICAL_CRIT_CHANCE, params, MODIFIER_CALCULATE_TYPE_SUM)
+            crit_damage = hAttacker:GetUnitAttribute(BONUS_MAGICAL_CRIT_DAMAGE, params, MODIFIER_CALCULATE_TYPE_SUM)
         end
         if RandomFloat(0, 100) < crit_chance then
             --print("数值暴击")
             table.insert(self.damage_records, {crit = true, record = params.record})
             CFireModifierEvent(hAttacker, CMODIFIER_EVENT_ON_SPELL_CRIT, params)
             CFireModifierEvent(hVictim, CMODIFIER_EVENT_ON_SPELL_CRIT, params)
-            return 50
+            return crit_damage
         else
             --print("数值没暴击")
             table.insert(self.damage_records, {crit = false, record = params.record})

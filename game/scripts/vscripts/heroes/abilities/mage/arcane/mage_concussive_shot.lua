@@ -82,7 +82,7 @@ function mage_concussive_shot:OnProjectileHit_ExtraData(hTarget, vLocation, Extr
     end
     local hCaster = self:GetCaster()
     local sp_factor = self:GetSpecialValueFor("sp_factor")
-    local fDamage = hCaster:GetDamageforAbility(false) * sp_factor * 0.01
+    local fDamage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * sp_factor * 0.01
     local arcane_bonus_damage_pct = self:GetSpecialValueFor("arcane_bonus_damage_pct")
     local equilibrium = hCaster:FindAbilityByName("mage_equilibrium")
 	local equilibrium_pct = 0

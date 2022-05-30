@@ -27,6 +27,8 @@
         <include src="./xpbar/xpbar.css" />
         <include src="./ChangeSchools/ChangeSchools.css" />
         <include src="./right_bottom_button/right_bottom_button.css" />
+        <include src="./Backpack/Backpack.css" />
+        <include src="./Character/Character.css" />
     </styles>
     <Panel class="root" hittest="false" >
         <!-- 动作条、血条和buff栏 -->
@@ -38,9 +40,10 @@
             <Panel id="ActionPanel_BG" hittest="false"/>
         </Panel>
         <Panel id="Right_bottom_button_Root"/>
+        <Panel id="ChangeSchools_Root" hittest="false"/>
+        <Panel id="Backpack_Root" hittest="false"/>
         <!-- DPS和HPS统计 -->
         <Panel id="DHPS_CounterRoot" hittest="false"/>
-
         
         <!-- 预载内容  -->
         <Panel id="precache" hittest="false">

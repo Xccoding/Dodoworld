@@ -1,11 +1,14 @@
 "dota_ability_variable_bonus_attack"			"攻击力"
 "dota_ability_variable_bonus_armor"			"护甲"
+"dota_ability_variable_bonus_attack_range"			"攻击距离"
 
 
 "DOTA_Tooltip_ability_item_abaddon_weapon"   "<font color='#BEBEBE'>【普通·单手剑】</font>死亡骑士新兵长剑"
 "DOTA_Tooltip_ability_item_abaddon_weapon_bonus_attack"   "+$bonus_attack"
+"DOTA_Tooltip_ability_item_abaddon_weapon_bonus_attack_range"   "+$bonus_attack_range"
 "DOTA_Tooltip_ability_item_abaddon_weapon_attack_time"   "基础攻击间隔："
 
 "DOTA_Tooltip_ability_item_wraith_king_weapon"   "<font color='#BEBEBE'>【普通·双手剑】</font>死亡骑士新兵大剑"
 "DOTA_Tooltip_ability_item_wraith_king_weapon_bonus_attack"   "+$bonus_attack"
+"DOTA_Tooltip_ability_item_wraith_king_weapon_bonus_attack_range"   "+$bonus_attack_range"
 "DOTA_Tooltip_ability_item_wraith_king_weapon_attack_time"   "基础攻击间隔："

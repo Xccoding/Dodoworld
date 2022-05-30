@@ -73,7 +73,7 @@ function death_knight_hellfire_blast:OnProjectileHit_ExtraData(hTarget, vLocatio
     ApplyDamage({
 		victim = blast_Target,
 		attacker = hCaster,
-		damage = hCaster:GetDamageforAbility(true) * ap_factor_hit * 0.01,
+		damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_AP) * ap_factor_hit * 0.01,
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 		ability = self,
 		damage_flags = DOTA_DAMAGE_FLAG_DIRECT,
@@ -147,7 +147,7 @@ function modifier_death_knight_hellfire_blast:OnIntervalThink()
     if IsServer() then
         local hCaster = self:GetCaster()
         local blast_Target = self:GetParent()
-        local fDamage = hCaster:GetDamageforAbility(true) * self.ap_factor_dot * 0.01
+        local fDamage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_AP) * self.ap_factor_dot * 0.01
 
         ApplyDamage({
             victim = blast_Target,

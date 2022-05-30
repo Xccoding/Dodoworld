@@ -28,11 +28,11 @@
   z-index: 1;
 }
 #HealthProgressBar #hp_regen {
-  horizontal-align: right;
+  align: right center;
   text-shadow: 0px 0px 4px 5 #000000;
   color: white;
   font-family: monospaceNumbersFont;
-  font-size: 16px;
+  font-size: 15px;
   z-index: 1;
 }
 #HealthProgressBar #HealthBarBG {
@@ -59,11 +59,11 @@
   z-index: 1;
 }
 #ManaProgressBar #mp_regen {
-  horizontal-align: right;
+  align: right center;
   text-shadow: 0px 0px 4px 5 #000000;
   color: white;
   font-family: monospaceNumbersFont;
-  font-size: 16px;
+  font-size: 15px;
   z-index: 1;
 }
 #ManaProgressBar #ManaBarBG {

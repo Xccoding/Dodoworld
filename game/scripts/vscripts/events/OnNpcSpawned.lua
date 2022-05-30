@@ -8,14 +8,11 @@ function DodoWorld:OnNpcSpawned( params )
     unit:AddNewModifier(unit, nil, "modifier_common", {})
 
     if unit:IsHero() and unit:IsRealHero() then
-        local new_schools = CustomNetTables:GetTableValue("hero_schools", tostring(params.entindex))
-        unit:SetContextThink(DoUniqueString("RefreshAbilities"), function ()
-            RefreshAbilitiesToRole({entindex = params.entindex, new_schools = new_schools})
-            unit:AutoUpgradeAbilities()
-
-            return nil
-        end, 0.1)
-        
+        local new_schools = CustomNetTables:GetTableValue("hero_schools", tostring(unit:GetPlayerOwnerID())).schools_index
+        RefreshAbilitiesToRole({entindex = params.entindex, new_schools = new_schools})
+        unit:AutoUpgradeAbilities()
+        unit:AddNewModifier(unit, nil, "modifier_hero_attribute", {})
+        -- PlayerResource:SetOverrideSelectionEntity(unit:GetPlayerOwnerID(), unit)
     end    
 end
 

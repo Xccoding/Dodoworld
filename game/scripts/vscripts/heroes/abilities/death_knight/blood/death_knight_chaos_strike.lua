@@ -124,7 +124,7 @@ function modifier_death_knight_chaos_strike:OnAttackLanded(params)
             ApplyDamage({
 				victim = hTarget,
 				attacker = hCaster,
-				damage = hCaster:GetDamageforAbility(true) * self.ap_factor * 0.01,
+				damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_AP) * self.ap_factor * 0.01,
 				damage_type = DAMAGE_TYPE_PHYSICAL,
 				ability = hAbility,
 				damage_flags = DOTA_DAMAGE_FLAG_DIRECT,

@@ -72,7 +72,7 @@ function modifier_death_knight_flamethrower:OnIntervalThink()
 					ApplyDamage({
 						victim = enemy,
 						attacker = hCaster,
-						damage = hCaster:GetDamageforAbility(true) * self.ap_factor * 0.01,
+						damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * self.ap_factor * 0.01,
 						damage_type = DAMAGE_TYPE_MAGICAL,
 						ability = hAbility,
 						damage_flags = DOTA_DAMAGE_FLAG_DIRECT,

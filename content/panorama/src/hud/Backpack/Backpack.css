@@ -1,0 +1,27 @@
+#Backpack_Root {
+  width: 100%;
+  height: 100%;
+}
+#Backpack {
+  width: 600px;
+  height: 800px;
+  align: right center;
+  background-color: rgba(0, 0, 0, 0.514);
+  flow-children: right;
+  transform: translateX(300px);
+  transition: transform 0.3s ease-in-out 0s, opacity 0.25s ease-in-out 0s;
+  opacity: 0;
+}
+#Backpack.ShowBackpack {
+  opacity: 1;
+  transform: translateX(0px);
+}
+#Backpack #Backpack_left {
+  height: 100%;
+  width: 35%;
+  background-color: rgba(0, 128, 0, 0.527);
+}
+#Backpack #Backpack_right {
+  height: 100%;
+  width: 65%;
+}
