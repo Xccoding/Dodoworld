@@ -19,12 +19,12 @@ end
 function modifier_item_abaddon_shoulder:IsPurgable()
     return false
 end
-function modifier_item_abaddon_shoulder:DeclareFunctions()
+function modifier_item_abaddon_shoulder:CDeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		CMODIFIER_PROPERTY_PHYSICAL_ARMOR_CONSTANT
 	}
 end
-function modifier_item_abaddon_shoulder:GetModifierPhysicalArmorBonus()
+function modifier_item_abaddon_shoulder:C_GetModifierPhysicalArmor_Constant()
 	return self.bonus_armor
 end
 function modifier_item_abaddon_shoulder:OnCreated(params)

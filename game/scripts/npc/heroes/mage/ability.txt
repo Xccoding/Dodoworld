@@ -455,7 +455,7 @@
 			"max_mana_int_factor"	"10"
 			"arcane_buff_bonus_damage"	"4"
 			"duration"			"6"
-			"bonus_mana_regen_pct"	"750"
+			"bonus_mana_regen_pct"	"1800"
         }
 	}
 

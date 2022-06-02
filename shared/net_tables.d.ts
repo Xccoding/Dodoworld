@@ -25,8 +25,9 @@ declare interface CustomNetTableDeclarations {
             // base_attack_damage: number // 基础攻击力
             total_attack_damage: number // 全额攻击力
             movespeed: number // 移动速度
-            physical_armor: number // 护甲
-            magical_armor: number // 魔法抗性
+            physical_armor: number[] // 护甲
+            magical_armor: number[] // 魔法抗性
+            evasion: number // 闪避
             attack_speed: number // 攻击速度
             cooldown_reduction: number // 冷却缩减
             spell_power: number // 法术强度
@@ -37,6 +38,7 @@ declare interface CustomNetTableDeclarations {
             magical_crit_chance: number // 魔法暴击概率
             physical_crit_damage: number // 物理暴击倍率
             magical_crit_damage: number // 魔法暴击倍率
+            block: number[] // 格挡
         }
     }
 }

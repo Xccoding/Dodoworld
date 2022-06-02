@@ -14,7 +14,7 @@ export function Right_bottom_button(){
         {
             Object.entries(ButtonList).map(([button_name, hud_name])=>
             {
-                return <TextButton key={button_name} id={`${hud_name}_button`} text={$.Localize("#"+button_name+"_button")} 
+                return <TextButton key={button_name} id={`${hud_name}_button`} text={$.Localize("#" + button_name+"_button")} 
                 onactivate={()=>{
                     let hud_toggle = $(`#${hud_name}`)
                     if(hud_toggle != undefined){
@@ -24,7 +24,7 @@ export function Right_bottom_button(){
                 }
                 }
                 onmouseover={p=>{
-                    $.DispatchEvent("DOTAShowTextTooltip", p, $.Localize("#hud_text_tooltip_"+button_name))
+                    $.DispatchEvent("DOTAShowTextTooltip", p, $.Localize("#hud_text_tooltip_" + button_name))
                 }
                 }
                 onmouseout={

@@ -96,16 +96,24 @@ function modifier_death_knight_gravekeepers_cloak:OnIntervalThink()
 end
 function modifier_death_knight_gravekeepers_cloak:OnDestroy()
 	if IsServer() then
+		if self.cloak_particle ~= nil then
+			ParticleManager:DestroyParticle(self.cloak_particle)
+			self.cloak_particle = nil
+		end
 	end
 end
 function modifier_death_knight_gravekeepers_cloak:DeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 end
-function modifier_death_knight_gravekeepers_cloak:GetModifierPhysicalArmorBonus()
+function modifier_death_knight_gravekeepers_cloak:CDeclareFunctions()
+	return {
+		CMODIFIER_PROPERTY_PHYSICAL_ARMOR_CONSTANT,
+	}
+end
+function modifier_death_knight_gravekeepers_cloak:C_GetModifierPhysicalArmor_Constant()
 	if self:GetStackCount() > 0 then
 		return self.bonus_armor_str_factor * self:GetParent():GetStrength() * 0.01
 	end

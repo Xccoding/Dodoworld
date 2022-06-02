@@ -76,7 +76,7 @@
 		"StatusHealth"		"168"
 		"StatusMana"		"100"
 		"StatusManaRegen"	"0"
-		"StatusHealthRegen"	"1"
+		"StatusHealthRegen"	"0"
 
 		// Vision
 		//-------------------------------------------------------------------------------------------------------------
@@ -163,7 +163,7 @@
 		"StatusHealth"		"168"
 		"StatusMana"		"100"
 		"StatusManaRegen"	"0"
-		"StatusHealthRegen"	"1"
+		"StatusHealthRegen"	"0"
 
 		// Vision
 		//-------------------------------------------------------------------------------------------------------------

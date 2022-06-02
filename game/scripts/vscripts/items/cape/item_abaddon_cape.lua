@@ -19,12 +19,12 @@ end
 function modifier_item_abaddon_cape:IsPurgable()
     return false
 end
-function modifier_item_abaddon_cape:DeclareFunctions()
+function modifier_item_abaddon_cape:CDeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		CMODIFIER_PROPERTY_PHYSICAL_ARMOR_CONSTANT
 	}
 end
-function modifier_item_abaddon_cape:GetModifierPhysicalArmorBonus()
+function modifier_item_abaddon_cape:C_GetModifierPhysicalArmor_Constant()
 	return self.bonus_armor
 end
 function modifier_item_abaddon_cape:OnCreated(params)

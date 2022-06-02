@@ -47,8 +47,9 @@ function mage_light_strike_array:OnAbilityPhaseStart()
 	local hCaster = self:GetCaster()
 	local vPos = self:GetCursorPosition()
 	local radius = self:GetSpecialValueFor("radius")
-
-	EmitSoundOnEntityForPlayer("Hero_Invoker.SunStrike.Charge", hCaster, hCaster:GetPlayerOwnerID())
+	if not hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
+        EmitSoundOnEntityForPlayer("Hero_Invoker.SunStrike.Charge", hCaster, hCaster:GetPlayerOwnerID())
+    end
 	self.particleID_pre = ParticleManager:CreateParticleForPlayer("particles/units/heroes/mage/mage_light_strike_array_ray_team.vpcf", PATTACH_CUSTOMORIGIN, hCaster, hCaster:GetPlayerOwner())
 	ParticleManager:SetParticleControl(self.particleID_pre, 0, vPos)
 	ParticleManager:SetParticleControl(self.particleID_pre, 1, Vector(radius, 0, 0))

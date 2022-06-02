@@ -19,12 +19,12 @@ end
 function modifier_item_abaddon_helmet:IsPurgable()
     return false
 end
-function modifier_item_abaddon_helmet:DeclareFunctions()
+function modifier_item_abaddon_helmet:CDeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		CMODIFIER_PROPERTY_PHYSICAL_ARMOR_CONSTANT,
 	}
 end
-function modifier_item_abaddon_helmet:GetModifierPhysicalArmorBonus()
+function modifier_item_abaddon_helmet:C_GetModifierPhysicalArmor_Constant()
 	return self.bonus_armor
 end
 function modifier_item_abaddon_helmet:OnCreated(params)

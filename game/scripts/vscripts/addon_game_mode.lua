@@ -57,16 +57,19 @@ function DodoWorld:InitGameMode()
 	ListenToGameEvent('dota_player_gained_level',Dynamic_Wrap(DodoWorld,'OnPlayerGainedLevel'),self)
 	ListenToGameEvent('dota_player_pick_hero',Dynamic_Wrap(DodoWorld,'OnPlayerPickHero'),self)
 	
-	--游戏性测试
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_DAMAGE, 0.3)
+	--游戏性常数
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_DAMAGE, 1)
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP, 0)
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_DAMAGE, 0.3)
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_DAMAGE, 1)
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED, 0)
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ARMOR, 0)
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_DAMAGE, 0.3)
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_DAMAGE, 0)
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA, 0)
+	GameRules:GetGameModeEntity():SetInnateMeleeDamageBlockAmount(0)--设置近战英雄自带格挡值为0
+	GameRules:GetGameModeEntity():SetInnateMeleeDamageBlockPercent(0)--设置近战英雄自带格挡几率为0
+	GameRules:GetGameModeEntity():SetInnateMeleeDamageBlockPerLevelAmount(0)--设置近战英雄自带格挡每级成长为0
 
-	GameRules:GetGameModeEntity():SetSendToStashEnabled(false)--禁用中立装备储藏处
+	GameRules:GetGameModeEntity():SetSendToStashEnabled(false)--禁用储藏处
 
 	--初始化流派：默认0
 	InitSchools()

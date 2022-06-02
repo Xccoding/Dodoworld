@@ -19,7 +19,7 @@ MODIFIER_CALCULATE_TYPE_MIN = MODIFIER_CALCULATE_TYPE_MAX * 2
 function BaseNPC:GetUnitAttribute(attrName, params, calculate_type)
     calculate_type = calculate_type or MODIFIER_CALCULATE_TYPE_SUM
     local buffs = self:FindAllModifiers()
-    local attr = 30--TODO默认属性改回0
+    local attr = 0--TODO默认属性改回0
     local func_constant = _G["CMODIFIER_PROPERTY_"..attrName.."_CONSTANT"]
     local func_percent = _G["CMODIFIER_PROPERTY_"..attrName.."_PERCENT"]
 
@@ -88,4 +88,41 @@ if IsServer() then
         end
         return dmg
     end
+
+    --根据护甲计算减伤率
+    function CDOTA_BaseNPC:GetPhysicalDamageReduction( level_diff )
+        level_diff = level_diff or 0
+        if level_diff > PHYSICAL_ARMOR_IGNORE_LEVEL_MAX then
+            level_diff = PHYSICAL_ARMOR_IGNORE_LEVEL_MAX
+        end
+        if level_diff < -PHYSICAL_ARMOR_IGNORE_LEVEL_MAX then
+            level_diff = -PHYSICAL_ARMOR_IGNORE_LEVEL_MAX
+        end
+
+        local iPhysicalArmor =  self:GetUnitAttribute(PHYSICAL_ARMOR, {}, MODIFIER_CALCULATE_TYPE_SUM)
+        local ignored_pct = level_diff * PHYSICAL_ARMOR_IGNORE_LEVEL_FACTOR
+        
+        iPhysicalArmor = iPhysicalArmor * (100 - ignored_pct) * 0.01
+        local armor_pct = iPhysicalArmor / (iPhysicalArmor + (30 + self:GetLevel() * 4) * CDOTA_ATTRIBUTE_AGILITY_PHYSICAL_ARMOR) * 100
+        return armor_pct
+    end
+
+    --根据魔抗计算减伤率
+    function CDOTA_BaseNPC:GetMagicalDamageReduction( level_diff )
+        level_diff = level_diff or 0
+        if level_diff > MAGICAL_ARMOR_IGNORE_LEVEL_MAX then
+            level_diff = MAGICAL_ARMOR_IGNORE_LEVEL_MAX
+        end
+        if level_diff < -MAGICAL_ARMOR_IGNORE_LEVEL_MAX then
+            level_diff = -MAGICAL_ARMOR_IGNORE_LEVEL_MAX
+        end
+
+        local iMagicalArmor =  self:GetUnitAttribute(MAGICAL_ARMOR, {}, MODIFIER_CALCULATE_TYPE_SUM)
+        local ignored_pct = level_diff * MAGICAL_ARMOR_IGNORE_LEVEL_FACTOR
+        
+        iMagicalArmor = iMagicalArmor * (100 - ignored_pct) * 0.01
+        local armor_pct = iMagicalArmor / (iMagicalArmor + (30 + self:GetLevel() * 4) * CDOTA_ATTRIBUTE_INTELLIGENCE_MAGICAL_ARMOR) * 100
+        return armor_pct
+    end
+
 end

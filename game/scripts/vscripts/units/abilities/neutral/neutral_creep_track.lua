@@ -37,12 +37,17 @@ function modifier_neutral_creep_track:CheckState()
 end
 function modifier_neutral_creep_track:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_PROPERTY_PROVIDES_FOW_POSITION,
 	}
 	return funcs
 end
-function modifier_neutral_creep_track:GetModifierPhysicalArmorBonus()
+function modifier_neutral_creep_track:CDeclareFunctions()
+	local funcs = {
+		CMODIFIER_PROPERTY_PHYSICAL_ARMOR_CONSTANT,
+	}
+	return funcs
+end
+function modifier_neutral_creep_track:C_GetModifierPhysicalArmor_Constant()
 	return -self.armor_reduce
 end
 function modifier_neutral_creep_track:GetModifierProvidesFOWVision()

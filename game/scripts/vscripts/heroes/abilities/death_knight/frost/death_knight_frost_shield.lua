@@ -80,12 +80,12 @@ function modifier_death_knight_frost_shield:OnIntervalThink()
 
     end
 end
-function modifier_death_knight_frost_shield:DeclareFunctions()
+function modifier_death_knight_frost_shield:cDeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_TOTAL_PERCENTAGE,
+		CMODIFIER_PROPERTY_PHYSICAL_ARMOR_PERCENT,
 	}
 end
-function modifier_death_knight_frost_shield:GetModifierPhysicalArmorTotal_Percentage()
+function modifier_death_knight_frost_shield:C_GetModifierPhysicalArmor_Percent()
 	return self.bonus_armor_pct
 end
 --减速Modifiers

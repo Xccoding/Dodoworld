@@ -23,6 +23,8 @@ function modifier_common:DeclareFunctions()
         MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT,
         MODIFIER_EVENT_ON_MODIFIER_ADDED,
         MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
+        MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
+        MODIFIER_PROPERTY_IGNORE_PHYSICAL_ARMOR,
     }
 end
 function modifier_common:RemoveOnDeath()
@@ -108,6 +110,17 @@ function modifier_common:GetModifierTotalDamageOutgoing_Percentage( params )
 
     local hAttacker = params.attacker
     local hVictim = params.target
+    local fPercent = 0--基础伤害比率
+
+    --计算护甲减伤
+    if params.damage_type == DAMAGE_TYPE_PHYSICAL then
+        local armor_pct = hVictim:GetPhysicalDamageReduction(hAttacker:GetLevel() - hVictim:GetLevel())
+        fPercent = fPercent - armor_pct
+    elseif params.damage_type == DAMAGE_TYPE_MAGICAL then
+        --计算魔抗减伤
+        local armor_pct = hVictim:GetMagicalDamageReduction(hAttacker:GetLevel() - hVictim:GetLevel())
+        fPercent = fPercent - armor_pct
+    end
     
     --普通攻击伤害
     if params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
@@ -120,17 +133,17 @@ function modifier_common:GetModifierTotalDamageOutgoing_Percentage( params )
             crit_chance = hAttacker:GetUnitAttribute(BONUS_MAGICAL_CRIT_CHANCE, params, MODIFIER_CALCULATE_TYPE_SUM)
             crit_damage = hAttacker:GetUnitAttribute(BONUS_MAGICAL_CRIT_DAMAGE, params, MODIFIER_CALCULATE_TYPE_SUM)
         end
-        print(crit_chance)
+
         if RandomFloat(0, 100) < crit_chance then
             table.insert(self.damage_records, {crit = true, record = params.record})
             CFireModifierEvent(hAttacker, CMODIFIER_EVENT_ON_ATTACK_CRIT, params)
             CFireModifierEvent(hVictim, CMODIFIER_EVENT_ON_ATTACK_CRIT, params)
-            return crit_damage
+            fPercent = fPercent + crit_damage
         else
             table.insert(self.damage_records, {crit = false, record = params.record})
             CFireModifierEvent(hAttacker, CMODIFIER_EVENT_ON_ATTACK_NOTCRIT, params)
             CFireModifierEvent(hVictim, CMODIFIER_EVENT_ON_ATTACK_NOTCRIT, params)
-            return 0
+            fPercent = fPercent + 0
         end
     end
 
@@ -150,29 +163,36 @@ function modifier_common:GetModifierTotalDamageOutgoing_Percentage( params )
             table.insert(self.damage_records, {crit = true, record = params.record})
             CFireModifierEvent(hAttacker, CMODIFIER_EVENT_ON_SPELL_CRIT, params)
             CFireModifierEvent(hVictim, CMODIFIER_EVENT_ON_SPELL_CRIT, params)
-            return crit_damage
+            fPercent = fPercent + crit_damage
         else
             --print("数值没暴击")
             table.insert(self.damage_records, {crit = false, record = params.record})
             CFireModifierEvent(hAttacker, CMODIFIER_EVENT_ON_SPELL_NOTCRIT, params)
             CFireModifierEvent(hVictim, CMODIFIER_EVENT_ON_SPELL_NOTCRIT, params)
-            return 0
+            fPercent = fPercent + 0
         end
     end
 
+    return fPercent
+
 end
 function modifier_common:GetModifierBaseAttackTimeConstant()
-    --print("enter")
     if IsServer() then
-        --print("IsServer")
-        self.base_attack_time = self:GetParent():GetUnitAttribute(BASE_ATTACK_TIME, {}, MODIFIER_CALCULATE_TYPE_MAX)
-        self:SendBuffRefreshToClients()
-        --print("IsServer",self.base_attack_time)
-        return self.base_attack_time
+        return self:GetParent():GetUnitAttribute(BASE_ATTACK_TIME, {}, MODIFIER_CALCULATE_TYPE_MAX)
     end
-    if IsClient() then
-        --print("IsClient")
-        --print("IsClient",self.base_attack_time)
-        return self.base_attack_time
+end
+function modifier_common:GetModifierPhysical_ConstantBlock( params )
+    if not IsServer() then return end
+
+    local hAttacker = params.attacker
+    local hVictim = params.target
+    if params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
+        local block_chance = hVictim:GetUnitAttribute(BLOCK_CHANCE, params, MODIFIER_CALCULATE_TYPE_SUM)
+        if RandomFloat(0, 100) < block_chance then
+            return params.damage * hVictim:GetUnitAttribute(BLOCK_PERCENT, params, MODIFIER_CALCULATE_TYPE_SUM) * 0.01
+        end
     end
+end
+function modifier_common:GetModifierIgnorePhysicalArmor()
+    return 1
 end

@@ -48,10 +48,10 @@ function modifier_mage_equilibrium:OnCreated( params )
     self.arcane_buff_bonus_damage = self:GetAbility():GetSpecialValueFor("arcane_buff_bonus_damage")
     if IsServer() then
         self:SetHasCustomTransmitterData(true)
-        self.max_mana = 0
+        -- self.max_mana = 0
         self.mana_regen = 0
         self.bonus_damage = 0
-        self:StartIntervalThink(0)
+        self:StartIntervalThink(FrameTime())
     end
     
 end
@@ -64,10 +64,11 @@ function modifier_mage_equilibrium:OnIntervalThink()
     local hCaster = self:GetCaster()
     local hAbility = self:GetAbility()
     if IsServer() then
-        self.max_mana = hCaster:GetIntellect() * self.max_mana_int_factor * 0.01
+        -- self.max_mana = hCaster:GetIntellect() * self.max_mana_int_factor * 0.01
         self.mana_regen = hCaster:GetIntellect() * self.mana_regen_int_factor * 0.01
         self.bonus_damage = hCaster:GetIntellect() * self.arcane_buff_bonus_damage * 0.01
         hAbility.equilibrium_pct = self.bonus_damage
+        self:OnRefresh()
         self:SendBuffRefreshToClients()
     end
 end
@@ -94,7 +95,8 @@ function modifier_mage_equilibrium:GetModifierMPRegenAmplify_Percentage()
     return self.mana_regen
 end
 function modifier_mage_equilibrium:GetModifierExtraManaPercentage()
-    return self.max_mana
+    local hCaster = self:GetCaster()
+    return hCaster:GetIntellect() * self:GetAbility():GetSpecialValueFor("max_mana_int_factor") * 0.01
 end
 --唤醒modifiers
 if modifier_mage_equilibrium_buff == nil then

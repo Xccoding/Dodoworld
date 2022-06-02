@@ -19,12 +19,12 @@ end
 function modifier_item_wraith_king_chest:IsPurgable()
     return false
 end
-function modifier_item_wraith_king_chest:DeclareFunctions()
+function modifier_item_wraith_king_chest:CDeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		CMODIFIER_PROPERTY_PHYSICAL_ARMOR_CONSTANT
 	}
 end
-function modifier_item_wraith_king_chest:GetModifierPhysicalArmorBonus()
+function modifier_item_wraith_king_chest:C_GetModifierPhysicalArmor_Constant()
 	return self.bonus_armor
 end
 function modifier_item_wraith_king_chest:OnCreated(params)

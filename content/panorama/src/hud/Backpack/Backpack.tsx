@@ -5,10 +5,9 @@ import { print }  from '../Utils'
 import {Character} from "../Character/Character"
 
 export function Backpack(){
-    print("??")
     return <Panel id="Backpack">
         <Panel id="Backpack_left" hittest={false}>
-            {/* <Character /> */}
+            <Character />
         </Panel>
         <Panel id="Backpack_right">
 

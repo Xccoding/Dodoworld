@@ -252,7 +252,7 @@
 		"AbilityValues"
         {
 			"ap_factor"	"66"
-			"crit_chance"	"150"
+			"crit_chance"	"15"
 			"crit_duration"	"15"
 			"nova_free_chance"	"45"
 			"nova_bonus_damage_pct"	"300"
