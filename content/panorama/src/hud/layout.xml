@@ -67,6 +67,22 @@
             <Image class="Hidden" src="file://{images}/hud_icons/position_healer.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/hud_icons/position_tank.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/hud_icons/position_dps.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_intellect.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_strength.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_agility.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_total_attack_damage.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_attack_speed.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_physical_armor.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_magical_armor.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_movespeed.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_evasion.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_spell_power.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_cooldown_reduction.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_block.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_physical_crit_damage.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_magical_crit_damage.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_physical_crit_chance.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_magical_crit_chance.png" hittest="false" />
 	    </Panel>
     </Panel>
     

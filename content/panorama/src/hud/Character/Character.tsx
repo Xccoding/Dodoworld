@@ -40,7 +40,9 @@ export function Character(){
 
     return <Panel id="Character">
             <Panel className="Character_part">
-                <Label className="Character_attributes_title" text={$.Localize("#Character_attributes_stat")}/>
+                <Panel className="Character_attributes_title">
+                    <Label text={$.Localize("#Character_attributes_stat")}/>
+                </Panel>
                 {
                     attributes_array_stat.map((value)=>{
                         return <Panel key={"stat"+value.attribute_name} className="Character_attributes_panel" 
@@ -53,6 +55,7 @@ export function Character(){
                                 $.DispatchEvent("DOTAHideTextTooltip")
                             }
                         }>
+                            <Image className="Character_attributes_icon" src={`file://{images}/hud_icons/character_attribute_${value.attribute_name}.png`}/>
                             <Label className="Character_attributes_name" text={$.Localize("#Character_attribute_" + value.attribute_name)}/>
                             <Label className="Character_attributes_number" text={value.attribute_number + `${value.bIsPercent ? "%": ""}`}/>
                         </Panel>
@@ -60,7 +63,9 @@ export function Character(){
                 }
             </Panel>
             <Panel className="Character_part">
-                <Label className="Character_attributes_title" text={$.Localize("#Character_attributes_attack")}/>
+            <Panel className="Character_attributes_title">
+                    <Label text={$.Localize("#Character_attributes_attack")}/>
+                </Panel>
                 {
                     attributes_array_attack.map((value)=>{
                         return <Panel key={"attack"+value.attribute_name} className="Character_attributes_panel"
@@ -73,6 +78,7 @@ export function Character(){
                                 $.DispatchEvent("DOTAHideTextTooltip")
                             }
                         }>
+                            <Image className="Character_attributes_icon" src={`file://{images}/hud_icons/character_attribute_${value.attribute_name}.png`} scaling="stretch-to-fit-preserve-aspect"/>
                             <Label className="Character_attributes_name" text={$.Localize("#Character_attribute_" + value.attribute_name)}/>
                             <Label className="Character_attributes_number" text={value.attribute_number + `${value.bIsPercent ? "%": ""}`}/>
                         </Panel>
@@ -80,7 +86,9 @@ export function Character(){
                 }
             </Panel>
             <Panel className="Character_part">
-                <Label className="Character_attributes_title" text={$.Localize("#Character_attributes_defense")}/>
+                <Panel className="Character_attributes_title">
+                    <Label text={$.Localize("#Character_attributes_defense")}/>
+                </Panel>
                 {
                     attributes_array_defense.map((value)=>{
                         let attribute_num = 0
@@ -100,6 +108,7 @@ export function Character(){
                                 $.DispatchEvent("DOTAHideTextTooltip")
                             }
                         }  dialogVariables={{ attribute_num: attribute_num }}>
+                            <Image className="Character_attributes_icon" src={`file://{images}/hud_icons/character_attribute_${value.attribute_name}.png`}/>
                             <Label className="Character_attributes_name" text={$.Localize("#Character_attribute_" + value.attribute_name)}/>
                             <Label className="Character_attributes_number" text={(typeof(value.attribute_number) == "object"? (value.attribute_number as number[])[0] : value.attribute_number) + `${value.bIsPercent == true ? "%": ""}`}/>
                         </Panel>
