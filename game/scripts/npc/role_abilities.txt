@@ -1,8 +1,8 @@
 "role_abilities_pool"{
 	// 血DK
     "death_knight_schools_0" {
-        "Ability1"	"death_knight_midnight_pulse"
-		"Ability2"	"death_knight_hellfire_blast"
+        "Ability1"	"death_knight_hellfire_blast"
+		"Ability2"	"death_knight_midnight_pulse"
 		"Ability3"	"death_knight_chaos_strike"
 		"Ability4"	"death_knight_gravekeepers_cloak"
 		"Ability5"	"death_knight_reality_rift"

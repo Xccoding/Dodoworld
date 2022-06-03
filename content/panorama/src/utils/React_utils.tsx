@@ -26,6 +26,14 @@ namespace ReactUtils {
 
 		}, deps);
 	}
+
+	export function ToggleHud(hud_name: string){
+		let hud_toggle = $(`#${hud_name}`)
+        if(hud_toggle != undefined){
+            let Visibleclass = `Show${hud_name}`
+            hud_toggle.BHasClass(Visibleclass) ? hud_toggle.SwitchClass("Visible", "") : hud_toggle.SwitchClass("Visible", Visibleclass)
+        }
+	}
 }
 
 export default ReactUtils;

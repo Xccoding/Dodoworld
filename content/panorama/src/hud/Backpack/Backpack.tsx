@@ -10,7 +10,7 @@ export function Backpack(){
             <Character />
         </Panel>
         <Panel id="Backpack_right">
-
+            
         </Panel>
     </Panel>
 }

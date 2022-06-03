@@ -19,6 +19,7 @@
 "Character_attribute_magical_crit_chance"  "魔法暴击概率"
 "Character_attribute_physical_crit_damage"  "物理暴击伤害"
 "Character_attribute_magical_crit_damage"  "魔法暴击伤害"
+"hud_text_tooltip_Character_primary_stat"  "<font color='#FFB90F'>主属性</font><br>"
 
 "hud_text_tooltip_Character_strength"   "每点力量提供：<br>1 点攻击力<br>0.05 点生命恢复<br>作为主属性时额外提供：<br>1 点攻击力"
 "hud_text_tooltip_Character_agility"   "每点敏捷提供：<br>0.1 %物理暴击概率<br>1 点护甲<br>作为主属性时额外提供：<br>1 点攻击力"

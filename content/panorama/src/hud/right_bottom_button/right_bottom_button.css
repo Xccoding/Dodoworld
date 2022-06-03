@@ -32,3 +32,25 @@
   font-size: 18px;
   overflow: noclip noclip;
 }
+#Backpack_button {
+  width: 80px;
+  height: 80px;
+  background-image: url("file://{images}/hud_icons/backpack_button.png");
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: 15px 10px;
+}
+#Backpack_button:hover {
+  brightness: 1.5;
+}
+#Backpack_button:active {
+  sound: "ui_generic_button_click";
+}
+#Backpack_button Label {
+  align: center bottom;
+  text-shadow: 0px 0px 4px 5 #000000;
+  color: white;
+  font-family: monospaceNumbersFont;
+  font-size: 18px;
+  overflow: noclip noclip;
+}

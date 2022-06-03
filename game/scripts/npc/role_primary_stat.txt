@@ -1,0 +1,4 @@
+"role_primary_stat"{
+    "death_knight"  "strength"
+    "mage"          "intellect"
+}

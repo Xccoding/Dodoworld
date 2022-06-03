@@ -13,7 +13,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 
 		"AbilityCooldown"				"20"
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"900"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
@@ -50,7 +50,7 @@
         "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 
 		"AbilityCooldown"				"1.5"
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"500"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
@@ -75,6 +75,7 @@
 			"bonus_target_count"	"1"
 			"pulse_bonus_target_count"	"3"
 			"reset_chance"		"10"
+			"mana_get"	"10"
         }
 	}
 
@@ -153,6 +154,7 @@
 			"incoming_damage_pct"	"25"
 			"duration"	"4"
 			"cloak_cooldown"	"10"
+			"mana_get"	"10"
         }
 	}
 
@@ -169,7 +171,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
         "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"0"
 		"AbilityManaCost"				"5"
 		"AbilityCastRange"				"650"
 		"AbilityCastRangeBuffer"		"250"
@@ -258,7 +260,7 @@
 			"nova_bonus_damage_pct"	"300"
 			"nova_free_duration"	"15"
 			"bulldoze_stack"	"2"
-			"mana_get_pct"	"20"
+			"mana_get"	"20"
         }
 	}
 
@@ -299,8 +301,8 @@
 			"nova_bonus_damage_pct"	"300"
 			"nova_free_duration"	"15"
 			"radius"	"500"
-			"mana_get_pct"	"10"
-			"mana_get_pct_tick"	"1"
+			"mana_get"	"10"
+			"mana_get_tick"	"1"
         }
 	}
 
@@ -339,7 +341,7 @@
 			"slow_down_pct"	"20"
 			"dot_interval"	"1"
 			"bonus_armor_pct"	"3"
-			"mana_get_pct"	"10"
+			"mana_get"	"10"
         }
 	}
 
@@ -450,7 +452,7 @@
 			"distance"	"400"
 			"angle"	"60"
 			"dot_interval"	"1"
-			"mana_cost_pct"	"16"
+			"mana_cost"	"16"
         }
 	}
 

@@ -34,26 +34,26 @@
 "DOTA_Tooltip_modifier_death_knight_borrowed_time_Description"	"格挡受到的魔法伤害，并使其转而治疗自己。"
 
 "DOTA_Tooltip_ability_death_knight_mortal_strike"	"本命一击"
-"DOTA_Tooltip_ability_death_knight_mortal_strike_Description"	"将黑暗力量灌注到武器中，使你的攻击额外造成【%ap_factor%%%攻击力】点物理伤害。本命一击有%nova_free_chance%%%使你的下一次寒霜爆发不进入冷却状态，且造成的伤害提高%nova_bonus_damage_pct%%%。\n使用时为你恢复%mana_get_pct%%%最大魔法值。\n你的普通攻击暴击时有%crit_chance%%%几率使你的下一次本命一击必定暴击，且额外伤害变为魔法伤害。"
+"DOTA_Tooltip_ability_death_knight_mortal_strike_Description"	"将黑暗力量灌注到武器中，使你的攻击额外造成【%ap_factor%%%攻击力】点物理伤害。本命一击有%nova_free_chance%%%使你的下一次寒霜爆发不进入冷却状态，且造成的伤害提高%nova_bonus_damage_pct%%%。\n使用时为你恢复%mana_get%点<font color='#2f8cc2'>符文能量</font>。\n你的普通攻击暴击时有%crit_chance%%%几率使你的下一次本命一击必定暴击，且额外伤害变为魔法伤害。"
 "DOTA_Tooltip_modifier_death_knight_mortal_strike_crit"	"本命一击：必定暴击！"
 "DOTA_Tooltip_modifier_death_knight_mortal_strike_crit_Description"	"下一次本命一击必定暴击，且额外伤害变为魔法伤害"
 "DOTA_Tooltip_modifier_death_knight_mortal_strike_free_nova"	"强化寒霜爆发"
 "DOTA_Tooltip_modifier_death_knight_mortal_strike_free_nova_Description"	"下一次寒霜爆发造成的伤害提高，且不消耗魔法值"
 
 "DOTA_Tooltip_ability_death_knight_frost_nova"	"寒霜爆发"
-"DOTA_Tooltip_ability_death_knight_frost_nova_Description"	"对目标及其附近%radius%范围内的敌人造成【%ap_factor_hit%%%攻击力】点魔法伤害，并使其感染寒霜诅咒，持续%duration%秒；主目标会额外受到%main_target_damage_pct%%%的伤害。\n使用时为你恢复%mana_get_pct%%%最大魔法值。\n寒霜诅咒：<br>每%dot_interval%秒受到【%ap_factor_dot%%%攻击力】点魔法伤害并为死亡骑士恢复%mana_get_pct_tick%%%最大魔法值。\n本命一击有%nova_free_chance%%%使你的下一次寒霜爆发不进入冷却状态，且造成的伤害提高%nova_bonus_damage_pct%%%。"
+"DOTA_Tooltip_ability_death_knight_frost_nova_Description"	"对目标及其附近%radius%范围内的敌人造成【%ap_factor_hit%%%攻击力】点魔法伤害，并使其感染寒霜诅咒，持续%duration%秒；主目标会额外受到%main_target_damage_pct%%%的伤害。\n使用时为你恢复%mana_get%点<font color='#2f8cc2'>符文能量</font>。\n寒霜诅咒：<br>每%dot_interval%秒受到【%ap_factor_dot%%%攻击力】点魔法伤害并为死亡骑士恢复%mana_get_tick%点<font color='#2f8cc2'>符文能量</font>。\n本命一击有%nova_free_chance%%%使你的下一次寒霜爆发不进入冷却状态，且造成的伤害提高%nova_bonus_damage_pct%%%。"
 "DOTA_Tooltip_modifier_death_knight_frost_nova"	"寒霜诅咒"
 "DOTA_Tooltip_modifier_death_knight_frost_nova_Description"	"周期性地受到伤害，并为死亡骑士恢复魔法值"
 
 "DOTA_Tooltip_ability_death_knight_frost_shield"	"冰霜魔盾"
-"DOTA_Tooltip_ability_death_knight_frost_shield_Description"	"施加一个冰霜魔盾环绕自身，使自身的护甲提高%bonus_armor_pct%%%，持续%duration%秒，期间每秒对附近%radius%范围内的敌人造成【%ap_factor%%%攻击力】点魔法伤害，并使其移动速度降低%slow_down_pct%%%。\n使用时为你恢复%mana_get_pct%%%最大魔法值。"
+"DOTA_Tooltip_ability_death_knight_frost_shield_Description"	"施加一个冰霜魔盾环绕自身，使自身的护甲提高%bonus_armor_pct%%%，持续%duration%秒，期间每秒对附近%radius%范围内的敌人造成【%ap_factor%%%攻击力】点魔法伤害，并使其移动速度降低%slow_down_pct%%%。\n使用时为你恢复%mana_get%点<font color='#2f8cc2'>符文能量</font>。"
 "DOTA_Tooltip_modifier_death_knight_frost_shield"	"冰霜魔盾"
 "DOTA_Tooltip_modifier_death_knight_frost_shield_Description"	"周期性地对附近的敌人造成伤害并使其减速"
 "DOTA_Tooltip_modifier_death_knight_frost_shield_slow_down"	"冰霜魔盾"
 "DOTA_Tooltip_modifier_death_knight_frost_shield_slow_down_Description"	"移动速度降低"
 
 "DOTA_Tooltip_ability_death_knight_bulldoze"	"威吓"
-"DOTA_Tooltip_ability_death_knight_bulldoze_Description"	"主动：冰霜能量使你的力量提高%bonus_str_pct%%%，且免疫任何强制位移效果（不论敌我），持续%duration%秒。<br>威吓期间每次本命一击使你的力量额外提高%stack_mortal_strike%%%，每次寒霜爆发和冰霜魔盾使你的力量额外提高%stack_others%%%。\n被动：使你造成的魔法伤害提高【%str_factor_tooltip% x 力量】。"
+"DOTA_Tooltip_ability_death_knight_bulldoze_Description"	"主动：冰霜能量使你的力量提高%bonus_str_pct%%%，且免疫任何强制位移效果（不论敌我），持续%duration%秒。<br>威吓期间每次本命一击使你的力量额外提高%stack_mortal_strike%%%，每次寒霜爆发和冰霜魔盾使你的力量额外提高%stack_others%%%。\n被动：使你造成的魔法伤害提高【%str_factor_tooltip% x 力量】%%。"
 "DOTA_Tooltip_modifier_death_knight_bulldoze"	"威吓"
 "DOTA_Tooltip_modifier_death_knight_bulldoze_Description"	"力量提高%dMODIFIER_PROPERTY_TOOLTIP%%%"
 "DOTA_Tooltip_modifier_death_knight_bulldoze_passive"	"威吓：魔法伤害提高"
@@ -65,6 +65,6 @@
 "DOTA_Tooltip_modifier_death_knight_sonic_wave_Description"	"移动速度降低"
 
 "DOTA_Tooltip_ability_death_knight_flamethrower"	"冰冻吐息"
-"DOTA_Tooltip_ability_death_knight_flamethrower_Description"	"吐出冰冻气息，每秒对面前的敌人造成【%ap_factor%%%攻击力】点魔法伤害。每秒消耗最大魔法值的%mana_cost_pct%%%，直至魔法值耗尽或你主动取消。"
+"DOTA_Tooltip_ability_death_knight_flamethrower_Description"	"吐出冰冻气息，每秒对面前的敌人造成【%ap_factor%%%攻击力】点魔法伤害。每秒消耗%mana_cost%点<font color='#2f8cc2'>符文能量</font>，直至魔法值耗尽或你主动取消。"
 "DOTA_Tooltip_modifier_death_knight_flamethrower"	"冰冻吐息"
 "DOTA_Tooltip_modifier_death_knight_flamethrower_Description"	"每秒对面前的敌人造成魔法伤害"

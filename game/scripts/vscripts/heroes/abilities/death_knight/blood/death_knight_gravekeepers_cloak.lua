@@ -60,6 +60,7 @@ end
 function modifier_death_knight_gravekeepers_cloak:OnIntervalThink()
 	local hCaster = self:GetCaster()
 	local hAbility = self:GetAbility()
+	local mana_get = self:GetSpecialValueFor("mana_get")
 	if IsServer() then
 		if hCaster:InCombat() then
 			if GameRules:GetGameTime() >= self.fNext_stack_time and self:GetStackCount() < self.max_stack then
@@ -76,9 +77,11 @@ function modifier_death_knight_gravekeepers_cloak:OnIntervalThink()
 				--进战斗直接给9层
 				if self.IsInCombat == false then
 					self:SetStackCount(self:GetStackCount() + self.first_stack)
+					hCaster:CGiveMana(mana_get, self, hCaster)
 					self.IsInCombat = true
 				else
 					self:SetStackCount(self:GetStackCount() + self.stack_per_tick)
+					hCaster:CGiveMana(mana_get, self, hCaster)
 				end
 
 				if self:GetStackCount() > self.max_stack then

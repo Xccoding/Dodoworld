@@ -24,14 +24,14 @@ function death_knight_frost_nova:OnSpellStart()
     local ap_factor_hit = self:GetSpecialValueFor("ap_factor_hit")
     local duration = self:GetSpecialValueFor("duration")
     local nova_bonus_damage_pct = self:GetSpecialValueFor("nova_bonus_damage_pct")
-    local mana_get_pct = self:GetSpecialValueFor("mana_get_pct")
+    local mana_get = self:GetSpecialValueFor("mana_get")
     local fDamage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_AP) * ap_factor_hit * 0.01
 
     if hCaster:HasModifier("modifier_death_knight_mortal_strike_free_nova") then
         fDamage = fDamage * (100 + nova_bonus_damage_pct) * 0.01
     end
 
-    hCaster:CGiveMana(hCaster:GetMaxMana() * mana_get_pct * 0.01, self, hCaster)
+    hCaster:CGiveMana(hCaster:GetMaxMana() * mana_get * 0.01, self, hCaster)
 
     local particleID = ParticleManager:CreateParticle("particles/units/heroes/death_knight/death_knight_frost_nova.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)
     ParticleManager:ReleaseParticleIndex(particleID)
@@ -89,8 +89,7 @@ end
 function modifier_death_knight_frost_nova:OnCreated(params)
     self.ap_factor_dot = self:GetAbility():GetSpecialValueFor("ap_factor_dot")
     self.dot_interval = self:GetAbility():GetSpecialValueFor("dot_interval")
-    self.mana_get_pct = self:GetAbility():GetSpecialValueFor("mana_get_pct")
-    self.mana_get_pct_tick = self:GetAbility():GetSpecialValueFor("mana_get_pct_tick")
+    self.mana_get_tick = self:GetAbility():GetSpecialValueFor("mana_get_tick")
 
     if IsServer() then
         self:StartIntervalThink(self.dot_interval)
@@ -100,8 +99,7 @@ end
 function modifier_death_knight_frost_nova:OnRefresh(params)
     self.ap_factor_dot = self:GetAbility():GetSpecialValueFor("ap_factor_dot")
     self.dot_interval = self:GetAbility():GetSpecialValueFor("dot_interval")
-    self.mana_get_pct = self:GetAbility():GetSpecialValueFor("mana_get_pct")
-    self.mana_get_pct_tick = self:GetAbility():GetSpecialValueFor("mana_get_pct_tick")
+    self.mana_get_tick = self:GetAbility():GetSpecialValueFor("mana_get_tick")
     if IsServer() then
         self:OnIntervalThink()
     end
@@ -120,6 +118,6 @@ function modifier_death_knight_frost_nova:OnIntervalThink()
             ability = self:GetAbility(),
             damage_flags = DOTA_DAMAGE_FLAG_INDIRECT,
         })
-        hCaster:CGiveMana(hCaster:GetMaxMana() * self.mana_get_pct_tick * 0.01, self:GetAbility(), hCaster)
+        hCaster:CGiveMana(hCaster:GetMaxMana() * self.mana_get_tick * 0.01, self:GetAbility(), hCaster)
     end
 end

@@ -8,11 +8,11 @@ function death_knight_frost_shield:OnSpellStart()
 	local hCaster = self:GetCaster()
 	local hAbility = self
 	local duration = self:GetSpecialValueFor("duration")
-	local mana_get_pct = self:GetSpecialValueFor("mana_get_pct")
+	local mana_get= self:GetSpecialValueFor("mana_get")
 
 	hCaster:AddNewModifier(hCaster, hAbility, "modifier_death_knight_frost_shield", {duration = duration})
 
-	hCaster:CGiveMana(hCaster:GetMaxMana() * mana_get_pct * 0.01, self, hCaster)
+	hCaster:CGiveMana(hCaster:GetMaxMana() * mana_get * 0.01, self, hCaster)
 
 	EmitSoundOn("Hero_Lich.IceAge", hCaster)
 end

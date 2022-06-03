@@ -18,8 +18,6 @@ render(<Right_bottom_button />, $("#Right_bottom_button_Root"));
 render(<ChangeSchools />, $("#ChangeSchools_Root"));
 render(<Backpack />, $("#Backpack_Root"));
 
-
-
 // function ReactPanoramaPanel(){
     
 //     $.Msg(new_1())

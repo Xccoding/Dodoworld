@@ -19,10 +19,13 @@ function death_knight_hellfire_blast:OnSpellStart()
     local search_radius = self:GetSpecialValueFor("search_radius")
     local bonus_target_count = self:GetSpecialValueFor("bonus_target_count")
     local pulse_bonus_target_count = self:GetSpecialValueFor("pulse_bonus_target_count")
+    local mana_get = self:GetSpecialValueFor("mana_get")
 
     if hCaster:HasModifier("modifier_death_knight_midnight_pulse_buff") then
         bonus_target_count = bonus_target_count + pulse_bonus_target_count
     end
+
+    hCaster:CGiveMana(mana_get, self, hCaster)
     
     if IsServer() then
         self:blast(hTarget)

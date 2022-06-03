@@ -5,9 +5,9 @@ if death_knight_flamethrower == nil then
 end
 function death_knight_flamethrower:GetManaCost(iLevel)
 	local hCaster = self:GetCaster()
-	local mana_cost_pct = self:GetSpecialValueFor("mana_cost_pct")
+	local mana_cost = self:GetSpecialValueFor("mana_cost")
 
-	return hCaster:GetMaxMana() * mana_cost_pct * 0.01
+	return hCaster:GetMaxMana() * mana_cost * 0.01
 end
 function death_knight_flamethrower:OnToggle()
 	local hCaster = self:GetCaster()
@@ -36,7 +36,7 @@ function modifier_death_knight_flamethrower:OnCreated(params)
 	self.ap_factor = self:GetAbility():GetSpecialValueFor("ap_factor")
 	self.distance = self:GetAbility():GetSpecialValueFor("distance")
 	self.angle = self:GetAbility():GetSpecialValueFor("angle")
-	self.mana_cost_pct =self:GetAbility():GetSpecialValueFor("mana_cost_pct")
+	self.mana_cost =self:GetAbility():GetSpecialValueFor("mana_cost")
 	
 	local hCaster = self:GetCaster()
 	local particleID = ParticleManager:CreateParticle("particles/units/heroes/death_knight/death_knight_flame_thrower.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster)
@@ -51,7 +51,7 @@ function modifier_death_knight_flamethrower:OnRefresh(params)
 	self.ap_factor = self:GetAbility():GetSpecialValueFor("ap_factor")
 	self.distance = self:GetAbility():GetSpecialValueFor("distance")
 	self.angle = self:GetAbility():GetSpecialValueFor("angle")
-	self.mana_cost_pct =self:GetAbility():GetSpecialValueFor("mana_cost_pct")
+	self.mana_cost =self:GetAbility():GetSpecialValueFor("mana_cost")
 	if IsServer() then
 		self:OnIntervalThink()
 	end
@@ -61,7 +61,7 @@ function modifier_death_knight_flamethrower:OnIntervalThink()
 		local hCaster = self:GetCaster()
 		local vFace = hCaster:GetForwardVector()
 		local hAbility = self:GetAbility()
-		local mana_cost = hCaster:GetMaxMana() * self.mana_cost_pct * 0.01
+		local mana_cost = self.mana_cost
 
 		local enemies = FindUnitsInRadius(hCaster:GetTeamNumber(), hCaster:GetAbsOrigin(), nil, self.distance, self:GetAbility():GetAbilityTargetTeam(), self:GetAbility():GetAbilityTargetType(), self:GetAbility():GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 		for _, enemy in pairs(enemies) do
@@ -72,7 +72,7 @@ function modifier_death_knight_flamethrower:OnIntervalThink()
 					ApplyDamage({
 						victim = enemy,
 						attacker = hCaster,
-						damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * self.ap_factor * 0.01,
+						damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_AP) * self.ap_factor * 0.01,
 						damage_type = DAMAGE_TYPE_MAGICAL,
 						ability = hAbility,
 						damage_flags = DOTA_DAMAGE_FLAG_DIRECT,

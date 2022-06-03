@@ -13,7 +13,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 
 		"AbilityCooldown"				"0.5"
-		"AbilityManaCost"				"65"
+		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"900"
 		"AbilityCastRangeBuffer"		"250"
 		//"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
@@ -30,6 +30,7 @@
 		"AbilityValues"
         {
 			"sp_factor"	"72"
+			"mana_cost_pct"	"1"
         }
 	}
 
@@ -47,7 +48,7 @@
         "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 
 		"AbilityCooldown"				"1"
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"850"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
@@ -65,6 +66,7 @@
 			"attack_time_override"	"2.25"
 			"damage_pct"	"100"
 			"bonus_crit_chance"	"10"
+			"mana_cost_pct"	"2"
         }
 	}
 
@@ -82,7 +84,7 @@
 		"AnimationPlaybackRate"	"0.4"
 
 		"AbilityCooldown"				"6"
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"900"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
@@ -102,6 +104,7 @@
 			"radius"	"320"
 			"slow_down_pct"	"20"
 			"spell_time"	"2.0"
+			"mana_cost_pct"	"2.5"
         }
 	}
 
@@ -120,7 +123,7 @@
 		"AnimationPlaybackRate"	"0.3"
 
 		"AbilityCooldown"				"6"
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"900"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
@@ -137,6 +140,7 @@
         {
 			"sp_factor"	"151"
 			"spell_time"	"2.0"
+			"mana_cost_pct"	"2"
         }
 	}
 
@@ -191,7 +195,7 @@
         "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 
 		"AbilityCooldown"				"0.5"
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"900"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"

@@ -8,7 +8,10 @@ function mage_searing_arrows:GetIntrinsicModifierName()
 	return "modifier_mage_searing_arrows"
 end
 function mage_searing_arrows:OnToggle()
-
+end
+function mage_searing_arrows:GetManaCost(iLevel)
+	local hCaster = self:GetCaster()
+	return self:GetSpecialValueFor("mana_cost_pct") * hCaster:GetMaxMana() * 0.01
 end
 ---------------------------------------------------------------------
 --Modifiers

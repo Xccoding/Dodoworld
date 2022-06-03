@@ -46,6 +46,7 @@ export function ChangeSchools(){
 
 
     return <Panel id='ChangeSchools'>
+        <Button className="Close_button" onactivate={() => {ReactUtils.ToggleHud("ChangeSchools")}} />
         <Label id='ChangeSchools_title' text={$.Localize("#Hud_ChangeSchools_title")}/>
         <Label id='ChangeSchools_desc' text={$.Localize("#Hud_ChangeSchools_desc")}/>
         <Panel id='SchoolsList'>

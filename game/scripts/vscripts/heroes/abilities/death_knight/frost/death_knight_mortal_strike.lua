@@ -41,7 +41,7 @@ function modifier_death_knight_mortal_strike:OnCreated(params)
     self.nova_free_chance = self:GetAbility():GetSpecialValueFor("nova_free_chance")
     self.nova_free_duration = self:GetAbility():GetSpecialValueFor("nova_free_duration")
     self.bulldoze_stack = self:GetAbility():GetSpecialValueFor("bulldoze_stack")
-    self.mana_get_pct = self:GetAbility():GetSpecialValueFor("mana_get_pct")
+    self.mana_get = self:GetAbility():GetSpecialValueFor("mana_get")
 end
 function modifier_death_knight_mortal_strike:OnRefresh(params)
     self.damage = self:GetAbility():GetSpecialValueFor("damage")
@@ -51,7 +51,7 @@ function modifier_death_knight_mortal_strike:OnRefresh(params)
     self.nova_free_chance = self:GetAbility():GetSpecialValueFor("nova_free_chance")
     self.nova_free_duration = self:GetAbility():GetSpecialValueFor("nova_free_duration")
     self.bulldoze_stack = self:GetAbility():GetSpecialValueFor("bulldoze_stack")
-    self.mana_get_pct = self:GetAbility():GetSpecialValueFor("mana_get_pct")
+    self.mana_get = self:GetAbility():GetSpecialValueFor("mana_get")
 end
 function modifier_death_knight_mortal_strike:DeclareFunctions()
 	return {
@@ -125,7 +125,7 @@ function modifier_death_knight_mortal_strike:OnAttack(params)
             if hAbility:GetCurrentAbilityCharges() > 0 then
                 hAbility:UseResources(true, true, true)
                 hAbility:SetCurrentAbilityCharges(hAbility:GetCurrentAbilityCharges() - 1)
-                hCaster:CGiveMana(hCaster:GetMaxMana() * self.mana_get_pct * 0.01, hAbility, hCaster)
+                hCaster:CGiveMana(self.mana_get, hAbility, hCaster)
 
                 local particleID = ParticleManager:CreateParticle("particles/units/heroes/death_knight/death_knight_mortal_strike.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster)
                 --ParticleManager:SetParticleControlEnt(particleID, 0, hCaster, PATTACH_POINT_FOLLOW, "attach_attack1", hCaster:GetAbsOrigin(), false)

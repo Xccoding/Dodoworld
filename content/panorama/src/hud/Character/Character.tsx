@@ -45,9 +45,19 @@ export function Character(){
                 </Panel>
                 {
                     attributes_array_stat.map((value)=>{
+                        let primary_stat = "strength"
+                        if(hero_index != -1){
+                            primary_stat = (GameUI.CustomUIConfig().role_primary_stat as any).role_primary_stat[Entities.GetUnitLabel(hero_index)]
+                        }
+                        let sTextTooltip = $.Localize("#hud_text_tooltip_Character_"+value.attribute_name)
+                        let sTextTooltip_primary = $.Localize("#hud_text_tooltip_Character_primary_stat")
+                        if(primary_stat == value.attribute_name){
+                            sTextTooltip = sTextTooltip_primary + sTextTooltip
+                        }
+
                         return <Panel key={"stat"+value.attribute_name} className="Character_attributes_panel" 
                         onmouseover={p=>{
-                            $.DispatchEvent("DOTAShowTextTooltip", p, $.Localize("#hud_text_tooltip_Character_"+value.attribute_name))
+                            $.DispatchEvent("DOTAShowTextTooltip", p, sTextTooltip)
                         }
                         }
                         onmouseout={

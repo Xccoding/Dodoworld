@@ -29,6 +29,7 @@
         <include src="./right_bottom_button/right_bottom_button.css" />
         <include src="./Backpack/Backpack.css" />
         <include src="./Character/Character.css" />
+        <include src="./Common/Close_button.css" />
     </styles>
     <Panel class="root" hittest="false" >
         <!-- 动作条、血条和buff栏 -->
@@ -83,6 +84,7 @@
             <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_magical_crit_damage.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_physical_crit_chance.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_magical_crit_chance.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/backpack_button.png" hittest="false" />
 	    </Panel>
     </Panel>
     
