@@ -104,7 +104,7 @@ function NormalThink()
         return 0.25
     end
     ------------------战斗中-----------------
-    if unit.current_order.order == nil or (unit.current_order.order ~= nil and unit.current_order.fEndtime < GameRules:GetGameTime()) or unit.current_order.order == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
+    if unit.current_order.order == nil or (unit.current_order.order ~= nil and unit.current_order.fEndtime < GameRules:GetGameTime() and not unit:IsChanneling()) or unit.current_order.order == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
         ------------------需要新行为-------------------
         local desires = {}
         local max_desires = {}

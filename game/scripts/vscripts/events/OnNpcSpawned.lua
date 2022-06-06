@@ -7,6 +7,11 @@ function DodoWorld:OnNpcSpawned( params )
 
     unit:AddNewModifier(unit, nil, "modifier_common", {})
 
+    --给中立生物加施法监控
+    if unit:IsNeutralUnitType() then
+        unit:AddNewModifier(unit, nil, "modifier_channel_watcher", {})
+    end
+
     if unit:IsHero() and unit:IsRealHero() then
         local new_schools = CustomNetTables:GetTableValue("hero_schools", tostring(unit:GetPlayerOwnerID())).schools_index
         RefreshAbilitiesToRole({entindex = params.entindex, new_schools = new_schools})

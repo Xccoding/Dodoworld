@@ -9,7 +9,7 @@ thisEntity.CreatureGroup = {}
 thisEntity:SetContextThink("creature_pink_pig", function ()
     for i = 1, CREATEURE_COUNT do
         if thisEntity.CreatureGroup[i] == nil or thisEntity.CreatureGroup[i]:IsNull() or (not thisEntity.CreatureGroup[i]:IsAlive()) then
-            CreateUnitByNameAsync("creature_forest_kobold_thief", thisEntity:GetAbsOrigin() + RandomVector(RandomFloat(SPAWN_RADIUS_MIN, SPAWN_RADIUS_MAX)), true, nil, nil, DOTA_TEAM_NEUTRALS, function (unit)
+            CreateUnitByNameAsync("creature_forest_kobold_scouts", thisEntity:GetAbsOrigin() + RandomVector(RandomFloat(SPAWN_RADIUS_MIN, SPAWN_RADIUS_MAX)), true, nil, nil, DOTA_TEAM_NEUTRALS, function (unit)
                 thisEntity.CreatureGroup[i] = unit
                 unit:SetForwardVector(RandomVector(1))
                 unit.spawn_entity = thisEntity

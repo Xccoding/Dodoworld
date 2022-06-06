@@ -7,7 +7,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"bounty_hunter_track"
 		"ScriptFile"	"units/abilities/neutral/neutral_creep_track"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		//"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"

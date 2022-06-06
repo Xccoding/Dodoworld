@@ -5,6 +5,7 @@
         "unit_attribute",
         "DHPS",
         "hero_schools",
-        "hero_attributes"
+        "hero_attributes",
+        "channel_list",
     ]
 }

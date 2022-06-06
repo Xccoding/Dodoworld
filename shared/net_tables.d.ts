@@ -41,4 +41,10 @@ declare interface CustomNetTableDeclarations {
             block: number[] // 格挡
         }
     }
+    channel_list: {
+        [unit_index: number]:{
+            channel_ability: AbilityEntityIndex // 正在持续施法技能
+            channel_percent: number // 施法进度
+        }
+    }
 }

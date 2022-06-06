@@ -60,7 +60,7 @@ end
 function modifier_death_knight_gravekeepers_cloak:OnIntervalThink()
 	local hCaster = self:GetCaster()
 	local hAbility = self:GetAbility()
-	local mana_get = self:GetSpecialValueFor("mana_get")
+	local mana_get = self:GetAbility():GetSpecialValueFor("mana_get")
 	if IsServer() then
 		if hCaster:InCombat() then
 			if GameRules:GetGameTime() >= self.fNext_stack_time and self:GetStackCount() < self.max_stack then
@@ -100,7 +100,7 @@ end
 function modifier_death_knight_gravekeepers_cloak:OnDestroy()
 	if IsServer() then
 		if self.cloak_particle ~= nil then
-			ParticleManager:DestroyParticle(self.cloak_particle)
+			ParticleManager:DestroyParticle(self.cloak_particle, true)
 			self.cloak_particle = nil
 		end
 	end

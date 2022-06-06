@@ -11,6 +11,7 @@ LinkLuaModifier( "modifier_taunt_custom", "common/combat/modifiers/modifier_taun
 LinkLuaModifier( "modifier_disable_autoattack_custom", "common/combat/modifiers/modifier_disable_autoattack_custom.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_escape", "common/combat/modifiers/modifier_escape.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_hide_aggro", "common/combat/modifiers/modifier_hide_aggro.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_channel_watcher", "common/combat/modifiers/modifier_channel_watcher.lua", LUA_MODIFIER_MOTION_NONE )
 
 function CDOTA_BaseNPC:InCombat()
     if self:HasModifier("modifier_combat") then

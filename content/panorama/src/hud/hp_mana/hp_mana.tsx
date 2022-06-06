@@ -47,7 +47,7 @@ export function HealthMana(){
 }
 
 function HealthBar({max_health, health, health_regen, percent}:{max_health: number, health: number, health_regen: number, percent: number}){
-    let width = `${percent * 100}%`
+    let width = `${percent * 100 > 100 ? 100: percent * 100 + 1}%`
     // 处理数字长度
     let health_unit = ""
     let max_health_unit = ""
@@ -81,7 +81,7 @@ function HealthBar({max_health, health, health_regen, percent}:{max_health: numb
 }
 
 function ManaBar({max_mana, mana, mana_regen, percent}:{max_mana: number, mana: number, mana_regen: number, percent: number}){
-    let width = `${percent * 100}%`
+    let width = `${percent * 100 > 100 ? 100: percent * 100 + 1}%`
     let hero_index = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer())
     let hero_label = Entities.GetUnitLabel(hero_index)
 

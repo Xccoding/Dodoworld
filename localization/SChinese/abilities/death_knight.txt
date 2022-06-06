@@ -7,7 +7,7 @@
 "DOTA_Tooltip_modifier_death_knight_midnight_pulse_buff_Description"	"冥火暴击可以击中更多目标"
 
 "DOTA_Tooltip_ability_death_knight_hellfire_blast"	"冥火暴击"
-"DOTA_Tooltip_ability_death_knight_hellfire_blast_Description"	"向一个目标发射冥魂火球,造成【%ap_factor_hit%%%攻击力】点物理伤害;并使其感染冥火诅咒，持续%debuff_duration%秒。<br>施放时额外对附近的%bonus_target_count%名敌人也发射冥魂火球。\n冥火诅咒：<br>每%dot_interval%秒受到【%ap_factor_dot%%%攻击力】点魔法伤害，并对死亡骑士产生同等的治疗效果。\n当你站在凋零迷雾中时，额外对附近的%pulse_bonus_target_count%名敌人施放冥火暴击。<br>每次攻击冥火诅咒作用下的敌人有%reset_chance%%%几率重置凋零迷雾的冷却时间。"
+"DOTA_Tooltip_ability_death_knight_hellfire_blast_Description"	"向一个目标发射冥魂火球,造成【%ap_factor_hit%%%攻击力】点物理伤害;并使其感染冥火诅咒，持续%debuff_duration%秒。<br>施放时额外对附近的%bonus_target_count%名敌人也发射冥魂火球。\n冥火诅咒：<br>每%dot_interval%秒受到【%ap_factor_dot%%%攻击力】点魔法伤害，并对死亡骑士产生同等的治疗效果。\n使用时为你恢复%mana_get%点<font color='#2f8cc2'>符文能量</font>。\n当你站在凋零迷雾中时，额外对附近的%pulse_bonus_target_count%名敌人施放冥火暴击。<br>每次攻击冥火诅咒作用下的敌人有%reset_chance%%%几率重置凋零迷雾的冷却时间。"
 "DOTA_Tooltip_modifier_death_knight_hellfire_blast"	"冥火诅咒"
 "DOTA_Tooltip_modifier_death_knight_hellfire_blast_Description"	"周期性地受到伤害，并治疗死亡骑士"
 
@@ -19,7 +19,7 @@
 "DOTA_Tooltip_modifier_death_knight_chaos_strike_shield_Description"	"格挡%dMODIFIER_PROPERTY_TOOLTIP%点物理伤害"
 
 "DOTA_Tooltip_ability_death_knight_gravekeepers_cloak"	"陵卫斗篷"
-"DOTA_Tooltip_ability_death_knight_gravekeepers_cloak_Description"	"主动：激活一枚魔霭符文，使你受到的伤害降低%incoming_damage_pct%%%，持续%duration%秒。\n被动：进入战斗后，立刻获得%first_stack%层陵卫斗篷，之后每%cloak_cooldown%秒获得%stack_per_tick%层陵卫斗篷，最多获得%max_stack%层，在受到近战攻击时失去一层陵卫斗篷。\n陵卫斗篷：<br>使你的攻击速度提高%bonus_attack_speed%，护甲提高【%bonus_armor_str_factor%%%力量】点"
+"DOTA_Tooltip_ability_death_knight_gravekeepers_cloak_Description"	"主动：激活一枚魔霭符文，使你受到的伤害降低%incoming_damage_pct%%%，持续%duration%秒。\n被动：进入战斗后，立刻获得%first_stack%层陵卫斗篷并为你恢复%mana_get%点<font color='#2f8cc2'>符文能量</font>，之后每%cloak_cooldown%秒获得%stack_per_tick%层陵卫斗篷并为你恢复%mana_get%点<font color='#2f8cc2'>符文能量</font>，最多获得%max_stack%层，在受到近战攻击时失去一层陵卫斗篷。\n陵卫斗篷：<br>使你的攻击速度提高%bonus_attack_speed%，护甲提高【%bonus_armor_str_factor%%%力量】点"
 "DOTA_Tooltip_modifier_death_knight_gravekeepers_cloak"	"陵卫斗篷"
 "DOTA_Tooltip_modifier_death_knight_gravekeepers_cloak_Description"	"攻击速度和护甲提高"
 "DOTA_Tooltip_modifier_death_knight_gravekeepers_cloak_buff"	"陵卫斗篷：激活符文"

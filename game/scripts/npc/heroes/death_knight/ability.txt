@@ -171,8 +171,8 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
         "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 
-		"AbilityCooldown"				"0"
-		"AbilityManaCost"				"5"
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"650"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"

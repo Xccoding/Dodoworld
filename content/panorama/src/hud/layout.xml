@@ -30,6 +30,7 @@
         <include src="./Backpack/Backpack.css" />
         <include src="./Character/Character.css" />
         <include src="./Common/Close_button.css" />
+        <include src="./OverheadBar/OverheadBar.css" />
     </styles>
     <Panel class="root" hittest="false" >
         <!-- 动作条、血条和buff栏 -->
@@ -43,6 +44,8 @@
         <Panel id="Right_bottom_button_Root"/>
         <Panel id="ChangeSchools_Root" hittest="false"/>
         <Panel id="Backpack_Root" hittest="false"/>
+        <Panel id="OverheadBar_Root" hittest="false"/>
+        <Panel id="OverheadBar_Garbage" hittest="false"/>
         <!-- DPS和HPS统计 -->
         <Panel id="DHPS_CounterRoot" hittest="false"/>
         
