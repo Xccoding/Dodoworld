@@ -3,6 +3,7 @@
 #base items/shoulder/items.txt
 #base items/cape/items.txt
 #base items/chest/items.txt
+#base items/helmet/items.txt
 
 "DOTAAbilities"
 {

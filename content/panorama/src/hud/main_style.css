@@ -15,7 +15,7 @@
   height: 388px;
 }
 #ActionPanel {
-  align: center bottom;
+  align: left bottom;
   width: 600px;
   height: 400px;
 }
@@ -27,7 +27,7 @@
   z-index: -1;
   width: 420px;
   height: 142px;
-  background-image: url("s2r://panorama/images/hud/reborn/bg_guides_psd.vtex");
+  background-image: url("s2r://panorama/images/hud/reborn/ability_bg_psd.vtex");
   background-size: 100%;
   align: center bottom;
   border-radius: 4px;

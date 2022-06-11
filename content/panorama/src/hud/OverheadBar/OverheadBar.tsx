@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createPortal, render, useNetTableValues } from '@demon673/react-panorama';
 import ReactUtils from "../../utils/React_utils";
-import { print } from '../Utils';
+import { print, RGBToHex}  from '../Utils'
+
+const OVERHEAD_BUFF_COUNT_LIMIT = 5
+const OVERHEAD_BUFF_TIME_LIMIT = 60
 
 function HasOverheadBar(unit_index: EntityIndex){
     return Entities.IsValidEntity(unit_index) && Entities.IsAlive(unit_index) && !Entities.NoHealthBar(unit_index)
@@ -52,7 +55,7 @@ export function OverheadBar_Init(){
                     }
                     if(HasOverheadBar(unit_index) || (pOverheadBar != undefined)){
                         render(<OverheadBar unit_index={unit_index}/>, pOverheadBar)
-                        let offset = Entities.GetHealthBarOffset(unit_index)
+                        let offset = Entities.GetHealthBarOffset(unit_index) + 40
                         let position = Entities.GetAbsOrigin(unit_index)
                         let ScreenX = Game.WorldToScreenX(position[0], position[1], position[2] + offset)
                         let ScreenY = Game.WorldToScreenY(position[0], position[1], position[2] + offset)
@@ -71,6 +74,13 @@ export function OverheadBar_Init(){
                 }
             }
 
+            for (let index = 0; index < OverheadBar_Garbage.GetChildCount(); index++) {
+                let pPanel = OverheadBar_Garbage.GetChild(index)
+                if(pPanel != null){
+                    pPanel.RemoveAndDeleteChildren()
+                }
+                
+            }
             OverheadBar_Garbage.RemoveAndDeleteChildren()
 
         }
@@ -80,6 +90,7 @@ export function OverheadBar_Init(){
 
 function OverheadBar({unit_index}: {unit_index: EntityIndex}){
     return <Panel className="OverheadBar">
+        <OverheadBuffBar unit_index={unit_index}/>
         <Label className='OverheadBar_name' text={$.Localize(`#${Entities.GetUnitName(unit_index)}`)}/>
         <OverheadhpBar unit_index={unit_index}/>
         <OverheadChannelBar unit_index={unit_index}/>
@@ -91,7 +102,7 @@ function OverheadhpBar({unit_index}:{unit_index: EntityIndex}){
     let max_health = Entities.GetMaxHealth(unit_index)
     let percent = health / max_health
 
-    let width = `${percent * 100 > 100 ? 100: percent * 100 + 1}%`
+    let width = `${percent * 100}% + 1px`
     let health_unit = ""
     let max_health_unit = ""
     if(max_health >= 10000){
@@ -110,12 +121,10 @@ function OverheadhpBar({unit_index}:{unit_index: EntityIndex}){
 }
 
 function OverheadChannelBar({unit_index}:{unit_index: EntityIndex}){
-    const channel_table = useNetTableValues("channel_list")
+    let channel_info = CustomNetTables.GetTableValue("channel_list", unit_index)
     let bShowBar = false
-    let channel_info = channel_table[unit_index]
     let ability_index = -1 as AbilityEntityIndex
     let channel_percent = 0
-    
     if(channel_info != undefined){
         if(channel_info.channel_ability != -1){
             bShowBar = true
@@ -130,17 +139,113 @@ function OverheadChannelBar({unit_index}:{unit_index: EntityIndex}){
         bShowBar = false
     }
 
-    let width = `${channel_percent * 100 > 100 ? 100: channel_percent * 100 + 1}%`
+    let width = `${channel_percent}% + 1px`
+    if(channel_percent * 100 >= 100){
+        width = "100px"
+    }
+    else if(channel_percent * 100 == 0){
+        width = "0px"
+    }
 
     return <Panel id='ChannelBarContainer'>
         {
-            bShowBar ? <ProgressBar id ="OverheadChannelBar" value={channel_percent}>
+            <ProgressBar id ="OverheadChannelBar" value={channel_percent} className={bShowBar ? "bShowBar" : ""}>
             <Label id="channel_ability_name" text={$.Localize("#DOTA_Tooltip_ability_" + Abilities.GetAbilityName(ability_index))}></Label>
             <Panel id="OverheadChannelBar_BG" style={{width}} ></Panel>
-        </ProgressBar> : <Panel/>
+        </ProgressBar>
         }
     </Panel>
 
 }
 
+function OverheadBuffBar({unit_index}:{unit_index: EntityIndex}){
+    let player = Players.GetLocalPlayer()
+    let hero = Players.GetPlayerHeroEntityIndex(player)
+    const iBuffCount = Entities.GetNumBuffs(unit_index);
+    const buff_array:number[]=[];
+    let count = 0
+
+    for (let index = 0; index < iBuffCount; index++) {
+		let iBuff = Entities.GetBuff(unit_index, index);
+		if (Buffs.IsHidden(unit_index, iBuff)) continue;
+		if (false == Buffs.IsDebuff(unit_index, iBuff)) continue;
+        if (Buffs.GetCaster(unit_index, iBuff) != hero) continue;
+        if (Buffs.GetRemainingTime(unit_index, iBuff) > OVERHEAD_BUFF_TIME_LIMIT) continue;
+        buff_array.push(index)
+        count++;
+        if(count >= OVERHEAD_BUFF_COUNT_LIMIT){
+            break
+        }
+	}
+
+    return <Panel id="OverheadBuffBar">
+        {
+            buff_array.map((buff_index)=>
+            {
+                return <OverheadBuff key={buff_index} buff_index={buff_index} unit_index={unit_index}/>
+            })
+        }
+    </Panel>
+}
+
+function OverheadBuff({buff_index, unit_index}: {buff_index: number, unit_index: EntityIndex}){
+    const thisBuff = Entities.GetBuff(unit_index, buff_index)
+
+    let sTexture = Buffs.GetTexture(unit_index, thisBuff);
+    if(sTexture == ""){
+        sTexture = `file://{images}/spellicons/goose.png`;
+    }
+    else{
+        if(sTexture.indexOf("item_") != -1){
+            sTexture = `file://{images}/items/${sTexture.replace("item_", "")}.png`;
+        }
+        else{
+            sTexture = `file://{images}/spellicons/${sTexture}.png`;
+        }
+    }
+    
+    
+
+    let fDuration = Buffs.GetDuration(unit_index, thisBuff);
+    // 计算时间格式
+	let fTimeRemain = Buffs.GetRemainingTime(unit_index, thisBuff);
+    let dTimeRemain = Math.floor(fTimeRemain)
+    let sTimeRemain = ""
+    if(dTimeRemain >= 1){
+        sTimeRemain = String(dTimeRemain)
+    }
+
+	let clip = "radial(50% 50%, 0deg, -360deg);";
+	if (fDuration > 0 && fTimeRemain > 0) {
+		clip = `radial(50% 50%, 0deg, ${360 * (fDuration - fTimeRemain) / fDuration}deg)`;
+	}
+
+    let backgroundColor = `none`
+    if(fDuration > 0){
+        backgroundColor = `rgba(0,0,0,${((fDuration - fTimeRemain)/ fDuration).toFixed(2)})`
+        backgroundColor = RGBToHex(backgroundColor)
+    }
+    
+    let iStackCount = Buffs.GetStackCount(unit_index, thisBuff);
+	let bIsDebuff = Buffs.IsDebuff(unit_index, thisBuff);
+    let classNames: string[] = ["CustomBuff",]
+    
+    if(bIsDebuff){
+        classNames.push(`is_debuff`)
+    }
+    if(iStackCount != 0){
+        classNames.push(`has_stacks`)
+    }
+
+    return <Panel className={classNames.join(" ")}
+    onactivate={p => Players.BuffClicked(unit_index, thisBuff, GameUI.IsAltDown())}
+    onmouseover={p => $.DispatchEvent("DOTAShowBuffTooltip", p, unit_index, thisBuff, Entities.IsEnemy(unit_index))}
+    onmouseout={p => $.DispatchEvent("DOTAHideBuffTooltip", p)} >
+    <Button className="BuffBorder">
+        <Image id="BuffImage" src={sTexture} scaling="stretch-to-fit-y-preserve-aspect" />
+        <Panel id="CircularDuration" style={{ clip, backgroundColor }} />
+    </Button>
+    <Label id="BuffTime" text={fTimeRemain > 0 ? sTimeRemain : ""} />
+</Panel >
+}
 

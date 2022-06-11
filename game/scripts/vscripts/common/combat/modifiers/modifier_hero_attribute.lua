@@ -67,7 +67,7 @@ function modifier_hero_attribute:OnIntervalThink()
         local attr_new = 
         {
             -- base_attack_damage = math.floor((hCaster:GetBaseDamageMin() + hCaster:GetBaseDamageMax()) * 0.5),--基础攻击力
-            total_attack_damage = math.floor((hCaster:GetDamageMin() + hCaster:GetDamageMax()) * 0.5),--全额攻击力
+            total_attack_damage = math.floor(hCaster:GetAverageTrueAttackDamage(hCaster)),--全额攻击力
             movespeed = math.floor(hCaster:GetIdealSpeed()),--移动速度
             physical_armor = {[0] = string.format("%.1f", hCaster:GetUnitAttribute(PHYSICAL_ARMOR, {}, MODIFIER_CALCULATE_TYPE_SUM)) , [1] = hCaster:GetPhysicalDamageReduction()},--护甲及减伤率
             magical_armor = {[0] = string.format("%.1f", hCaster:GetUnitAttribute(MAGICAL_ARMOR, {}, MODIFIER_CALCULATE_TYPE_SUM)), [1] = hCaster:GetMagicalDamageReduction()},--魔法护甲及减伤率

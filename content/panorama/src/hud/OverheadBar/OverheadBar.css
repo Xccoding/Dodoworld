@@ -3,25 +3,26 @@
   height: 100%;
 }
 .OverheadBarContainer {
-  width: 195px;
-  height: 70px;
+  width: 150px;
+  height: 98px;
   background-color: none;
 }
 .OverheadBar {
   width: 100%;
   height: 100%;
+  flow-children: down;
 }
 .OverheadBar_name {
-  align: center top;
-  text-shadow: 0px 0px 5px 6 #000000;
+  text-shadow: 0px 0px 4px 5 #000000;
   color: white;
   font-family: monospaceNumbersFont;
   font-size: 17px;
+  horizontal-align: center;
+  height: 18px;
 }
 #OverheadhpBar {
   border-radius: 2px;
-  background-color: rgba(0, 0, 0, 0.712);
-  align: center center;
+  background-color: #000000;
   border-color: black;
   border-style: solid;
   border-width: 3px;
@@ -45,17 +46,20 @@
   height: 22px;
   width: 150px;
   background-color: none;
-  align: center bottom;
 }
 #OverheadChannelBar {
   border-radius: 2px;
-  background-color: rgba(0, 0, 0, 0.712);
+  background-color: rgba(0, 0, 0, 0.884);
   align: center center;
   border-color: black;
   border-style: solid;
   border-width: 3px;
   height: 100%;
   width: 100%;
+  visibility: collapse;
+}
+#OverheadChannelBar.bShowBar {
+  visibility: visible;
 }
 #OverheadChannelBar #channel_ability_name {
   align: center center;
@@ -69,4 +73,34 @@
   background-color: gradient(linear, 0% 0%, 0% 100%, from(#2b2c2c), color-stop(0.5, #7e7e7e), to(#2b2c2c));
   height: 100%;
   overflow: noclip;
+}
+#OverheadBuffBar {
+  width: 150px;
+  height: 30px;
+  flow-children: right-wrap;
+}
+#OverheadBuffBar .CustomBuff {
+  width: 30px;
+  height: 30px;
+}
+#OverheadBuffBar .CustomBuff .BuffBorder {
+  background-color: black;
+  padding: 3px;
+}
+#OverheadBuffBar .CustomBuff #CircularDuration {
+  width: 100%;
+  height: 100%;
+  background-color: #000000dc;
+}
+#OverheadBuffBar .CustomBuff #BuffTime {
+  margin-top: 10px;
+  margin-right: 3px;
+  align: right top;
+  overflow: noclip noclip;
+  text-overflow: shrink;
+  text-align: center;
+  text-shadow: 0px 0px 4px 6 #000000;
+  color: white;
+  font-family: monospaceNumbersFont;
+  font-size: 14px;
 }

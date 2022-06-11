@@ -9,6 +9,7 @@ require('GameConfig')
 _G.UnitLevels = LoadKeyValues("scripts/npc/levels.txt")
 _G.RoleAbilities = LoadKeyValues("scripts/npc/role_abilities.txt")
 _G.SchoolsUsemana = LoadKeyValues("scripts/npc/schools_usemana.txt")
+_G.item_type = LoadKeyValues("scripts/npc/items/item_type.txt")
 
 function Precache( context )
 	--[[
@@ -38,6 +39,7 @@ function DodoWorld:InitGameMode()
 	require('heroes.label.schools')
 	require('ai.ai_manager')
 	require('abilities_required_lvl')
+	require('filters.ItemAddedToInventoryFilter')
 	level_table = {[0] = 0}
 
 	for lvl = 1, MAX_UNIT_LEVEL - 1 do
@@ -70,6 +72,9 @@ function DodoWorld:InitGameMode()
 	GameRules:GetGameModeEntity():SetInnateMeleeDamageBlockPerLevelAmount(0)--设置近战英雄自带格挡每级成长为0
 
 	GameRules:GetGameModeEntity():SetSendToStashEnabled(false)--禁用储藏处
+
+	--过滤器
+	GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(self.ItemAddedToInventoryFilter, self)
 
 	--初始化流派：默认0
 	InitSchools()
