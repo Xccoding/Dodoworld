@@ -19,9 +19,9 @@ declare interface CustomNetTableDeclarations {
         [player_index: number]:{
             schools_index: number;
         }
-    }
+    };
     hero_attributes: {
-        [player_index: number]:{
+        [player_index: number]: {
             // base_attack_damage: number // 基础攻击力
             total_attack_damage: number // 全额攻击力
             movespeed: number // 移动速度
@@ -40,11 +40,16 @@ declare interface CustomNetTableDeclarations {
             magical_crit_damage: number // 魔法暴击倍率
             block: number[] // 格挡
         }
-    }
+    };
     channel_list: {
-        [unit_index: number]:{
+        [unit_index: number]: {
             channel_ability: AbilityEntityIndex // 正在持续施法技能
             channel_percent: number // 施法进度
         }
+    };
+    hero_items: {
+        [player_index: number]: {
+            [item_type: string]: string[]
+        }[]
     }
 }

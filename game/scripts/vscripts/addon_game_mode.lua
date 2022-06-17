@@ -35,11 +35,15 @@ function DodoWorld:InitGameMode()
 	require('events.OnNpcSpawned')
 	require('events.OnPlayerGainedLevel')
 	require('events.OnPlayerPickHero')
+	require('events.OnInventoryItemAdded')
 	require('utils')
 	require('heroes.label.schools')
 	require('ai.ai_manager')
+	require('backpack.backpack_manager')
 	require('abilities_required_lvl')
 	require('filters.ItemAddedToInventoryFilter')
+	require('filters.ExecuteOrderFilter')
+
 	level_table = {[0] = 0}
 
 	for lvl = 1, MAX_UNIT_LEVEL - 1 do
@@ -55,9 +59,10 @@ function DodoWorld:InitGameMode()
 	GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(level_table)
 
 	--设定监听事件
-	ListenToGameEvent('npc_spawned',Dynamic_Wrap(DodoWorld,'OnNpcSpawned'),self)
-	ListenToGameEvent('dota_player_gained_level',Dynamic_Wrap(DodoWorld,'OnPlayerGainedLevel'),self)
-	ListenToGameEvent('dota_player_pick_hero',Dynamic_Wrap(DodoWorld,'OnPlayerPickHero'),self)
+	ListenToGameEvent('npc_spawned', Dynamic_Wrap(DodoWorld,'OnNpcSpawned'),self)
+	ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(DodoWorld,'OnPlayerGainedLevel'),self)
+	ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(DodoWorld,'OnPlayerPickHero'),self)
+	ListenToGameEvent('dota_inventory_item_added', Dynamic_Wrap(DodoWorld,'OnInventoryItemAdded'),self)
 	
 	--游戏性常数
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_DAMAGE, 1)
@@ -75,9 +80,13 @@ function DodoWorld:InitGameMode()
 
 	--过滤器
 	GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(self.ItemAddedToInventoryFilter, self)
+	GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.ExecuteOrderFilter, self)
 
 	--初始化流派：默认0
 	InitSchools()
+
+	--临时初始化背包
+	InitBackpack()
 
 	--监听自定义游戏事件
 	CustomGameEventManager:RegisterListener("ChangeRoleMastery", OnChangeRoleMastery)

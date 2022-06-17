@@ -7,5 +7,6 @@
         "hero_schools",
         "hero_attributes",
         "channel_list",
+        "hero_items",
     ]
 }
