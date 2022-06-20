@@ -49,7 +49,11 @@ declare interface CustomNetTableDeclarations {
     };
     hero_items: {
         [player_index: number]: {
-            [item_type: string]: string[]
+            item_type: string,
+            item_list: {
+                item_name: string,
+                equip: number,
+            }[]
         }[]
     }
 }

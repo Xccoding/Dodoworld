@@ -1,0 +1,8 @@
+"item_cape" "披风"
+"others"    "其他"
+"item_shoulder" "护肩"
+"item_helmet"   "头部"
+"item_chest"    "胸甲"
+"weapon_double_hand"    "双手武器"
+"weapon_one_hand"   "单手武器"
+"item_offhand"  "副手物品"

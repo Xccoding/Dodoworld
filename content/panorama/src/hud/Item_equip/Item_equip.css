@@ -1,0 +1,54 @@
+#Item_equip {
+  width: 100%;
+  height: 30%;
+  background-image: url("file://{images}/hud/item_equip_bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: -40px 0px;
+}
+#Item_equip #item_slot_0 {
+  width: 58px;
+  height: 41px;
+  align: left bottom;
+  margin-left: 180px;
+  background-image: url("s2r://panorama/images/hud/reborn/inventory_bg_bg_psd.vtex");
+  background-size: 100%;
+}
+#Item_equip #item_slot_1 {
+  width: 58px;
+  height: 41px;
+  align: right bottom;
+  margin-right: 180px;
+  background-image: url("s2r://panorama/images/hud/reborn/inventory_bg_bg_psd.vtex");
+  background-size: 100%;
+}
+#Item_equip #item_slot_2 {
+  width: 58px;
+  height: 41px;
+  align: left center;
+  margin-left: 140px;
+  background-image: url("s2r://panorama/images/hud/reborn/inventory_bg_bg_psd.vtex");
+  background-size: 100%;
+}
+#Item_equip #item_slot_3 {
+  width: 58px;
+  height: 41px;
+  align: center center;
+  background-image: url("s2r://panorama/images/hud/reborn/inventory_bg_bg_psd.vtex");
+  background-size: 100%;
+}
+#Item_equip #item_slot_4 {
+  width: 58px;
+  height: 41px;
+  align: center top;
+  background-image: url("s2r://panorama/images/hud/reborn/inventory_bg_bg_psd.vtex");
+  background-size: 100%;
+}
+#Item_equip #item_slot_5 {
+  width: 58px;
+  height: 41px;
+  align: right center;
+  margin-right: 140px;
+  background-image: url("s2r://panorama/images/hud/reborn/inventory_bg_bg_psd.vtex");
+  background-size: 100%;
+}

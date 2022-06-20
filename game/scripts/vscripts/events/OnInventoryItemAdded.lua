@@ -1,5 +1,5 @@
 function DodoWorld:OnInventoryItemAdded( params )
-    print("on!")
+
     if params.inventory_parent_entindex == -1 then
         return
     end

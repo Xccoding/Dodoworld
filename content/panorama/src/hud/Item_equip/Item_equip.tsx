@@ -9,12 +9,12 @@ export function Item_equip(){
     function update_items(){
         const player = Players.GetLocalPlayer()
         const hero = Players.GetPlayerHeroEntityIndex(player)
-        let item_array: string[] = []
+        let item_array: string[] = ["", "", "", "", "", "",]
         if(hero != -1){
-            for (let index = 0; index < 5; index++) {
+            for (let index = 0; index <= 5; index++) {
                 const this_item = Entities.GetItemInSlot(hero, index)
                 if(this_item != undefined){
-                    item_array.push(Abilities.GetAbilityName(this_item))
+                    item_array[index] = Abilities.GetAbilityName(this_item)
                 }
             }
         }
@@ -23,7 +23,6 @@ export function Item_equip(){
 
     useEffect(() => {
 		let func = () => {
-            print("update")
 			Setitems(update_items);
 		}
 
@@ -42,13 +41,28 @@ export function Item_equip(){
 		}
 	}, []);
 
-    return <Panel>
 
+    return <Panel id='Item_equip'>
+        {
+            hero_items.map((item_name, slot_index)=>{
+                return <Button key={slot_index} id={`item_slot_${slot_index}`} hittest={true} 
+                oncontextmenu={()=>{
+                    if(item_name != ""){
+                        GameEvents.SendCustomGameEventToServer("UnEquipItem",{
+                            hero_index: Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()),
+                            unequip_slot: slot_index 
+                        })
+                    }
+                }}>
+                    <Item_equip_slot item_name={item_name}/>
+                </Button>
+            })
+        }
     </Panel>
 }
 
-function Item_equip_slot(){
-    return <Panel>
-        
+function Item_equip_slot({item_name}: {item_name: string}){
+    return <Panel id='Item_equip_slot'>
+        <DOTAItemImage itemname={item_name} contextEntityIndex={-1 as ItemEntityIndex}/>
     </Panel>
 }

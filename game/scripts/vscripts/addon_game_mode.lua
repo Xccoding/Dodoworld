@@ -90,6 +90,8 @@ function DodoWorld:InitGameMode()
 
 	--监听自定义游戏事件
 	CustomGameEventManager:RegisterListener("ChangeRoleMastery", OnChangeRoleMastery)
+	CustomGameEventManager:RegisterListener("EquipItem", OnEquipItem)
+	CustomGameEventManager:RegisterListener("UnEquipItem", OnUnEquipItem)
 
 	print( "DodoWorld is loaded." )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )

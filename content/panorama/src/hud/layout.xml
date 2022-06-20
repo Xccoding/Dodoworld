@@ -31,6 +31,8 @@
         <include src="./Character/Character.css" />
         <include src="./Common/Close_button.css" />
         <include src="./OverheadBar/OverheadBar.css" />
+        <include src="./Item_equip/Item_equip.css" />
+        <include src="./Item_unequip/Item_unequip.css" />
     </styles>
     <Panel class="root" hittest="false" >
         <!-- 动作条、血条和buff栏 -->
@@ -88,6 +90,7 @@
             <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_physical_crit_chance.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_magical_crit_chance.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/hud_icons/backpack_button.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud/item_equip_bg.png" hittest="false" />
 	    </Panel>
     </Panel>
     
