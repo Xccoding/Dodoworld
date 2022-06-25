@@ -3,7 +3,7 @@
   height: 100%;
 }
 #Backpack {
-  width: 700px;
+  width: 654px;
   height: 800px;
   align: right center;
   background-color: rgba(0, 0, 0, 0.514);
@@ -18,11 +18,13 @@
 }
 #Backpack #Backpack_left {
   height: 100%;
-  width: 32%;
+  width: 224px;
   background-image: url("s2r://panorama/images/hud/reborn/bg_mainshop_psd.vtex");
   background-size: 100%;
 }
 #Backpack #Backpack_right {
   height: 100%;
-  width: 68%;
+  width: 430px;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.877);
 }

@@ -1,54 +1,62 @@
 #Item_equip {
-  width: 100%;
-  height: 30%;
-  background-image: url("file://{images}/hud/item_equip_bg.png");
+  width: 468px;
+  height: 240px;
+  background-color: rgba(0, 0, 0, 0.76);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-position: -40px 0px;
 }
-#Item_equip #item_slot_0 {
+#Item_equip #backpack_portrait {
+  width: 100%;
+  height: 100%;
+  align: center center;
+}
+#Item_equip #backpack_portrait #item_slot_0 {
   width: 58px;
   height: 41px;
   align: left bottom;
-  margin-left: 180px;
+  margin-left: 145px;
   background-image: url("s2r://panorama/images/hud/reborn/inventory_bg_bg_psd.vtex");
   background-size: 100%;
 }
-#Item_equip #item_slot_1 {
+#Item_equip #backpack_portrait #item_slot_1 {
   width: 58px;
   height: 41px;
   align: right bottom;
-  margin-right: 180px;
+  margin-right: 145px;
   background-image: url("s2r://panorama/images/hud/reborn/inventory_bg_bg_psd.vtex");
   background-size: 100%;
 }
-#Item_equip #item_slot_2 {
+#Item_equip #backpack_portrait #item_slot_2 {
+  width: 58px;
+  height: 41px;
+  align: right top;
+  margin-right: 50px;
+  margin-top: 30px;
+  background-image: url("s2r://panorama/images/hud/reborn/inventory_bg_bg_psd.vtex");
+  background-size: 100%;
+}
+#Item_equip #backpack_portrait #item_slot_3 {
   width: 58px;
   height: 41px;
   align: left center;
-  margin-left: 140px;
   background-image: url("s2r://panorama/images/hud/reborn/inventory_bg_bg_psd.vtex");
   background-size: 100%;
+  margin-left: 50px;
 }
-#Item_equip #item_slot_3 {
+#Item_equip #backpack_portrait #item_slot_4 {
   width: 58px;
   height: 41px;
-  align: center center;
+  align: left top;
   background-image: url("s2r://panorama/images/hud/reborn/inventory_bg_bg_psd.vtex");
   background-size: 100%;
+  margin-top: 30px;
+  margin-left: 50px;
 }
-#Item_equip #item_slot_4 {
-  width: 58px;
-  height: 41px;
-  align: center top;
-  background-image: url("s2r://panorama/images/hud/reborn/inventory_bg_bg_psd.vtex");
-  background-size: 100%;
-}
-#Item_equip #item_slot_5 {
+#Item_equip #backpack_portrait #item_slot_5 {
   width: 58px;
   height: 41px;
   align: right center;
-  margin-right: 140px;
+  margin-right: 50px;
   background-image: url("s2r://panorama/images/hud/reborn/inventory_bg_bg_psd.vtex");
   background-size: 100%;
 }

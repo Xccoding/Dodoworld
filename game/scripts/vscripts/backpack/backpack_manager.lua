@@ -51,6 +51,7 @@ function OnEquipItem(userid, params)
         --双手武器，把主副手卸了
         OnUnEquipItem(-1, {hero_index = params.hero_index, unequip_slot = DOTA_ITEM_SLOT_1})
         OnUnEquipItem(-1, {hero_index = params.hero_index, unequip_slot = DOTA_ITEM_SLOT_2})
+        hero_items = CustomNetTables:GetTableValue("hero_items", tostring(playerID))
     end
 
     if sItem_type == "weapon_one_hand" then
@@ -60,8 +61,7 @@ function OnEquipItem(userid, params)
             if item_type[slot_1_item:GetAbilityName()] == "weapon_double_hand" then
                 --装着双手武器，卸掉
                 OnUnEquipItem(-1, {hero_index = params.hero_index, unequip_slot = DOTA_ITEM_SLOT_1})
-            end
-            if item_type[slot_1_item:GetAbilityName()] == "weapon_one_hand" then
+            elseif item_type[slot_1_item:GetAbilityName()] == "weapon_one_hand" then
                 --主手有单手武器，尝试装副手
                 --TODO判断流派能不能双武器
                 if slot_2_item ~= nil and not slot_2_item:IsNull() then
@@ -73,7 +73,9 @@ function OnEquipItem(userid, params)
                     sug_slot = DOTA_ITEM_SLOT_2
                 end
             end
+            
         end
+        hero_items = CustomNetTables:GetTableValue("hero_items", tostring(playerID))
     end
 
     if sItem_type == "item_offhand" then
@@ -89,6 +91,7 @@ function OnEquipItem(userid, params)
                 OnUnEquipItem(-1, {hero_index = params.hero_index, unequip_slot = DOTA_ITEM_SLOT_2})
             end
         end
+        hero_items = CustomNetTables:GetTableValue("hero_items", tostring(playerID))
     end
     
     for index, type_item in pairs(hero_items) do
@@ -110,10 +113,6 @@ function OnUnEquipItem(userid, params)
     local unequip_slot = params.unequip_slot
     local hero_items = CustomNetTables:GetTableValue("hero_items", tostring(hero:GetPlayerOwnerID()))
 
-    if hero:GetItemInSlot(unequip_slot) ~= nil then
-        hero:RemoveItem(hero:GetItemInSlot(unequip_slot))
-    end
-
     for index, type_item in pairs(hero_items) do
         for i = 1, GetElementCount(type_item.item_list) do
             if type_item.item_list[tostring(i)].equip == unequip_slot then
@@ -124,5 +123,8 @@ function OnUnEquipItem(userid, params)
         end
     end
 
+    if hero:GetItemInSlot(unequip_slot) ~= nil then
+        hero:RemoveItem(hero:GetItemInSlot(unequip_slot))
+    end
 
 end

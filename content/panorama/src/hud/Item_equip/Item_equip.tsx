@@ -43,6 +43,7 @@ export function Item_equip(){
 
 
     return <Panel id='Item_equip'>
+        <DOTAScenePanel id='backpack_portrait' map='scene/backpack_portrait' light='light' camera='camera1' antialias={true} allowrotation={true} particleonly={false} >
         {
             hero_items.map((item_name, slot_index)=>{
                 return <Button key={slot_index} id={`item_slot_${slot_index}`} hittest={true} 
@@ -58,6 +59,7 @@ export function Item_equip(){
                 </Button>
             })
         }
+        </DOTAScenePanel>
     </Panel>
 }
 

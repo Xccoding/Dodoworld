@@ -1,6 +1,6 @@
 
 
-BACKPACK_ITEM_COUNT_MAX = 10
+BACKPACK_ITEM_COUNT_MAX = 12
 BACKPACK_ITEM_COUNT_MAX_OTHERS = 20
 
 function DodoWorld:ItemAddedToInventoryFilter( params )
@@ -59,9 +59,9 @@ function DodoWorld:ItemAddedToInventoryFilter( params )
         --尝试放进背包
         local hero_items = CustomNetTables:GetTableValue("hero_items", tostring(unit:GetPlayerOwnerID()))
         local item_count_limit = BACKPACK_ITEM_COUNT_MAX
-        if sug_slot == 999 then
-            item_count_limit = BACKPACK_ITEM_COUNT_MAX_OTHERS
-        end
+        -- if sug_slot == 999 then
+        --     item_count_limit = BACKPACK_ITEM_COUNT_MAX_OTHERS
+        -- end
         local type_index = 0
         for index, type_item in pairs(hero_items) do
             if type_item.item_type == sItem_type then
