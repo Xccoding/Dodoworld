@@ -6,3 +6,4 @@
 "weapon_double_hand"    "双手武器"
 "weapon_one_hand"   "单手武器"
 "item_offhand"  "副手物品"
+"Item_in_equip_tip" "装备中"

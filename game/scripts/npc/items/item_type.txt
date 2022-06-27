@@ -1,17 +1,22 @@
 "item_type"{
-    //武器
+    // 武器
     "item_abaddon_weapon"   "weapon_one_hand"
     "item_wraith_king_weapon"   "weapon_double_hand"
-    //披风
+    
+    // 披风
     "item_abaddon_cape"   "item_cape"
     "item_wraith_king_cape"   "item_cape"
-    //护甲
+
+    // 护甲
     "item_wraith_king_chest"    "item_chest"
-    //头盔
+
+    // 头盔
     "item_abaddon_helmet"   "item_helmet"
     "item_wraith_king_helmet"   "item_helmet"
-    //副手
-    //护肩
+
+    // 副手
+    
+    // 护肩
     "item_abaddon_shoulder" "item_shoulder"
     "item_wraith_king_shoulder" "item_shoulder"
 }

@@ -89,8 +89,8 @@ function Item_unequip_type({type_name, item_list}: {type_name: string, item_list
                         }
                     }}>
                     <Item_unequip_slot item_name={item_info.item_name}/>
-                    <Label id='Item_equip_tag' className={"show_equip_tag"} text={item_info.equip}/>
-                    {/* <Label id='Item_equip_tag' className={item_info.equip == -1? "" : "show_equip_tag"} text={"装备中"}/> */}
+                    {/* <Label id='Item_equip_tag' className={"show_equip_tag"} text={item_info.equip}/> */}
+                    <Label id='Item_equip_tag' className={item_info.equip == -1? "" : "show_equip_tag"} text={$.Localize("#Item_in_equip_tip")}/>
                     </Button>
                 })
             }
