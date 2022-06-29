@@ -22,9 +22,9 @@ if modifier_death_knight_bulldoze == nil then
 	modifier_death_knight_bulldoze = class({})
 end
 function modifier_death_knight_bulldoze:OnCreated(params)
-	self.bonus_str_pct = self:GetAbility():GetSpecialValueFor("bonus_str_pct")
-    self.bonus_str_stack_pct = self:GetAbility():GetSpecialValueFor("bonus_str_stack_pct")
-	self.stack_others = self:GetAbility():GetSpecialValueFor("stack_others")
+	self.bonus_str_pct = self:GetAbilitySpecialValueFor("bonus_str_pct")
+    self.bonus_str_stack_pct = self:GetAbilitySpecialValueFor("bonus_str_stack_pct")
+	self.stack_others = self:GetAbilitySpecialValueFor("stack_others")
 	self.bonus_str = self:GetParent():GetStrength() * self.bonus_str_pct * 0.01
 	self:SetStackCount(0)
 	if IsServer() then
@@ -32,9 +32,9 @@ function modifier_death_knight_bulldoze:OnCreated(params)
 	end
 end
 function modifier_death_knight_bulldoze:OnRefresh(params)
-	self.bonus_str_pct = self:GetAbility():GetSpecialValueFor("bonus_str_pct")
-    self.bonus_str_stack_pct = self:GetAbility():GetSpecialValueFor("bonus_str_stack_pct")
-	self.stack_others = self:GetAbility():GetSpecialValueFor("stack_others")
+	self.bonus_str_pct = self:GetAbilitySpecialValueFor("bonus_str_pct")
+    self.bonus_str_stack_pct = self:GetAbilitySpecialValueFor("bonus_str_stack_pct")
+	self.stack_others = self:GetAbilitySpecialValueFor("stack_others")
 end
 function modifier_death_knight_bulldoze:OnIntervalThink()
 	if IsServer() then
@@ -83,13 +83,13 @@ if modifier_death_knight_bulldoze_passive == nil then
 	modifier_death_knight_bulldoze_passive = class({})
 end
 function modifier_death_knight_bulldoze_passive:OnCreated(params)
-	self.str_factor = self:GetAbility():GetSpecialValueFor("str_factor")
+	self.str_factor = self:GetAbilitySpecialValueFor("str_factor")
 	self.bonus_magic_damage_pct = 0
 	self:SetStackCount(0)
 	self:StartIntervalThink(0)
 end
 function modifier_death_knight_bulldoze_passive:OnRefresh(params)
-	self.str_factor = self:GetAbility():GetSpecialValueFor("str_factor")
+	self.str_factor = self:GetAbilitySpecialValueFor("str_factor")
 end
 function modifier_death_knight_bulldoze_passive:OnIntervalThink()
 	self.bonus_magic_damage_pct = self:GetCaster():GetStrength() * self.str_factor * 0.01

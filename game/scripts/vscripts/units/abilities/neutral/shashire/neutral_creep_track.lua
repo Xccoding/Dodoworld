@@ -10,9 +10,6 @@ function neutral_creep_track:OnSpellStart()
     EmitSoundOn("Hero_BountyHunter.Target", hTarget)
     hTarget:AddNewModifier(hCaster, self, "modifier_neutral_creep_track", {duration = duration})
 end
-function neutral_creep_track:GetChannelTime()
-	return 10
-end
 --modifier
 if modifier_neutral_creep_track == nil then
 	modifier_neutral_creep_track = class({})
@@ -58,10 +55,10 @@ function modifier_neutral_creep_track:GetModifierProvidesFOWVision()
 	return 1
 end
 function modifier_neutral_creep_track:OnCreated(params)
-    self.armor_reduce = self:GetAbility():GetSpecialValueFor("armor_reduce")
+    self.armor_reduce = self:GetAbilitySpecialValueFor("armor_reduce")
 end
 function modifier_neutral_creep_track:OnRefresh(params)
-    self.armor_reduce = self:GetAbility():GetSpecialValueFor("armor_reduce")
+    self.armor_reduce = self:GetAbilitySpecialValueFor("armor_reduce")
 end
 function modifier_neutral_creep_track:OnTooltip()
 	return -self.armor_reduce

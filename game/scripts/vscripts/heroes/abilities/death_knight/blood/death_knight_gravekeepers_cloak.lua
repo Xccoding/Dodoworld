@@ -34,12 +34,12 @@ function modifier_death_knight_gravekeepers_cloak:IsPurgable()
 	return false
 end
 function modifier_death_knight_gravekeepers_cloak:OnCreated(params)
-	self.stack_per_tick = self:GetAbility():GetSpecialValueFor("stack_per_tick")
-	self.cloak_cooldown = self:GetAbility():GetSpecialValueFor("cloak_cooldown")
-	self.bonus_armor_str_factor = self:GetAbility():GetSpecialValueFor("bonus_armor_str_factor")
-	self.max_stack = self:GetAbility():GetSpecialValueFor("max_stack")
-	self.first_stack = self:GetAbility():GetSpecialValueFor("first_stack")
-	self.bonus_attack_speed = self:GetAbility():GetSpecialValueFor("bonus_attack_speed")
+	self.stack_per_tick = self:GetAbilitySpecialValueFor("stack_per_tick")
+	self.cloak_cooldown = self:GetAbilitySpecialValueFor("cloak_cooldown")
+	self.bonus_armor_str_factor = self:GetAbilitySpecialValueFor("bonus_armor_str_factor")
+	self.max_stack = self:GetAbilitySpecialValueFor("max_stack")
+	self.first_stack = self:GetAbilitySpecialValueFor("first_stack")
+	self.bonus_attack_speed = self:GetAbilitySpecialValueFor("bonus_attack_speed")
 	self.fNext_stack_time = 0.00
 	if IsServer() then
 		self.IsInCombat = false
@@ -47,12 +47,12 @@ function modifier_death_knight_gravekeepers_cloak:OnCreated(params)
 	end
 end
 function modifier_death_knight_gravekeepers_cloak:OnRefresh(params)
-	self.stack_per_tick = self:GetAbility():GetSpecialValueFor("stack_per_tick")
-	self.cloak_cooldown = self:GetAbility():GetSpecialValueFor("cloak_cooldown")
-	self.bonus_armor_str_factor = self:GetAbility():GetSpecialValueFor("bonus_armor_str_factor")
-	self.max_stack = self:GetAbility():GetSpecialValueFor("max_stack")
-	self.first_stack = self:GetAbility():GetSpecialValueFor("first_stack")
-	self.bonus_attack_speed = self:GetAbility():GetSpecialValueFor("bonus_attack_speed")
+	self.stack_per_tick = self:GetAbilitySpecialValueFor("stack_per_tick")
+	self.cloak_cooldown = self:GetAbilitySpecialValueFor("cloak_cooldown")
+	self.bonus_armor_str_factor = self:GetAbilitySpecialValueFor("bonus_armor_str_factor")
+	self.max_stack = self:GetAbilitySpecialValueFor("max_stack")
+	self.first_stack = self:GetAbilitySpecialValueFor("first_stack")
+	self.bonus_attack_speed = self:GetAbilitySpecialValueFor("bonus_attack_speed")
 	if IsServer() then
 		self.IsInCombat = false
 	end
@@ -60,7 +60,7 @@ end
 function modifier_death_knight_gravekeepers_cloak:OnIntervalThink()
 	local hCaster = self:GetCaster()
 	local hAbility = self:GetAbility()
-	local mana_get = self:GetAbility():GetSpecialValueFor("mana_get")
+	local mana_get = self:GetAbilitySpecialValueFor("mana_get")
 	if IsServer() then
 		if hCaster:InCombat() then
 			if GameRules:GetGameTime() >= self.fNext_stack_time and self:GetStackCount() < self.max_stack then
@@ -157,10 +157,10 @@ function modifier_death_knight_gravekeepers_cloak_buff:IsPurgable()
 	return false
 end
 function modifier_death_knight_gravekeepers_cloak_buff:OnCreated(params)
-	self.incoming_damage_pct = self:GetAbility():GetSpecialValueFor("incoming_damage_pct")
+	self.incoming_damage_pct = self:GetAbilitySpecialValueFor("incoming_damage_pct")
 end
 function modifier_death_knight_gravekeepers_cloak_buff:OnRefresh(params)
-	self.incoming_damage_pct = self:GetAbility():GetSpecialValueFor("incoming_damage_pct")
+	self.incoming_damage_pct = self:GetAbilitySpecialValueFor("incoming_damage_pct")
 end
 function modifier_death_knight_gravekeepers_cloak_buff:DeclareFunctions()
 	return {

@@ -74,12 +74,12 @@ else
         end
     
         if bIgnoreResistance then
-            original_add_function(self, hCaster, hAbility, sModifierName, params)
+            return original_add_function(self, hCaster, hAbility, sModifierName, params)
         else
             if params.duration ~= 0 and type(params.duration) == "number" then
                 params.duration = params.duration * ( 100 - self:GetStatusResistance()) * 0.01
             end
-            original_add_function(self, hCaster, hAbility, sModifierName, params)
+            return original_add_function(self, hCaster, hAbility, sModifierName, params)
         end
     end
 end

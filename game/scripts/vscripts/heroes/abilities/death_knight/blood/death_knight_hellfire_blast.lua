@@ -128,9 +128,9 @@ function modifier_death_knight_hellfire_blast:OnAttackLanded(params)
     end
 end
 function modifier_death_knight_hellfire_blast:OnCreated(params)
-    self.ap_factor_dot= self:GetAbility():GetSpecialValueFor("ap_factor_dot")
-    self.dot_interval= self:GetAbility():GetSpecialValueFor("dot_interval")
-    self.reset_chance= self:GetAbility():GetSpecialValueFor("reset_chance")
+    self.ap_factor_dot= self:GetAbilitySpecialValueFor("ap_factor_dot")
+    self.dot_interval= self:GetAbilitySpecialValueFor("dot_interval")
+    self.reset_chance= self:GetAbilitySpecialValueFor("reset_chance")
 
     if IsServer() then
         self:StartIntervalThink(self.dot_interval)
@@ -138,9 +138,9 @@ function modifier_death_knight_hellfire_blast:OnCreated(params)
     end
 end
 function modifier_death_knight_hellfire_blast:OnRefresh(params)
-    self.ap_factor_dot= self:GetAbility():GetSpecialValueFor("ap_factor_dot")
-    self.dot_interval= self:GetAbility():GetSpecialValueFor("dot_interval")
-    self.reset_chance= self:GetAbility():GetSpecialValueFor("reset_chance")
+    self.ap_factor_dot= self:GetAbilitySpecialValueFor("ap_factor_dot")
+    self.dot_interval= self:GetAbilitySpecialValueFor("dot_interval")
+    self.reset_chance= self:GetAbilitySpecialValueFor("reset_chance")
 
     if IsServer() then
         self:OnIntervalThink()

@@ -112,16 +112,16 @@ function modifier_mage_arcane_bolt:DeclareFunctions()
     }
 end
 function modifier_mage_arcane_bolt:OnCreated(params)
-    self.energy_chance = self:GetAbility():GetSpecialValueFor("energy_chance")
-    self.energy_threshold = self:GetAbility():GetSpecialValueFor("energy_threshold")
-    self.max_stack = self:GetAbility():GetSpecialValueFor("max_stack")
+    self.energy_chance = self:GetAbilitySpecialValueFor("energy_chance")
+    self.energy_threshold = self:GetAbilitySpecialValueFor("energy_threshold")
+    self.max_stack = self:GetAbilitySpecialValueFor("max_stack")
     self:SetStackCount(0)
     self:StartIntervalThink(0)
 end
 function modifier_mage_arcane_bolt:OnRefresh(params)
-    self.energy_chance = self:GetAbility():GetSpecialValueFor("energy_chance")
-    self.energy_threshold = self:GetAbility():GetSpecialValueFor("energy_threshold")
-    self.max_stack = self:GetAbility():GetSpecialValueFor("max_stack")
+    self.energy_chance = self:GetAbilitySpecialValueFor("energy_chance")
+    self.energy_threshold = self:GetAbilitySpecialValueFor("energy_threshold")
+    self.max_stack = self:GetAbilitySpecialValueFor("max_stack")
 end
 function modifier_mage_arcane_bolt:OnIntervalThink()
     local hCaster = self:GetCaster()

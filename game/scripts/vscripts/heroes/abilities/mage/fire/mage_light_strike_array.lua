@@ -112,12 +112,12 @@ if modifier_mage_light_strike_array == nil then
 	modifier_mage_light_strike_array = class({})
 end
 function modifier_mage_light_strike_array:OnCreated(params)
-	self.slow_down_pct = self:GetAbility():GetSpecialValueFor("slow_down_pct")
+	self.slow_down_pct = self:GetAbilitySpecialValueFor("slow_down_pct")
 	if IsServer() then
 	end
 end
 function modifier_mage_light_strike_array:OnRefresh(params)
-	self.slow_down_pct = self:GetAbility():GetSpecialValueFor("slow_down_pct")
+	self.slow_down_pct = self:GetAbilitySpecialValueFor("slow_down_pct")
 	if IsServer() then
 	end
 end

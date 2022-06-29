@@ -131,7 +131,7 @@ function modifier_mage_fiery_soul:OnIntervalThink()
 					if self.spell_records[i - 1].bCrit == true then
 						--print("炽热连击")
 						local hCaster = self:GetCaster()
-						local combo_duration = self:GetAbility():GetSpecialValueFor("combo_duration")
+						local combo_duration = self:GetAbilitySpecialValueFor("combo_duration")
 						local mage_laguna_blade = hCaster:FindAbilityByName("mage_laguna_blade")
 						local mage_light_strike_array = hCaster:FindAbilityByName("mage_light_strike_array")
 						mage_laguna_blade:EndCooldown()
@@ -182,12 +182,12 @@ function modifier_mage_fiery_soul_buff:IsPurgable()
 	return false
 end
 function modifier_mage_fiery_soul_buff:OnCreated(params)
-	self.bonus_magical_crit_chance = self:GetAbility():GetSpecialValueFor("bonus_magical_crit_chance")
+	self.bonus_magical_crit_chance = self:GetAbilitySpecialValueFor("bonus_magical_crit_chance")
 	if IsServer() then
 	end
 end
 function modifier_mage_fiery_soul_buff:OnRefresh(params)
-	self.bonus_magical_crit_chance = self:GetAbility():GetSpecialValueFor("bonus_magical_crit_chance")
+	self.bonus_magical_crit_chance = self:GetAbilitySpecialValueFor("bonus_magical_crit_chance")
 	if IsServer() then
 	end
 end
@@ -219,7 +219,7 @@ function modifier_mage_fiery_soul_combo:IsPurgable()
 	return false
 end
 function modifier_mage_fiery_soul_combo:OnCreated(params)
-	self.combo_multiple = self:GetAbility():GetSpecialValueFor("combo_multiple")
+	self.combo_multiple = self:GetAbilitySpecialValueFor("combo_multiple")
 	local hCaster = self:GetCaster()
 	if IsServer() then
 		local particleID = ParticleManager:CreateParticleForPlayer("particles/units/heroes/hero_lina/lina_fiery_soul.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster, hCaster:GetPlayerOwner())
@@ -228,7 +228,7 @@ function modifier_mage_fiery_soul_combo:OnCreated(params)
 	end
 end
 function modifier_mage_fiery_soul_combo:OnRefresh(params)
-	self.combo_multiple = self:GetAbility():GetSpecialValueFor("combo_multiple")
+	self.combo_multiple = self:GetAbilitySpecialValueFor("combo_multiple")
 	if IsServer() then
 	end
 end

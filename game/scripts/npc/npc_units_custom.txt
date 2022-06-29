@@ -1,5 +1,5 @@
 // Units File
-#base creatures/neutral/unit.txt
+#base creatures/neutral/shashire/unit.txt
 
 "DOTAUnits"
 {

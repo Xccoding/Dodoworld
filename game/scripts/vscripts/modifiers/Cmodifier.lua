@@ -82,3 +82,11 @@ if IsServer() then
 
 end
 
+function CDOTA_Buff:GetAbilitySpecialValueFor( sKey )
+    if self:GetAbility() ~= nil and not self:GetAbility():IsNull() then
+        return self:GetAbility():GetSpecialValueFor(sKey) or 0
+    else
+        return 0
+    end
+end
+

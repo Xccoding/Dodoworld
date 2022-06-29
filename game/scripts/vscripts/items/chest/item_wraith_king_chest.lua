@@ -28,10 +28,10 @@ function modifier_item_wraith_king_chest:C_GetModifierPhysicalArmor_Constant()
 	return self.bonus_armor
 end
 function modifier_item_wraith_king_chest:OnCreated(params)
-    self.bonus_armor = self:GetAbility():GetSpecialValueFor("bonus_armor")
+    self.bonus_armor = self:GetAbilitySpecialValueFor("bonus_armor")
 end
 function modifier_item_wraith_king_chest:OnRefresh(params)
-    self.bonus_armor = self:GetAbility():GetSpecialValueFor("bonus_armor")
+    self.bonus_armor = self:GetAbilitySpecialValueFor("bonus_armor")
 end
 function modifier_item_wraith_king_chest:GetAttributes()
     return MODIFIER_ATTRIBUTE_MULTIPLE

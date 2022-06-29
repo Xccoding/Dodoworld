@@ -16,10 +16,10 @@ function modifier_neutral_creep_envenomed_weapon:IsHidden()
 	return true
 end
 function modifier_neutral_creep_envenomed_weapon:OnCreated(params)
-	self.duration = self:GetAbility():GetSpecialValueFor("duration")
+	self.duration = self:GetAbilitySpecialValueFor("duration")
 end
 function modifier_neutral_creep_envenomed_weapon:OnRefresh(params)
-	self.duration = self:GetAbility():GetSpecialValueFor("duration")
+	self.duration = self:GetAbilitySpecialValueFor("duration")
 end
 function modifier_neutral_creep_envenomed_weapon:DeclareFunctions()
 	return {
@@ -45,17 +45,17 @@ function modifier_neutral_creep_envenomed_weapon_debuff:IsPurgable()
 	return true
 end
 function modifier_neutral_creep_envenomed_weapon_debuff:OnCreated(params)
-	self.miss_pct = self:GetAbility():GetSpecialValueFor("miss_pct")
-	self.dot_interval = self:GetAbility():GetSpecialValueFor("dot_interval")
-	self.ap_factor = self:GetAbility():GetSpecialValueFor("ap_factor")
+	self.miss_pct = self:GetAbilitySpecialValueFor("miss_pct")
+	self.dot_interval = self:GetAbilitySpecialValueFor("dot_interval")
+	self.ap_factor = self:GetAbilitySpecialValueFor("ap_factor")
 	if IsServer() then
 		self:StartIntervalThink(self.dot_interval)
 	end
 end
 function modifier_neutral_creep_envenomed_weapon_debuff:OnRefresh(params)
-	self.miss_pct = self:GetAbility():GetSpecialValueFor("miss_pct")
-	self.dot_interval = self:GetAbility():GetSpecialValueFor("dot_interval")
-	self.ap_factor = self:GetAbility():GetSpecialValueFor("ap_factor")
+	self.miss_pct = self:GetAbilitySpecialValueFor("miss_pct")
+	self.dot_interval = self:GetAbilitySpecialValueFor("dot_interval")
+	self.ap_factor = self:GetAbilitySpecialValueFor("ap_factor")
 end
 function modifier_neutral_creep_envenomed_weapon_debuff:OnIntervalThink()
 	if IsServer() then

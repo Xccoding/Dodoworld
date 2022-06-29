@@ -91,7 +91,7 @@ export function OverheadBar_Init(){
 function OverheadBar({unit_index}: {unit_index: EntityIndex}){
     return <Panel className="OverheadBar">
         <OverheadBuffBar unit_index={unit_index}/>
-        <Label className='OverheadBar_name' text={$.Localize(`#${Entities.GetUnitName(unit_index)}`)}/>
+        <Label className='OverheadBar_name' text={$.Localize(`#${Entities.GetUnitLabel(unit_index)}`) + "·" + $.Localize(`#${Entities.GetUnitName(unit_index)}`)}/>
         <OverheadhpBar unit_index={unit_index}/>
         <OverheadChannelBar unit_index={unit_index}/>
     </Panel>

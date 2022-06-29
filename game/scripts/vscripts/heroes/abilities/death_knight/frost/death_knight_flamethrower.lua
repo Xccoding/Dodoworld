@@ -32,11 +32,11 @@ function modifier_death_knight_flamethrower:IsPurgable()
 	return false
 end
 function modifier_death_knight_flamethrower:OnCreated(params)
-	self.dot_interval = self:GetAbility():GetSpecialValueFor("dot_interval")
-	self.ap_factor = self:GetAbility():GetSpecialValueFor("ap_factor")
-	self.distance = self:GetAbility():GetSpecialValueFor("distance")
-	self.angle = self:GetAbility():GetSpecialValueFor("angle")
-	self.mana_cost =self:GetAbility():GetSpecialValueFor("mana_cost")
+	self.dot_interval = self:GetAbilitySpecialValueFor("dot_interval")
+	self.ap_factor = self:GetAbilitySpecialValueFor("ap_factor")
+	self.distance = self:GetAbilitySpecialValueFor("distance")
+	self.angle = self:GetAbilitySpecialValueFor("angle")
+	self.mana_cost =self:GetAbilitySpecialValueFor("mana_cost")
 	
 	local hCaster = self:GetCaster()
 	local particleID = ParticleManager:CreateParticle("particles/units/heroes/death_knight/death_knight_flame_thrower.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster)
@@ -47,11 +47,11 @@ function modifier_death_knight_flamethrower:OnCreated(params)
 	end
 end
 function modifier_death_knight_flamethrower:OnRefresh(params)
-	self.dot_interval = self:GetAbility():GetSpecialValueFor("dot_interval")
-	self.ap_factor = self:GetAbility():GetSpecialValueFor("ap_factor")
-	self.distance = self:GetAbility():GetSpecialValueFor("distance")
-	self.angle = self:GetAbility():GetSpecialValueFor("angle")
-	self.mana_cost =self:GetAbility():GetSpecialValueFor("mana_cost")
+	self.dot_interval = self:GetAbilitySpecialValueFor("dot_interval")
+	self.ap_factor = self:GetAbilitySpecialValueFor("ap_factor")
+	self.distance = self:GetAbilitySpecialValueFor("distance")
+	self.angle = self:GetAbilitySpecialValueFor("angle")
+	self.mana_cost =self:GetAbilitySpecialValueFor("mana_cost")
 	if IsServer() then
 		self:OnIntervalThink()
 	end

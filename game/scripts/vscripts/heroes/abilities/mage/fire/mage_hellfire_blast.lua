@@ -114,9 +114,9 @@ function modifier_mage_hellfire_blast:C_GetModifierBonusMagicalCritChance_Consta
     return 0
 end
 function modifier_mage_hellfire_blast:OnCreated(params)
-    self.duration = self:GetAbility():GetSpecialValueFor("duration")
-    self.int_factor = self:GetAbility():GetSpecialValueFor("int_factor")
-    self.combo_multiple = self:GetAbility():GetSpecialValueFor("combo_multiple")
+    self.duration = self:GetAbilitySpecialValueFor("duration")
+    self.int_factor = self:GetAbilitySpecialValueFor("int_factor")
+    self.combo_multiple = self:GetAbilitySpecialValueFor("combo_multiple")
     if IsServer() then
         self.dot_pct = self:GetCaster():GetIntellect() * (self.int_factor * 0.01)
         self:SetHasCustomTransmitterData(true)
@@ -124,8 +124,8 @@ function modifier_mage_hellfire_blast:OnCreated(params)
     end
 end
 function modifier_mage_hellfire_blast:OnRefresh(params)
-    self.duration = self:GetAbility():GetSpecialValueFor("duration")
-    self.int_factor = self:GetAbility():GetSpecialValueFor("int_factor")
+    self.duration = self:GetAbilitySpecialValueFor("duration")
+    self.int_factor = self:GetAbilitySpecialValueFor("int_factor")
 end
 function modifier_mage_hellfire_blast:OnIntervalThink()
     if IsServer() then
@@ -175,7 +175,7 @@ function modifier_mage_hellfire_blast_debuff:IsPurgable()
     return false
 end
 function modifier_mage_hellfire_blast_debuff:OnCreated(params)
-    self.dot_interval= self:GetAbility():GetSpecialValueFor("dot_interval")
+    self.dot_interval= self:GetAbilitySpecialValueFor("dot_interval")
     if IsServer() then
         self.damage_pool = params.damage_pool
         self.damage_tick = 0
@@ -188,7 +188,7 @@ function modifier_mage_hellfire_blast_debuff:OnCreated(params)
     self:AddParticle(particleID, false, false, -1, false, false)
 end
 function modifier_mage_hellfire_blast_debuff:OnRefresh(params)
-    self.dot_interval= self:GetAbility():GetSpecialValueFor("dot_interval")
+    self.dot_interval= self:GetAbilitySpecialValueFor("dot_interval")
     if IsServer() then
         self.damage_pool = params.damage_pool + self.damage_pool
         self:OnIntervalThink()

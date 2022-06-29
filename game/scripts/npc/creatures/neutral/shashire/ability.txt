@@ -6,8 +6,8 @@
 	{
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"bounty_hunter_track"
-		"ScriptFile"	"units/abilities/neutral/neutral_creep_track"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"ScriptFile"	"units/abilities/neutral/shashire/neutral_creep_track"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		//"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
@@ -20,12 +20,6 @@
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityCastPoint"				"0.3"
-		
-
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
-		}
 
 		"AbilityValues"
         {
@@ -39,7 +33,7 @@
 	{
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"gnoll_assassin_envenomed_weapon"
-		"ScriptFile"	"units/abilities/neutral/neutral_creep_envenomed_weapon"
+		"ScriptFile"	"units/abilities/neutral/shashire/neutral_creep_envenomed_weapon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -53,12 +47,6 @@
 		// "AbilityCastRangeBuffer"		"250"
 		// "AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		// "AbilityCastPoint"				"0.3"
-		
-
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
-		}
 
 		"AbilityValues"
         {

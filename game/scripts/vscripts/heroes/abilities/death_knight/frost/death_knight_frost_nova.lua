@@ -87,9 +87,9 @@ function modifier_death_knight_frost_nova:StatusEffectPriority()
     return 1
 end
 function modifier_death_knight_frost_nova:OnCreated(params)
-    self.ap_factor_dot = self:GetAbility():GetSpecialValueFor("ap_factor_dot")
-    self.dot_interval = self:GetAbility():GetSpecialValueFor("dot_interval")
-    self.mana_get_tick = self:GetAbility():GetSpecialValueFor("mana_get_tick")
+    self.ap_factor_dot = self:GetAbilitySpecialValueFor("ap_factor_dot")
+    self.dot_interval = self:GetAbilitySpecialValueFor("dot_interval")
+    self.mana_get_tick = self:GetAbilitySpecialValueFor("mana_get_tick")
 
     if IsServer() then
         self:StartIntervalThink(self.dot_interval)
@@ -97,9 +97,9 @@ function modifier_death_knight_frost_nova:OnCreated(params)
     end
 end
 function modifier_death_knight_frost_nova:OnRefresh(params)
-    self.ap_factor_dot = self:GetAbility():GetSpecialValueFor("ap_factor_dot")
-    self.dot_interval = self:GetAbility():GetSpecialValueFor("dot_interval")
-    self.mana_get_tick = self:GetAbility():GetSpecialValueFor("mana_get_tick")
+    self.ap_factor_dot = self:GetAbilitySpecialValueFor("ap_factor_dot")
+    self.dot_interval = self:GetAbilitySpecialValueFor("dot_interval")
+    self.mana_get_tick = self:GetAbilitySpecialValueFor("mana_get_tick")
     if IsServer() then
         self:OnIntervalThink()
     end

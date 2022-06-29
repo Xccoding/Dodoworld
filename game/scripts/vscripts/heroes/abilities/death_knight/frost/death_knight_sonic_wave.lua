@@ -61,12 +61,12 @@ if modifier_death_knight_sonic_wave == nil then
 	modifier_death_knight_sonic_wave = class({})
 end
 function modifier_death_knight_sonic_wave:OnCreated(params)
-	self.slow_down_pct = self:GetAbility():GetSpecialValueFor("slow_down_pct")
+	self.slow_down_pct = self:GetAbilitySpecialValueFor("slow_down_pct")
 	if IsServer() then
 	end
 end
 function modifier_death_knight_sonic_wave:OnRefresh(params)
-	self.slow_down_pct = self:GetAbility():GetSpecialValueFor("slow_down_pct")
+	self.slow_down_pct = self:GetAbilitySpecialValueFor("slow_down_pct")
 	if IsServer() then
 	end
 end

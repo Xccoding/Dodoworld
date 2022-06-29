@@ -25,19 +25,19 @@ function modifier_mage_searing_arrows:GetAttributes()
 	return MODIFIER_ATTRIBUTE_PERMANENT
 end
 function modifier_mage_searing_arrows:OnCreated(params)
-	self.attack_range_override = self:GetAbility():GetSpecialValueFor("attack_range_override")
-	self.attack_time_override = self:GetAbility():GetSpecialValueFor("attack_time_override")
-	self.damage_pct = self:GetAbility():GetSpecialValueFor("damage_pct")
-	self.sp_factor = self:GetAbility():GetSpecialValueFor("sp_factor")
-	self.bonus_crit_chance = self:GetAbility():GetSpecialValueFor("bonus_crit_chance")
+	self.attack_range_override = self:GetAbilitySpecialValueFor("attack_range_override")
+	self.attack_time_override = self:GetAbilitySpecialValueFor("attack_time_override")
+	self.damage_pct = self:GetAbilitySpecialValueFor("damage_pct")
+	self.sp_factor = self:GetAbilitySpecialValueFor("sp_factor")
+	self.bonus_crit_chance = self:GetAbilitySpecialValueFor("bonus_crit_chance")
 	self.records = {}
 end
 function modifier_mage_searing_arrows:OnRefresh(params)
-	self.attack_range_override = self:GetAbility():GetSpecialValueFor("attack_range_override")
-	self.attack_time_override = self:GetAbility():GetSpecialValueFor("attack_time_override")
-	self.damage_pct = self:GetAbility():GetSpecialValueFor("damage_pct")
-	self.sp_factor = self:GetAbility():GetSpecialValueFor("sp_factor")
-	self.bonus_crit_chance = self:GetAbility():GetSpecialValueFor("bonus_crit_chance")
+	self.attack_range_override = self:GetAbilitySpecialValueFor("attack_range_override")
+	self.attack_time_override = self:GetAbilitySpecialValueFor("attack_time_override")
+	self.damage_pct = self:GetAbilitySpecialValueFor("damage_pct")
+	self.sp_factor = self:GetAbilitySpecialValueFor("sp_factor")
+	self.bonus_crit_chance = self:GetAbilitySpecialValueFor("bonus_crit_chance")
 end
 function modifier_mage_searing_arrows:CheckState()
 	return {

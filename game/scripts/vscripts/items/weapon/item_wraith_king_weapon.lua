@@ -40,14 +40,14 @@ function modifier_item_wraith_king_weapon:GetModifierAttackRangeBonusUnique()
     return self.bonus_attack_range
 end
 function modifier_item_wraith_king_weapon:OnCreated(params)
-    self.bonus_attack = self:GetAbility():GetSpecialValueFor("bonus_attack")
-    self.attack_time = self:GetAbility():GetSpecialValueFor("attack_time")
-    self.bonus_attack_range = self:GetAbility():GetSpecialValueFor("bonus_attack_range")
+    self.bonus_attack = self:GetAbilitySpecialValueFor("bonus_attack")
+    self.attack_time = self:GetAbilitySpecialValueFor("attack_time")
+    self.bonus_attack_range = self:GetAbilitySpecialValueFor("bonus_attack_range")
 end
 function modifier_item_wraith_king_weapon:OnRefresh(params)
-    self.bonus_attack = self:GetAbility():GetSpecialValueFor("bonus_attack")
-    self.attack_time = self:GetAbility():GetSpecialValueFor("attack_time")
-    self.bonus_attack_range = self:GetAbility():GetSpecialValueFor("bonus_attack_range")
+    self.bonus_attack = self:GetAbilitySpecialValueFor("bonus_attack")
+    self.attack_time = self:GetAbilitySpecialValueFor("attack_time")
+    self.bonus_attack_range = self:GetAbilitySpecialValueFor("bonus_attack_range")
 end
 function modifier_item_wraith_king_weapon:GetAttributes()
     return MODIFIER_ATTRIBUTE_MULTIPLE

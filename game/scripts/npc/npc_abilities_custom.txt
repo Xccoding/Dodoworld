@@ -3,7 +3,8 @@
 #base heroes/mage/ability.txt
 #base heroes/death_knight/ability.txt
 
-#base creatures/neutral/ability.txt
+#base creatures/neutral/shashire/ability.txt
+#base creatures/dungeon/dungeon1/ability.txt
 
 "DOTAAbilities"
 {

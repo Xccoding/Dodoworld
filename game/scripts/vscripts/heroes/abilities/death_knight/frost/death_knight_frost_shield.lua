@@ -22,11 +22,11 @@ if modifier_death_knight_frost_shield == nil then
 	modifier_death_knight_frost_shield = class({})
 end
 function modifier_death_knight_frost_shield:OnCreated(params)
-    self.ap_factor = self:GetAbility():GetSpecialValueFor("ap_factor")
-    self.dot_interval = self:GetAbility():GetSpecialValueFor("dot_interval")
-	self.radius = self:GetAbility():GetSpecialValueFor("radius")
-	self.debuff_duration = self:GetAbility():GetSpecialValueFor("debuff_duration")
-	self.bonus_armor_pct = self:GetAbility():GetSpecialValueFor("bonus_armor_pct")
+    self.ap_factor = self:GetAbilitySpecialValueFor("ap_factor")
+    self.dot_interval = self:GetAbilitySpecialValueFor("dot_interval")
+	self.radius = self:GetAbilitySpecialValueFor("radius")
+	self.debuff_duration = self:GetAbilitySpecialValueFor("debuff_duration")
+	self.bonus_armor_pct = self:GetAbilitySpecialValueFor("bonus_armor_pct")
 
 	local particleID = ParticleManager:CreateParticle("particles/units/heroes/hero_lich/lich_ice_age.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
 	ParticleManager:SetParticleControlEnt(particleID, 1, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, "", self:GetCaster():GetAbsOrigin(), false)
@@ -39,11 +39,11 @@ function modifier_death_knight_frost_shield:OnCreated(params)
 	end
 end
 function modifier_death_knight_frost_shield:OnRefresh(params)
-    self.ap_factor = self:GetAbility():GetSpecialValueFor("ap_factor")
-    self.dot_interval = self:GetAbility():GetSpecialValueFor("dot_interval")
-	self.radius = self:GetAbility():GetSpecialValueFor("radius")
-	self.debuff_duration = self:GetAbility():GetSpecialValueFor("debuff_duration")
-	self.bonus_armor_pct = self:GetAbility():GetSpecialValueFor("bonus_armor_pct")
+    self.ap_factor = self:GetAbilitySpecialValueFor("ap_factor")
+    self.dot_interval = self:GetAbilitySpecialValueFor("dot_interval")
+	self.radius = self:GetAbilitySpecialValueFor("radius")
+	self.debuff_duration = self:GetAbilitySpecialValueFor("debuff_duration")
+	self.bonus_armor_pct = self:GetAbilitySpecialValueFor("bonus_armor_pct")
 	if IsServer() then
 		self:OnIntervalThink()
 	end
@@ -93,14 +93,14 @@ if modifier_death_knight_frost_shield_slow_down == nil then
 	modifier_death_knight_frost_shield_slow_down = class({})
 end
 function modifier_death_knight_frost_shield_slow_down:OnCreated(params)
-	self.slow_down_pct = self:GetAbility():GetSpecialValueFor("slow_down_pct")
+	self.slow_down_pct = self:GetAbilitySpecialValueFor("slow_down_pct")
 	if IsServer() then
 		local particleID = ParticleManager:CreateParticleForPlayer("particles/units/heroes/hero_lich/lich_ice_age_debuff.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent(), self:GetCaster():GetPlayerOwner())
 		ParticleManager:ReleaseParticleIndex(particleID)
 	end
 end
 function modifier_death_knight_frost_shield_slow_down:OnRefresh(params)
-	self.damage = self:GetAbility():GetSpecialValueFor("damage")
+	self.damage = self:GetAbilitySpecialValueFor("damage")
 	if IsServer() then
 		local particleID = ParticleManager:CreateParticleForPlayer("particles/units/heroes/hero_lich/lich_ice_age_debuff.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent(), self:GetCaster():GetPlayerOwner())
 		ParticleManager:ReleaseParticleIndex(particleID)

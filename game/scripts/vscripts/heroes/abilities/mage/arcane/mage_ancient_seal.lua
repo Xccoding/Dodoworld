@@ -43,8 +43,8 @@ end
 function modifier_mage_ancient_seal:OnCreated(params)
     local hCaster = self:GetCaster()
     local hTarget = self:GetParent()
-    self.save_pct = self:GetAbility():GetSpecialValueFor("save_pct")
-    self.radius = self:GetAbility():GetSpecialValueFor("radius")
+    self.save_pct = self:GetAbilitySpecialValueFor("save_pct")
+    self.radius = self:GetAbilitySpecialValueFor("radius")
     self.damage_pool = 0
     if IsServer() then
         local particleID = ParticleManager:CreateParticleForPlayer("particles/units/heroes/mage/mage_ancient_sealrune.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget, hCaster:GetPlayerOwner())
@@ -54,8 +54,8 @@ function modifier_mage_ancient_seal:OnCreated(params)
     end
 end
 function modifier_mage_ancient_seal:OnRefresh(params)
-    self.save_pct = self:GetAbility():GetSpecialValueFor("save_pct")
-    self.radius = self:GetAbility():GetSpecialValueFor("radius")
+    self.save_pct = self:GetAbilitySpecialValueFor("save_pct")
+    self.radius = self:GetAbilitySpecialValueFor("radius")
 end
 function modifier_mage_ancient_seal:DeclareFunctions()
     return {

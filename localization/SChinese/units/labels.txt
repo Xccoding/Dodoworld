@@ -1,0 +1,3 @@
+"pawn"  "喽啰"
+"elite" "精英"
+"boss"  "BOSS"

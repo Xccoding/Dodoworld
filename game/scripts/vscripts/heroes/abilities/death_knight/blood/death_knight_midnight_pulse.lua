@@ -52,9 +52,9 @@ function modifier_death_knight_midnight_pulse:GetAuraEntityReject(hEntity)
 	return (hEntity ~= self:GetCaster())
 end
 function modifier_death_knight_midnight_pulse:OnCreated(params)
-	self.damage_tick = self:GetAbility():GetSpecialValueFor("damage_tick")
-	self.ap_factor = self:GetAbility():GetSpecialValueFor("ap_factor")
-	self.radius = self:GetAbility():GetSpecialValueFor("radius")
+	self.damage_tick = self:GetAbilitySpecialValueFor("damage_tick")
+	self.ap_factor = self:GetAbilitySpecialValueFor("ap_factor")
+	self.radius = self:GetAbilitySpecialValueFor("radius")
 	local hCaster = self:GetCaster()
 	if IsServer() then
 		self:StartIntervalThink(self.damage_tick)

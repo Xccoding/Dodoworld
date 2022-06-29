@@ -26,14 +26,14 @@ function modifier_death_knight_borrowed_time:IsPurgable()
 	return false
 end
 function modifier_death_knight_borrowed_time:OnCreated(params)
-	self.bonus_status_resistance = self:GetAbility():GetSpecialValueFor("bonus_status_resistance")
+	self.bonus_status_resistance = self:GetAbilitySpecialValueFor("bonus_status_resistance")
 	if IsServer() then
 		self.shield = params.shield
 		self:SetStackCount(self.shield)
 	end
 end
 function modifier_death_knight_borrowed_time:OnRefresh(params)
-	self.bonus_status_resistance = self:GetAbility():GetSpecialValueFor("bonus_status_resistance")
+	self.bonus_status_resistance = self:GetAbilitySpecialValueFor("bonus_status_resistance")
 	if IsServer() then
 		self.shield = self.shield + params.shield
 		self:SetStackCount(self.shield)

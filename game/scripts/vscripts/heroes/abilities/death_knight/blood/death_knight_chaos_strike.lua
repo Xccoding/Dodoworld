@@ -26,12 +26,12 @@ end
 function modifier_death_knight_chaos_strike:OnCreated(params)
     self.records = {}
     self.damage_records = {}
-    self.ap_factor = self:GetAbility():GetSpecialValueFor("ap_factor")
-    self.heal_percent = self:GetAbility():GetSpecialValueFor("heal_percent")
-    self.min_heal_percent = self:GetAbility():GetSpecialValueFor("min_heal_percent")
-    self.damage_record_time = self:GetAbility():GetSpecialValueFor("damage_record_time")
-    self.str_factor = self:GetAbility():GetSpecialValueFor("str_factor")
-    self.shield_duration = self:GetAbility():GetSpecialValueFor("shield_duration")
+    self.ap_factor = self:GetAbilitySpecialValueFor("ap_factor")
+    self.heal_percent = self:GetAbilitySpecialValueFor("heal_percent")
+    self.min_heal_percent = self:GetAbilitySpecialValueFor("min_heal_percent")
+    self.damage_record_time = self:GetAbilitySpecialValueFor("damage_record_time")
+    self.str_factor = self:GetAbilitySpecialValueFor("str_factor")
+    self.shield_duration = self:GetAbilitySpecialValueFor("shield_duration")
     if IsServer() then
         self.shield_pct = self.str_factor * self:GetParent():GetStrength() * 0.01
         self:SetHasCustomTransmitterData(true)
@@ -39,12 +39,12 @@ function modifier_death_knight_chaos_strike:OnCreated(params)
     end
 end
 function modifier_death_knight_chaos_strike:OnRefresh(params)
-    self.ap_factor = self:GetAbility():GetSpecialValueFor("ap_factor")
-    self.heal_percent = self:GetAbility():GetSpecialValueFor("heal_percent")
-    self.min_heal_percent = self:GetAbility():GetSpecialValueFor("min_heal_percent")
-    self.damage_record_time = self:GetAbility():GetSpecialValueFor("damage_record_time")
-    self.str_factor = self:GetAbility():GetSpecialValueFor("str_factor")
-    self.shield_duration = self:GetAbility():GetSpecialValueFor("shield_duration")
+    self.ap_factor = self:GetAbilitySpecialValueFor("ap_factor")
+    self.heal_percent = self:GetAbilitySpecialValueFor("heal_percent")
+    self.min_heal_percent = self:GetAbilitySpecialValueFor("min_heal_percent")
+    self.damage_record_time = self:GetAbilitySpecialValueFor("damage_record_time")
+    self.str_factor = self:GetAbilitySpecialValueFor("str_factor")
+    self.shield_duration = self:GetAbilitySpecialValueFor("shield_duration")
 end
 function modifier_death_knight_chaos_strike:DeclareFunctions()
 	return {

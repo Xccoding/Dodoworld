@@ -28,10 +28,10 @@ function modifier_item_abaddon_shoulder:C_GetModifierPhysicalArmor_Constant()
 	return self.bonus_armor
 end
 function modifier_item_abaddon_shoulder:OnCreated(params)
-    self.bonus_armor = self:GetAbility():GetSpecialValueFor("bonus_armor")
+    self.bonus_armor = self:GetAbilitySpecialValueFor("bonus_armor")
 end
 function modifier_item_abaddon_shoulder:OnRefresh(params)
-    self.bonus_armor = self:GetAbility():GetSpecialValueFor("bonus_armor")
+    self.bonus_armor = self:GetAbilitySpecialValueFor("bonus_armor")
 end
 function modifier_item_abaddon_shoulder:GetAttributes()
     return MODIFIER_ATTRIBUTE_MULTIPLE

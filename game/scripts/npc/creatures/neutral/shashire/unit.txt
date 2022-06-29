@@ -99,6 +99,7 @@
 		"Level"						"1"
 		"ModelScale" 				".9"
 		"IsNeutralUnitType"			"1"
+		"UnitLabel"					"elite"
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -186,6 +187,7 @@
 		"Level"						"1"
 		"ModelScale" 				".9"
 		"IsNeutralUnitType"			"1"
+		"UnitLabel"					"pawn"
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -273,6 +275,7 @@
 		"Level"						"1"
 		"ModelScale" 				".9"
 		"IsNeutralUnitType"			"1"
+		"UnitLabel"					"pawn"
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -347,6 +350,7 @@
 		}
         "vscripts"					"ai/ai_aggro_normal.lua"
 	}
+
 
 
 

@@ -43,9 +43,9 @@ function modifier_mage_equilibrium:OnTooltip()
     return self.bonus_damage
 end
 function modifier_mage_equilibrium:OnCreated( params )
-    self.mana_regen_int_factor = self:GetAbility():GetSpecialValueFor("mana_regen_int_factor")
-    self.max_mana_int_factor = self:GetAbility():GetSpecialValueFor("max_mana_int_factor")
-    self.arcane_buff_bonus_damage = self:GetAbility():GetSpecialValueFor("arcane_buff_bonus_damage")
+    self.mana_regen_int_factor = self:GetAbilitySpecialValueFor("mana_regen_int_factor")
+    self.max_mana_int_factor = self:GetAbilitySpecialValueFor("max_mana_int_factor")
+    self.arcane_buff_bonus_damage = self:GetAbilitySpecialValueFor("arcane_buff_bonus_damage")
     if IsServer() then
         self:SetHasCustomTransmitterData(true)
         -- self.max_mana = 0
@@ -56,9 +56,9 @@ function modifier_mage_equilibrium:OnCreated( params )
     
 end
 function modifier_mage_equilibrium:OnRefresh( params )
-    self.mana_regen_int_factor = self:GetAbility():GetSpecialValueFor("mana_regen_int_factor")
-    self.max_mana_int_factor = self:GetAbility():GetSpecialValueFor("max_mana_int_factor")
-    self.arcane_buff_bonus_damage = self:GetAbility():GetSpecialValueFor("arcane_buff_bonus_damage")
+    self.mana_regen_int_factor = self:GetAbilitySpecialValueFor("mana_regen_int_factor")
+    self.max_mana_int_factor = self:GetAbilitySpecialValueFor("max_mana_int_factor")
+    self.arcane_buff_bonus_damage = self:GetAbilitySpecialValueFor("arcane_buff_bonus_damage")
 end
 function modifier_mage_equilibrium:OnIntervalThink()
     local hCaster = self:GetCaster()
@@ -96,7 +96,7 @@ function modifier_mage_equilibrium:GetModifierMPRegenAmplify_Percentage()
 end
 function modifier_mage_equilibrium:GetModifierExtraManaPercentage()
     local hCaster = self:GetCaster()
-    return hCaster:GetIntellect() * self:GetAbility():GetSpecialValueFor("max_mana_int_factor") * 0.01
+    return hCaster:GetIntellect() * self:GetAbilitySpecialValueFor("max_mana_int_factor") * 0.01
 end
 --唤醒modifiers
 if modifier_mage_equilibrium_buff == nil then
@@ -115,11 +115,11 @@ function modifier_mage_equilibrium_buff:OnTooltip()
     return self.bonus_mana_regen_pct
 end
 function modifier_mage_equilibrium_buff:OnCreated( params )
-    self.bonus_mana_regen_pct = self:GetAbility():GetSpecialValueFor("bonus_mana_regen_pct")
+    self.bonus_mana_regen_pct = self:GetAbilitySpecialValueFor("bonus_mana_regen_pct")
     self:StartIntervalThink(0.75)
 end
 function modifier_mage_equilibrium_buff:OnRefresh( params )
-    self.bonus_mana_regen_pct = self:GetAbility():GetSpecialValueFor("bonus_mana_regen_pct")
+    self.bonus_mana_regen_pct = self:GetAbilitySpecialValueFor("bonus_mana_regen_pct")
 end
 function modifier_mage_equilibrium_buff:OnIntervalThink()
     local hCaster = self:GetCaster()
