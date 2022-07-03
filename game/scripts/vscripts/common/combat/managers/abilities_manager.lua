@@ -1,17 +1,26 @@
+if Abilities_manager == nil then
+    Abilities_manager = {}
+end
 
-function InitSchools()
+function Abilities_manager:InitSchools()
     for playerID = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
         CustomNetTables:SetTableValue("hero_schools", tostring(playerID), {schools_index = 0})
     end
 end
 
-function OnChangeRoleMastery(userid, params)
+function Abilities_manager:OnChangeRoleMastery(params)
+    if params == nil then
+        return
+    end
     local unit = EntIndexToHScript(params.entindex)
-    RefreshAbilitiesToRole(params)
-    unit:AutoUpgradeAbilities()
+    Abilities_manager:RefreshAbilitiesToRole(params)
+    Abilities_manager:AutoUpgradeAbilities(unit)
 end
 
-function RefreshAbilitiesToRole(params)
+function Abilities_manager:RefreshAbilitiesToRole(params)
+    if params == nil then
+        return
+    end
     local unit = EntIndexToHScript(params.entindex)
     local new_schools = params.new_schools or 0
 
@@ -49,14 +58,17 @@ function RefreshAbilitiesToRole(params)
  
 end
 
-function CDOTA_BaseNPC:AutoUpgradeAbilities()
+function Abilities_manager:AutoUpgradeAbilities( hero )
+    if hero == nil then
+        return
+    end
     for i = MIN_ABILITY_SLOT, MAX_ABILITY_SLOT do
-        local hAbility = self:GetAbilityByIndex(i)
+        local hAbility = hero:GetAbilityByIndex(i)
         if hAbility ~= nil then
             local abilty_levels = Abilities_Required_Level[hAbility:GetAbilityName()]
             if abilty_levels ~= nil then
                 for index = #abilty_levels, 1, -1 do
-                    if self:GetLevel() >= abilty_levels[index] then
+                    if hero:GetLevel() >= abilty_levels[index] then
                         hAbility:SetLevel(index)
                         break
                     end
@@ -65,3 +77,5 @@ function CDOTA_BaseNPC:AutoUpgradeAbilities()
         end
     end
 end
+
+return Abilities_manager

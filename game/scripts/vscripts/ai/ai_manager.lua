@@ -24,10 +24,14 @@ function CDOTA_BaseNPC:C_ClearAggroTarget()
     self.C_AggroTarget = nil
 end
 --更新仇恨目标
-function CDOTA_BaseNPC:C_RefreshAggroTarget(iGetOrder, fFind_radius)
-    --如果被嘲讽了，选他做目标
+function CDOTA_BaseNPC:C_RefreshAggroTarget(iGetOrder, fFind_radius, hAggro_target)
     local aggro_target = nil
-    if self:HasModifier("modifier_taunt_custom")  then
+    --如果预传入一个单位，直接设置它为目标
+    if hAggro_target ~= nil then
+        aggro_target = hAggro_target
+    end
+    --如果被嘲讽了，选他做目标
+    if self:HasModifier("modifier_taunt_custom") and aggro_target == nil then
         aggro_target = self:FindModifierByName("modifier_taunt_custom"):GetCaster()
     end
     --没被嘲讽

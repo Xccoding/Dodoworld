@@ -12,7 +12,7 @@ export function Item_unequip(){
 
         let hero_items = CustomNetTables.GetTableValue("hero_items", Players.GetLocalPlayer())
 
-        print(hero_items)
+        // print(hero_items)
 
         if(hero_items != undefined){
             

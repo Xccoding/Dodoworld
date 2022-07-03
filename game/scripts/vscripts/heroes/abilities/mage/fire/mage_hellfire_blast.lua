@@ -172,7 +172,7 @@ function modifier_mage_hellfire_blast_debuff:IsDebuff()
     return true
 end 
 function modifier_mage_hellfire_blast_debuff:IsPurgable()
-    return false
+    return true
 end
 function modifier_mage_hellfire_blast_debuff:OnCreated(params)
     self.dot_interval= self:GetAbilitySpecialValueFor("dot_interval")

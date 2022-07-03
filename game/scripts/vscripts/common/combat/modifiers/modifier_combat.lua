@@ -12,10 +12,14 @@ function modifier_combat:IsPurgable()
     return false
 end
 function modifier_combat:OnCreated(params)
+    local hParent = self:GetParent()
     if IsServer() then
         self.combat_start_time = GameRules:GetGameTime()
         self.damage = 0
         self.heal = 0
+        if not hParent:IsControllableByAnyPlayer() and params.aggro_target ~= nil then
+            hParent:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_DHPS, FIND_UNITS_EVERYWHERE, EntIndexToHScript(params.aggro_target))
+        end
         self:StartIntervalThink(FrameTime())
     end
 end
@@ -49,9 +53,23 @@ function modifier_combat:C_OnHeal( params )
     end
 end
 function modifier_combat:OnIntervalThink()
+    local hParent = self:GetParent()
     if IsServer() then
-        if self:GetParent():IsControllableByAnyPlayer() then
-            self:GetParent():UpdateDHPS()
+        if hParent:IsControllableByAnyPlayer() then
+            --英雄特有的更新dps
+            hParent:UpdateDHPS()
+            --英雄特有的仇恨监控
+            local IsAggroTarget = false
+            local enemies = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
+            for _, enemy in pairs(enemies) do
+                if enemy:C_GetAggroTarget() ~= nil and enemy:C_GetAggroTarget() == hParent then
+                    IsAggroTarget = true
+                    break
+                end
+            end
+            if not IsAggroTarget then
+                self:Destroy()
+            end
         end
     end
 end

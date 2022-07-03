@@ -1,4 +1,8 @@
+// 野怪
 "creature_pink_pig" "粉皮小猪"
 "creature_forest_kobold_robber" "林间狗头人强盗"
 "creature_forest_kobold_thief"	"林间狗头人窃贼"
 "creature_forest_kobold_scouts"	"林间狗头人斥候"
+
+// boss
+"creature_foreman_calgima" "工头考吉麦"

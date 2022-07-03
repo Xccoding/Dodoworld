@@ -78,7 +78,7 @@ function modifier_death_knight_frost_nova:IsDebuff()
     return true
 end 
 function modifier_death_knight_frost_nova:IsPurgable()
-    return false
+    return true
 end
 function modifier_death_knight_frost_nova:GetStatusEffectName()
     return "particles/status_fx/status_effect_iceblast.vpcf"

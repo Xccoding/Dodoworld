@@ -2,7 +2,7 @@ if modifier_channel_watcher == nil then
 	modifier_channel_watcher = class({})
 end
 function modifier_channel_watcher:IsHidden()
-    return false
+    return true
 end
 function modifier_channel_watcher:IsDebuff()
     return false

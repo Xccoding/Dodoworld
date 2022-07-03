@@ -7,7 +7,11 @@ const OVERHEAD_BUFF_COUNT_LIMIT = 5
 const OVERHEAD_BUFF_TIME_LIMIT = 60
 
 function HasOverheadBar(unit_index: EntityIndex){
-    return Entities.IsValidEntity(unit_index) && Entities.IsAlive(unit_index) && !Entities.NoHealthBar(unit_index)
+    let vOrigin = Entities.GetAbsOrigin(unit_index);
+    let fScreenX = Game.WorldToScreenX(vOrigin[0], vOrigin[1], vOrigin[2]);
+	let fScreenY = Game.WorldToScreenY(vOrigin[0], vOrigin[1], vOrigin[2]);
+
+    return Entities.IsValidEntity(unit_index) && Entities.IsAlive(unit_index) && !Entities.NoHealthBar(unit_index) && (fScreenX > 100 && fScreenX < Game.GetScreenWidth() - 100) && (fScreenY > 100 && fScreenY < Game.GetScreenHeight() - 100)
 }
 
 interface OverheadBarContainer extends Panel
@@ -45,7 +49,7 @@ export function OverheadBar_Init(){
                         }
                     
                 }
-                
+
                 if(Entities.IsEnemy(unit_index)){
                     // 尝试找血条
                     let pOverheadBar = OverheadBar_Root.FindChildTraverse(String(unit_index)) as OverheadBarContainer
@@ -55,7 +59,7 @@ export function OverheadBar_Init(){
                     }
                     if(HasOverheadBar(unit_index) || (pOverheadBar != undefined)){
                         render(<OverheadBar unit_index={unit_index}/>, pOverheadBar)
-                        let offset = Entities.GetHealthBarOffset(unit_index) + 40
+                        let offset = Entities.GetHealthBarOffset(unit_index) + 20
                         let position = Entities.GetAbsOrigin(unit_index)
                         let ScreenX = Game.WorldToScreenX(position[0], position[1], position[2] + offset)
                         let ScreenY = Game.WorldToScreenY(position[0], position[1], position[2] + offset)
@@ -91,7 +95,7 @@ export function OverheadBar_Init(){
 function OverheadBar({unit_index}: {unit_index: EntityIndex}){
     return <Panel className="OverheadBar">
         <OverheadBuffBar unit_index={unit_index}/>
-        <Label className='OverheadBar_name' text={$.Localize(`#${Entities.GetUnitLabel(unit_index)}`) + "·" + $.Localize(`#${Entities.GetUnitName(unit_index)}`)}/>
+        <Label id='OverheadBar_name' className={Entities.GetUnitLabel(unit_index)} text={ `(Lv${Entities.GetLevel(unit_index)})` + $.Localize(`#${Entities.GetUnitLabel(unit_index)}`) + "·" + $.Localize(`#${Entities.GetUnitName(unit_index)}`) }/>
         <OverheadhpBar unit_index={unit_index}/>
         <OverheadChannelBar unit_index={unit_index}/>
     </Panel>
@@ -101,7 +105,6 @@ function OverheadhpBar({unit_index}:{unit_index: EntityIndex}){
     let health = Entities.GetHealth(unit_index)
     let max_health = Entities.GetMaxHealth(unit_index)
     let percent = health / max_health
-
     let width = `${percent * 100}% + 1px`
     let health_unit = ""
     let max_health_unit = ""

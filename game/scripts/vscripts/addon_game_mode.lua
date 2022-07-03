@@ -31,7 +31,7 @@ end
 
 function DodoWorld:InitGameMode()
 	require('common.combat.managers.combat_manager')
-	require('common.combat.managers.abilities_manager')
+	require('common.combat.managers.heal_manager')
 	require('events.OnNpcSpawned')
 	require('events.OnPlayerGainedLevel')
 	require('events.OnPlayerPickHero')
@@ -44,6 +44,11 @@ function DodoWorld:InitGameMode()
 	require('abilities_required_lvl')
 	require('filters.ItemAddedToInventoryFilter')
 	require('filters.ExecuteOrderFilter')
+	
+
+	Alert_manger = require('common.combat.managers.alert_manager')
+	Abilities_manager = require('common.combat.managers.abilities_manager')
+
 
 	level_table = {[0] = 0}
 
@@ -84,13 +89,13 @@ function DodoWorld:InitGameMode()
 	GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.ExecuteOrderFilter, self)
 
 	--初始化流派：默认0
-	InitSchools()
+	Abilities_manager:InitSchools()
 
 	--临时初始化背包
 	InitBackpack()
 
 	--监听自定义游戏事件
-	CustomGameEventManager:RegisterListener("ChangeRoleMastery", OnChangeRoleMastery)
+	CustomGameEventManager:RegisterListener("ChangeRoleMastery", Dynamic_Wrap(Abilities_manager,'OnChangeRoleMastery'))
 	CustomGameEventManager:RegisterListener("EquipItem", OnEquipItem)
 	CustomGameEventManager:RegisterListener("UnEquipItem", OnUnEquipItem)
 

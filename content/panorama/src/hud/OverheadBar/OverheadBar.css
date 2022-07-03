@@ -3,8 +3,8 @@
   height: 100%;
 }
 .OverheadBarContainer {
-  width: 150px;
-  height: 98px;
+  width: 220px;
+  height: 108px;
   background-color: none;
 }
 .OverheadBar {
@@ -12,13 +12,19 @@
   height: 100%;
   flow-children: down;
 }
-.OverheadBar_name {
+#OverheadBar_name {
   text-shadow: 0px 0px 4px 5 #000000;
   color: white;
   font-family: monospaceNumbersFont;
   font-size: 17px;
   horizontal-align: center;
   height: 18px;
+}
+#OverheadBar_name.boss {
+  color: #df2e2e;
+  text-shadow: 0px 0px 4px 5 #5c2e2e;
+  font-size: 21px;
+  height: 24px;
 }
 #OverheadhpBar {
   border-radius: 2px;
@@ -28,6 +34,7 @@
   border-width: 3px;
   height: 28px;
   width: 150px;
+  horizontal-align: center;
 }
 #OverheadhpBar #hp_maxhp {
   align: center center;
@@ -46,6 +53,7 @@
   height: 22px;
   width: 150px;
   background-color: none;
+  horizontal-align: center;
 }
 #OverheadChannelBar {
   border-radius: 2px;
@@ -75,8 +83,9 @@
   overflow: noclip;
 }
 #OverheadBuffBar {
-  width: 150px;
+  width: 170px;
   height: 30px;
+  horizontal-align: center;
   flow-children: right-wrap;
 }
 #OverheadBuffBar .CustomBuff {

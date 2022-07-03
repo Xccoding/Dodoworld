@@ -7,3 +7,15 @@
 "DOTA_Tooltip_ability_neutral_creep_envenomed_weapon_Description"	"攻击附带毒素，使目标持续受到伤害，并且攻击有概率落空"
 "DOTA_Tooltip_modifier_neutral_creep_envenomed_weapon_debuff"	"浸毒武器"
 "DOTA_Tooltip_modifier_neutral_creep_envenomed_weapon_debuff_Description"	"持续受到伤害，攻击有%dMODIFIER_PROPERTY_MISS_PERCENTAGE%%%几率落空"
+
+"DOTA_Tooltip_ability_foreman_calgima_crystal_nova"	"冰霜新星"
+"DOTA_Tooltip_ability_foreman_calgima_crystal_nova_Description"	"在一片区域凝聚冰霜能量，%delay%秒后发生爆发，对%radius%码范围内的敌人造成%damage%点伤害，并降低%slow_down%%%的移动速度，持续%duration%秒"
+"DOTA_Tooltip_modifier_foreman_calgima_crystal_nova"	"冰霜新星"
+"DOTA_Tooltip_modifier_foreman_calgima_crystal_nova_Description"	"移动速度降低%dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%"
+
+"DOTA_Tooltip_ability_foreman_calgima_crystal_armor"	"冰霜护甲"
+"DOTA_Tooltip_ability_foreman_calgima_crystal_armor_Description"	"冰霜覆盖全身，提高%bonus_armor%点护甲，持续%duration%秒，受到攻击时使敌人的攻击速度降低%slow_down%，持续%debuff_duration%秒"
+"DOTA_Tooltip_modifier_foreman_calgima_crystal_armor"	"冰霜护甲"
+"DOTA_Tooltip_modifier_foreman_calgima_crystal_armor_Description"	"护甲提高%dMODIFIER_PROPERTY_TOOLTIP%点"
+"DOTA_Tooltip_modifier_foreman_calgima_crystal_armor_debuff"	"冰霜护甲"
+"DOTA_Tooltip_modifier_foreman_calgima_crystal_armor_debuff_Description"	"攻击速度降低%dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%"

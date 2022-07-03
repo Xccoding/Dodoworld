@@ -1,0 +1,63 @@
+"DOTAAbilities"
+{
+
+	// 工头考吉麦的冰霜新星
+	"foreman_calgima_crystal_nova"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"crystal_maiden_crystal_nova"
+		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/foreman_calgima_crystal_nova"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"5"
+		"AbilityCastRange"				"800"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"0.3"
+
+		"AbilityValues"
+        {
+            "duration"  "6"
+			"slow_down"	"50"
+			"radius"	"400"
+			"delay"		"3"
+			"damage"	"300"
+        }
+	}
+
+	// 工头考吉麦的冰霜护甲
+	"foreman_calgima_crystal_armor"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"ogre_magi_frost_armor"
+		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/foreman_calgima_crystal_armor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		//"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"5"
+		"AbilityCastRange"				"800"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"0.3"
+
+		"AbilityValues"
+        {
+            "duration"  "8"
+			"slow_down"	"50"
+			"debuff_duration"	"1.5"
+			"bonus_armor"	"6"
+        }
+	}
+
+}

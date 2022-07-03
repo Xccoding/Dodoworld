@@ -1,4 +1,5 @@
-COMBAT_STATUS_TIME = 6--战斗状态持续时间
+_G.COMBAT_STATUS_TIME = 60--标准战斗状态持续时间
+_G.COMBAT_STATUS_OUT_TIME = 1.5--标准战斗退出时间
 
 require('modifiers.Cmodifier')
 require('common.attribute_manager')
@@ -39,8 +40,12 @@ function modifier_common:OnTakeDamageKillCredit(params)
     local hVictim = params.target
     
     if not (hVictim:HasModifier("modifier_escape") or hAttacker:HasModifier("modifier_escape")) then
+        local aggro_target = nil
+        if not hVictim:HasModifier("modifier_combat") then
+            aggro_target = hAttacker:entindex()
+        end
         hAttacker:AddNewModifier(hAttacker, nil, "modifier_combat", {duration = COMBAT_STATUS_TIME})
-        hVictim:AddNewModifier(hVictim, nil, "modifier_combat", {duration = COMBAT_STATUS_TIME})
+        hVictim:AddNewModifier(hVictim, nil, "modifier_combat", {duration = COMBAT_STATUS_TIME, aggro_target = aggro_target})
     end
 end
 function modifier_common:OnModifierAdded( params )
@@ -48,9 +53,13 @@ function modifier_common:OnModifierAdded( params )
         local tBuff = params.added_buff
         local hCaster = tBuff:GetCaster()
         local hParent = self:GetParent()
+        local aggro_target = nil
+        if not hParent:HasModifier("modifier_combat") then
+            aggro_target = hCaster:entindex()
+        end
         if tBuff:GetName() == "modifier_taunt_custom" and not (hParent:HasModifier("modifier_escape") or hCaster:HasModifier("modifier_escape")) then
             hCaster:AddNewModifier(hCaster, nil, "modifier_combat", {duration = COMBAT_STATUS_TIME})
-            hParent:AddNewModifier(hParent, nil, "modifier_combat", {duration = COMBAT_STATUS_TIME})
+            hParent:AddNewModifier(hParent, nil, "modifier_combat", {duration = COMBAT_STATUS_TIME, aggro_target = aggro_target})
         end
     end
 end

@@ -98,7 +98,7 @@ function modifier_death_knight_hellfire_blast:IsDebuff()
     return true
 end 
 function modifier_death_knight_hellfire_blast:IsPurgable()
-    return false
+    return true
 end
 function modifier_death_knight_hellfire_blast:GetEffectAttachType()
     return PATTACH_ABSORIGIN_FOLLOW

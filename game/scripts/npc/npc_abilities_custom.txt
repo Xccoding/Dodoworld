@@ -4,7 +4,7 @@
 #base heroes/death_knight/ability.txt
 
 #base creatures/neutral/shashire/ability.txt
-#base creatures/dungeon/dungeon1/ability.txt
+#base creatures/dungeon/kobold_mine_cave/ability.txt
 
 "DOTAAbilities"
 {

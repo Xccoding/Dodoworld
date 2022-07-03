@@ -197,7 +197,7 @@ function modifier_death_knight_mortal_strike:OnAttackLanded(params)
 end
 function modifier_death_knight_mortal_strike:OnAttackRecordDestroy(params)
     if params.attacker == self:GetParent() then
-        if params.record then
+        if params.record ~= nil then
             self:RemoveRecord(params.record)
         end
     end

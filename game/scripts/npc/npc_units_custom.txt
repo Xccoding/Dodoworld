@@ -1,5 +1,6 @@
 // Units File
 #base creatures/neutral/shashire/unit.txt
+#base creatures/dungeon/kobold_mine_cave/unit.txt
 
 "DOTAUnits"
 {

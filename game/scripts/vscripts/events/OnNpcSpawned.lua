@@ -14,8 +14,8 @@ function DodoWorld:OnNpcSpawned( params )
 
     if unit:IsHero() and unit:IsRealHero() then
         local new_schools = CustomNetTables:GetTableValue("hero_schools", tostring(unit:GetPlayerOwnerID())).schools_index
-        RefreshAbilitiesToRole({entindex = params.entindex, new_schools = new_schools})
-        unit:AutoUpgradeAbilities()
+        Abilities_manager:RefreshAbilitiesToRole({entindex = params.entindex, new_schools = new_schools})
+        Abilities_manager:AutoUpgradeAbilities(unit)
         unit:AddNewModifier(unit, nil, "modifier_hero_attribute", {})
         -- PlayerResource:SetOverrideSelectionEntity(unit:GetPlayerOwnerID(), unit)
     end    

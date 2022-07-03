@@ -38,7 +38,7 @@ function modifier_mage_ancient_seal:IsDebuff()
     return true
 end 
 function modifier_mage_ancient_seal:IsPurgable()
-    return false
+    return true
 end
 function modifier_mage_ancient_seal:OnCreated(params)
     local hCaster = self:GetCaster()

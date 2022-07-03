@@ -1,6 +1,6 @@
 function DodoWorld:OnPlayerGainedLevel( params )
     local unit = EntIndexToHScript(params.hero_entindex)
-
-    unit:AutoUpgradeAbilities()
+    
+    Abilities_manager:AutoUpgradeAbilities(unit)
 
 end

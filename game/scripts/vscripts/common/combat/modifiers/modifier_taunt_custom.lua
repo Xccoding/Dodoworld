@@ -9,7 +9,7 @@ function modifier_taunt_custom:IsDebuff()
     return true
 end 
 function modifier_taunt_custom:IsPurgable()
-    return false
+    return true
 end
 function modifier_taunt_custom:CheckState()
     return {

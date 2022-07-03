@@ -74,18 +74,10 @@ function modifier_mage_searing_arrows:OnAttackRecordDestroy( params )
 		return
 	end
 	if params.attacker == self:GetParent() then
-		for i = 1, #self.records do
-			if self.records[i] ~= nil then
-				if self.records[i].iRecord ~= nil and params.record ~= nil then
-					if self.records[i].iRecord == params.record then
-						table.remove(self.records, i)
-					end
-				end
-			else
-				table.remove(self.records, i)
-			end
-		end
-	end
+        if params.record ~= nil then
+            self:RemoveRecord(params.record)
+        end
+    end
 end
 function modifier_mage_searing_arrows:OnAttackLanded( params )
 	if not IsServer() then

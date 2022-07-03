@@ -68,10 +68,10 @@ function NormalThink()
     end
     --未超距，判断根据什么条件更新
     if unit:InCombat() then
-        unit:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_DHPS, math.max(unit:GetAcquisitionRange(), COMBAT_FIND_RADIUS))
+        unit:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_DHPS, math.max(unit:GetAcquisitionRange(), COMBAT_FIND_RADIUS), nil)
     else
         if unit:GetAcquisitionRange() > 0 then
-            unit:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_RANGE, math.max(unit:GetAcquisitionRange(), COMBAT_FIND_RADIUS))
+            unit:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_RANGE, math.max(unit:GetAcquisitionRange(), COMBAT_FIND_RADIUS), nil)
         else
             unit:C_ClearAggroTarget()
         end
@@ -109,16 +109,29 @@ function NormalThink()
         local desires = {}
         local max_desires = {}
         local max_desire = 0
-        local ability_can_cast = 0
+        local behavior_can_excute = 0
         --计算主动技能数量
         for index = 0, unit:GetAbilityCount() - 1 do
             local hAbility = unit:GetAbilityByIndex(index)
             if hAbility ~= nil and (not hAbility:IsPassive()) then
-                ability_can_cast = ability_can_cast + 1
+                behavior_can_excute = behavior_can_excute + 1
+            end
+        end
+        --判断要不要加上攻击
+        --找单位A的order
+        if unit:GetAttackCapability() ~= DOTA_UNIT_CAP_NO_ATTACK then
+            --可以攻击
+            if unit:C_GetAggroTarget() ~= nil then
+                table.insert(desires, {desire = 1 / behavior_can_excute, ordertable = {
+                    UnitIndex = unit:entindex(),
+                    OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+                    TargetIndex = unit:C_GetAggroTarget():entindex(),
+                    Queue = false,
+                }})
             end
         end
         --寻找能放的技能
-        if ability_can_cast > 0 then
+        if behavior_can_excute > 0 then
             for index = 0, unit:GetAbilityCount() - 1 do
                 local hAbility = unit:GetAbilityByIndex(index)
                 --local behaviors = hAbility:GetAIBehavior()
@@ -139,7 +152,7 @@ function NormalThink()
                         elseif AbilityBehaviorFilter(hAbility:GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_NO_TARGET) then
                             --无目标范围技能
                             find_radius = hAbility:GetCastRange(unit:GetAbsOrigin(), nil)
-                        elseif AbilityBehaviorFilter(hAbility:GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_POINT_TARGET) then
+                        elseif AbilityBehaviorFilter(hAbility:GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_POINT) then
                             --点目标范围技能
                             find_radius = hAbility:GetCastRange(unit:GetAbsOrigin(), nil) - hAbility:GetAOERadius()
                             param_position = true
@@ -167,7 +180,7 @@ function NormalThink()
                                 end
                             end
                             if has_target then
-                                table.insert(desires, {desire = 1 / ability_can_cast, ordertable = {
+                                table.insert(desires, {desire = 1 / behavior_can_excute, ordertable = {
                                     UnitIndex = unit:entindex(),
                                     OrderType = order_type,
                                     TargetIndex = param_target,
@@ -205,29 +218,12 @@ function NormalThink()
             ExecuteOrderFromTable(
                 order_table
             )
-            unit.current_order = {order = order_table.OrderType, fEndtime = GameRules:GetGameTime() + 2, bForce = false}
-        elseif #max_desires == 0 then
-            --找单位A
-            if unit:GetAttackCapability() == DOTA_UNIT_CAP_NO_ATTACK then
-                --不能攻击
-                ExecuteOrderFromTable({
-                    UnitIndex = unit:entindex(),
-                    OrderType = DOTA_UNIT_ORDER_NONE,
-                    Queue = false,
-                })
-                unit.current_order = {order = DOTA_UNIT_ORDER_ATTACK_TARGET, fEndtime = GameRules:GetGameTime() + 0.5, bForce = false}
-            else
-                --可以攻击
-                if unit:C_GetAggroTarget() ~= nil then
-                    ExecuteOrderFromTable({
-                        UnitIndex = unit:entindex(),
-                        OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-                        TargetIndex = unit:C_GetAggroTarget():entindex(),
-                        Queue = false,
-                    })
-                    unit.current_order = {order = DOTA_UNIT_ORDER_ATTACK_TARGET, fEndtime = GameRules:GetGameTime() + 1, bForce = false}
-                end
+            if order_table.OrderType == DOTA_UNIT_ORDER_ATTACK_TARGET then
+                unit.current_order = {order = order_table.OrderType, fEndtime = GameRules:GetGameTime() + 2, bForce = false}
             end
+            unit.current_order = {order = order_table.OrderType, fEndtime = GameRules:GetGameTime() + EntIndexToHScript(order_table.AbilityIndex):GetCastPoint() + EntIndexToHScript(order_table.AbilityIndex):GetChannelTime() + RandomFloat(1, 2), bForce = false}
+        elseif #max_desires == 0 then
+            --不再处理没有max_desires的情况
         end
         return 0.25
     end
