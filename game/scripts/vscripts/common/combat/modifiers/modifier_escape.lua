@@ -18,7 +18,7 @@ end
 function modifier_escape:OnCreated(params)
     local hParent = self:GetParent()
     if IsServer() then
-        hParent:Purge(true, true, false, true, true)
+        hParent:Purge(false, true, false, true, true)
         hParent:SetHealth(hParent:GetMaxHealth())
     end
 end

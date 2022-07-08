@@ -6,3 +6,4 @@
 
 // boss
 "creature_foreman_calgima" "工头考吉麦"
+"creature_watcher_adolph"   "看门的阿道夫"

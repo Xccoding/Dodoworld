@@ -53,10 +53,39 @@
 
 		"AbilityValues"
         {
-            "duration"  "8"
+            "duration"  "7"
 			"slow_down"	"50"
 			"debuff_duration"	"1.5"
-			"bonus_armor"	"6"
+			"bonus_armor"	"20"
+        }
+	}
+
+	// 看门的阿道夫的冲锋
+	"watcher_adolph_dash"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"ogre_magi_frost_armor"
+		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/watcher_adolph_dash"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"5"
+		"AbilityCastRange"				"800"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"0.3"
+
+		"AbilityValues"
+        {
+            "pre_time"  "3"
+			"radius"	"300"
+			"debuff_duration"	"1.5"
+			"bonus_armor"	"20"
         }
 	}
 

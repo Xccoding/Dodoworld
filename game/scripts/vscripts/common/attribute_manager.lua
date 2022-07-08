@@ -16,7 +16,7 @@ MODIFIER_CALCULATE_TYPE_MAX = MODIFIER_CALCULATE_TYPE_SUM * 2
 MODIFIER_CALCULATE_TYPE_MIN = MODIFIER_CALCULATE_TYPE_MAX * 2
 
 --根据字段获取属性
-function BaseNPC:GetUnitAttribute(attrName, params, calculate_type)
+function BaseNPC:GetUnitAttribute(attrName, params, calculate_type)--根据字段获取属性
     calculate_type = calculate_type or MODIFIER_CALCULATE_TYPE_SUM
     local buffs = self:FindAllModifiers()
     local attr = 0--TODO默认属性改回0

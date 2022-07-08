@@ -220,8 +220,9 @@ function NormalThink()
             )
             if order_table.OrderType == DOTA_UNIT_ORDER_ATTACK_TARGET then
                 unit.current_order = {order = order_table.OrderType, fEndtime = GameRules:GetGameTime() + 2, bForce = false}
+            else
+                unit.current_order = {order = order_table.OrderType, fEndtime = GameRules:GetGameTime() + EntIndexToHScript(order_table.AbilityIndex):GetCastPoint() + EntIndexToHScript(order_table.AbilityIndex):GetChannelTime() + RandomFloat(1, 2), bForce = false}
             end
-            unit.current_order = {order = order_table.OrderType, fEndtime = GameRules:GetGameTime() + EntIndexToHScript(order_table.AbilityIndex):GetCastPoint() + EntIndexToHScript(order_table.AbilityIndex):GetChannelTime() + RandomFloat(1, 2), bForce = false}
         elseif #max_desires == 0 then
             --不再处理没有max_desires的情况
         end

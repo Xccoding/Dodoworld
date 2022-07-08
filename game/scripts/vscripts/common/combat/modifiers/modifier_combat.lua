@@ -68,6 +68,8 @@ function modifier_combat:OnIntervalThink()
                 end
             end
             if not IsAggroTarget then
+                --脱战驱散
+                hParent:Purge(false, true, false, true, true)
                 self:Destroy()
             end
         end
