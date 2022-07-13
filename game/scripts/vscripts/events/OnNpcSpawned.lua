@@ -18,6 +18,11 @@ function DodoWorld:OnNpcSpawned( params )
         Abilities_manager:AutoUpgradeAbilities(unit)
         unit:AddNewModifier(unit, nil, "modifier_hero_attribute", {})
         -- PlayerResource:SetOverrideSelectionEntity(unit:GetPlayerOwnerID(), unit)
+    else
+        if unit.kv_table ~= nil then
+            unit:AddNewModifier(unit, nil, "modifier_basic_attribute", unit.kv_table)
+            unit.kv_table = nil
+        end
     end    
 end
 

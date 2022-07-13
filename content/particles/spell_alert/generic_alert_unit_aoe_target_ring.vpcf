@@ -118,6 +118,7 @@
 			_class = "C_OP_MovementPlaceOnGround"
 			m_flOffset = 24.0
 			m_flMaxTraceLength = 256.0
+			m_bDisableOperator = true
 		},
 	]
 	m_Renderers = 

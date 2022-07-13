@@ -4,7 +4,7 @@ if ai_creature_foreman_calgima == nil then
 	ai_creature_foreman_calgima = class( boss_base_ai )
 end
 
-function Spawn()
+function Spawn( tEntityKeyValues )
     if IsServer() then
 		if thisEntity == nil then
 			return

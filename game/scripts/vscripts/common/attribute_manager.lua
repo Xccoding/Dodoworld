@@ -1,8 +1,15 @@
-require('modifiers.Cmodifier')
 
 --link英雄属性modifier
 LinkLuaModifier( "modifier_hero_attribute", "common/combat/modifiers/modifier_hero_attribute.lua", LUA_MODIFIER_MOTION_NONE )
+--link普通单位属性modifier
+LinkLuaModifier( "modifier_basic_attribute", "common/combat/modifiers/modifier_basic_attribute.lua", LUA_MODIFIER_MOTION_NONE )
 
+_G.KEY_READ_ON_SPAWN = {
+    "ArmorPhysical",
+    "MagicalResistance",
+}
+
+-------------------------------双端内容-------------------------------
 local BaseNPC
 if IsServer() then
     BaseNPC = CDOTA_BaseNPC
@@ -74,6 +81,7 @@ function BaseNPC:IsUseMana()
 
 end
 
+-------------------------------服务端内容-------------------------------
 if IsServer() then
     --获取技能伤害基数
     function CDOTA_BaseNPC:GetDamageforAbility( iCalculate_type )
@@ -123,6 +131,17 @@ if IsServer() then
         iMagicalArmor = iMagicalArmor * (100 - ignored_pct) * 0.01
         local armor_pct = iMagicalArmor / (iMagicalArmor + (30 + self:GetLevel() * 4) * CDOTA_ATTRIBUTE_INTELLIGENCE_MAGICAL_ARMOR) * 100
         return armor_pct
+    end
+
+    --把单位的指定键值暂存到他身上
+    function SaveSpawnKV( thisEntity, kv )
+        local kv_table = {}
+        for i = 1, #KEY_READ_ON_SPAWN do
+            if kv:GetValue(KEY_READ_ON_SPAWN[i]) ~= nil then
+                kv_table[KEY_READ_ON_SPAWN[i]] = kv:GetValue(KEY_READ_ON_SPAWN[i])
+            end
+        end
+        thisEntity.kv_table = kv_table
     end
 
 end

@@ -2,11 +2,12 @@ require('ai.boss_base_ai')
 if ai_creature_watcher_adolph == nil then
     ai_creature_watcher_adolph = class( boss_base_ai )
 end
-function Spawn()
+function Spawn( kv )
     if IsServer() then
         if thisEntity == nil then
             return
         end
+        SaveSpawnKV( thisEntity, kv )
         thisEntity.current_order = {order = nil, fEndtime = nil}
         thisEntity.AI = ai_creature_watcher_adolph( thisEntity, 0.25 )
     end

@@ -107,6 +107,7 @@
 			m_flMaxTraceLength = 512.0
 			m_flTraceOffset = 128.0
 			m_CollisionGroupName = "DEBRIS"
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_RemapCPtoScalar"

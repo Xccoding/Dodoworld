@@ -1,9 +1,6 @@
 _G.COMBAT_STATUS_TIME = 600--标准战斗状态持续时间
 _G.COMBAT_STATUS_OUT_TIME = 1.5--标准战斗退出时间
 
-require('modifiers.Cmodifier')
-require('common.attribute_manager')
-
 --通用modifiers
 if modifier_common == nil then
 	modifier_common = class({})

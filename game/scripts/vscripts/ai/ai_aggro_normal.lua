@@ -11,7 +11,7 @@ MAX_CAMP_RANGE = 800
 MAX_WANDER_RANGE = 500
 COMBAT_FIND_RADIUS = 600
 
-function Spawn()
+function Spawn( tEntityKeyValues )
     if not IsServer() then
 		return
 	end
@@ -235,8 +235,15 @@ end
 function NewWander(bForce)
     local unit = thisEntity
     local spawn_entity = unit.spawn_entity
-    local pos = spawn_entity:GetAbsOrigin() + RandomVector(RandomFloat(0, 500))
+    local pos = spawn_entity:GetAbsOrigin()
     local time = (pos - unit:GetAbsOrigin()):Length2D() / unit:GetIdealSpeed()
+    for i = 1, 100 do
+        local pos_try = spawn_entity:GetAbsOrigin() + RandomVector(RandomFloat(0, 500))
+        if GridNav:CanFindPath(unit:GetAbsOrigin(), pos_try) then
+            pos = pos_try
+            break
+        end
+    end
     ExecuteOrderFromTable({
         UnitIndex = unit:entindex(),
         OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,

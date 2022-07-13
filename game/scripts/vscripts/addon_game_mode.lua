@@ -32,6 +32,7 @@ end
 function DodoWorld:InitGameMode()
 	require('common.combat.managers.combat_manager')
 	require('common.combat.managers.heal_manager')
+	require('common.attribute_manager')
 	require('events.OnNpcSpawned')
 	require('events.OnPlayerGainedLevel')
 	require('events.OnPlayerPickHero')
@@ -44,6 +45,8 @@ function DodoWorld:InitGameMode()
 	require('abilities_required_lvl')
 	require('filters.ItemAddedToInventoryFilter')
 	require('filters.ExecuteOrderFilter')
+	require('filters.DamageFilter')
+	require('modifiers.Cmodifier')
 	
 
 	Alert_manger = require('common.combat.managers.alert_manager')
@@ -87,6 +90,7 @@ function DodoWorld:InitGameMode()
 	--过滤器
 	GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(self.ItemAddedToInventoryFilter, self)
 	GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.ExecuteOrderFilter, self)
+	GameRules:GetGameModeEntity():SetDamageFilter(self.DamageFilter, self)
 
 	--初始化流派：默认0
 	Abilities_manager:InitSchools()

@@ -1,25 +1,28 @@
---英雄属性modifiers
-if modifier_hero_attribute == nil then
-	modifier_hero_attribute = class({})
+--普通单位属性modifiers
+if modifier_basic_attribute == nil then
+	modifier_basic_attribute = class({})
 end
-function modifier_hero_attribute:IsHidden()
-    return true
+function modifier_basic_attribute:IsHidden()
+    return false
 end
-function modifier_hero_attribute:IsDebuff()
+function modifier_basic_attribute:IsDebuff()
     return false
 end 
-function modifier_hero_attribute:IsPurgable()
+function modifier_basic_attribute:IsPurgable()
     return false
 end
-function modifier_hero_attribute:RemoveOnDeath()
+function modifier_basic_attribute:RemoveOnDeath()
     return false
 end
-function modifier_hero_attribute:OnCreated(params)
+function modifier_basic_attribute:OnCreated( kv )
     if IsServer() then
-       self:StartIntervalThink(0.1)
+        --self:StartIntervalThink(0.1)
+        for key, value in pairs(kv) do
+            print("N2O", key, value)
+        end
     end
 end
-function modifier_hero_attribute:CDeclareFunctions()
+function modifier_basic_attribute:CDeclareFunctions()
     return {
         CMODIFIER_PROPERTY_SPELL_POWER_CONSTANT,
         CMODIFIER_PROPERTY_BONUS_MAGICAL_CRIT_CHANCE_CONSTANT,
@@ -28,18 +31,18 @@ function modifier_hero_attribute:CDeclareFunctions()
         CMODIFIER_PROPERTY_MAGICAL_ARMOR_CONSTANT,
     }
 end
-function modifier_hero_attribute:DeclareFunctions()
+function modifier_basic_attribute:DeclareFunctions()
     return {
         
-        MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-        MODIFIER_PROPERTY_MANA_BONUS,
-        MODIFIER_PROPERTY_HEALTH_BONUS,
-        MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-        MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
-        MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
+        -- MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+        -- MODIFIER_PROPERTY_MANA_BONUS,
+        -- MODIFIER_PROPERTY_HEALTH_BONUS,
+        -- MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+        -- MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+        -- MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
     }
 end
-function modifier_hero_attribute:OnIntervalThink()
+function modifier_basic_attribute:OnIntervalThink()
     if IsServer() then
         local hCaster = self:GetCaster()
         local bUpdate = false
@@ -100,7 +103,7 @@ function modifier_hero_attribute:OnIntervalThink()
     end
 end
 --额外生命值
-function modifier_hero_attribute:GetModifierHealthBonus()
+function modifier_basic_attribute:GetModifierHealthBonus()
     local hParent = self:GetParent()
     local label = hParent:GetUnitLabel()
     if label ~= nil and CDOTA_ATTRIBUTE_LEVEL_HEALTH[hParent:GetUnitLabel()] ~= nil then
@@ -109,16 +112,16 @@ function modifier_hero_attribute:GetModifierHealthBonus()
     end
     return hParent:GetLevel() * 100
 end
---智力提供法术强度
-function modifier_hero_attribute:C_GetModifierSpellPower_Constant( params )
-    local hParent = self:GetParent()
-    if hParent:GetPrimaryAttribute() == DOTA_ATTRIBUTE_INTELLECT then
-        return self:GetParent():GetIntellect() * CDOTA_ATTRIBUTE_INTELLIGENCE_SPELL_POWER 
-    end
-    return 0
-end
+-- --智力提供法术强度
+-- function modifier_basic_attribute:C_GetModifierSpellPower_Constant( params )
+--     local hParent = self:GetParent()
+--     if hParent:GetPrimaryAttribute() == DOTA_ATTRIBUTE_INTELLECT then
+--         return self:GetParent():GetIntellect() * CDOTA_ATTRIBUTE_INTELLIGENCE_SPELL_POWER 
+--     end
+--     return 0
+-- end
 --魔法恢复
-function modifier_hero_attribute:GetModifierConstantManaRegen()
+function modifier_basic_attribute:GetModifierConstantManaRegen()
     local unit = self:GetParent()
 
     if not unit:IsUseMana() then
@@ -128,7 +131,7 @@ function modifier_hero_attribute:GetModifierConstantManaRegen()
     end
 end
 --额外魔法值
-function modifier_hero_attribute:GetModifierManaBonus()
+function modifier_basic_attribute:GetModifierManaBonus()
     local unit = self:GetParent()
 
     if unit:IsUseMana() then
@@ -138,28 +141,28 @@ function modifier_hero_attribute:GetModifierManaBonus()
         return 0
     end
 end
---魔法暴击
-function modifier_hero_attribute:C_GetModifierBonusMagicalCritChance_Constant( params )
-    return self:GetParent():GetIntellect() * CDOTA_ATTRIBUTE_INTELLIGENCE_MAGICAL_CRIT_CHANCE
-end
---魔法护甲
-function modifier_hero_attribute:C_GetModifierMagicalArmor_Constant( params )
-    return self:GetParent():GetIntellect() * CDOTA_ATTRIBUTE_INTELLIGENCE_MAGICAL_ARMOR
-end
+-- --魔法暴击
+-- function modifier_basic_attribute:C_GetModifierBonusMagicalCritChance_Constant( params )
+--     return self:GetParent():GetIntellect() * CDOTA_ATTRIBUTE_INTELLIGENCE_MAGICAL_CRIT_CHANCE
+-- end
+-- --魔法护甲
+-- function modifier_basic_attribute:C_GetModifierMagicalArmor_Constant( params )
+--     return self:GetParent():GetIntellect() * CDOTA_ATTRIBUTE_INTELLIGENCE_MAGICAL_ARMOR
+-- end
 --物理暴击
-function modifier_hero_attribute:C_GetModifierBonusPhysicalCritChance_Constant( params )
+function modifier_basic_attribute:C_GetModifierBonusPhysicalCritChance_Constant( params )
     return self:GetParent():GetAgility() * CDOTA_ATTRIBUTE_AGILITY_PHYSICAL_CRIT_CHANCE
 end
---护甲
-function modifier_hero_attribute:C_GetModifierPhysicalArmor_Constant( params )
-    return self:GetParent():GetAgility() * CDOTA_ATTRIBUTE_AGILITY_PHYSICAL_ARMOR
-end
+-- --护甲
+-- function modifier_basic_attribute:C_GetModifierPhysicalArmor_Constant( params )
+--     return self:GetParent():GetAgility() * CDOTA_ATTRIBUTE_AGILITY_PHYSICAL_ARMOR
+-- end
 --生命恢复
-function modifier_hero_attribute:GetModifierConstantHealthRegen()
+function modifier_basic_attribute:GetModifierConstantHealthRegen()
     return -self:GetParent():GetStrength() * 0.01 + self:GetParent():GetStrength() * CDOTA_ATTRIBUTE_STRENGTH_HEALTH_REGEN
 end
 --战斗外生命恢复
-function modifier_hero_attribute:GetModifierHealthRegenPercentage()
+function modifier_basic_attribute:GetModifierHealthRegenPercentage()
     local hParent = self:GetParent()
     if hParent:InCombat() then
         return 0
@@ -167,6 +170,6 @@ function modifier_hero_attribute:GetModifierHealthRegenPercentage()
     return CDOTA_ATTRIBUTE_HEALTH_REGEN_NO_COMBAT
 end
 --力量攻击力
-function modifier_hero_attribute:GetModifierBaseAttack_BonusDamage()
+function modifier_basic_attribute:GetModifierBaseAttack_BonusDamage()
     return self:GetParent():GetStrength() * CDOTA_ATTRIBUTE_STRENGTH_ATTACK_DAMAGE
 end

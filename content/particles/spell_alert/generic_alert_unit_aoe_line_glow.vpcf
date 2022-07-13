@@ -5,24 +5,66 @@
 	m_nMaxParticles = 10
 	m_flConstantRadius = 15.0
 	m_ConstantColor = [ 144, 0, 0, 255 ]
-	m_Renderers = 
+	m_nBehaviorVersion = 5
+	m_controlPointConfigurations = 
 	[
 		{
-			_class = "C_OP_RenderRopes"
-			m_nOrientationType = "PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL"
-			m_flRadiusScale = 0.5
-			m_flTextureVWorldSize = 60.0
-			m_nMaxTesselation = 4
-			m_nMinTesselation = 4
-			m_flTextureVScrollRate = -200.0
-			m_vecTexturesInput = 
+			m_name = "preview"
+			m_drivers = 
 			[
 				{
-					m_hTexture = resource:"materials/particle/beam_generic_7.vtex"
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 6
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 7
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
 				},
 			]
-			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
-			m_nFogType = "PARTICLE_FOG_GAME_DEFAULT"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 10.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 30.0
+			m_flRadiusMax = 30.0
+		},
+		{
+			_class = "C_INIT_CreateSequentialPath"
+			m_flNumToAssign = 50.0
+			m_PathParams = 
+			{
+				m_nStartControlPointNumber = 2
+				m_nEndControlPointNumber = 7
+			}
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMin = 250
+			m_nAlphaMax = 250
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
 		},
 	]
 	m_Operators = 
@@ -59,7 +101,7 @@
 			m_flMaxTraceLength = 512.0
 			m_flTraceOffset = 128.0
 			m_CollisionGroupName = "DEBRIS"
-			m_nTraceMissBehavior = "PARTICLE_TRACE_MISS_BEHAVIOR_TRACE_END"
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_RemapCPtoScalar"
@@ -67,47 +109,23 @@
 			m_nFieldOutput = 16
 		},
 	]
-	m_Initializers = 
+	m_Renderers = 
 	[
 		{
-			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 30.0
-			m_flRadiusMax = 30.0
-		},
-		{
-			_class = "C_INIT_CreateSequentialPath"
-			m_flNumToAssign = 50.0
-			m_PathParams = 
-			{
-				m_nStartControlPointNumber = 2
-				m_nEndControlPointNumber = 7
-			}
-		},
-		{
-			_class = "C_INIT_RandomAlpha"
-			m_nAlphaMin = 250
-			m_nAlphaMax = 250
-		},
-		{
-			_class = "C_INIT_RandomLifeTime"
+			_class = "C_OP_RenderRopes"
+			m_nOrientationType = "PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL"
+			m_flRadiusScale = 0.5
+			m_flTextureVWorldSize = 60.0
+			m_nMaxTesselation = 4
+			m_nMinTesselation = 4
+			m_flTextureVScrollRate = -200.0
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/beam_generic_7.vtex"
+				},
+			]
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
 		},
 	]
-	m_Emitters = 
-	[
-		{
-			_class = "C_OP_InstantaneousEmitter"
-			m_flStartTime = 
-			{
-				m_nType = "PF_TYPE_LITERAL"
-				m_flLiteralValue = 0.0
-			}
-			m_nParticlesToEmit = 
-			{
-				m_nType = "PF_TYPE_LITERAL"
-				m_flLiteralValue = 10.0
-			}
-		},
-	]
-	m_PreEmissionOperators = [  ]
-	m_nBehaviorVersion = 5
 }

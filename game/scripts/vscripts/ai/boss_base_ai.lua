@@ -115,13 +115,15 @@ function boss_base_ai:OnCommonThink()
                 if desires[1].order_name ~= nil then
                     if desires[1].order_name == "NormalAttack" then
                         --直接处理攻击行为
-                        ExecuteOrderFromTable({
-                            UnitIndex = self.me:entindex(),
-                            OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-                            TargetIndex = self.me:C_GetAggroTarget():entindex(),
-                            Queue = false,
-                        })
-                        self.me.current_order = {order = DOTA_UNIT_ORDER_ATTACK_TARGET, fEndtime = GameRules:GetGameTime() + self.me:GetBaseAttackTime(), bForce = false}
+                        if self.me:C_GetAggroTarget() ~= nil then
+                            ExecuteOrderFromTable({
+                                UnitIndex = self.me:entindex(),
+                                OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+                                TargetIndex = self.me:C_GetAggroTarget():entindex(),
+                                Queue = false,
+                            })
+                            self.me.current_order = {order = DOTA_UNIT_ORDER_ATTACK_TARGET, fEndtime = GameRules:GetGameTime() + self.me:GetBaseAttackTime(), bForce = false}
+                        end
                     else
                         --执行技能
                         ExecuteOrderFromTable(
@@ -142,8 +144,15 @@ end
 function boss_base_ai:NewWander(bForce)
     local unit = self.me
     local spawn_entity = unit.spawn_entity
-    local pos = spawn_entity:GetAbsOrigin() + RandomVector(RandomFloat(0, 500))
+    local pos = spawn_entity:GetAbsOrigin()
     local time = (pos - unit:GetAbsOrigin()):Length2D() / unit:GetIdealSpeed()
+    for i = 1, 100 do
+        local pos_try = spawn_entity:GetAbsOrigin() + RandomVector(RandomFloat(0, 500))
+        if GridNav:CanFindPath(unit:GetAbsOrigin(), pos_try) then
+            pos = pos_try
+            break
+        end
+    end
     ExecuteOrderFromTable({
         UnitIndex = unit:entindex(),
         OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
