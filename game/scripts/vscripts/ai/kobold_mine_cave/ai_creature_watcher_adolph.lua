@@ -9,7 +9,7 @@ function Spawn( kv )
         end
         SaveSpawnKV( thisEntity, kv )
         thisEntity.current_order = {order = nil, fEndtime = nil}
-        thisEntity.AI = ai_creature_watcher_adolph( thisEntity, 0.25 )
+        thisEntity.AI = ai_creature_watcher_adolph( thisEntity, 1 )
     end
 end
 function ai_creature_watcher_adolph:SetupBehaviors()

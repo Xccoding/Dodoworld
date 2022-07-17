@@ -22,17 +22,18 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"0"			// Physical protection.
+		"ArmorPhysical"				"0"			// 护甲，使用了自定义的公式计算
+		"MagicalResistance"		"0" // 魔法抗性，用数值而非百分比计算
 
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-		"AttackDamageMin"			"30"		// Damage range min.
-		"AttackDamageMax"			"36"		// Damage range max.
+		"AttackDamageMin"			"1"		// Damage range min.
+		"AttackDamageMax"			"1"		// Damage range max.
 		"AttackRate"				"1.6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
-		"AttackRange"				"500"		// Range within a target can be attacked.
+		"AttackAcquisitionRange"	"0"		// Range within a target can be acquired.
+		"AttackRange"				"1"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
 		"ProjectileSpeed"			"1500"		// Speed of projectile.		     
 
@@ -55,7 +56,7 @@
 		// Status
 		//----------------------------------------------------------------
 		"StatusHealth"				"75"		// Base health.
-		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+		"StatusHealthRegen"			"0.0"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
 		
@@ -84,7 +85,14 @@
 			"BountyGain"				"3"
 			"XPGain"					"15"
 		}
-        "vscripts"					"ai/ai_wander.lua"
+        "vscripts"					"ai/ai_aggro_normal.lua"
+
+		// 自定义键值
+		"MaxPursueRange"	"510" // 最大追击距离
+		"MaxWanderRange"	"500" // 最大游荡距离
+		"CombatFindRadius"	"1400" // 战斗中索敌距离
+		"WanderType"		"4" //游荡行为
+		"SlowNoComabt"		"0" // 战斗外减速比例
 	}
 
 	//林间狗头人强盗
@@ -110,7 +118,8 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"0"			// Physical protection.
+		"ArmorPhysical"				"4"			// 护甲，使用了自定义的公式计算
+		"MagicalResistance"		"0" // 魔法抗性，用数值而非百分比计算
 
 		// Attack
 		//----------------------------------------------------------------
@@ -173,6 +182,13 @@
 			"XPGain"					"15"
 		}
         "vscripts"					"ai/ai_aggro_normal.lua"
+
+		// 自定义键值
+		"MaxPursueRange"	"900" // 最大追击距离
+		"MaxWanderRange"	"100" // 最大游荡距离
+		"CombatFindRadius"	"1400" // 战斗中索敌距离
+		"WanderType"		"1" //游荡行为
+		"SlowNoComabt"		"35" // 战斗外减速比例
 	}
 
 	//林间狗头人窃贼
@@ -198,7 +214,8 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"0"			// Physical protection.
+		"ArmorPhysical"				"0"			// 护甲，使用了自定义的公式计算
+		"MagicalResistance"		"0" // 魔法抗性，用数值而非百分比计算
 
 		// Attack
 		//----------------------------------------------------------------
@@ -261,6 +278,13 @@
 			"XPGain"					"15"
 		}
         "vscripts"					"ai/ai_aggro_normal.lua"
+
+		// 自定义键值
+		"MaxPursueRange"	"900" // 最大追击距离
+		"MaxWanderRange"	"500" // 最大游荡距离
+		"CombatFindRadius"	"1400" // 战斗中索敌距离
+		"WanderType"		"1" //游荡行为
+		"SlowNoComabt"		"35" // 战斗外减速比例
 	}
 
 	//林间狗头人斥候
@@ -286,7 +310,8 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"0"			// Physical protection.
+		"ArmorPhysical"				"1"			// 护甲，使用了自定义的公式计算
+		"MagicalResistance"		"0" // 魔法抗性，用数值而非百分比计算
 
 		// Attack
 		//----------------------------------------------------------------
@@ -349,6 +374,13 @@
 			"XPGain"					"15"
 		}
         "vscripts"					"ai/ai_aggro_normal.lua"
+
+		// 自定义键值
+		"MaxPursueRange"	"900" // 最大追击距离
+		"MaxWanderRange"	"500" // 最大游荡距离
+		"CombatFindRadius"	"1400" // 战斗中索敌距离
+		"WanderType"		"1" //游荡行为
+		"SlowNoComabt"		"35" // 战斗外减速比例
 	}
 
 

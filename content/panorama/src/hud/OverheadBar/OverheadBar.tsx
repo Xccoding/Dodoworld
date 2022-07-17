@@ -93,9 +93,18 @@ export function OverheadBar_Init(){
 }
 
 function OverheadBar({unit_index}: {unit_index: EntityIndex}){
+    let full_name = ""
+    let lv_string = `(Lv${Entities.GetLevel(unit_index)})`
+    let label_string = ""
+    if(Entities.GetUnitLabel(unit_index) != ""){
+        label_string = $.Localize(`#${Entities.GetUnitLabel(unit_index)}`) + "·"
+    }
+    let unit_name = $.Localize(`#${Entities.GetUnitName(unit_index)}`)
+    full_name = lv_string + label_string + unit_name
+
     return <Panel className="OverheadBar">
         <OverheadBuffBar unit_index={unit_index}/>
-        <Label id='OverheadBar_name' className={Entities.GetUnitLabel(unit_index)} text={ `(Lv${Entities.GetLevel(unit_index)})` + $.Localize(`#${Entities.GetUnitLabel(unit_index)}`) + "·" + $.Localize(`#${Entities.GetUnitName(unit_index)}`) }/>
+        <Label id='OverheadBar_name' className={Entities.GetUnitLabel(unit_index)} text={full_name}/>
         <OverheadhpBar unit_index={unit_index}/>
         <OverheadChannelBar unit_index={unit_index}/>
     </Panel>

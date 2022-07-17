@@ -1,9 +1,5 @@
 --desire用x100以后的数值计算！
 
-MAX_CAMP_RANGE = 800
-MAX_WANDER_RANGE = 500
-COMBAT_FIND_RADIUS = 600
-
 if boss_base_ai == nil then
 	boss_base_ai = class({})
 end
@@ -29,51 +25,60 @@ function boss_base_ai:OnCommonThink()
         --print("unit is dead")
         return -1
     end
+    local MaxPursueRange = self.me.kv_ai_table.MaxPursueRange or 0
+    local MaxWanderRange = self.me.kv_ai_table.MaxWanderRange or 0
+    local CombatFindRadius = self.me.kv_ai_table.CombatFindRadius or 0
+    local WanderType = self.me.kv_ai_table.WanderType or AI_WANDER_TYPE_PASSIVE
 
     --超距脱战返回
-    if (self.me:GetAbsOrigin() - self.me.spawn_entity:GetAbsOrigin()):Length2D() >= MAX_CAMP_RANGE then
+    if (self.me:GetAbsOrigin() - self.me.spawn_entity:GetAbsOrigin()):Length2D() > MaxPursueRange then
         if not (self.me.current_order.order == DOTA_UNIT_ORDER_MOVE_TO_POSITION and self.me.current_order.bForce == false) then
             self:NewWander(true)
             self.me:C_ClearAggroTarget()
             self.me:RemoveModifierByName("modifier_combat")
-            self.me:AddNewModifier(self.me, nil, "modifier_escape", {duration = 0.25})
+            self.me:AddNewModifier(self.me, nil, "modifier_escape", {duration = self.Interval + 0.1})
             return self.Interval
         else
             if self.me.current_order.fEndtime >= GameRules:GetGameTime() then
                 self:NewWander(true)
                 self.me:C_ClearAggroTarget()
                 self.me:RemoveModifierByName("modifier_combat")
-                self.me:AddNewModifier(self.me, nil, "modifier_escape", {duration = 0.25})
+                self.me:AddNewModifier(self.me, nil, "modifier_escape", {duration = self.Interval + 0.1})
                 return self.Interval
             end
         end
     else
-        if self.me.current_order.order == DOTA_UNIT_ORDER_MOVE_TO_POSITION and self.me.current_order.bForce == true and (self.me:GetAbsOrigin() - self.me.spawn_entity:GetAbsOrigin()):Length2D() >= MAX_WANDER_RANGE then
+        if self.me.current_order.order == DOTA_UNIT_ORDER_MOVE_TO_POSITION and self.me.current_order.bForce == true and (self.me:GetAbsOrigin() - self.me.spawn_entity:GetAbsOrigin()):Length2D() >= MaxWanderRange then
             self:NewWander(true)
             self.me:C_ClearAggroTarget()
             self.me:RemoveModifierByName("modifier_combat")
-            self.me:AddNewModifier(self.me, nil, "modifier_escape", {duration = 0.25})
+            self.me:AddNewModifier(self.me, nil, "modifier_escape", {duration = self.Interval + 0.1})
             return self.Interval
         end
     end
 
     --未超距，判断根据什么条件更新仇恨目标
     if self.me:InCombat() then
-        self.me:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_DHPS, math.max(self.me:GetAcquisitionRange(), COMBAT_FIND_RADIUS), nil)
+        self.me:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_DHPS, math.max(self.me:GetAcquisitionRange(), CombatFindRadius), nil)
     else
         if self.me:GetAcquisitionRange() > 0 then
-            self.me:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_RANGE, math.max(self.me:GetAcquisitionRange(), COMBAT_FIND_RADIUS), nil)
+            self.me:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_RANGE, math.max(self.me:GetAcquisitionRange(), CombatFindRadius), nil)
         else
             self.me:C_ClearAggroTarget()
         end
     end
 
+    --如果没有仇恨目标，脱战
+    if self.me:C_GetAggroTarget() == nil and self.me:InCombat() then
+        self.me:RemoveModifierByName("modifier_combat")
+        self.me:AddNewModifier(self.me, nil, "modifier_escape", {duration = self.Interval + 0.1})
+    end
     
     if not self.me:InCombat() then
         --非战斗中
-        if self.me.wander_type ~= nil then 
+        if WanderType ~= nil then 
             --是否会主动游荡
-            if self.me.wander_type == AI_WANDER_TYPE_ACTIVE then
+            if WanderType == AI_WANDER_TYPE_ACTIVE then
                 if self.me.current_order.order == nil or (self.me.current_order.order ~= nil and self.me.current_order.fEndtime < GameRules:GetGameTime()) then
                     -- print("new wander")
                     self:NewWander(false)
@@ -146,8 +151,9 @@ function boss_base_ai:NewWander(bForce)
     local spawn_entity = unit.spawn_entity
     local pos = spawn_entity:GetAbsOrigin()
     local time = (pos - unit:GetAbsOrigin()):Length2D() / unit:GetIdealSpeed()
+    local MaxWanderRange = unit.kv_ai_table.MaxWanderRange or 0
     for i = 1, 100 do
-        local pos_try = spawn_entity:GetAbsOrigin() + RandomVector(RandomFloat(0, 500))
+        local pos_try = spawn_entity:GetAbsOrigin() + RandomVector(RandomFloat(0, MaxWanderRange))
         if GridNav:CanFindPath(unit:GetAbsOrigin(), pos_try) then
             pos = pos_try
             break

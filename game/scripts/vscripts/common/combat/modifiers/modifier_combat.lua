@@ -23,6 +23,12 @@ function modifier_combat:OnCreated(params)
         self:StartIntervalThink(FrameTime())
     end
 end
+function modifier_combat:OnDestroy()
+    local hParent = self:GetParent()
+    if IsServer() then
+        CFireModifierEvent(hParent, CMODIFIER_EVENT_ON_COMBAT_END, {})
+    end
+end
 function modifier_combat:DeclareFunctions()
     return {
         MODIFIER_EVENT_ON_TAKEDAMAGE,

@@ -37,7 +37,7 @@ function Abilities_manager:RefreshAbilitiesToRole(params)
         end
     end
 
-    local abilities_to_add = RoleAbilities[unit:GetUnitLabel().."_schools_"..tostring(new_schools)]
+    local abilities_to_add = KeyValues.RoleAbilities[unit:GetUnitLabel().."_schools_"..tostring(new_schools)]
     if abilities_to_add ~= nil then
         for i = 1, 6 do
             if abilities_to_add["Ability"..i] ~= nil then

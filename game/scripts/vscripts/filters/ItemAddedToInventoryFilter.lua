@@ -14,7 +14,7 @@ function DodoWorld:ItemAddedToInventoryFilter( params )
     local item_name = item:GetAbilityName()
     print("filter")
     --print(item:GetAbilityName(), unit:GetUnitName(), inventory:GetUnitName())
-    local sItem_type = item_type[item_name]
+    local sItem_type = KeyValues.item_type[item_name]
     local sug_slot = -1
     local slot_count = 1
     if sItem_type ~= nil then
@@ -37,7 +37,7 @@ function DodoWorld:ItemAddedToInventoryFilter( params )
             local slot_1_item = unit:GetItemInSlot(DOTA_ITEM_SLOT_1)
             local slot_2_item = unit:GetItemInSlot(DOTA_ITEM_SLOT_2)
             if slot_1_item ~= nil then
-                if item_type[slot_1_item:GetAbilityName()] == "weapon_one_hand" then
+                if KeyValues.item_type[slot_1_item:GetAbilityName()] == "weapon_one_hand" then
                     --主手有单手武器，尝试装副手
                     --TODO判断流派能不能双武器
                     if slot_2_item == nil then

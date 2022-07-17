@@ -4,7 +4,7 @@ LinkLuaModifier( "modifier_hero_attribute", "common/combat/modifiers/modifier_he
 --link普通单位属性modifier
 LinkLuaModifier( "modifier_basic_attribute", "common/combat/modifiers/modifier_basic_attribute.lua", LUA_MODIFIER_MOTION_NONE )
 
-_G.KEY_READ_ON_SPAWN = {
+_G.ATTR_KEY_READ_ON_SPAWN = {
     "ArmorPhysical",
     "MagicalResistance",
 }
@@ -70,10 +70,10 @@ function BaseNPC:IsUseMana()
     local current_schools = CustomNetTables:GetTableValue("hero_schools", tostring(unit:GetPlayerOwnerID())).schools_index or 0
     local unit_key = label.."_schools_"..current_schools
 
-    if SchoolsUsemana[unit_key] ~= nil then
-        if SchoolsUsemana[unit_key] == 0 then
+    if KeyValues.SchoolsUsemana[unit_key] ~= nil then
+        if KeyValues.SchoolsUsemana[unit_key] == 0 then
             return false
-        elseif SchoolsUsemana[unit_key] == 1 then
+        elseif KeyValues.SchoolsUsemana[unit_key] == 1 then
             return true
         end
     end
@@ -135,13 +135,22 @@ if IsServer() then
 
     --把单位的指定键值暂存到他身上
     function SaveSpawnKV( thisEntity, kv )
-        local kv_table = {}
-        for i = 1, #KEY_READ_ON_SPAWN do
-            if kv:GetValue(KEY_READ_ON_SPAWN[i]) ~= nil then
-                kv_table[KEY_READ_ON_SPAWN[i]] = kv:GetValue(KEY_READ_ON_SPAWN[i])
+        local kv_attr_table = {}
+        --属性键值
+        for i = 1, #ATTR_KEY_READ_ON_SPAWN do
+            if kv:GetValue(ATTR_KEY_READ_ON_SPAWN[i]) ~= nil then
+                kv_attr_table[ATTR_KEY_READ_ON_SPAWN[i]] = tonumber(kv:GetValue(ATTR_KEY_READ_ON_SPAWN[i]))
             end
         end
-        thisEntity.kv_table = kv_table
+        thisEntity.kv_attr_table = kv_attr_table
+        --AI行为键值
+        local kv_ai_table = {}
+        for i = 1, #AI_KEY_READ_ON_SPAWN do
+            if kv:GetValue(AI_KEY_READ_ON_SPAWN[i]) ~= nil then
+                kv_ai_table[AI_KEY_READ_ON_SPAWN[i]] = tonumber(kv:GetValue(AI_KEY_READ_ON_SPAWN[i]))
+            end
+        end
+        thisEntity.kv_ai_table = kv_ai_table
     end
 
 end

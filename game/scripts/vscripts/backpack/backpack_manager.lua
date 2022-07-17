@@ -58,14 +58,14 @@ function OnEquipItem(userid, params)
         local slot_1_item = hero:GetItemInSlot(DOTA_ITEM_SLOT_1)
         local slot_2_item = hero:GetItemInSlot(DOTA_ITEM_SLOT_2)
         if slot_1_item ~= nil and not slot_1_item:IsNull() then
-            if item_type[slot_1_item:GetAbilityName()] == "weapon_double_hand" then
+            if KeyValues.item_type[slot_1_item:GetAbilityName()] == "weapon_double_hand" then
                 --装着双手武器，卸掉
                 OnUnEquipItem(-1, {hero_index = params.hero_index, unequip_slot = DOTA_ITEM_SLOT_1})
-            elseif item_type[slot_1_item:GetAbilityName()] == "weapon_one_hand" then
+            elseif KeyValues.item_type[slot_1_item:GetAbilityName()] == "weapon_one_hand" then
                 --主手有单手武器，尝试装副手
                 --TODO判断流派能不能双武器
                 if slot_2_item ~= nil and not slot_2_item:IsNull() then
-                    if item_type[slot_2_item:GetAbilityName()] == "weapon_one_hand" then
+                    if KeyValues.item_type[slot_2_item:GetAbilityName()] == "weapon_one_hand" then
                         --副手位置也是单手武器，换掉主手武器
                         OnUnEquipItem(-1, {hero_index = params.hero_index, unequip_slot = DOTA_ITEM_SLOT_1})
                     end
@@ -82,11 +82,11 @@ function OnEquipItem(userid, params)
         local slot_1_item = hero:GetItemInSlot(DOTA_ITEM_SLOT_1)
         local slot_2_item = hero:GetItemInSlot(DOTA_ITEM_SLOT_2)
         if slot_1_item ~= nil then
-            if item_type[slot_1_item:GetAbilityName()] == "weapon_double_hand" then
+            if KeyValues.item_type[slot_1_item:GetAbilityName()] == "weapon_double_hand" then
                 --装着双手武器，卸掉
                 OnUnEquipItem(-1, {hero_index = params.hero_index, unequip_slot = DOTA_ITEM_SLOT_1})
             end
-            if item_type[slot_2_item:GetAbilityName()] == "weapon_one_hand" then
+            if KeyValues.item_type[slot_2_item:GetAbilityName()] == "weapon_one_hand" then
                 --副手位置是单手武器，换掉副手武器
                 OnUnEquipItem(-1, {hero_index = params.hero_index, unequip_slot = DOTA_ITEM_SLOT_2})
             end

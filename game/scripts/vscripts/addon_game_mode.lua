@@ -5,11 +5,7 @@ _G.DodoWorld = DodoWorld or class({})
 -- 	CAddonTemplateGameMode = class({})
 -- end
 require('GameConfig')
-
-_G.UnitLevels = LoadKeyValues("scripts/npc/levels.txt")
-_G.RoleAbilities = LoadKeyValues("scripts/npc/role_abilities.txt")
-_G.SchoolsUsemana = LoadKeyValues("scripts/npc/schools_usemana.txt")
-_G.item_type = LoadKeyValues("scripts/npc/items/item_type.txt")
+require('KeyValues')
 
 function Precache( context )
 	--[[
@@ -56,7 +52,7 @@ function DodoWorld:InitGameMode()
 	level_table = {[0] = 0}
 
 	for lvl = 1, MAX_UNIT_LEVEL - 1 do
-		level_table[lvl] = lvl * UnitLevels.level_factor + UnitLevels.other_param
+		level_table[lvl] = lvl * KeyValues.UnitLevels.level_factor + KeyValues.UnitLevels.other_param
 	end
 
 	-- for key, value in pairs(level_table) do

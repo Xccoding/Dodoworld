@@ -1,9 +1,18 @@
 AI_WANDER_TYPE_ACTIVE = 1
 AI_WANDER_TYPE_PASSIVE = 2
+AI_WANDER_TYPE_ALWAYS = AI_WANDER_TYPE_PASSIVE * 2
 AI_GET_TARGET_ORDER_DHPS = 1
 AI_GET_TARGET_ORDER_RANGE = 2
 
-AGGRO_MSG_CD = 3
+AGGRO_MSG_CD = 3 --仇恨提示特效的冷却时间
+
+_G.AI_KEY_READ_ON_SPAWN = {
+    "MaxPursueRange",
+    "MaxWanderRange",
+    "CombatFindRadius",
+    "WanderType",
+    "SlowNoComabt",
+}
 
 local BaseNPC
 if IsServer() then
@@ -37,14 +46,14 @@ function CDOTA_BaseNPC:C_RefreshAggroTarget(iGetOrder, fFind_radius, hAggro_targ
     --没被嘲讽
     if aggro_target == nil then
         if iGetOrder == AI_GET_TARGET_ORDER_DHPS then
-            aggro_target = self:C_GetAggroTargetByDHPS()
+            aggro_target = self:C_GetAggroTargetByDHPS(fFind_radius)
             if aggro_target == nil then
                 aggro_target = self:C_GetAggroTargetByRange(fFind_radius)
             end 
         elseif iGetOrder == AI_GET_TARGET_ORDER_RANGE then
             aggro_target = self:C_GetAggroTargetByRange(fFind_radius)
             if aggro_target == nil then
-                aggro_target = self:C_GetAggroTargetByDHPS()
+                aggro_target = self:C_GetAggroTargetByDHPS(fFind_radius)
             end
         end
     end
@@ -64,10 +73,10 @@ function CDOTA_BaseNPC:C_RefreshAggroTarget(iGetOrder, fFind_radius, hAggro_targ
     self.C_AggroTarget = aggro_target
 end
 --DPS优先选择仇恨目标
-function CDOTA_BaseNPC:C_GetAggroTargetByDHPS()
+function CDOTA_BaseNPC:C_GetAggroTargetByDHPS(fFind_radius)
     local max_hatred = 0
     local aggro_target = nil
-    local units = FindUnitsInRadius(self:GetTeamNumber(), self:GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
+    local units = FindUnitsInRadius(self:GetTeamNumber(), self:GetAbsOrigin(), nil, fFind_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
     for _, unit in pairs(units) do
         if unit ~= nil and unit:IsAlive() then
             --print("打印DPS",unit:GetDPS())

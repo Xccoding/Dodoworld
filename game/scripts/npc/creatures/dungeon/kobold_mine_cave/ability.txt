@@ -64,7 +64,7 @@
 	"watcher_adolph_dash"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"ogre_magi_frost_armor"
+		"AbilityTextureName"	"alpha_wolf_command_aura"
 		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/watcher_adolph_dash"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -75,7 +75,7 @@
 
 		"AbilityCooldown"				"12"
 		"AbilityManaCost"				"5"
-		"AbilityCastRange"				"800"
+		"AbilityCastRange"				"1500"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"				"0.3"
@@ -85,6 +85,113 @@
             "pre_time"  "3"
 			"radius"	"250"
 			"damage"	"100"
+        }
+	}
+
+	// 提灯的莫里斯的头槌
+	"lamper_maurice_head_butt"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"mud_golem_hurl_boulder"
+		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/lamper_maurice_head_butt"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"15"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"180"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"0.6"
+
+		"AbilityValues"
+        {
+            "duration"  "3"
+        }
+	}
+
+	// 提灯的莫里斯的强光矿灯
+	"lamper_maurice_blaze_miner_light"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"keeper_of_the_light_blinding_light"
+		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/lamper_maurice_blaze_miner_light"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		// "AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		// "AbilityCooldown"				"15"
+		// "AbilityManaCost"				"0"
+		"AbilityCastRange"				"180"
+		"AbilityCastRangeBuffer"		"250"
+		// "AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		// "AbilityCastPoint"				"0.6"
+
+		"AbilityValues"
+        {
+            "radius"  "300"
+			"miss_pct"  "30"
+        }
+	}
+
+	// 提灯的莫里斯的求援
+	"lamper_maurice_seek_help"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"hill_troll_rally"
+		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/lamper_maurice_seek_help"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"15"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"180"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"0.6"
+
+		"AbilityValues"
+        {
+            "channel_time"  "3"
+			"count"	"5"
+        }
+	}
+
+	// 莫里斯家族矿工的镐击
+	"miner_maurice_pick_strike"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"hill_troll_rally"
+		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/miner_maurice_pick_strike"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		// "AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"12"
+		// "AbilityManaCost"				"0"
+		"AbilityCastRange"				"180"
+		"AbilityCastRangeBuffer"		"250"
+		// "AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		// "AbilityCastPoint"				"0.6"
+
+		"AbilityValues"
+        {
+            "armor_reduce"  "6"
+			"duration"  "6"
         }
 	}
 

@@ -19,9 +19,9 @@ function DodoWorld:OnNpcSpawned( params )
         unit:AddNewModifier(unit, nil, "modifier_hero_attribute", {})
         -- PlayerResource:SetOverrideSelectionEntity(unit:GetPlayerOwnerID(), unit)
     else
-        if unit.kv_table ~= nil then
-            unit:AddNewModifier(unit, nil, "modifier_basic_attribute", unit.kv_table)
-            unit.kv_table = nil
+        if unit.kv_attr_table ~= nil then
+            unit:AddNewModifier(unit, nil, "modifier_basic_attribute", unit.kv_attr_table)
+            unit.kv_attr_table = nil
         end
     end    
 end

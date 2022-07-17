@@ -36,7 +36,7 @@ function modifier_common:OnTakeDamageKillCredit(params)
     local hAttacker = params.attacker
     local hVictim = params.target
     
-    if not (hVictim:HasModifier("modifier_escape") or hAttacker:HasModifier("modifier_escape")) then
+    if not (hVictim:HasModifier("modifier_escape") or hAttacker:HasModifier("modifier_escape")) and hAttacker:IsAlive() then
         local aggro_target = nil
         if not hVictim:HasModifier("modifier_combat") then
             aggro_target = hAttacker:entindex()

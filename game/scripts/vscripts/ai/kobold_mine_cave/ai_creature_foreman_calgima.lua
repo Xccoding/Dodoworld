@@ -4,12 +4,12 @@ if ai_creature_foreman_calgima == nil then
 	ai_creature_foreman_calgima = class( boss_base_ai )
 end
 
-function Spawn( tEntityKeyValues )
+function Spawn( kv )
     if IsServer() then
 		if thisEntity == nil then
 			return
 		end
-
+        SaveSpawnKV( thisEntity, kv )
         thisEntity.current_order = {order = nil, fEndtime = nil}
 		thisEntity.AI = ai_creature_foreman_calgima( thisEntity, 0.25 )
 

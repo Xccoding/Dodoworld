@@ -21,4 +21,4 @@
 "DOTA_Tooltip_modifier_foreman_calgima_crystal_armor_debuff_Description"	"攻击速度降低%dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%"
 
 "DOTA_Tooltip_ability_watcher_adolph_dash"	"猎犬冲锋"
-"DOTA_Tooltip_ability_watcher_adolph_dash_Description"	"阿道夫锁定一个目标开始准备冲刺，%pre_time%后扑向目标，对目标和周围%radius%范围内的所有玩家造成%damage%点物理伤害"
+"DOTA_Tooltip_ability_watcher_adolph_dash_Description"	"阿道夫锁定一个目标开始准备冲刺，%pre_time%秒后扑向目标，对目标和周围%radius%范围内的所有玩家造成%damage%点物理伤害"
