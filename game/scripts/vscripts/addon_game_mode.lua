@@ -82,6 +82,7 @@ function DodoWorld:InitGameMode()
 	GameRules:GetGameModeEntity():SetInnateMeleeDamageBlockPerLevelAmount(0)--设置近战英雄自带格挡每级成长为0
 
 	GameRules:GetGameModeEntity():SetSendToStashEnabled(false)--禁用储藏处
+	GameRules:GetGameModeEntity():SetUnseenFogOfWarEnabled(true) -- 启用全黑迷雾
 
 	--过滤器
 	GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(self.ItemAddedToInventoryFilter, self)

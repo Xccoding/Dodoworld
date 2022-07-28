@@ -76,7 +76,7 @@ else
             return original_add_function(self, hCaster, hAbility, sModifierName, params)
         else
             if params.duration ~= 0 and type(params.duration) == "number" then
-                params.duration = params.duration * ( 100 - self:GetStatusResistance()) * 0.01
+                params.duration = params.duration * ( 100 - Rounding(self:GetStatusResistance() * 100)) * 0.01
             end
             return original_add_function(self, hCaster, hAbility, sModifierName, params)
         end

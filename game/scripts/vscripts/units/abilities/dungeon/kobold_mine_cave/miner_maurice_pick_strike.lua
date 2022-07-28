@@ -41,7 +41,7 @@ end
 function modifier_miner_maurice_pick_strike:OnAttackLanded( params )
 	local hParent = self:GetParent()
     if params.attacker == hParent and self:GetAbility() ~= nil and self:GetAbility():IsCooldownReady() then
-        params.target:AddNewModifier(hParent, self:GetAbility(), "modifier_miner_maurice_pick_strike_debuff", {duration = self.debuff_duration} )
+        params.target:AddNewModifier(hParent, self:GetAbility(), "modifier_miner_maurice_pick_strike_debuff", {duration = self.duration} )
         EmitSoundOn("DOTA_Item.MedallionOfCourage.Activate", params.target)
         self:GetAbility():UseResources(true, true, true)
     end
@@ -71,7 +71,7 @@ function modifier_miner_maurice_pick_strike_debuff:OnDestroy(params)
 end
 function modifier_miner_maurice_pick_strike_debuff:DeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_MISS_PERCENTAGE
+		MODIFIER_PROPERTY_TOOLTIP
 	}
 end
 function modifier_miner_maurice_pick_strike_debuff:CDeclareFunctions()
@@ -87,4 +87,7 @@ function modifier_miner_maurice_pick_strike_debuff:GetEffectAttachType()
 end
 function modifier_miner_maurice_pick_strike_debuff:GetEffectName()
     return "particles/items2_fx/medallion_of_courage.vpcf"
+end
+function modifier_miner_maurice_pick_strike_debuff:OnTooltip()
+	return self.armor_reduce
 end

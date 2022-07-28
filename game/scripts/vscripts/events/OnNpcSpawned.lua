@@ -17,6 +17,7 @@ function DodoWorld:OnNpcSpawned( params )
         Abilities_manager:RefreshAbilitiesToRole({entindex = params.entindex, new_schools = new_schools})
         Abilities_manager:AutoUpgradeAbilities(unit)
         unit:AddNewModifier(unit, nil, "modifier_hero_attribute", {})
+        AddFOWViewer(unit:GetTeamNumber(), Vector(0,0,0), 999999, 1, false)
         -- PlayerResource:SetOverrideSelectionEntity(unit:GetPlayerOwnerID(), unit)
     else
         if unit.kv_attr_table ~= nil then

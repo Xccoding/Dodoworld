@@ -12,12 +12,11 @@ function lamper_maurice_seek_help:GetChannelAnimation()
 end
 function lamper_maurice_seek_help:OnSpellStart()
 	local hCaster = self:GetCaster()
-	local hTarget = self:GetCursorTarget()
-	local channel_time = self:GetSpecialValueFor("channel_time")
 
-	--EmitSoundOn("Hero_DragonKnight.DragonTail.Target", hTarget)
-
-	
+	EmitSoundOn("venomancer_venm_underattack_02", hCaster)
+end
+function lamper_maurice_seek_help:GetIntrinsicModifierName()
+    return "modifier_lamper_maurice_seek_help"
 end
 function lamper_maurice_seek_help:OnChannelFinish(bInterrupted)
     if not IsServer() then
@@ -27,8 +26,10 @@ function lamper_maurice_seek_help:OnChannelFinish(bInterrupted)
     if not bInterrupted then
         local buff = hCaster:FindModifierByName("modifier_lamper_maurice_seek_help")
         for i = 1, #buff.moles do
-            if IsValidEntity(buff.moles[i]) and buff.moles[i]:IsAlive() then
+            if IsValidEntity(buff.moles[i]) and buff.moles[i]:IsAlive() and buff.moles[i]:HasModifier("modifier_lamper_maurice_seek_help_sleep") then
                 buff.moles[i]:RemoveModifierByName("modifier_lamper_maurice_seek_help_sleep")
+                EmitSoundOn("Hero_Meepo.Poof.End00", buff.moles[i])
+                break
             end  
         end
     end
@@ -54,14 +55,7 @@ function modifier_lamper_maurice_seek_help:OnCreated(params)
     self.count = self:GetAbilitySpecialValueFor("count")
     if IsServer() then
         --TODO预铺小弟
-        self.moles = {}
-        for i = 1, self.count do
-            local mole = CreateUnitByNameAsync("creature_miner_maurice", hCaster:GetAbsOrigin() + RandomVector(200, 500), true, hCaster, hCaster, hCaster:GetTeamNumber(), 
-            function (unit)
-                unit:AddNewModifier(hCaster, self:GetAbility(), "modifier_lamper_maurice_seek_help_sleep", {})
-            end)
-            table.insert(self.moles, mole)
-        end
+        self:StartIntervalThink(1)
     end
 end
 function modifier_lamper_maurice_seek_help:OnRefresh(params)
@@ -74,7 +68,33 @@ function modifier_lamper_maurice_seek_help:DeclareFunctions()
 end
 function modifier_lamper_maurice_seek_help:CDeclareFunctions()
     return {
+        CMODIFIER_EVENT_ON_COMBAT_START,
+        CMODIFIER_EVENT_ON_COMBAT_END,
     }
+end
+function modifier_lamper_maurice_seek_help:C_OnCombatStart()
+    local hCaster = self:GetCaster()
+    if self.moles == nil then
+        self.moles = {}
+    end
+    for i = 1, self.count do
+        local mole = CreateUnitByNameAsync("creature_miner_maurice", hCaster:GetAbsOrigin() + RandomVector(RandomFloat(200, 500)), true, hCaster, hCaster, hCaster:GetTeamNumber(), 
+        function (unit)
+            unit.spawn_entity = hCaster
+            table.insert(self.moles, unit)
+            unit:AddNewModifier(hCaster, self:GetAbility(), "modifier_lamper_maurice_seek_help_sleep", {})
+        end)
+        
+    end
+end
+function modifier_lamper_maurice_seek_help:C_OnCombatEnd()
+    if self.moles ~= nil and type(self.moles) == "table" then
+        for i = 1, self.count do
+            if IsValidEntity(self.moles[i]) and self.moles[i]:IsAlive() then
+                self.moles[i]:RemoveSelf()
+            end
+        end
+    end
 end
 --=======================================modifier_lamper_maurice_seek_help_sleep=======================================
 if modifier_lamper_maurice_seek_help_sleep == nil then
@@ -94,8 +114,8 @@ function modifier_lamper_maurice_seek_help_sleep:IsPurgeException()
 end
 function modifier_lamper_maurice_seek_help_sleep:OnCreated(params)
     local hParent = self:GetParent()
-    if IsClient() then
-        local particleID = ParticleManager:CreateParticle("particles/units/heroes/hero_meepo/meepo_burrow.vpcf", PATTACH_CUSTOMORIGIN, nil)
+    if IsServer() then
+        local particleID = ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow_inground.vpcf", PATTACH_CUSTOMORIGIN, nil)
         ParticleManager:SetParticleControl(particleID, 0, hParent:GetAbsOrigin())
         self:AddParticle(particleID, true, false, -1, false, false)
     end
@@ -104,10 +124,10 @@ function modifier_lamper_maurice_seek_help_sleep:OnRefresh(params)
 end
 function modifier_lamper_maurice_seek_help_sleep:OnDestroy(params)
     local hParent = self:GetParent()
-    if IsClient() then
+    if IsServer() then
         local particleID = ParticleManager:CreateParticle("particles/units/heroes/hero_meepo/meepo_burrow_endend.vpcf", PATTACH_CUSTOMORIGIN, nil)
         ParticleManager:SetParticleControl(particleID, 0, hParent:GetAbsOrigin())
-        self:AddParticle(particleID, true, false, -1, false, false)
+        ParticleManager:ReleaseParticleIndex(particleID)
     end
 end
 function modifier_lamper_maurice_seek_help_sleep:DeclareFunctions()
@@ -124,6 +144,7 @@ function modifier_lamper_maurice_seek_help_sleep:CheckState()
         [MODIFIER_STATE_INVULNERABLE] = true,
         [MODIFIER_STATE_NO_HEALTH_BAR] = true,
         [MODIFIER_STATE_INVISIBLE] = true,
+        [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
     }
 end
 

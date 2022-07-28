@@ -42,7 +42,7 @@ function modifier_lamper_maurice_blaze_miner_light:IsAura()
 	return true
 end
 function modifier_lamper_maurice_blaze_miner_light:GetModifierAura()
-	return "modifier_death_knight_midnight_pulse_buff"
+	return "modifier_lamper_maurice_blaze_miner_light_debuff"
 end
 function modifier_lamper_maurice_blaze_miner_light:GetAuraRadius()
 	return self.radius

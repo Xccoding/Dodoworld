@@ -22,3 +22,19 @@
 
 "DOTA_Tooltip_ability_watcher_adolph_dash"	"猎犬冲锋"
 "DOTA_Tooltip_ability_watcher_adolph_dash_Description"	"阿道夫锁定一个目标开始准备冲刺，%pre_time%秒后扑向目标，对目标和周围%radius%范围内的所有玩家造成%damage%点物理伤害"
+
+"DOTA_Tooltip_ability_lamper_maurice_head_butt"	"头槌"
+"DOTA_Tooltip_ability_lamper_maurice_head_butt_Description"	"用脑袋重槌目标，造成%duration%秒眩晕"
+
+"DOTA_Tooltip_ability_lamper_maurice_blaze_miner_light"	"强光矿灯"
+"DOTA_Tooltip_ability_lamper_maurice_blaze_miner_light_Description"	"莫里斯手中的矿灯有很高的亮度，能使周围%radius%码的敌人攻击时有%miss_pct%%%概率落空"
+"DOTA_Tooltip_modifier_lamper_maurice_blaze_miner_light_debuff"	"强光矿灯"
+"DOTA_Tooltip_modifier_lamper_maurice_blaze_miner_light_debuff_Description"	"攻击有%dMODIFIER_PROPERTY_MISS_PERCENTAGE%%%几率落空"
+
+"DOTA_Tooltip_ability_lamper_maurice_seek_help"	"矿道求援"
+"DOTA_Tooltip_ability_lamper_maurice_seek_help_Description"	"莫里斯周围会有%count%名待命的矿工，他可以持续施法%channel_time%秒来唤醒场地上的一名家族矿工保护自己"
+
+"DOTA_Tooltip_ability_miner_maurice_pick_strike"	"镐击"
+"DOTA_Tooltip_ability_miner_maurice_pick_strike_Description"	"莫里斯家族矿工挥舞手中的矿镐，在攻击时击碎目标的防御，使目标的护甲降低%armor_reduce%点，持续%duration%秒"
+"DOTA_Tooltip_modifier_miner_maurice_pick_strike_debuff"	"镐击"
+"DOTA_Tooltip_modifier_miner_maurice_pick_strike_debuff_Description"	"护甲降低%dMODIFIER_PROPERTY_TOOLTIP%点"

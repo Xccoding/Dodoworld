@@ -8,23 +8,29 @@ function AngleBetweenVectors(v1, v2)
 end
 
 --拷贝?
-function DeepCopy(t)
-    local new_table = {}
-    for k, v in pairs(t) do
-        if type(v) == "table" then
-            new_table[k] = DeepCopy(v)
-        else
-            new_table[k] = v
-        end
-    end
+-- function DeepCopy(t)
+--     local new_table = {}
+--     for k, v in pairs(t) do
+--         if type(v) == "table" then
+--             new_table[k] = DeepCopy(v)
+--         else
+--             new_table[k] = v
+--         end
+--     end
 
-    return new_table
-end
+--     return new_table
+-- end
 
+--获取表的元素个数
 function GetElementCount(t)
     local count = 0
     for key, value in pairs(t) do
         count = count + 1
     end
     return count
+end
+
+--四舍五入
+function Rounding(num)
+    return math.floor(num + 0.5)
 end

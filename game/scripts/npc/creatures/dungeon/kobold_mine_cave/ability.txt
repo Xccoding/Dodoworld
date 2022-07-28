@@ -106,7 +106,7 @@
 		"AbilityCastRange"				"180"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"				"0.6"
+		"AbilityCastPoint"				"0.4"
 
 		"AbilityValues"
         {
