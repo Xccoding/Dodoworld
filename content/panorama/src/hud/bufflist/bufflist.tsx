@@ -75,11 +75,11 @@ function Buff({buff_index}: {buff_index:number}){
     let sTimeRemain = "0s"
     if(dTimeRemain / 3600 >= 1){
         dTimeRemain = dTimeRemain / 3600
-        sTimeRemain = dTimeRemain + "h"
+        sTimeRemain = Math.floor(dTimeRemain) + "h"
     }
     else if(dTimeRemain / 60 >= 1){
         dTimeRemain = dTimeRemain / 60
-        sTimeRemain = dTimeRemain + "m"
+        sTimeRemain = Math.floor(dTimeRemain) + "m"
     }
     else if(dTimeRemain < 1 && dTimeRemain >= 0)
     {

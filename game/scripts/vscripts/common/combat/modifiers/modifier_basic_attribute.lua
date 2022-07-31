@@ -17,7 +17,7 @@ end
 function modifier_basic_attribute:OnCreated( kv )
     if IsServer() then
         self.ArmorPhysical = kv.ArmorPhysical
-        self.MagicalResistance = kv.MagicalResistance
+        self.CustomMagicalResistance = kv.CustomMagicalResistance
     end
 end
 function modifier_basic_attribute:CDeclareFunctions()
@@ -44,7 +44,7 @@ end
 
 --魔法护甲
 function modifier_basic_attribute:C_GetModifierMagicalArmor_Constant( params )
-    return self.MagicalResistance
+    return self.CustomMagicalResistance
 end
 --护甲
 function modifier_basic_attribute:C_GetModifierPhysicalArmor_Constant( params )

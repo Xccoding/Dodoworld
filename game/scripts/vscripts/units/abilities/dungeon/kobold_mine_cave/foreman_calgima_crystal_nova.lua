@@ -19,25 +19,28 @@ function foreman_calgima_crystal_nova:OnSpellStart()
     Alert_manager:CreateParticleAlert(self:GetCursorPosition(), radius, delay, ALERT_PARTICLE_ICE)
 
     Timers:CreateTimer(delay, function()
-        EmitSoundOnLocationWithCaster( vPos, "Hero_Crystal.CrystalNova", hCaster )
-        local particleID = ParticleManager:CreateParticle( "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf", PATTACH_CUSTOMORIGIN, nil )
-        ParticleManager:SetParticleControl( particleID, 0, vPos + Vector( 0, 0, 40 ) )
-        ParticleManager:SetParticleControl( particleID, 1, Vector( radius, 1, 0 ) )
-        ParticleManager:ReleaseParticleIndex( particleID )
+        if IsValidEntity(hCaster) and hCaster:IsAlive() then
+            EmitSoundOnLocationWithCaster( vPos, "Hero_Crystal.CrystalNova", hCaster )
+            local particleID = ParticleManager:CreateParticle( "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf", PATTACH_CUSTOMORIGIN, nil )
+            ParticleManager:SetParticleControl( particleID, 0, vPos + Vector( 0, 0, 40 ) )
+            ParticleManager:SetParticleControl( particleID, 1, Vector( radius, 1, 0 ) )
+            ParticleManager:ReleaseParticleIndex( particleID )
 
-        local enemies = FindUnitsInRadius( hCaster:GetTeamNumber(), vPos, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
-        for _,enemy in pairs( enemies ) do
-            if enemy ~= nil and enemy:IsMagicImmune() == false and enemy:IsInvulnerable() == false then
-                enemy:AddNewModifier( hCaster, self, "modifier_foreman_calgima_crystal_nova", { duration = duration } )
-                
-                ApplyDamage({
-                    victim = enemy,
-                    attacker = hCaster,
-                    damage = damage,
-                    damage_type = DAMAGE_TYPE_MAGICAL,
-                    ability = self,
-                })
-                
+            local enemies = FindUnitsInRadius( hCaster:GetTeamNumber(), vPos, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
+            for _,enemy in pairs( enemies ) do
+                if enemy ~= nil and enemy:IsMagicImmune() == false and enemy:IsInvulnerable() == false then
+                    enemy:AddNewModifier( hCaster, self, "modifier_foreman_calgima_crystal_nova", { duration = duration } )
+                    
+                    ApplyDamage({
+                        victim = enemy,
+                        attacker = hCaster,
+                        damage = damage,
+                        damage_type = DAMAGE_TYPE_MAGICAL,
+                        ability = self,
+                        damage_flags = DOTA_DAMAGE_FLAG_DIRECT,
+                    })
+                    
+                end
             end
         end
     end)

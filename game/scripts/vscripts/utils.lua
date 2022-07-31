@@ -34,3 +34,12 @@ end
 function Rounding(num)
     return math.floor(num + 0.5)
 end
+
+--判断handle是否可用
+function IsValid( h )
+    if h ~= nil and not h:IsNull() then
+        return true
+    else
+        return false
+    end 
+end

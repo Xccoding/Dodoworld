@@ -6,7 +6,7 @@ LinkLuaModifier( "modifier_basic_attribute", "common/combat/modifiers/modifier_b
 
 _G.ATTR_KEY_READ_ON_SPAWN = {
     "ArmorPhysical",
-    "MagicalResistance",
+    "CustomMagicalResistance",
 }
 
 -------------------------------双端内容-------------------------------

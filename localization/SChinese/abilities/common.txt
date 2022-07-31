@@ -1,0 +1,2 @@
+"DOTA_Tooltip_modifier_stun_custom"	"晕眩"
+"DOTA_Tooltip_modifier_stun_custom_Description"	"被晕眩"

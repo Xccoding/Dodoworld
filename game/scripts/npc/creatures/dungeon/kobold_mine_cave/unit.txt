@@ -25,7 +25,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"10.0"			// 护甲，使用了自定义的公式计算
-		"MagicalResistance"		"10" // 魔法抗性，用数值而非百分比计算
+		"CustomMagicalResistance"		"10" // 魔法抗性，用数值而非百分比计算
 
 		// Attack
 		//----------------------------------------------------------------
@@ -122,7 +122,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"10.0"			// 护甲，使用了自定义的公式计算
-		"MagicalResistance"		"10" // 魔法抗性，用数值而非百分比计算
+		"CustomMagicalResistance"		"10" // 魔法抗性，用数值而非百分比计算
 
 		// Attack
 		//----------------------------------------------------------------
@@ -219,7 +219,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"10.0"			// 护甲，使用了自定义的公式计算
-		"MagicalResistance"		"10" // 魔法抗性，用数值而非百分比计算
+		"CustomMagicalResistance"		"10" // 魔法抗性，用数值而非百分比计算
 
 		// Attack
 		//----------------------------------------------------------------
@@ -316,7 +316,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"10.0"			// 护甲，使用了自定义的公式计算
-		"MagicalResistance"		"10" // 魔法抗性，用数值而非百分比计算
+		"CustomMagicalResistance"		"10" // 自定义魔法抗性，用数值而非百分比计算
 
 		// Attack
 		//----------------------------------------------------------------
@@ -387,6 +387,102 @@
 		"CombatFindRadius"	"1400" // 战斗中索敌距离
 		"WanderType"		"2" //游荡行为
 		"SlowNoComabt"		"0" // 战斗外减速比例
+	}
+
+	//矿主柯博德
+    "creature_mine_owner_kobold"	
+	{
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/creeps/neutral_creeps/n_creep_kobold/kobold_a/n_creep_kobold_a.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"n_creep_Melee"
+		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+		"Level"						"11"
+		"ModelScale" 				"1.5"
+		"IsNeutralUnitType"			"1"
+		"UnitLabel"					"boss"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"mine_owner_kobold_open_wound"			// Ability 1
+		"Ability2"					"mine_owner_kobold_shaking_wine_glass"			// Ability 2
+		"Ability3"					"mine_owner_kobold_throw_money"			// Ability 3
+		"Ability4"					""			// Ability 4
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"4"			// 护甲，使用了自定义的公式计算
+		"CustomMagicalResistance"		"0" // 魔法抗性，用数值而非百分比计算
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"30"		// Damage range min.
+		"AttackDamageMax"			"36"		// Damage range max.
+		"AttackRate"				"1.35"		// Speed of attack.
+		"AttackAnimationPoint"		"0.38"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"0"		// Range within a target can be acquired.
+		"AttackRange"				"100"		// Range within a target can be attacked.
+		"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
+		"ProjectileSpeed"			"1500"		// Speed of projectile.		     
+
+		// Bounds
+		//----------------------------------------------------------------
+		"RingRadius"				"40"
+		"HealthBarOffset"			"250"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"24"		// Experience earn.
+		"BountyGoldMin"				"21"		// Gold earned min.
+		"BountyGoldMax"				"29"		// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"270"		// Speed.			
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"280"		// Base health.
+		"StatusHealthRegen"			"0.0"		// Health regeneration rate.
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"8000"		// Range of vision during day light.
+		"VisionNighttimeRange"		"8000"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		// Creature Data
+		//----------------------------------------------------------------
+		"Creature"
+		{
+			//Level Up
+			"HPGain"					"50"
+			"DamageGain"				"2"
+			"ArmorGain"					"0.25"
+			"MagicResistGain"			"0.1"
+			"MoveSpeedGain"				"0"
+			"BountyGain"				"3"
+			"XPGain"					"15"
+		}
+        "vscripts"					"ai/kobold_mine_cave/ai_creature_mine_owner_kobold.lua"
+
+		// 自定义键值
+		"MaxPursueRange"	"1000" // 最大追击距离
+		"MaxWanderRange"	"500" // 最大游荡距离
+		"CombatFindRadius"	"1400" // 战斗中索敌距离
+		"WanderType"		"1" //游荡行为
+		"SlowNoComabt"		"30" // 战斗外减速比例
 	}
 
 

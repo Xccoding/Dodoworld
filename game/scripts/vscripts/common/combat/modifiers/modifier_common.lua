@@ -117,16 +117,6 @@ function modifier_common:GetModifierTotalDamageOutgoing_Percentage( params )
     local hAttacker = params.attacker
     local hVictim = params.target
     local fPercent = 0--基础伤害比率
-
-    --计算护甲减伤
-    if params.damage_type == DAMAGE_TYPE_PHYSICAL then
-        local armor_pct = hVictim:GetPhysicalDamageReduction(hAttacker:GetLevel() - hVictim:GetLevel())
-        fPercent = fPercent - armor_pct
-    elseif params.damage_type == DAMAGE_TYPE_MAGICAL then
-        --计算魔抗减伤
-        local armor_pct = hVictim:GetMagicalDamageReduction(hAttacker:GetLevel() - hVictim:GetLevel())
-        fPercent = fPercent - armor_pct
-    end
     
     --普通攻击伤害
     if params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
@@ -177,6 +167,16 @@ function modifier_common:GetModifierTotalDamageOutgoing_Percentage( params )
             CFireModifierEvent(hVictim, CMODIFIER_EVENT_ON_SPELL_NOTCRIT, params)
             fPercent = fPercent + 0
         end
+    end
+
+    --计算护甲减伤
+    if params.damage_type == DAMAGE_TYPE_PHYSICAL then
+        local armor_pct = hVictim:GetPhysicalDamageReduction(hAttacker:GetLevel() - hVictim:GetLevel())
+        fPercent = fPercent - armor_pct
+    elseif params.damage_type == DAMAGE_TYPE_MAGICAL then
+        --计算魔抗减伤
+        local armor_pct = hVictim:GetMagicalDamageReduction(hAttacker:GetLevel() - hVictim:GetLevel())
+        fPercent = fPercent - armor_pct
     end
 
     return fPercent

@@ -3,7 +3,7 @@ if modifier_stun_custom == nil then
 	modifier_stun_custom = class({})
 end
 function modifier_stun_custom:IsHidden()
-    return true
+    return false
 end
 function modifier_stun_custom:IsDebuff()
     return true

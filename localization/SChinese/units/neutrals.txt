@@ -9,3 +9,4 @@
 "creature_watcher_adolph"   "看门的阿道夫"
 "creature_lamper_maurice"   "提灯的莫里斯"
 "creature_miner_maurice"   "莫里斯家族矿工"
+"creature_mine_owner_kobold"   "矿主柯博德"

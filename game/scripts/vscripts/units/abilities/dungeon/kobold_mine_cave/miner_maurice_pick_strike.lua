@@ -80,7 +80,7 @@ function modifier_miner_maurice_pick_strike_debuff:CDeclareFunctions()
 	}
 end
 function modifier_miner_maurice_pick_strike_debuff:C_GetModifierPhysicalArmor_Constant( params )
-	return self.armor_reduce
+	return -self.armor_reduce
 end
 function modifier_miner_maurice_pick_strike_debuff:GetEffectAttachType()
     return PATTACH_OVERHEAD_FOLLOW

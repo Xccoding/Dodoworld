@@ -3,7 +3,7 @@ if modifier_taunt_custom == nil then
 	modifier_taunt_custom = class({})
 end
 function modifier_taunt_custom:IsHidden()
-    return true
+    return false
 end
 function modifier_taunt_custom:IsDebuff()
     return true

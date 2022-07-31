@@ -81,7 +81,7 @@ function mage_light_strike_array:OnSpellStart()
         ParticleManager:DestroyParticle(self.particleID_pre, true)
     end
 	self.particleID_pre = nil
-	local particleID = ParticleManager:CreateParticleForPlayer("particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf", PATTACH_CUSTOMORIGIN, hCaster, hCaster:GetPlayerOwner())
+	local particleID = ParticleManager:CreateParticle("particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf", PATTACH_CUSTOMORIGIN, hCaster)
 	ParticleManager:SetParticleControl(particleID, 0, vPos)
 	ParticleManager:SetParticleControl(particleID, 1, Vector(radius, 0, 0))
 	ParticleManager:ReleaseParticleIndex(particleID)

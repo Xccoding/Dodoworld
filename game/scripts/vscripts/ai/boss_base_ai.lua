@@ -8,6 +8,7 @@ function boss_base_ai:constructor(hUnit, fInterval)
     self.me = hUnit
     self.Interval = fInterval
     self:SetupBehaviors()
+    self.me.current_order = {order = {}, fEndtime = GameRules:GetGameTime(), bForce = false, ability = nil}
 end
 
 function boss_base_ai:SetupBehaviors()
@@ -87,7 +88,14 @@ function boss_base_ai:OnCommonThink()
             end
         end
     else
-        if self.me.current_order.order == nil or (self.me.current_order.order ~= nil and self.me.current_order.fEndtime < GameRules:GetGameTime() and not self.me:IsChanneling()) or self.me.current_order.order == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
+        if self.me.current_order.order == DOTA_UNIT_ORDER_MOVE_TO_POSITION or
+        (
+            not self.me:IsChanneling() and 
+            (
+                self.me.current_order.fEndtime < GameRules:GetGameTime() or (self.me.current_order.ability ~= nil and self.me.current_order.ability:GetChannelTime() > 0) --行为已到结束时间或者是持续施法行为但被打断了
+            )
+        )
+        then
             local desires = {}
             if self.behaviors ~= nil then
                 for i = 1, #self.behaviors do
@@ -127,14 +135,14 @@ function boss_base_ai:OnCommonThink()
                                 TargetIndex = self.me:C_GetAggroTarget():entindex(),
                                 Queue = false,
                             })
-                            self.me.current_order = {order = DOTA_UNIT_ORDER_ATTACK_TARGET, fEndtime = GameRules:GetGameTime() + self.me:GetBaseAttackTime(), bForce = false}
+                            self.me.current_order = {order = DOTA_UNIT_ORDER_ATTACK_TARGET, fEndtime = GameRules:GetGameTime() + self.me:GetBaseAttackTime(), bForce = false, ability = nil}
                         end
                     else
                         --执行技能
                         ExecuteOrderFromTable(
                             desires[1].order_info.order_table
                         )
-                        self.me.current_order = {order = desires[1].order_info.order_table.OrderType, fEndtime = GameRules:GetGameTime() + desires[1].order_info.cost_time, bForce = false}
+                        self.me.current_order = {order = desires[1].order_info.order_table.OrderType, fEndtime = GameRules:GetGameTime() + desires[1].order_info.cost_time, bForce = false, ability = EntIndexToHScript(desires[1].order_info.order_table.AbilityIndex)}
                     end
                 end
             end
@@ -165,7 +173,7 @@ function boss_base_ai:NewWander(bForce)
         Position = pos,
         Queue = not bForce,
     })
-    unit.current_order = {order = DOTA_UNIT_ORDER_MOVE_TO_POSITION, fEndtime = GameRules:GetGameTime() + time, bForce = bForce}
+    unit.current_order = {order = DOTA_UNIT_ORDER_MOVE_TO_POSITION, fEndtime = GameRules:GetGameTime() + time, bForce = bForce, ability = nil}
 end
 
 --获取当前可用的技能占主动技能的百分之几

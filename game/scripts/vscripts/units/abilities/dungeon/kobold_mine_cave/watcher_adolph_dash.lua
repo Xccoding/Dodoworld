@@ -144,6 +144,7 @@ function modifier_watcher_adolph_dash:UpdateHorizontalMotion(me, dt)
                     damage = self.damage,
                     damage_type = DAMAGE_TYPE_PHYSICAL,
                     ability = self:GetAbility(),
+                    damage_flags = DOTA_DAMAGE_FLAG_DIRECT,
                 })
             end
         end

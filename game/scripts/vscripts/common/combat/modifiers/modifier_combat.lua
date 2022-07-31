@@ -77,6 +77,16 @@ function modifier_combat:OnIntervalThink()
             if not IsAggroTarget then
                 --脱战驱散
                 hParent:Purge(false, true, false, true, true)
+                --驱散一些仅脱战才能驱散的modifier
+                local buffs = hParent:FindAllModifiers()
+                for _, buff in pairs(buffs) do
+                    if buff.RemoveOnCombatEnd ~= nil and type(buff.RemoveOnCombatEnd) == "function" then
+                        if buff:RemoveOnCombatEnd() then
+                            buff:Destroy()
+                        end
+                    end
+                end
+
                 self:Destroy()
             end
         end

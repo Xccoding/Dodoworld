@@ -33,6 +33,8 @@ CMODIFIER_PROPERTY_PHYSICAL_ARMOR_PERCENT = "C_GetModifierPhysicalArmor_Percent"
 --魔法护甲
 CMODIFIER_PROPERTY_MAGICAL_ARMOR_CONSTANT = "C_GetModifierMagicalArmor_Constant"--魔法护甲加算
 CMODIFIER_PROPERTY_MAGICAL_ARMOR_PERCENT = "C_GetModifierMagicalArmor_Percent"--魔法护甲乘算
+--护盾血量
+CMODIFIER_PROPERTY_SHIELD_HP_CONSTANT = "C_GetModifierShieldHp_Constant"--护盾血量加算
 
 
 --自定义属性
@@ -46,7 +48,7 @@ BLOCK_CHANCE = "BLOCK_CHANCE"--格挡几率
 BLOCK_PERCENT = "BLOCK_PERCENT"--格挡伤害
 PHYSICAL_ARMOR = "PHYSICAL_ARMOR"--物理护甲
 MAGICAL_ARMOR = "MAGICAL_ARMOR"--魔法护甲
-
+SHIELD_HP = "SHIELD_HP"--护盾血量
 
 
 if IsServer() then

@@ -38,3 +38,18 @@
 "DOTA_Tooltip_ability_miner_maurice_pick_strike_Description"	"莫里斯家族矿工挥舞手中的矿镐，在攻击时击碎目标的防御，使目标的护甲降低%armor_reduce%点，持续%duration%秒"
 "DOTA_Tooltip_modifier_miner_maurice_pick_strike_debuff"	"镐击"
 "DOTA_Tooltip_modifier_miner_maurice_pick_strike_debuff_Description"	"护甲降低%dMODIFIER_PROPERTY_TOOLTIP%点"
+
+"DOTA_Tooltip_ability_mine_owner_kobold_open_wound"	"皮开肉绽"
+"DOTA_Tooltip_ability_mine_owner_kobold_open_wound_Description"	"柯博德挥舞长鞭，将目标打得皮开肉绽，使目标每%dot_interval%秒受到%damage%点物理伤害，持续%duration%秒，可叠加"
+"DOTA_Tooltip_modifier_mine_owner_kobold_open_wound"	"皮开肉绽"
+"DOTA_Tooltip_modifier_mine_owner_kobold_open_wound_Description"	"每%dMODIFIER_PROPERTY_TOOLTIP%秒受到%dMODIFIER_PROPERTY_TOOLTIP2%点物理伤害"
+
+"DOTA_Tooltip_ability_mine_owner_kobold_shaking_wine_glass"	"摇晃的红酒杯"
+"DOTA_Tooltip_ability_mine_owner_kobold_shaking_wine_glass_Description"	"柯博德向一片区域洒出红酒，使区域内目标的皮开肉绽减少1层，并使他们的攻击力降低%ap_reduce%点，法术强度降低%sp_reduce%点，持续%duration%秒，可叠加"
+"DOTA_Tooltip_modifier_mine_owner_kobold_shaking_wine_glass"	"摇晃的红酒杯"
+"DOTA_Tooltip_modifier_mine_owner_kobold_shaking_wine_glass_Description"	"攻击力降低%dMODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE%点，法术强度降低%dMODIFIER_PROPERTY_TOOLTIP%点"
+
+"DOTA_Tooltip_ability_mine_owner_kobold_throw_money"	"撒钱"
+"DOTA_Tooltip_ability_mine_owner_kobold_throw_money_Description"	"柯博德向所有玩家抛出金币，造成%damage%点魔法伤害并叠加1层贪财恶果，每层贪财恶果使其受到的撒钱伤害提高%bonus_dmg_pct%%%，可无限叠加"
+"DOTA_Tooltip_modifier_mine_owner_kobold_throw_money"	"贪财恶果"
+"DOTA_Tooltip_modifier_mine_owner_kobold_throw_money_Description"	"受到的撒钱伤害提高%dMODIFIER_PROPERTY_TOOLTIP%%%"

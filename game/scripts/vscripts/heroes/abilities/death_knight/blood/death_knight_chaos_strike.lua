@@ -242,3 +242,11 @@ end
 function modifier_death_knight_chaos_strike_shield:OnTooltip()
     return self.shield
 end
+function modifier_death_knight_chaos_strike_shield:CDeclareFunctions()
+	return {
+        CMODIFIER_PROPERTY_SHIELD_HP_CONSTANT,
+	}
+end
+function modifier_death_knight_chaos_strike_shield:C_GetModifierShieldHp_Constant()
+    return self.shield
+end

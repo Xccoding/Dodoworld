@@ -25,6 +25,10 @@ end
 function modifier_lamper_maurice_blaze_miner_light:OnCreated(params)
 	local hParent = self:GetParent()
 	self.radius = self:GetAbilitySpecialValueFor("radius")
+	if IsServer() then
+		self:StartIntervalThink(1)
+		self:OnIntervalThink()
+	end
 end
 function modifier_lamper_maurice_blaze_miner_light:OnRefresh(params)
 	if IsServer() then
@@ -37,6 +41,12 @@ end
 function modifier_lamper_maurice_blaze_miner_light:DeclareFunctions()
 	return {
 	}
+end
+function modifier_lamper_maurice_blaze_miner_light:OnIntervalThink()
+	local hParent = self:GetParent()
+	local particleID = ParticleManager:CreateParticle("particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_spirit_form_cast.vpcf", PATTACH_CUSTOMORIGIN, hParent)
+	ParticleManager:SetParticleControlEnt(particleID, 0, hParent, PATTACH_POINT_FOLLOW, "attach_weapon", Vector(0, 0, -30), false)
+	ParticleManager:ReleaseParticleIndex(particleID)
 end
 function modifier_lamper_maurice_blaze_miner_light:IsAura()
 	return true
@@ -52,12 +62,6 @@ function modifier_lamper_maurice_blaze_miner_light:GetAuraSearchTeam()
 end
 function modifier_lamper_maurice_blaze_miner_light:GetAuraSearchType()
 	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_lamper_maurice_blaze_miner_light:GetEffectName()
-	return "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_spirit_form_ambient.vpcf"
-end
-function modifier_lamper_maurice_blaze_miner_light:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
 end
 --=======================================modifier_lamper_maurice_blaze_miner_light_debuff=======================================
 if modifier_lamper_maurice_blaze_miner_light_debuff == nil then

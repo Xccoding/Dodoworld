@@ -28,5 +28,12 @@
         "SpawnRadiusMin"    "0" // 最小刷新位置偏移
         "SpawnRadiusMax"    "0" // 最大刷新位置偏移
     }
+    "creature_mine_owner_kobold_spawner_01" {
+        "CreatureCount" "1" // 最多能刷出几只怪
+        "RefreshTimeMin"    "-1" // 最小刷新间隔
+        "RefreshTimeMax"    "-1" // 最大刷新间隔
+        "SpawnRadiusMin"    "0" // 最小刷新位置偏移
+        "SpawnRadiusMax"    "0" // 最大刷新位置偏移
+    }
     
 }

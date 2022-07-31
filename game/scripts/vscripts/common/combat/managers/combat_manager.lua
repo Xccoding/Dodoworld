@@ -19,13 +19,14 @@ if IsClient() then
         end
         return false
     end
-else
+elseif IsServer() then
     function CDOTA_BaseNPC:InCombat()
         if self:HasModifier("modifier_combat") then
             return true
         end
         return false
     end
+
     function CDOTA_BaseNPC:GetDPS()
         if not IsServer() then
             return 0
@@ -36,6 +37,7 @@ else
             return 0
         end
     end
+
     function CDOTA_BaseNPC:GetHPS()
         if not IsServer() then
             return 0
@@ -46,6 +48,7 @@ else
             return 0
         end
     end
+
     function CDOTA_BaseNPC:UpdateDHPS()
         -- print(self:GetDPS(), self:GetHPS())
         CustomNetTables:SetTableValue("DHPS", tostring(self:entindex()), 
@@ -54,9 +57,11 @@ else
             HPS = self:GetHPS(),
         })
     end
+
     function CDOTA_BaseNPC:GetAggroFactor()
         return Schools[self:GetUnitName()] or 0
     end
+
     function AbilityBehaviorFilter(iBehavior_group, iBehavior)
         if bit.band(iBehavior_group, iBehavior) == iBehavior then
             return true
@@ -64,7 +69,8 @@ else
             return false
         end
     end
-    original_add_function = CDOTA_BaseNPC.AddNewModifier
+
+    original_add_modifier__function = CDOTA_BaseNPC.AddNewModifier
     function CDOTA_BaseNPC:AddNewModifier(hCaster, hAbility, sModifierName, params, bIgnoreResistance)
         if self:GetTeamNumber() == hCaster:GetTeamNumber() and bIgnoreResistance == nil then
             bIgnoreResistance = true
@@ -73,12 +79,22 @@ else
         end
     
         if bIgnoreResistance then
-            return original_add_function(self, hCaster, hAbility, sModifierName, params)
+            return original_add_modifier__function(self, hCaster, hAbility, sModifierName, params)
         else
             if params.duration ~= 0 and type(params.duration) == "number" then
                 params.duration = params.duration * ( 100 - Rounding(self:GetStatusResistance() * 100)) * 0.01
             end
-            return original_add_function(self, hCaster, hAbility, sModifierName, params)
+            return original_add_modifier__function(self, hCaster, hAbility, sModifierName, params)
         end
+    end
+
+    function CDOTA_BaseNPC:AddStun(hCaster, hAbility, sModifierName, params, bIgnoreResistance)
+        -- if self:HasModifier("modifier_stun_custom") then
+        --     if params.duration < self:FindModifierByName("modifier_stun_custom"):GetRemainingTime() then
+        --         params.duration = self:FindModifierByName("modifier_stun_custom"):GetRemainingTime()
+        --     end
+        -- end
+
+        self:AddNewModifier(hCaster, hAbility, sModifierName, params, bIgnoreResistance)
     end
 end

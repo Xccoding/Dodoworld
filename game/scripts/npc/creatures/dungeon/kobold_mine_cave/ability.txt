@@ -120,7 +120,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"keeper_of_the_light_blinding_light"
 		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/lamper_maurice_blaze_miner_light"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		// "AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
@@ -137,7 +137,7 @@
 		"AbilityValues"
         {
             "radius"  "300"
-			"miss_pct"  "30"
+			"miss_pct"  "15"
         }
 	}
 
@@ -156,15 +156,17 @@
 
 		"AbilityCooldown"				"15"
 		"AbilityManaCost"				"0"
-		"AbilityCastRange"				"180"
+		"AbilityCastRange"				"140"
 		"AbilityCastRangeBuffer"		"250"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"				"0.6"
+		// "AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"0.0"
 
 		"AbilityValues"
         {
             "channel_time"  "3"
 			"count"	"5"
+			"range_min"	"150"
+			"range_max"	"800"
         }
 	}
 
@@ -174,7 +176,7 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"hill_troll_rally"
 		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/miner_maurice_pick_strike"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		// "AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
@@ -192,6 +194,92 @@
         {
             "armor_reduce"  "6"
 			"duration"  "6"
+        }
+	}
+
+	// 矿主柯博德的皮开肉绽
+	"mine_owner_kobold_open_wound"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"bloodseeker_rupture"
+		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/mine_owner_kobold_open_wound"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"800"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.1"
+
+		"AbilityValues"
+        {
+            "duration"  "20"
+			"damage"	"10"
+			"dot_interval"	"3"
+        }
+	}
+
+	// 矿主柯博德的摇晃的红酒杯
+	"mine_owner_kobold_shaking_wine_glass"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"kobold_taskmaster_speed_aura"
+		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/mine_owner_kobold_shaking_wine_glass"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"800"
+		"AbilityCastRangeBuffer"		"250"
+
+		"AbilityValues"
+        {
+            "duration"  "30"
+			"ap_reduce"	"20"
+			"sp_reduce"	"20"
+			"radius"	"450"
+			"channel_time"		"3"
+        }
+	}
+
+	// 矿主柯博德的撒钱
+	"mine_owner_kobold_throw_money"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"kobold_tunneler_prospecting"
+		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/mine_owner_kobold_throw_money"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"15"
+		// "AbilityManaCost"				"0"
+		"AbilityCastRange"				"10000"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.2"
+
+		"AbilityValues"
+        {
+            "radius"  "10000"
+			"damage"  "15"
+			"bonus_dmg_pct"	"17"
+			"speed"	"1000"
+			"duration"	"600"
         }
 	}
 

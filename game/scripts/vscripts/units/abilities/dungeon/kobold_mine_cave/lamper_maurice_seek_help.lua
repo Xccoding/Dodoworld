@@ -13,7 +13,8 @@ end
 function lamper_maurice_seek_help:OnSpellStart()
 	local hCaster = self:GetCaster()
 
-	EmitSoundOn("venomancer_venm_underattack_02", hCaster)
+    --EmitSoundOnLocationWithCaster(hCaster:GetAbsOrigin(), "venomancer_venm_underattack_02", hCaster)
+    EmitGlobalSound("venomancer_venm_underattack_02")
 end
 function lamper_maurice_seek_help:GetIntrinsicModifierName()
     return "modifier_lamper_maurice_seek_help"
@@ -28,7 +29,7 @@ function lamper_maurice_seek_help:OnChannelFinish(bInterrupted)
         for i = 1, #buff.moles do
             if IsValidEntity(buff.moles[i]) and buff.moles[i]:IsAlive() and buff.moles[i]:HasModifier("modifier_lamper_maurice_seek_help_sleep") then
                 buff.moles[i]:RemoveModifierByName("modifier_lamper_maurice_seek_help_sleep")
-                EmitSoundOn("Hero_Meepo.Poof.End00", buff.moles[i])
+                EmitSoundOnLocationWithCaster(buff.moles[i]:GetAbsOrigin(), "Hero_Meepo.Poof.End00", buff.moles[i])
                 break
             end  
         end
@@ -54,7 +55,6 @@ function modifier_lamper_maurice_seek_help:OnCreated(params)
     local hCaster = self:GetCaster()
     self.count = self:GetAbilitySpecialValueFor("count")
     if IsServer() then
-        --TODO预铺小弟
         self:StartIntervalThink(1)
     end
 end
@@ -64,6 +64,7 @@ function modifier_lamper_maurice_seek_help:OnDestroy(params)
 end
 function modifier_lamper_maurice_seek_help:DeclareFunctions()
     return {
+        MODIFIER_EVENT_ON_DEATH
     }
 end
 function modifier_lamper_maurice_seek_help:CDeclareFunctions()
@@ -74,11 +75,18 @@ function modifier_lamper_maurice_seek_help:CDeclareFunctions()
 end
 function modifier_lamper_maurice_seek_help:C_OnCombatStart()
     local hCaster = self:GetCaster()
-    if self.moles == nil then
-        self.moles = {}
+    if self.moles ~= nil and type(self.moles) == "table" then
+        for _, mole in pairs(self.moles) do
+            if IsValidEntity(mole) and mole:IsAlive() then
+                mole:RemoveSelf()
+            end
+        end
     end
+    self.moles = {}
+    local range_min = self:GetAbilitySpecialValueFor("range_min")
+    local range_max = self:GetAbilitySpecialValueFor("range_max")
     for i = 1, self.count do
-        local mole = CreateUnitByNameAsync("creature_miner_maurice", hCaster:GetAbsOrigin() + RandomVector(RandomFloat(200, 500)), true, hCaster, hCaster, hCaster:GetTeamNumber(), 
+        CreateUnitByNameAsync("creature_miner_maurice", hCaster:GetAbsOrigin() + RandomVector(RandomFloat(range_min, range_max)), true, hCaster, hCaster, hCaster:GetTeamNumber(), 
         function (unit)
             unit.spawn_entity = hCaster
             table.insert(self.moles, unit)
@@ -89,9 +97,25 @@ function modifier_lamper_maurice_seek_help:C_OnCombatStart()
 end
 function modifier_lamper_maurice_seek_help:C_OnCombatEnd()
     if self.moles ~= nil and type(self.moles) == "table" then
-        for i = 1, self.count do
-            if IsValidEntity(self.moles[i]) and self.moles[i]:IsAlive() then
-                self.moles[i]:RemoveSelf()
+        for _, mole in pairs(self.moles) do
+            if IsValidEntity(mole) and mole:IsAlive() then
+                mole:RemoveSelf()
+            end
+        end
+        self.moles = {}
+    end
+end
+function modifier_lamper_maurice_seek_help:OnDeath( params )
+    if not IsServer() then
+       return 
+    end
+    local unit = params.unit
+    if unit:GetUnitName() == "creature_lamper_maurice" then
+        if self.moles ~= nil and type(self.moles) == "table" then
+            for _, mole in pairs(self.moles) do
+                if IsValidEntity(mole) and mole:IsAlive() then
+                    mole:RemoveSelf()
+                end
             end
         end
     end
@@ -147,4 +171,3 @@ function modifier_lamper_maurice_seek_help_sleep:CheckState()
         [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
     }
 end
-
