@@ -34,7 +34,6 @@ function modifier_death_knight_mortal_strike:IsPurgable()
 end
 function modifier_death_knight_mortal_strike:OnCreated(params)
     self.records = {}
-    self.damage = self:GetAbilitySpecialValueFor("damage")
     self.ap_factor = self:GetAbilitySpecialValueFor("ap_factor")
     self.crit_chance = self:GetAbilitySpecialValueFor("crit_chance")
     self.crit_duration = self:GetAbilitySpecialValueFor("crit_duration")
@@ -44,7 +43,6 @@ function modifier_death_knight_mortal_strike:OnCreated(params)
     self.mana_get = self:GetAbilitySpecialValueFor("mana_get")
 end
 function modifier_death_knight_mortal_strike:OnRefresh(params)
-    self.damage = self:GetAbilitySpecialValueFor("damage")
     self.ap_factor = self:GetAbilitySpecialValueFor("ap_factor")
     self.crit_chance = self:GetAbilitySpecialValueFor("crit_chance")
     self.crit_duration = self:GetAbilitySpecialValueFor("crit_duration")
@@ -169,11 +167,11 @@ function modifier_death_knight_mortal_strike:OnAttackLanded(params)
                 iDamage_type = DAMAGE_TYPE_MAGICAL
                 sound_name = "Hero_Kunkka.Tidebringer.Attack"
             end
-            --print(self.damage + self.ap_factor)
+
             ApplyDamage({
 				victim = hTarget,
 				attacker = hCaster,
-				damage = self.damage + self.ap_factor,
+				damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_AP) * self.ap_factor * 0.01,
 				damage_type = iDamage_type,
 				ability = hAbility,
 				damage_flags = DOTA_DAMAGE_FLAG_DIRECT,

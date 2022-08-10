@@ -43,3 +43,10 @@ function IsValid( h )
         return false
     end 
 end
+
+--获取两点间的中点
+function GetMidPoint( v1, v2)
+    local dir = (v2 - v1):Normalized()
+    local range = (v2 - v1):Length()
+    return v1 + dir * range
+end

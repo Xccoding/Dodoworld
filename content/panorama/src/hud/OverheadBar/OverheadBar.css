@@ -19,6 +19,7 @@
   font-size: 17px;
   horizontal-align: center;
   height: 18px;
+  text-overflow: shrink;
 }
 #OverheadBar_name.boss {
   color: #df2e2e;

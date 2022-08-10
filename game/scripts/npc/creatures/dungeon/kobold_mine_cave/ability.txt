@@ -15,7 +15,7 @@
         "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 
 		"AbilityCooldown"				"12"
-		"AbilityManaCost"				"5"
+		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"800"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
@@ -41,11 +41,12 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		//"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
-        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 
 		"AbilityCooldown"				"20"
-		"AbilityManaCost"				"5"
+		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"800"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
@@ -69,12 +70,13 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
         "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 
 		"AbilityCooldown"				"12"
-		"AbilityManaCost"				"5"
+		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"1500"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
@@ -125,7 +127,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		// "AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
-        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 
 		// "AbilityCooldown"				"15"
 		// "AbilityManaCost"				"0"
@@ -151,8 +153,8 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
-		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
-        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		// "SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        // "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 
 		"AbilityCooldown"				"15"
 		"AbilityManaCost"				"0"
@@ -180,6 +182,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		// "AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
         "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 
@@ -207,6 +210,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
         "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 
@@ -263,6 +267,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
         "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 
@@ -282,5 +287,146 @@
 			"duration"	"600"
         }
 	}
+
+	//闪烁突袭
+	"neutral_creep_blink_strike"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"riki_blink_strike"
+		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/neutral_creep_blink_strike"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"900"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.2"
+
+		"AbilityValues"
+        {
+            "damage"  "40"
+        }
+	}
+
+	// 鞭打
+	"neutral_creep_whip"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"alpha_wolf_critical_strike"
+		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/neutral_creep_whip"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		//"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"800"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.3"
+
+		"AbilityValues"
+        {
+            "duration"  "7"
+			"bonus_ap"	"10"
+			"bonus_atk_speed"	"20"
+        }
+	}
+
+	//能量冲击
+	"neutral_creep_energy_shock"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"rubick_fade_bolt"
+		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/neutral_creep_energy_shock"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"2"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"900"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.3"
+
+		"AbilityValues"
+        {
+            "damage"  "20"
+        }
+	}
+
+	// 地雷的爆炸
+	"neutral_mine_boom"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"techies_land_mines"
+		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/neutral_mine_boom"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		// "AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		// "AbilityCooldown"				"15"
+		// "AbilityManaCost"				"0"
+		"AbilityCastRange"				"400"
+		"AbilityCastRangeBuffer"		"250"
+		// "AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		// "AbilityCastPoint"				"0.6"
+
+		"AbilityValues"
+        {
+            "radius"  "400"
+			"damage"  "600"
+			"delay"	"2"
+        }
+	}
+
+	// 矿洞钻探者的冲撞
+	"mine_driller_dash"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"alpha_wolf_command_aura"
+		"ScriptFile"	"units/abilities/dungeon/kobold_mine_cave/mine_driller_dash"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		// "AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"15000"
+		"AbilityCastRangeBuffer"		"250"
+		// "AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"0.0"
+
+		"AbilityValues"
+        {
+            "speed"  	"25"
+			"width"		"250"
+			"length_min"	"2500"
+			"length_max"	"3500"
+			"start_speed"	"15"
+			
+        }
+	}
+
 
 }

@@ -1,2 +1,2 @@
 "shashire"  "沙夏尔"
-"kobold_mine_cave"  "狗头人金矿"
+"kobold_mine_cave"  "狗头人矿洞"

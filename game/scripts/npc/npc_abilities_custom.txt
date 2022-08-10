@@ -1,4 +1,5 @@
 // Dota Heroes File
+#base heroes/common/ability.txt
 
 #base heroes/mage/ability.txt
 #base heroes/death_knight/ability.txt

@@ -2,14 +2,29 @@ LinkLuaModifier( "modifier_common", "common/combat/modifiers/modifier_common.lua
 
 function DodoWorld:OnNpcSpawned( params )
     local unit = EntIndexToHScript(params.entindex)
-
-    print('spawn')
+    
+    print("N2O", unit:GetUnitName().."spawned")
 
     unit:AddNewModifier(unit, nil, "modifier_common", {})
 
     --给中立生物加施法监控
     if unit:IsNeutralUnitType() then
         unit:AddNewModifier(unit, nil, "modifier_channel_watcher", {})
+    end
+
+    --添加无敌
+    if KeyValues:GetUnitSpecialValue(unit, "IsInvulnerable") then
+        unit:AddNewModifier(unit, nil, "modifier_Invulnerable", {})
+    end
+
+    --添加可交互NPC的无敌
+    if KeyValues:GetUnitSpecialValue(unit, "IsInteractiveNPC") then
+        unit:AddNewModifier(unit, nil, "modifier_interactive", {})
+    end
+
+    --添加载具属性
+    if KeyValues:GetUnitSpecialValue(unit, "IsVehicle") then
+        unit:AddNewModifier(unit, nil, "modifier_Vehicle", {})
     end
 
     if unit:IsHero() and unit:IsRealHero() then
@@ -23,10 +38,11 @@ function DodoWorld:OnNpcSpawned( params )
         end, 2)
         -- PlayerResource:SetOverrideSelectionEntity(unit:GetPlayerOwnerID(), unit)
     else
-        if unit.kv_attr_table ~= nil then
-            unit:AddNewModifier(unit, nil, "modifier_basic_attribute", unit.kv_attr_table)
-            unit.kv_attr_table = nil
-        end
+        -- if unit.kv_attr_table ~= nil then
+        --     unit:AddNewModifier(unit, nil, "modifier_basic_attribute", unit.kv_attr_table)
+        --     unit.kv_attr_table = nil
+        -- end
+        unit:AddNewModifier(unit, nil, "modifier_basic_attribute", {})
     end    
 end
 

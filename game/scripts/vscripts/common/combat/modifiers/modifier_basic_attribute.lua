@@ -44,11 +44,13 @@ end
 
 --魔法护甲
 function modifier_basic_attribute:C_GetModifierMagicalArmor_Constant( params )
-    return self.CustomMagicalResistance
+    local hParent = self:GetParent()
+    return KeyValues:GetUnitSpecialValue(hParent, "CustomMagicalResistance") * 100
 end
 --护甲
 function modifier_basic_attribute:C_GetModifierPhysicalArmor_Constant( params )
-    return self.ArmorPhysical
+    local hParent = self:GetParent()
+    return KeyValues:GetUnitSpecialValue(hParent, "ArmorPhysical") * 100
 end
 --战斗外生命恢复
 function modifier_basic_attribute:GetModifierHealthRegenPercentage()

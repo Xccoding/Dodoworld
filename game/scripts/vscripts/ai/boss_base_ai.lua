@@ -164,6 +164,7 @@ function boss_base_ai:NewWander(bForce)
         local pos_try = spawn_entity:GetAbsOrigin() + RandomVector(RandomFloat(0, MaxWanderRange))
         if GridNav:CanFindPath(unit:GetAbsOrigin(), pos_try) then
             pos = pos_try
+            time = GridNav:FindPathLength(unit:GetAbsOrigin(), pos_try) / unit:GetIdealSpeed()
             break
         end
     end

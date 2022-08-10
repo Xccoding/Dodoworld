@@ -88,7 +88,7 @@ function modifier_lamper_maurice_seek_help:C_OnCombatStart()
     for i = 1, self.count do
         CreateUnitByNameAsync("creature_miner_maurice", hCaster:GetAbsOrigin() + RandomVector(RandomFloat(range_min, range_max)), true, hCaster, hCaster, hCaster:GetTeamNumber(), 
         function (unit)
-            unit.spawn_entity = hCaster
+            unit.spawn_entity = hCaster.spawn_entity
             table.insert(self.moles, unit)
             unit:AddNewModifier(hCaster, self:GetAbility(), "modifier_lamper_maurice_seek_help_sleep", {})
         end)

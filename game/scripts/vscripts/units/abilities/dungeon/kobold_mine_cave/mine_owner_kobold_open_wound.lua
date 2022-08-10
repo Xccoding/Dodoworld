@@ -16,9 +16,8 @@ function mine_owner_kobold_open_wound:OnSpellStart()
     EmitSoundOn("Item.Bullwhip.Enemy", hTarget)
     
     local particleID = ParticleManager:CreateParticle("particles/units/neutrals/mine_owner_kobold/mine_owner_kobold_open_wound.vpcf", PATTACH_CUSTOMORIGIN, hCaster)
-    ParticleManager:SetParticleControl(particleID, 0, Vector(0, 0, 0))
     ParticleManager:SetParticleControlEnt(particleID, 0, hCaster, PATTACH_POINT_FOLLOW, "attach_attack", Vector(0, 0, 0), false)
-    ParticleManager:SetParticleControlEnt(particleID, 1, hCaster, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0, 0, 0), false)
+    ParticleManager:SetParticleControlEnt(particleID, 1, hTarget, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0, 0, 0), false)
     ParticleManager:ReleaseParticleIndex(particleID)
 
     hTarget:AddNewModifier(hCaster, self, "modifier_mine_owner_kobold_open_wound", { duration = duration })

@@ -8,7 +8,7 @@ function lamper_maurice_head_butt:OnSpellStart()
 	local hTarget = self:GetCursorTarget()
 	local duration = self:GetSpecialValueFor("duration")
 
-	hTarget:AddStun(hCaster, self, "modifier_lamper_maurice_head_butt", {duration = duration})
+	hTarget:AddStun(hCaster, self, {duration = duration})
 	hTarget:AddNewModifier(hCaster, self, "modifier_lamper_maurice_head_butt", {duration = duration})
 
 	EmitSoundOn("Hero_DragonKnight.DragonTail.Target", hTarget)

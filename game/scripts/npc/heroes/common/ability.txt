@@ -1,0 +1,33 @@
+"DOTAAbilities"
+{
+	// 通用交互施法
+	"common_interactive"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"death_knight_chaos_strike"
+		"ScriptFile"	"heroes/abilities/common/common_interactive"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOASSIST | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "IsCastableWhileHidden"			"1"
+        "AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		// "AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        // "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"300"
+		//"AbilityCastRangeBuffer"		"250"
+		//"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		//"AbilityCastPoint"				"0.0"
+
+		"AbilityValues"
+        {
+        }
+	}
+
+	
+
+
+}

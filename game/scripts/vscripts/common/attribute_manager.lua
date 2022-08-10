@@ -4,10 +4,10 @@ LinkLuaModifier( "modifier_hero_attribute", "common/combat/modifiers/modifier_he
 --link普通单位属性modifier
 LinkLuaModifier( "modifier_basic_attribute", "common/combat/modifiers/modifier_basic_attribute.lua", LUA_MODIFIER_MOTION_NONE )
 
-_G.ATTR_KEY_READ_ON_SPAWN = {
-    "ArmorPhysical",
-    "CustomMagicalResistance",
-}
+-- _G.ATTR_KEY_READ_ON_SPAWN = {
+--     "ArmorPhysical",
+--     "CustomMagicalResistance",
+-- }
 
 -------------------------------双端内容-------------------------------
 local BaseNPC
@@ -137,12 +137,12 @@ if IsServer() then
     function SaveSpawnKV( thisEntity, kv )
         local kv_attr_table = {}
         --属性键值
-        for i = 1, #ATTR_KEY_READ_ON_SPAWN do
-            if kv:GetValue(ATTR_KEY_READ_ON_SPAWN[i]) ~= nil then
-                kv_attr_table[ATTR_KEY_READ_ON_SPAWN[i]] = tonumber(kv:GetValue(ATTR_KEY_READ_ON_SPAWN[i]))
-            end
-        end
-        thisEntity.kv_attr_table = kv_attr_table
+        -- for i = 1, #ATTR_KEY_READ_ON_SPAWN do
+        --     if kv:GetValue(ATTR_KEY_READ_ON_SPAWN[i]) ~= nil then
+        --         kv_attr_table[ATTR_KEY_READ_ON_SPAWN[i]] = tonumber(kv:GetValue(ATTR_KEY_READ_ON_SPAWN[i]))
+        --     end
+        -- end
+        -- thisEntity.kv_attr_table = kv_attr_table
         --AI行为键值
         local kv_ai_table = {}
         for i = 1, #AI_KEY_READ_ON_SPAWN do

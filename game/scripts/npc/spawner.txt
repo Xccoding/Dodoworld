@@ -6,6 +6,7 @@
         "RefreshTimeMax"    "10" // 最大刷新间隔
         "SpawnRadiusMin"    "30" // 最小刷新位置偏移
         "SpawnRadiusMax"    "300" // 最大刷新位置偏移
+        "RandomFaceForward" "1" // 随机面向
     }
     "creature_watcher_adolph_spawner_01" {
         "CreatureCount" "1" // 最多能刷出几只怪
@@ -35,5 +36,34 @@
         "SpawnRadiusMin"    "0" // 最小刷新位置偏移
         "SpawnRadiusMax"    "0" // 最大刷新位置偏移
     }
-    
+    "creature_mine_kobold_scouts_spawner_01"{
+        "CreatureCount" "2" // 最多能刷出几只怪
+        "RefreshTimeMin"    "-1" // 最小刷新间隔
+        "RefreshTimeMax"    "-1" // 最大刷新间隔
+        "SpawnRadiusMin"    "0" // 最小刷新位置偏移
+        "SpawnRadiusMax"    "200" // 最大刷新位置偏移
+    }
+    "creature_mine_kobold_thief_spawner_00"{
+        "CreatureCount" "1" // 最多能刷出几只怪
+    }
+    "creature_mine_mine_spawner_00"{
+        "CreatureCount" "1" // 最多能刷出几只怪
+        "RefreshTimeMin"    "-1" // 最小刷新间隔
+        "RefreshTimeMax"    "-1" // 最大刷新间隔
+        "SpawnRadiusMin"    "0" // 最小刷新位置偏移
+        "SpawnRadiusMax"    "0" // 最大刷新位置偏移
+    }
+    "creature_mine_kobold_bully_spawner_00"{
+        "CreatureCount" "1" // 最多能刷出几只怪
+    }
+    "creature_mine_driller_spawner_00"{
+        "CreatureCount" "1" // 最多能刷出几只怪
+        "RefreshTimeMin"    "0.5" // 最小刷新间隔
+        "RefreshTimeMax"    "3" // 最大刷新间隔
+    }
+    "creature_foreman_security_staff_spawner_01"{
+        "CreatureCount" "2" // 最多能刷出几只怪
+        "RefreshTimeMin"    "-1" // 最小刷新间隔
+        "RefreshTimeMax"    "-1" // 最大刷新间隔
+    }
 }

@@ -32,6 +32,8 @@ function NormalThink()
     local CombatFindRadius = unit.kv_ai_table.CombatFindRadius or 0
     local WanderType = unit.kv_ai_table.WanderType or AI_WANDER_TYPE_PASSIVE
 
+    local NeedCombatBehavior = false
+
     -----------------更新仇恨目标---------------------------
     --超距返回
     if (unit:GetAbsOrigin() - unit.spawn_entity:GetAbsOrigin()):Length2D() > MaxPursueRange then
@@ -79,16 +81,7 @@ function NormalThink()
     if not unit:InCombat() then
         --主动攻击距离>0，会主动攻击
         if unit:C_GetAggroTarget() ~= nil then
-            if unit:GetAttackCapability() ~= DOTA_UNIT_CAP_NO_ATTACK then
-                ExecuteOrderFromTable({
-                    UnitIndex = unit:entindex(),
-                    OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-                    TargetIndex = unit:C_GetAggroTarget():entindex(),
-                    Queue = false,
-                })
-                unit.current_order = {order = DOTA_UNIT_ORDER_ATTACK_TARGET, fEndtime = GameRules:GetGameTime() + 1}
-                return 0.25
-            end
+            NeedCombatBehavior = true
         end
         if WanderType ~= nil then 
             --是否会主动游荡
@@ -96,13 +89,15 @@ function NormalThink()
                 if unit.current_order.order == nil or (unit.current_order.order ~= nil and unit.current_order.fEndtime < GameRules:GetGameTime()) then
                     -- print("new wander")
                     NewWander(false)
+                    return 0.25
                 end
             end
         end
-        return 0.25
+    else
+        NeedCombatBehavior = true
     end
     ------------------战斗中-----------------
-    if unit.current_order.order == nil or (unit.current_order.order ~= nil and unit.current_order.fEndtime < GameRules:GetGameTime() and not unit:IsChanneling()) or unit.current_order.order == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
+    if NeedCombatBehavior and unit.current_order.order == nil or (unit.current_order.order ~= nil and unit.current_order.fEndtime < GameRules:GetGameTime() and not unit:IsChanneling()) or unit.current_order.order == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
         ------------------需要新行为-------------------
         local desires = {}
         local max_desires = {}
@@ -237,12 +232,13 @@ function NewWander(bForce)
     local unit = thisEntity
     local spawn_entity = unit.spawn_entity
     local pos = spawn_entity:GetAbsOrigin()
-    local time = (pos - unit:GetAbsOrigin()):Length2D() / unit:GetIdealSpeed()
+    local time = (pos - unit:GetAbsOrigin()):Length2D()
     local MaxWanderRange = unit.kv_ai_table.MaxWanderRange or 0
     for i = 1, 100 do
         local pos_try = spawn_entity:GetAbsOrigin() + RandomVector(RandomFloat(0, MaxWanderRange))
         if GridNav:CanFindPath(unit:GetAbsOrigin(), pos_try) then
             pos = pos_try
+            time = GridNav:FindPathLength(unit:GetAbsOrigin(), pos_try) / unit:GetIdealSpeed()
             break
         end
     end
