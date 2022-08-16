@@ -35,14 +35,14 @@ function boss_base_ai:OnCommonThink()
     if (self.me:GetAbsOrigin() - self.me.spawn_entity:GetAbsOrigin()):Length2D() > MaxPursueRange then
         if not (self.me.current_order.order == DOTA_UNIT_ORDER_MOVE_TO_POSITION and self.me.current_order.bForce == false) then
             self:NewWander(true)
-            self.me:C_ClearAggroTarget()
+            AI_manager:ClearAggroTarget(self.me)
             self.me:RemoveModifierByName("modifier_combat")
             self.me:AddNewModifier(self.me, nil, "modifier_escape", {duration = self.Interval + 0.1})
             return self.Interval
         else
             if self.me.current_order.fEndtime >= GameRules:GetGameTime() then
                 self:NewWander(true)
-                self.me:C_ClearAggroTarget()
+                AI_manager:ClearAggroTarget(self.me)
                 self.me:RemoveModifierByName("modifier_combat")
                 self.me:AddNewModifier(self.me, nil, "modifier_escape", {duration = self.Interval + 0.1})
                 return self.Interval
@@ -51,7 +51,7 @@ function boss_base_ai:OnCommonThink()
     else
         if self.me.current_order.order == DOTA_UNIT_ORDER_MOVE_TO_POSITION and self.me.current_order.bForce == true and (self.me:GetAbsOrigin() - self.me.spawn_entity:GetAbsOrigin()):Length2D() >= MaxWanderRange then
             self:NewWander(true)
-            self.me:C_ClearAggroTarget()
+            AI_manager:ClearAggroTarget(self.me)
             self.me:RemoveModifierByName("modifier_combat")
             self.me:AddNewModifier(self.me, nil, "modifier_escape", {duration = self.Interval + 0.1})
             return self.Interval
@@ -59,18 +59,17 @@ function boss_base_ai:OnCommonThink()
     end
 
     --未超距，判断根据什么条件更新仇恨目标
-    if self.me:InCombat() then
-        self.me:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_DHPS, math.max(self.me:GetAcquisitionRange(), CombatFindRadius), nil)
-    else
-        if self.me:GetAcquisitionRange() > 0 then
-            self.me:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_RANGE, math.max(self.me:GetAcquisitionRange(), CombatFindRadius), nil)
-        else
-            self.me:C_ClearAggroTarget()
-        end
-    end
-
+    -- if self.me:InCombat() then
+    --     self.me:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_DHPS, math.max(self.me:GetAcquisitionRange(), CombatFindRadius), nil)
+    -- else
+    --     if self.me:GetAcquisitionRange() > 0 then
+    --         self.me:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_RANGE, math.max(self.me:GetAcquisitionRange(), CombatFindRadius), nil)
+    --     else
+    --         self.me:C_ClearAggroTarget()
+    --     end
+    -- end
     --如果没有仇恨目标，脱战
-    if self.me:C_GetAggroTarget() == nil and self.me:InCombat() then
+    if AI_manager:GetWishAttackTarget(self.me) == nil and self.me:InCombat() then
         self.me:RemoveModifierByName("modifier_combat")
         self.me:AddNewModifier(self.me, nil, "modifier_escape", {duration = self.Interval + 0.1})
     end
@@ -128,11 +127,11 @@ function boss_base_ai:OnCommonThink()
                 if desires[1].order_name ~= nil then
                     if desires[1].order_name == "NormalAttack" then
                         --直接处理攻击行为
-                        if self.me:C_GetAggroTarget() ~= nil then
+                        if AI_manager:GetWishAttackTarget(self.me) ~= nil then
                             ExecuteOrderFromTable({
                                 UnitIndex = self.me:entindex(),
                                 OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-                                TargetIndex = self.me:C_GetAggroTarget():entindex(),
+                                TargetIndex = AI_manager:GetWishAttackTarget(self.me):entindex(),
                                 Queue = false,
                             })
                             self.me.current_order = {order = DOTA_UNIT_ORDER_ATTACK_TARGET, fEndtime = GameRules:GetGameTime() + self.me:GetBaseAttackTime(), bForce = false, ability = nil}

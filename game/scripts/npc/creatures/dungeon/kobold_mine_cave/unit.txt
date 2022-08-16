@@ -1202,7 +1202,7 @@
 		//----------------------------------------------------------------
 		"RingRadius"				"30"
 		"HealthBarOffset"			"170"
-		"BoundsHullName"		"DOTA_HULL_SIZE_SMALL"
+		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
 
 		// Bounty
 		//----------------------------------------------------------------
@@ -1213,7 +1213,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"270"		// Speed.			
+		"MovementSpeed"				"550"		// Speed.			
 
 		// Status
 		//----------------------------------------------------------------
@@ -1267,6 +1267,7 @@
 				"3" "50 -50"
 				"4" "-50 -50"
 			}
+			"TerminalEntity"	"mine_cart_terminal"
 		}
 	}
 

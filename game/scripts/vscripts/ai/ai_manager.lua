@@ -5,6 +5,7 @@ AI_GET_TARGET_ORDER_DHPS = 1
 AI_GET_TARGET_ORDER_RANGE = 2
 
 AGGRO_MSG_CD = 3 --仇恨提示特效的冷却时间
+_G.BASIC_AGGRO_VALUE = 10--基础仇恨值，获得仇恨后会至少加上这个值
 
 _G.AI_KEY_READ_ON_SPAWN = {
     "MaxPursueRange",
@@ -14,93 +15,128 @@ _G.AI_KEY_READ_ON_SPAWN = {
     "SlowNoComabt",
 }
 
-local BaseNPC
-if IsServer() then
-    BaseNPC = CDOTA_BaseNPC
+if AI_manager == nil then
+    AI_manager = {}
 end
-if IsClient() then
-    BaseNPC = C_DOTA_BaseNPC
+function AI_manager:constructor()
+    self.Aggro_Map = {}
 end
---获取当前仇恨目标
-function CDOTA_BaseNPC:C_GetAggroTarget()
-    if self.C_AggroTarget ~= nil and (not self.C_AggroTarget:IsNull()) then
-        return self.C_AggroTarget
+--使unit对target的仇恨改变
+function AI_manager:ModifyAggro(unit, target, value)
+    local unit_index = unit:entindex()
+    local target_index = target:entindex()
+    local old_wish_target = AI_manager:GetWishAttackTarget(unit)
+    if self.Aggro_Map[unit_index] == nil then
+        self.Aggro_Map[unit_index] = {}
+        self.Aggro_Map[unit_index][target_index] = math.max(0, value)
+    else
+        if self.Aggro_Map[unit_index][target_index] == nil then
+            self.Aggro_Map[unit_index][target_index] = math.max(0, value)
+        else
+            self.Aggro_Map[unit_index][target_index] = math.max(0, self.Aggro_Map[unit_index][target_index] + value)
+        end
     end
-    return nil
-end
---清除当前仇恨目标
-function CDOTA_BaseNPC:C_ClearAggroTarget()
-    self.C_AggroTarget = nil
-end
---更新仇恨目标
-function CDOTA_BaseNPC:C_RefreshAggroTarget(iGetOrder, fFind_radius, hAggro_target)
-    local aggro_target = nil
-    --如果预传入一个单位，直接设置它为目标
-    if hAggro_target ~= nil then
-        aggro_target = hAggro_target
+    local new_wish_target = AI_manager:GetWishAttackTarget(unit)
+    if old_wish_target ~= new_wish_target then
+        self:PlayAggroEffect(unit, target, true)
     end
-    --如果被嘲讽了，选他做目标
-    if self:HasModifier("modifier_taunt_custom") and aggro_target == nil then
-        aggro_target = self:FindModifierByName("modifier_taunt_custom"):GetCaster()
+end
+--移除unit对target的仇恨
+function AI_manager:RemoveAggro(unit, target)
+    local unit_index = unit:entindex()
+    local target_index = target:entindex()
+    if self.Aggro_Map[unit_index] ~= nil and self.Aggro_Map[unit_index][target_index] ~= nil then
+        self.Aggro_Map[unit_index][target_index] = nil
     end
-    --没被嘲讽
-    if aggro_target == nil then
-        if iGetOrder == AI_GET_TARGET_ORDER_DHPS then
-            aggro_target = self:C_GetAggroTargetByDHPS(fFind_radius)
-            if aggro_target == nil then
-                aggro_target = self:C_GetAggroTargetByRange(fFind_radius)
-            end 
-        elseif iGetOrder == AI_GET_TARGET_ORDER_RANGE then
-            aggro_target = self:C_GetAggroTargetByRange(fFind_radius)
-            if aggro_target == nil then
-                aggro_target = self:C_GetAggroTargetByDHPS(fFind_radius)
+    if type(self.Aggro_Map[unit_index]) == "table" and self.Aggro_Map[unit_index] ~= nil then
+        if GetElementCount(self.Aggro_Map[unit_index]) <= 0 then
+            self.Aggro_Map[unit_index] = nil
+        end
+    end
+end
+--移除所有对target的仇恨
+function AI_manager:RemoveAllAggro(target)
+    local target_index = target:entindex()
+
+    for _, AggroInfo in pairs(self.Aggro_Map) do
+        if AggroInfo[target_index] ~= nil then
+            AggroInfo[target_index] = nil
+        end
+        if type(AggroInfo) == "table" and GetElementCount(AggroInfo) <= 0 then
+            AggroInfo = nil
+        end
+    end
+end
+--判断unit是否在任意怪物的仇恨列表内
+function AI_manager:IsAggroTarget(unit)
+    for target, aggro_list in pairs(self.Aggro_Map) do
+        if aggro_list ~= nil then
+            if aggro_list[unit:entindex()] ~= nil and aggro_list[unit:entindex()] ~= 0 then
+                return true
             end
         end
     end
-    --加仇恨特效
-    if aggro_target ~= nil then
-        if self.C_AggroTarget ~= aggro_target or (self.C_AggroTarget == aggro_target and not aggro_target:HasModifier("modifier_hide_aggro")) then
-            local particleID = ParticleManager:CreateParticle("particles/msg_fx/msg_aggro.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
-            ParticleManager:SetParticleControlEnt(particleID, 1, aggro_target, PATTACH_ABSORIGIN_FOLLOW, "", Vector(0, 0, 0), false)
+    return false
+end
+--获取unit当前最大仇恨目标
+function AI_manager:GetAggroTarget(unit)
+    local unit_index = unit:entindex()
+    local max_aggro_target = nil
+    local max_aggro = 0
+    if self.Aggro_Map[unit_index] ~= nil and type(self.Aggro_Map[unit_index]) == "table" then
+        for target_index, value in pairs(self.Aggro_Map[unit_index]) do
+            if value > max_aggro then
+                max_aggro_target = EntIndexToHScript(target_index)
+            end
+        end
+    end
+    return max_aggro_target
+end
+--获取unit当前应当攻击的目标
+function AI_manager:GetWishAttackTarget(unit)
+    if self:GetTauntingTarget(unit) ~= nil then
+        return self:GetTauntingTarget(unit)
+    else
+        if self:GetAggroTarget(unit) ~= nil then
+            self:PlayAggroEffect(unit, self:GetAggroTarget(unit), false)
+            return self:GetAggroTarget(unit)
+        else
+            return nil
+        end
+        
+    end
+end
+--获取当前嘲讽unit的目标
+function AI_manager:GetTauntingTarget(unit)
+    if unit:HasModifier("modifier_taunt_custom") then
+        return unit:FindModifierByName("modifier_taunt_custom"):GetCaster()
+    end
+end
+--清除仇恨
+function AI_manager:ClearAggroTarget(unit)
+    local unit_index = unit:entindex()
+    self.Aggro_Map[unit_index] = nil
+end
+--播放仇恨特效
+function AI_manager:PlayAggroEffect(unit, target, bPlaysound)
+    if bPlaysound then
+        target:RemoveModifierByName("modifier_hide_aggro")
+        EmitSoundOn("General.PingWarning", target)
+        local particleID = ParticleManager:CreateParticle("particles/msg_fx/msg_aggro.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
+        ParticleManager:SetParticleControlEnt(particleID, 1, target, PATTACH_ABSORIGIN_FOLLOW, "", Vector(0, 0, 0), false)
+        ParticleManager:SetParticleControl(particleID, 3, Vector(255, 69, 0))
+        ParticleManager:ReleaseParticleIndex(particleID)
+        target:AddNewModifier(target, nil, "modifier_hide_aggro", { duration = AGGRO_MSG_CD })
+    else
+        if not target:HasModifier("modifier_hide_aggro") then
+            local particleID = ParticleManager:CreateParticle("particles/msg_fx/msg_aggro.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
+            ParticleManager:SetParticleControlEnt(particleID, 1, target, PATTACH_ABSORIGIN_FOLLOW, "", Vector(0, 0, 0), false)
             ParticleManager:SetParticleControl(particleID, 3, Vector(255, 69, 0))
             ParticleManager:ReleaseParticleIndex(particleID)
-            aggro_target:AddNewModifier(aggro_target, nil, "modifier_hide_aggro", {duration = AGGRO_MSG_CD})
-            if self.C_AggroTarget ~= aggro_target then
-                EmitSoundOn("General.PingWarning", aggro_target)
-            end
+            target:AddNewModifier(target, nil, "modifier_hide_aggro", { duration = AGGRO_MSG_CD })
         end
     end
-    self.C_AggroTarget = aggro_target
+
 end
---DPS优先选择仇恨目标
-function CDOTA_BaseNPC:C_GetAggroTargetByDHPS(fFind_radius)
-    local max_hatred = 0
-    local aggro_target = nil
-    local units = FindUnitsInRadius(self:GetTeamNumber(), self:GetAbsOrigin(), nil, fFind_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
-    for _, unit in pairs(units) do
-        if unit ~= nil and unit:IsAlive() then
-            --print("打印DPS",unit:GetDPS())
-            if unit:GetDPS() > 0 or unit:GetHPS() > 0 then
-                if unit:GetDPS() * unit:GetAggroFactor() + unit:GetHPS() * unit:GetAggroFactor() > max_hatred then
-                    max_hatred = unit:GetDPS() * unit:GetAggroFactor() + unit:GetHPS() * unit:GetAggroFactor()
-                    aggro_target = unit
-                end
-            end
-        end
-    end
-    return aggro_target
-end
---距离优先选择仇恨目标
-function CDOTA_BaseNPC:C_GetAggroTargetByRange(fFind_radius)
-    local aggro_target = nil
-    if fFind_radius > 0 then
-        local units = FindUnitsInRadius(self:GetTeamNumber(), self:GetAbsOrigin(), nil, fFind_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false)
-        for _, unit in pairs(units) do
-            if unit ~= nil and unit:IsAlive() then
-                aggro_target = unit
-                break
-            end
-        end
-    end
-    return aggro_target
-end
+
+return AI_manager

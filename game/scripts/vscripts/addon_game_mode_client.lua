@@ -1,5 +1,5 @@
 require('GameConfig')
-require('common.attribute_manager')
+require('common.managers.attribute_manager')
 require('modifiers.Cmodifier')
-require('common.combat.managers.combat_manager')
+require('common.managers.combat_manager')
 require('KeyValues')

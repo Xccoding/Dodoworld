@@ -11,7 +11,7 @@ function death_knight_bulldoze:OnSpellStart()
 	local hCaster = self:GetCaster()
 	local hAbility = self
 	local duration = self:GetSpecialValueFor("duration")
-
+	
 	hCaster:AddNewModifier(hCaster, hAbility, "modifier_death_knight_bulldoze", {duration = duration})
 
 	EmitSoundOn("Hero_Spirit_Breaker.Bulldoze.Cast", hCaster)

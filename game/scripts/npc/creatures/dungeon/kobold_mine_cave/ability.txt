@@ -156,7 +156,7 @@
 		// "SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
         // "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 
-		"AbilityCooldown"				"15"
+		"AbilityCooldown"				"2"
 		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"140"
 		"AbilityCastRangeBuffer"		"250"
@@ -165,7 +165,7 @@
 
 		"AbilityValues"
         {
-            "channel_time"  "3"
+            "channel_time"  "1"
 			"count"	"5"
 			"range_min"	"150"
 			"range_max"	"800"

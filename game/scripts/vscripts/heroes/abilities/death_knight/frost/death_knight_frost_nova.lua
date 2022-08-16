@@ -41,7 +41,7 @@ function death_knight_frost_nova:OnSpellStart()
     if IsServer() then
         local enemies = FindUnitsInRadius(hCaster:GetTeamNumber(), hTarget:GetAbsOrigin(), nil, radius, self:GetAbilityTargetTeam(), self:GetAbilityTargetType(), self:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
         for _, enemy in pairs(enemies) do
-            if enemy ~= nil and enemy:IsAlive()then
+            if IsValid(enemy) and enemy:IsAlive()then
                 local this_damage = fDamage
                 if enemy == hTarget then
                     this_damage = this_damage * (100 + main_target_damage_pct) * 0.01

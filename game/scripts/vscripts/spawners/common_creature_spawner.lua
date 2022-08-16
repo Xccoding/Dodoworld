@@ -61,10 +61,10 @@ thisEntity.SpawnFunction = function ()
     end
     for i = 1, thisEntity.SpawnerKv.CreatureCount do
         if thisEntity.CreatureGroup[i] == nil or thisEntity.CreatureGroup[i]:IsNull() or (not thisEntity.CreatureGroup[i]:IsAlive()) then
-            CreateUnitByNameAsync(GetSpawnerCreatureName(thisEntity:GetName()), thisEntity:GetAbsOrigin() + RandomVector(RandomFloat(thisEntity.SpawnerKv.SpawnRadiusMin, thisEntity.SpawnerKv.SpawnRadiusMax)), true, nil, nil, DOTA_TEAM_GOODGUYS, function (unit)
+            CreateUnitByNameAsync(GetSpawnerCreatureName(thisEntity:GetName()), thisEntity:GetAbsOrigin() + RandomVector(RandomFloat(thisEntity.SpawnerKv.SpawnRadiusMin, thisEntity.SpawnerKv.SpawnRadiusMax)), true, nil, nil, DOTA_TEAM_NEUTRALS, function (unit)
                 thisEntity.CreatureGroup[i] = unit
                 unit.spawn_entity = thisEntity
-                unit:SetControllableByPlayer(0, true)
+
                 local slow_down = 0
                 if unit.kv_ai_table ~= nil and type(unit.kv_ai_table) == "table" then
                     slow_down = unit.kv_ai_table.SlowNoComabt or 0

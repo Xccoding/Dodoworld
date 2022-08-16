@@ -51,14 +51,15 @@ function modifier_Bezier_motion:OnDestroy(params)
         local hCaster = self:GetCaster()
         local hParent = self:GetParent()
         if self.motion_type == BEZIER_MOTION_TYPE_VEHICLE then
-            CFireModifierEvent(hCaster, CMODIFIER_EVENT_ON_PASSENGER_GETON, {passenger = hParent})
-            CFireModifierEvent(hParent, CMODIFIER_EVENT_ON_PASSENGER_GETON, {passenger = hParent})
+            CFireModifierEvent(hCaster, CMODIFIER_EVENT_ON_PASSENGER_GETON, {passenger = hParent, target = hCaster})
+            CFireModifierEvent(hParent, CMODIFIER_EVENT_ON_PASSENGER_GETON, {passenger = hParent, target = hCaster})
         end
     end
 end
 function modifier_Bezier_motion:DeclareFunctions()
     return {
-        MODIFIER_PROPERTY_OVERRIDE_ANIMATION
+        MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+        MODIFIER_PROPERTY_MODEL_SCALE,
     }
 end
 function modifier_Bezier_motion:CDeclareFunctions()
@@ -88,6 +89,11 @@ function modifier_Bezier_motion:HandleCustomTransmitterData( data )
 end
 function modifier_Bezier_motion:GetOverrideAnimation()
     return self.anim
+end
+function modifier_Bezier_motion:GetModifierModelScale()
+    if self.motion_type == BEZIER_MOTION_TYPE_VEHICLE then
+        return -50
+    end
 end
 function modifier_Bezier_motion:GetEffectAttachType()
     return self.particle_attach

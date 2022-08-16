@@ -37,12 +37,12 @@ function modifier_common:OnTakeDamageKillCredit(params)
     local hVictim = params.target
     
     if not (hVictim:HasModifier("modifier_escape") or hAttacker:HasModifier("modifier_escape")) and hAttacker:IsAlive() then
-        local aggro_target = nil
-        if not hVictim:HasModifier("modifier_combat") then
-            aggro_target = hAttacker:entindex()
+        if not hAttacker:InCombat() then
+            hAttacker:AddNewModifier(hVictim, nil, "modifier_combat", {duration = COMBAT_STATUS_TIME})
         end
-        hAttacker:AddNewModifier(hAttacker, nil, "modifier_combat", {duration = COMBAT_STATUS_TIME})
-        hVictim:AddNewModifier(hVictim, nil, "modifier_combat", {duration = COMBAT_STATUS_TIME, aggro_target = aggro_target})
+        if not hVictim:InCombat() then
+            hVictim:AddNewModifier(hAttacker, nil, "modifier_combat", {duration = COMBAT_STATUS_TIME})
+        end
     end
 end
 function modifier_common:OnModifierAdded( params )
@@ -50,13 +50,10 @@ function modifier_common:OnModifierAdded( params )
         local tBuff = params.added_buff
         local hCaster = tBuff:GetCaster()
         local hParent = self:GetParent()
-        local aggro_target = nil
-        if not hParent:HasModifier("modifier_combat") then
-            aggro_target = hCaster:entindex()
-        end
+
         if tBuff:GetName() == "modifier_taunt_custom" and not (hParent:HasModifier("modifier_escape") or hCaster:HasModifier("modifier_escape")) then
             hCaster:AddNewModifier(hCaster, nil, "modifier_combat", {duration = COMBAT_STATUS_TIME})
-            hParent:AddNewModifier(hParent, nil, "modifier_combat", {duration = COMBAT_STATUS_TIME, aggro_target = aggro_target})
+            hParent:AddNewModifier(hParent, nil, "modifier_combat", {duration = COMBAT_STATUS_TIME})
         end
     end
 end

@@ -39,14 +39,14 @@ function NormalThink()
     if (unit:GetAbsOrigin() - unit.spawn_entity:GetAbsOrigin()):Length2D() > MaxPursueRange then
         if not (unit.current_order.order == DOTA_UNIT_ORDER_MOVE_TO_POSITION and unit.current_order.bForce == false) then
             NewWander(true)
-            unit:C_ClearAggroTarget()
+            AI_manager:ClearAggroTarget(unit)
             unit:RemoveModifierByName("modifier_combat")
             unit:AddNewModifier(unit, nil, "modifier_escape", {duration = 0.35})
             return 0.25
         else
             if unit.current_order.fEndtime >= GameRules:GetGameTime() then
                 NewWander(true)
-                unit:C_ClearAggroTarget()
+                AI_manager:ClearAggroTarget(unit)
                 unit:RemoveModifierByName("modifier_combat")
                 unit:AddNewModifier(unit, nil, "modifier_escape", {duration = 0.35})
                 return 0.25
@@ -55,24 +55,26 @@ function NormalThink()
     else
         if unit.current_order.order == DOTA_UNIT_ORDER_MOVE_TO_POSITION and unit.current_order.bForce == true and (unit:GetAbsOrigin() - unit.spawn_entity:GetAbsOrigin()):Length2D() >= MaxWanderRange then
             NewWander(true)
-            unit:C_ClearAggroTarget()
+            AI_manager:ClearAggroTarget(unit)
             unit:RemoveModifierByName("modifier_combat")
             unit:AddNewModifier(unit, nil, "modifier_escape", {duration = 0.35})
             return 0.25
         end
     end
+    
     --未超距，判断根据什么条件更新
-    if unit:InCombat() then
-        unit:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_DHPS, math.max(unit:GetAcquisitionRange(), CombatFindRadius), nil)
-    else
-        if unit:GetAcquisitionRange() > 0 then
-            unit:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_RANGE, math.max(unit:GetAcquisitionRange(), CombatFindRadius), nil)
-        else
-            unit:C_ClearAggroTarget()
-        end
-    end
+    -- if unit:InCombat() then
+    --     unit:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_DHPS, math.max(unit:GetAcquisitionRange(), CombatFindRadius), nil)
+    -- else
+    --     if unit:GetAcquisitionRange() > 0 then
+    --         unit:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_RANGE, math.max(unit:GetAcquisitionRange(), CombatFindRadius), nil)
+    --     else
+    --         unit:C_ClearAggroTarget()
+    --     end
+    -- end
+
     --如果没有仇恨目标，脱战
-    if unit:C_GetAggroTarget() == nil and unit:InCombat() then
+    if AI_manager:GetWishAttackTarget(unit) == nil and unit:InCombat() then
         unit:RemoveModifierByName("modifier_combat")
         unit:AddNewModifier(unit, nil, "modifier_escape", {duration = 0.35})
     end
@@ -80,7 +82,7 @@ function NormalThink()
     --非战斗中
     if not unit:InCombat() then
         --主动攻击距离>0，会主动攻击
-        if unit:C_GetAggroTarget() ~= nil then
+        if AI_manager:GetWishAttackTarget(unit) ~= nil then
             NeedCombatBehavior = true
         end
         if WanderType ~= nil then 
@@ -114,11 +116,11 @@ function NormalThink()
         --找单位A的order
         if unit:GetAttackCapability() ~= DOTA_UNIT_CAP_NO_ATTACK then
             --可以攻击
-            if unit:C_GetAggroTarget() ~= nil then
+            if AI_manager:GetWishAttackTarget(unit) ~= nil then
                 table.insert(desires, {desire = 1 / behavior_can_excute, ordertable = {
                     UnitIndex = unit:entindex(),
                     OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-                    TargetIndex = unit:C_GetAggroTarget():entindex(),
+                    TargetIndex = AI_manager:GetWishAttackTarget(unit):entindex(),
                     Queue = false,
                 }})
             end

@@ -118,6 +118,14 @@ function modifier_lamper_maurice_seek_help:OnDeath( params )
                 end
             end
         end
+    elseif unit:GetUnitName() == "creature_miner_maurice" then
+        if self.moles ~= nil and type(self.moles) == "table" then
+            for _, mole in pairs(self.moles) do
+                if IsValidEntity(mole) and mole == unit then
+                    mole:RemoveSelf()
+                end
+            end
+        end
     end
 end
 --=======================================modifier_lamper_maurice_seek_help_sleep=======================================

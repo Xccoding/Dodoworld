@@ -50,3 +50,12 @@ function GetMidPoint( v1, v2)
     local range = (v2 - v1):Length()
     return v1 + dir * range
 end
+
+--打印一个table
+function TablePrint( t )
+    if type(t) == "table" then
+        for key, value in pairs(t) do
+            print("N2O", key, value)
+        end
+    end
+end

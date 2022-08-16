@@ -77,7 +77,7 @@ function modifier_death_knight_midnight_pulse:OnIntervalThink()
 		end
 		local enemies = FindUnitsInRadius(hCaster:GetTeamNumber(), hParent:GetAbsOrigin(), nil, self.radius, self:GetAbility():GetAbilityTargetTeam(), self:GetAbility():GetAbilityTargetType(), self:GetAbility():GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 		for _, enemy in pairs(enemies) do
-			if enemy ~= nil and enemy:IsAlive() then
+			if IsValid(enemy) and enemy:IsAlive() then
 				ApplyDamage({
 					victim = enemy,
 					attacker = hCaster,
@@ -97,7 +97,14 @@ function modifier_death_knight_midnight_pulse:OnDestroy()
 end
 function modifier_death_knight_midnight_pulse:DeclareFunctions()
 	return {
+		MODIFIER_EVENT_ON_DEATH
 	}
+end
+function modifier_death_knight_midnight_pulse:OnDeath( params )
+	local hCaster = self:GetCaster()
+	if hCaster == params.unit then
+		self:Destroy()
+	end
 end
 --自身buffmodifier
 if modifier_death_knight_midnight_pulse_buff == nil then

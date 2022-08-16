@@ -26,9 +26,14 @@ function Activate()
 end
 
 function DodoWorld:InitGameMode()
-	require('common.combat.managers.combat_manager')
-	require('common.combat.managers.heal_manager')
-	require('common.attribute_manager')
+	require('common.managers.combat_manager')
+	require('common.managers.heal_manager')
+	require('common.managers.attribute_manager')
+	require('common.managers.vehicle_manager')
+	Alert_manger = require('common.managers.alert_manager')
+	Abilities_manager = require('common.managers.abilities_manager')
+	AI_manager = require('ai.ai_manager')
+	AI_manager:constructor()
 	require('events.OnNpcSpawned')
 	require('events.OnPlayerGainedLevel')
 	require('events.OnPlayerPickHero')
@@ -36,18 +41,13 @@ function DodoWorld:InitGameMode()
 	require('utils')
 	require('lib.timers')
 	require('heroes.label.schools')
-	require('ai.ai_manager')
+	--require('ai.ai_manager')
 	require('backpack.backpack_manager')
 	require('abilities_required_lvl')
 	require('filters.ItemAddedToInventoryFilter')
 	require('filters.ExecuteOrderFilter')
 	require('filters.DamageFilter')
 	require('modifiers.Cmodifier')
-	
-
-	Alert_manger = require('common.combat.managers.alert_manager')
-	Abilities_manager = require('common.combat.managers.abilities_manager')
-
 
 	level_table = {[0] = 0}
 
@@ -80,7 +80,7 @@ function DodoWorld:InitGameMode()
 	GameRules:GetGameModeEntity():SetInnateMeleeDamageBlockAmount(0)--设置近战英雄自带格挡值为0
 	GameRules:GetGameModeEntity():SetInnateMeleeDamageBlockPercent(0)--设置近战英雄自带格挡几率为0
 	GameRules:GetGameModeEntity():SetInnateMeleeDamageBlockPerLevelAmount(0)--设置近战英雄自带格挡每级成长为0
-
+	
 	GameRules:GetGameModeEntity():SetSendToStashEnabled(false)--禁用储藏处
 	GameRules:GetGameModeEntity():SetUnseenFogOfWarEnabled(true) -- 启用全黑迷雾
 

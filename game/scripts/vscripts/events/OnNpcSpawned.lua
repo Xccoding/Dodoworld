@@ -24,7 +24,7 @@ function DodoWorld:OnNpcSpawned( params )
 
     --添加载具属性
     if KeyValues:GetUnitSpecialValue(unit, "IsVehicle") then
-        unit:AddNewModifier(unit, nil, "modifier_Vehicle", {})
+         Vehicle_manager:constructor(unit)
     end
 
     if unit:IsHero() and unit:IsRealHero() then
