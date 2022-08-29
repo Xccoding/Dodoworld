@@ -90,7 +90,7 @@ function mage_light_strike_array:OnSpellStart()
 	
 	local enemies = FindUnitsInRadius(hCaster:GetTeamNumber(), vPos, nil, radius, self:GetAbilityTargetTeam(), self:GetAbilityTargetType(), self:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 	for _, enemy in pairs(enemies) do
-		if enemy ~= nil and enemy:IsAlive() then
+		if IsValid(enemy) and enemy:IsAlive() then
 			ApplyDamage({
 				victim = enemy,
 				attacker = hCaster,

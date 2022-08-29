@@ -69,14 +69,19 @@ function AI_manager:RemoveAllAggro(target)
 end
 --判断unit是否在任意怪物的仇恨列表内
 function AI_manager:IsAggroTarget(unit)
-    for target, aggro_list in pairs(self.Aggro_Map) do
-        if aggro_list ~= nil then
-            if aggro_list[unit:entindex()] ~= nil and aggro_list[unit:entindex()] ~= 0 then
-                return true
+    local flag = false
+    for target_index, aggro_list in pairs(self.Aggro_Map) do
+        if IsValid(EntIndexToHScript(target_index)) then
+            if aggro_list ~= nil then
+                if aggro_list[unit:entindex()] ~= nil and aggro_list[unit:entindex()] ~= 0 then
+                    flag = true
+                end
             end
+        else
+            self.Aggro_Map[target_index] = nil
         end
     end
-    return false
+    return flag
 end
 --获取unit当前最大仇恨目标
 function AI_manager:GetAggroTarget(unit)

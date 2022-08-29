@@ -59,3 +59,26 @@ function TablePrint( t )
         end
     end
 end
+
+--阶乘函数
+function Factorial(n)
+    if n == 0 then
+        return 1;
+    else
+        return n * Factorial(n - 1);
+    end
+end
+
+--组合数函数
+function Combinatorial(n, m)
+    if n == m or m == 0 then
+        return 1
+    else
+        return Factorial(n) / (Factorial(n - m) * Factorial(m))
+    end
+end
+
+--- 判断变量是否是向量
+function IsVector(v)
+	return  type(v.x) == "number" and type(v.y) == "number" and type(v.z) == "number" and type(v) == "userdata"
+end

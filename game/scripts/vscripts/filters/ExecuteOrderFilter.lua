@@ -17,16 +17,13 @@ function DodoWorld:ExecuteOrderFilter( params )
 
             --print("N2O", params.order_type)
             
-            if hUnit ~= nil and hTarget ~= nil then
+            if IsValid(hUnit) and IsValid(hTarget) then
                 --交互目标修改
                 if (
                     params.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET or 
                     (params.order_type == DOTA_UNIT_ORDER_CAST_TARGET and AbilityBehaviorFilter(EntIndexToHScript(params.entindex_ability):GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_ATTACK)) 
                 )
                 and KeyValues:GetUnitSpecialValue(hTarget, "IsInteractiveNPC") then
-
-                    local interactive_ability = hUnit:AddAbility("common_interactive")
-                    interactive_ability:SetLevel(1)
 
                     ExecuteOrderFromTable({
                         UnitIndex = unit_index,

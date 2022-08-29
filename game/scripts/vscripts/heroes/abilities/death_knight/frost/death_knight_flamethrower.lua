@@ -65,7 +65,7 @@ function modifier_death_knight_flamethrower:OnIntervalThink()
 
 		local enemies = FindUnitsInRadius(hCaster:GetTeamNumber(), hCaster:GetAbsOrigin(), nil, self.distance, self:GetAbility():GetAbilityTargetTeam(), self:GetAbility():GetAbilityTargetType(), self:GetAbility():GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 		for _, enemy in pairs(enemies) do
-			if enemy ~= nil and enemy:IsAlive() then
+			if IsValid(enemy) and enemy:IsAlive() then
 				local vToEnemy = (enemy:GetAbsOrigin() - hCaster:GetAbsOrigin()):Normalized()
 
 				if AngleBetweenVectors(vFace, vToEnemy) < self.angle then

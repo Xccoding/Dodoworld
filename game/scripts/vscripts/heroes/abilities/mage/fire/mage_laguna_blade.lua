@@ -1,22 +1,16 @@
-if  mage_laguna_blade == nil then
+LinkLuaModifier("modifier_mage_laguna_blade_debuff", "heroes/abilities/mage/fire/mage_laguna_blade.lua", LUA_MODIFIER_MOTION_NONE)
+if mage_laguna_blade == nil then
     mage_laguna_blade = class({})
 end
 --ability
 function mage_laguna_blade:GetCastAnimation()
-	local hCaster = self:GetCaster()
-	if hCaster:GetUnitName() == "npc_dota_hero_lina" then
-		return ACT_DOTA_CAST_ABILITY_4
-	elseif hCaster:GetUnitName() == "npc_dota_hero_silencer" then
-		return ACT_DOTA_CAST_ABILITY_3
-	end
+    local hCaster = self:GetCaster()
+    if hCaster:GetUnitName() == "npc_dota_hero_lina" then
+        return ACT_DOTA_CAST_ABILITY_4
+    elseif hCaster:GetUnitName() == "npc_dota_hero_silencer" then
+        return ACT_DOTA_CAST_ABILITY_3
+    end
 end
--- function mage_laguna_blade:GetBehavior()
---     local hCaster = self:GetCaster()
---     if hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
---         return tonumber(tostring(self.BaseClass.GetBehavior(self))) + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
---     end
--- 	return tonumber(tostring(self.BaseClass.GetBehavior(self)))
--- end
 function mage_laguna_blade:GetCastPoint()
     local hCaster = self:GetCaster()
     if hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
@@ -34,9 +28,9 @@ end
 function mage_laguna_blade:GetAbilityTextureName()
     local hCaster = self:GetCaster()
     if hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
-        return  "mage_laguna_blade"
+        return "mage_laguna_blade"
     else
-        return  "lina_laguna_blade"
+        return "lina_laguna_blade"
     end
 end
 function mage_laguna_blade:OnAbilityPhaseStart()
@@ -51,7 +45,7 @@ function mage_laguna_blade:OnAbilityPhaseStart()
 end
 function mage_laguna_blade:OnAbilityPhaseInterrupted()
     local hCaster = self:GetCaster()
-	StopSoundOn("Hero_StormSpirit.ElectricVortex", hCaster)
+    StopSoundOn("Hero_StormSpirit.ElectricVortex", hCaster)
     ParticleManager:DestroyParticle(self.particleID_pre, true)
     self.particleID_pre = nil
     return true
@@ -64,14 +58,14 @@ function mage_laguna_blade:OnSpellStart()
 
     if hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
         flags = flags + DOTA_DAMAGE_FLAG_FIERY_SOUL_COMBO
-		hCaster:RemoveModifierByName("modifier_mage_fiery_soul_combo")
-	end
+        hCaster:RemoveModifierByName("modifier_mage_fiery_soul_combo")
+    end
 
     StopSoundOn("Hero_StormSpirit.ElectricVortex", hCaster)
     if self.particleID_pre ~= nil then
         ParticleManager:DestroyParticle(self.particleID_pre, true)
     end
-	self.particleID_pre = nil
+    self.particleID_pre = nil
     local iParticleID = ParticleManager:CreateParticle("particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf", PATTACH_ABSORIGIN, hTarget)
     ParticleManager:SetParticleControlEnt(iParticleID, 0, hCaster, PATTACH_POINT_FOLLOW, "attach_attack1", Vector(0, 0, 0), false)
     ParticleManager:SetParticleControlEnt(iParticleID, 1, hTarget, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0, 0, 0), false)
@@ -79,18 +73,72 @@ function mage_laguna_blade:OnSpellStart()
 
     EmitSoundOn("Ability.LagunaBlade", hCaster)
     EmitSoundOn("Ability.LagunaBladeImpact", hTarget)
-    
+
     ApplyDamage(
-        {
-            victim = hTarget,
-			attacker = hCaster,
-			damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * sp_factor * 0.01,
-			damage_type = DAMAGE_TYPE_MAGICAL,
-			ability = self,
-			damage_flags = flags,
-        }
+    {
+        victim = hTarget,
+        attacker = hCaster,
+        damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * sp_factor * 0.01,
+        damage_type = DAMAGE_TYPE_MAGICAL,
+        ability = self,
+        damage_flags = flags,
+    }
     )
 
-
+    if self:GetLevel() >= 2 and hTarget:IsAlive() then
+        hTarget:AddNewModifier(hCaster, self, "modifier_mage_laguna_blade_debuff", {duration = self:GetSpecialValueFor("duration")})
+    end
 end
+--=======================================modifier_mage_laguna_blade_debuff=======================================
+if modifier_mage_laguna_blade_debuff == nil then
+    modifier_mage_laguna_blade_debuff = class({})
+end
+function modifier_mage_laguna_blade_debuff:IsHidden()
+    return false
+end
+function modifier_mage_laguna_blade_debuff:IsDebuff()
+    return true
+end
+function modifier_mage_laguna_blade_debuff:IsPurgable()
+    return true
+end
+function modifier_mage_laguna_blade_debuff:IsPurgeException()
+    return true
+end
+function modifier_mage_laguna_blade_debuff:OnCreated(params)
+    self.sp_factor_dot = self:GetAbilitySpecialValueFor("sp_factor_dot")
+    if IsServer() then
+        self:StartIntervalThink(1)
+        self:OnIntervalThink()
+    end
+end
+function modifier_mage_laguna_blade_debuff:OnRefresh(params)
+end
+function modifier_mage_laguna_blade_debuff:OnDestroy(params)
+end
+function modifier_mage_laguna_blade_debuff:DeclareFunctions()
+    return {
+    }
+end
+function modifier_mage_laguna_blade_debuff:CDeclareFunctions()
+    return {
+    }
+end
+function modifier_mage_laguna_blade_debuff:OnIntervalThink()
+    local hCaster = self:GetCaster()
+    local hParent = self:GetParent()
 
+    local particleID = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_static_field.vpcf", PATTACH_ABSORIGIN_FOLLOW, hParent)
+    -- ParticleManager:SetParticleControl(particleID, 0, Vector(0, 0, 0))
+    ParticleManager:ReleaseParticleIndex(particleID)
+
+    ApplyDamage(
+    {
+        victim = hParent,
+        attacker = hCaster,
+        damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * self.sp_factor_dot * 0.01,
+        damage_type = DAMAGE_TYPE_MAGICAL,
+        ability = self:GetAbility(),
+        damage_flags = DOTA_DAMAGE_FLAG_INDIRECT,
+    })
+end

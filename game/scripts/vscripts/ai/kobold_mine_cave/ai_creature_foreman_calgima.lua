@@ -52,7 +52,7 @@ function ai_creature_foreman_calgima:GetDesireFor_foreman_calgima_crystal_nova( 
     local tTargets = FindUnitsInRadius(unit:GetTeamNumber(), unit:GetAbsOrigin(), nil, find_radius, hAbility:GetAbilityTargetTeam(), hAbility:GetAbilityTargetType(), hAbility:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
     if #tTargets > 0 then
         for _, enemy in pairs(tTargets) do
-            if enemy ~= nil and enemy:IsAlive() then
+            if IsValid(enemy) and enemy:IsAlive() then
                 if hTarget == nil then
                     hTarget = enemy   
                 end

@@ -1,0 +1,69 @@
+"SchoolsList" {
+    "death_knight" {
+        "0" 
+        {
+            "Ability1"	"death_knight_mortal_strike"
+            "Ability2"	"death_knight_frost_nova"
+            "Ability3"	"death_knight_frost_shield"
+            "Ability4"	"death_knight_bulldoze"
+            "Ability5"	"death_knight_sonic_wave"
+            "Ability6"	"death_knight_flamethrower"
+
+            "duty"      "1"
+            "usemana"    "0"
+            "primary_stat"  "strength"
+        }
+
+        "1" {
+            "Ability1"	"death_knight_hellfire_blast"
+            "Ability2"	"death_knight_midnight_pulse"
+            "Ability3"	"death_knight_chaos_strike"
+            "Ability4"	"death_knight_gravekeepers_cloak"
+            "Ability5"	"death_knight_reality_rift"
+            "Ability6"	"death_knight_borrowed_time"
+
+            "duty"      "4"
+            "usemana"    "0"
+            "primary_stat"  "strength"
+        }
+    }
+
+    "mage"
+    {
+        "0" 
+        {
+            "Ability1"	"mage_fireblast"
+            "Ability2"	"mage_searing_arrows"
+            "Ability3"	"mage_laguna_blade"
+            "Ability4"	"mage_light_strike_array"
+            "Ability5"	"mage_dragon_slave"
+            "Ability6"	"mage_flame_cloak"
+            "Ability7"	"mage_arcane_orb"
+            "Ability8"	"mage_concussive_shot"
+            "Ability9"	"mage_resonant_pulse"
+            "Ability10"	"mage_arcane_bolt"
+            "Ability11"	"mage_ancient_seal"
+            "Ability12"	"mage_equilibrium"
+            "Ability13"	"mage_liquid_fire"
+            "Ability14"	"mage_fiery_soul"
+
+            "duty"      "1"
+            "usemana"    "1"
+            "primary_stat"  "intellect"
+        }
+
+        "1" 
+        {
+            "Ability1"	"mage_arcane_orb"
+            "Ability2"	"mage_concussive_shot"
+            "Ability3"	"mage_resonant_pulse"
+            "Ability4"	"mage_arcane_bolt"
+            "Ability5"	"mage_ancient_seal"
+            "Ability6"	"mage_equilibrium"
+
+            "duty"      "1"
+            "usemana"    "1"
+            "primary_stat"  "intellect"
+        }
+    }
+}

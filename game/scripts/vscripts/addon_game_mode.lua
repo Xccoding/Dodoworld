@@ -99,6 +99,7 @@ function DodoWorld:InitGameMode()
 	CustomGameEventManager:RegisterListener("ChangeRoleMastery", Dynamic_Wrap(Abilities_manager,'OnChangeRoleMastery'))
 	CustomGameEventManager:RegisterListener("EquipItem", OnEquipItem)
 	CustomGameEventManager:RegisterListener("UnEquipItem", OnUnEquipItem)
+	CustomGameEventManager:RegisterListener("Custom_Cast_Ability", Dynamic_Wrap(Abilities_manager,'OnCustomCastAbility'))
 
 	print( "DodoWorld is loaded." )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )

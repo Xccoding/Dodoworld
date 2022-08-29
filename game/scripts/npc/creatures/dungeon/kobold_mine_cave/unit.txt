@@ -1170,7 +1170,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"11"
-		"ModelScale" 				"1"
+		"ModelScale" 				"2.5"
 		"IsNeutralUnitType"			"1"
 		// "UnitLabel"					""
 
@@ -1200,9 +1200,9 @@
 
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"30"
+		"RingRadius"				"50"
 		"HealthBarOffset"			"170"
-		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 
 		// Bounty
 		//----------------------------------------------------------------
@@ -1267,7 +1267,7 @@
 				"3" "50 -50"
 				"4" "-50 -50"
 			}
-			"TerminalEntity"	"mine_cart_terminal"
+			"PathwayName"	"kobold_mine_cave_rail"
 		}
 	}
 

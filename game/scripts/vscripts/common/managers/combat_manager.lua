@@ -3,10 +3,6 @@ _G.DOTA_DAMAGE_FLAG_DIRECT = DOTA_DAMAGE_FLAG_LAST * 2--直接伤害
 _G.DOTA_DAMAGE_FLAG_INDIRECT = DOTA_DAMAGE_FLAG_DIRECT * 2--持续伤害
 _G.DOTA_DAMAGE_FLAG_FIERY_SOUL_COMBO = DOTA_DAMAGE_FLAG_INDIRECT * 2--炽魂连击瞬发光击阵或神灭斩
 
---贝塞尔曲线型Motion类型标识
-_G.BEZIER_MOTION_TYPE_NONE = 1 --默认
-_G.BEZIER_MOTION_TYPE_VEHICLE = 2 --上下载具
-
 LinkLuaModifier("modifier_stun_custom", "common/combat/modifiers/modifier_stun_custom.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_combat", "common/combat/modifiers/modifier_combat.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_taunt_custom", "common/combat/modifiers/modifier_taunt_custom.lua", LUA_MODIFIER_MOTION_NONE)
@@ -16,9 +12,10 @@ LinkLuaModifier("modifier_no_combat_slow", "common/combat/modifiers/modifier_no_
 LinkLuaModifier("modifier_hide_aggro", "common/combat/modifiers/modifier_hide_aggro.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_channel_watcher", "common/combat/modifiers/modifier_channel_watcher.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_Invulnerable", "common/combat/modifiers/modifier_Invulnerable.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_interactive", "common/combat/modifiers/modifier_interactive.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_Bezier_motion", "common/combat/modifiers/modifier_Bezier_motion.lua", LUA_MODIFIER_MOTION_BOTH)
 LinkLuaModifier("modifier_aggressive", "common/combat/modifiers/modifier_aggressive.lua", LUA_MODIFIER_MOTION_NONE)
+
+LinkLuaModifier("modifier_interactive", "common/enviroment/modifiers/modifier_interactive.lua", LUA_MODIFIER_MOTION_NONE)
 
 
 if IsClient() then

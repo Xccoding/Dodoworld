@@ -3,7 +3,7 @@ import { createPortal, render, useNetTableValues } from '@demon673/react-panoram
 import ReactUtils from "../../utils/React_utils";
 import { print, RGBToHex}  from '../Utils'
 
-export function Item_equip(){
+function Item_equip(){
     const [hero_items, Setitems] = useState(update_items)
 
     function update_items(){

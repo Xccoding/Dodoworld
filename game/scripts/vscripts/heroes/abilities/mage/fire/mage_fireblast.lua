@@ -6,6 +6,17 @@ LinkLuaModifier( "modifier_mage_fireblast", "heroes/abilities/mage/fire/mage_fir
 function mage_fireblast:GetIntrinsicModifierName()
     return "modifier_mage_fireblast"
 end
+function mage_fireblast:GetManaCost(iLevel)
+    local hCaster = self:GetCaster()
+    return self:GetSpecialValueFor("mana_cost_pct") * hCaster:GetMaxMana() * 0.01
+end
+function mage_fireblast:GetBehavior()
+    if self:GetLevel() >= 2 then
+        return tonumber(tostring(self.BaseClass.GetBehavior(self))) + DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
+    else
+        return tonumber(tostring(self.BaseClass.GetBehavior(self)))
+    end
+end
 function mage_fireblast:OnSpellStart()
     local hCaster = self:GetCaster()
     local target = self:GetCursorTarget()

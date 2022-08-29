@@ -36,10 +36,10 @@ end
 function modifier_aggressive:OnIntervalThink()
     local hParent = self:GetParent()
     if not hParent:InCombat() then
-        local enemies = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetAbsOrigin(), nil, RADIUS, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED, FIND_CLOSEST, false)
+        local enemies = FindUnitsInRadius(hParent:GetTeamNumber(), hParent:GetAbsOrigin(), nil, hParent:GetAcquisitionRange(), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED, FIND_CLOSEST, false)
         for _, enemy in pairs(enemies) do
             if IsValid(enemy) and enemy:IsAlive() then
-                Aggro_manager:ModifyAggro(hParent, enemy, BASIC_AGGRO_VALUE)
+                AI_manager:ModifyAggro(hParent, enemy, BASIC_AGGRO_VALUE)
                 break
             end
         end

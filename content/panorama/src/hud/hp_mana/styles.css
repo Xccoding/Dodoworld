@@ -1,0 +1,110 @@
+#HealthAndManaContainer {
+  width: 100%;
+  height: fit-children;
+  align: center bottom;
+  margin-bottom: 158px;
+}
+#HealthProgressBar {
+  border-radius: 1px;
+  background-color: black;
+  align: left center;
+  border-color: black;
+  border-style: solid;
+  border-width: 3px;
+  height: 34px;
+  width: 211px;
+}
+#HealthProgressBar #hp_maxhp {
+  align: center center;
+  text-shadow: 0px 0px 4px 5 #000000;
+  color: white;
+  font-family: monospaceNumbersFont;
+  font-size: 16px;
+  z-index: 1;
+}
+#HealthProgressBar #hp_regen {
+  align: right center;
+  text-shadow: 0px 0px 4px 5 #000000;
+  color: white;
+  font-family: monospaceNumbersFont;
+  font-size: 15px;
+  z-index: 1;
+}
+#HealthProgressBar #HealthBarBG {
+  background-color: gradient(linear, 0% 0%, 100% 0%, from(#2b873a), color-stop(0.4, #41ce41), to(#41ce41));
+  height: 100%;
+  overflow: noclip;
+}
+#ManaProgressBar {
+  border-radius: 1px;
+  background-color: black;
+  align: right center;
+  border-color: black;
+  border-style: solid;
+  border-width: 3px;
+  height: 34px;
+  width: 211px;
+}
+#ManaProgressBar #mp_maxmp {
+  align: center center;
+  text-shadow: 0px 0px 4px 5 #000000;
+  color: white;
+  font-family: monospaceNumbersFont;
+  font-size: 16px;
+  z-index: 1;
+}
+#ManaProgressBar #mp_regen {
+  align: right center;
+  text-shadow: 0px 0px 4px 5 #000000;
+  color: white;
+  font-family: monospaceNumbersFont;
+  font-size: 15px;
+  z-index: 1;
+}
+#ManaProgressBar #ManaBarBG {
+  background-color: gradient(linear, 0% 0%, 100% 0%, from(#292f7e), color-stop(0.4, #2947ce), to(#2947ce));
+  height: 100%;
+  overflow: noclip;
+}
+#ManaProgressBar #ManaBarBG.ManaBarBG_death_knight {
+  background-color: gradient(linear, 0% 0%, 100% 0%, from(#292f7e), color-stop(0.4, #2f8cc2), to(#2f8cc2));
+}
+#SchoolsBar {
+  border-radius: 1px;
+  background-color: black;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+  height: 34px;
+  width: 211px;
+  align: center center;
+}
+#SchoolsBar_Fire_Mage {
+  width: 100%;
+  height: 100%;
+  background-color: #180f00;
+  flow-children: right;
+}
+#SchoolsBar_Fire_Mage.Full {
+  border-color: #ffc23e;
+  border-width: 1px;
+  box-shadow: 0px 0px 10px -5px #ff8c20;
+}
+#SchoolsBar_Fire_Mage #Fire_Mage_ComboPoint {
+  width: 50%;
+  height: 100%;
+  background-color: #180f00;
+  transition-property: background-color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  box-shadow: inset #0a0000 0px 0px 1px 1px;
+}
+#SchoolsBar_Fire_Mage #Fire_Mage_ComboPoint.Full {
+  animation-duration: 0.3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+#SchoolsBar_Fire_Mage #Fire_Mage_ComboPoint.Show {
+  box-shadow: inset #57310d 0px 0px 0px 1px;
+  background-color: gradient(linear, 0% 0%, 0% 100%, from(#c44f19), to(#ffb120));
+}

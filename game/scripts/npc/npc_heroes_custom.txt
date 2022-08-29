@@ -2,8 +2,8 @@
 // NOTE: This is not for creating new heroes, this is for taking a currently existing hero as a template and overriding
 // the specified key-value combinations.  Use override_hero <hero_to_override> for this.
 
-#base heroes/mage/hero.txt
-#base heroes/death_knight/hero.txt
+#base heroes/mage/mage_hero.txt
+#base heroes/death_knight/death_knight_hero.txt
 
 "DOTAHeroes"
 {

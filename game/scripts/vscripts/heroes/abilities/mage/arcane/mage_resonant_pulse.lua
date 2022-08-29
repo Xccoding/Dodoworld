@@ -28,7 +28,7 @@ function mage_resonant_pulse:OnSpellStart()
 
 	local enemies = FindUnitsInRadius(hCaster:GetTeamNumber(), hCaster:GetAbsOrigin(), nil, radius, self:GetAbilityTargetTeam(), self:GetAbilityTargetType(), self:GetAbilityTargetFlags(), FIND_CLOSEST, false)
     for _, enemy in pairs(enemies) do
-        if enemy ~= nil and enemy:IsAlive() then
+        if IsValid(enemy) and enemy:IsAlive() then
 			ApplyDamage({
 				victim = enemy,
 				attacker = hCaster,

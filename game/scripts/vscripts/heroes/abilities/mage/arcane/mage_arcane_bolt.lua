@@ -1,11 +1,11 @@
-if  mage_arcane_bolt == nil then
+if mage_arcane_bolt == nil then
     mage_arcane_bolt = class({})
 end
-LinkLuaModifier( "modifier_mage_arcane_bolt", "heroes/abilities/mage/arcane/mage_arcane_bolt.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_mage_arcane_bolt_channel", "heroes/abilities/mage/arcane/mage_arcane_bolt.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier("modifier_mage_arcane_bolt", "heroes/abilities/mage/arcane/mage_arcane_bolt.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_mage_arcane_bolt_channel", "heroes/abilities/mage/arcane/mage_arcane_bolt.lua", LUA_MODIFIER_MOTION_NONE)
 --ability
 function mage_arcane_bolt:GetChannelAnimation()
-	return ACT_DOTA_GENERIC_CHANNEL_1
+    return ACT_DOTA_GENERIC_CHANNEL_1
 end
 function mage_arcane_bolt:GetChannelTime()
     local hCaster = self:GetCaster()
@@ -40,7 +40,7 @@ function mage_arcane_bolt:OnSpellStart()
         hCaster:FindModifierByName("modifier_mage_arcane_bolt"):DecrementStackCount()
     end
 
-    hCaster:AddNewModifier(hCaster, self, "modifier_mage_arcane_bolt_channel", {duration = fDuration, interval = fInterval, index = hTarget:entindex()})
+    hCaster:AddNewModifier(hCaster, self, "modifier_mage_arcane_bolt_channel", { duration = fDuration, interval = fInterval, index = hTarget:entindex() })
 end
 function mage_arcane_bolt:OnChannelFinish(bInterrupted)
     local hCaster = self:GetCaster()
@@ -55,14 +55,14 @@ function mage_arcane_bolt:bolt(hTarget)
     local info = {
         Target = blast_Target,
         Source = hCaster,
-        Ability = self,		
+        Ability = self,    
         EffectName = "particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt.vpcf",
         iMoveSpeed = speed,
-        bDodgeable = true,                           
-        vSourceLoc = hCaster:GetAbsOrigin(),               
-        bIsAttack = false,                                
+        bDodgeable = true,                    
+        vSourceLoc = hCaster:GetAbsOrigin(),        
+        bIsAttack = false,                            
         ExtraData = {},
-        }
+    }
 
     ProjectileManager:CreateTrackingProjectile(info)
 
@@ -88,7 +88,7 @@ function mage_arcane_bolt:OnProjectileHit_ExtraData(hTarget, vLocation, ExtraDat
 end
 --节能施法监控modifiers
 if modifier_mage_arcane_bolt == nil then
-	modifier_mage_arcane_bolt = class({})
+    modifier_mage_arcane_bolt = class({})
 end
 function modifier_mage_arcane_bolt:IsHidden()
     if self:GetStackCount() >= 1 then
@@ -98,7 +98,7 @@ function modifier_mage_arcane_bolt:IsHidden()
 end
 function modifier_mage_arcane_bolt:IsDebuff()
     return false
-end 
+end
 function modifier_mage_arcane_bolt:IsPurgable()
     return false
 end
@@ -146,6 +146,12 @@ end
 function modifier_mage_arcane_bolt:GetTexture()
     return "mage_arcane_bolt_buff"
 end
+function modifier_mage_arcane_bolt:OnDestroy()
+    if self.particleID ~= nil then
+        ParticleManager:DestroyParticle(self.particleID, false)
+        self.particleID = nil
+    end
+end
 function modifier_mage_arcane_bolt:OnTooltip()
     return self:GetStackCount()
 end
@@ -156,31 +162,31 @@ function modifier_mage_arcane_bolt:OnSpentMana(params)
             local mana = params.cost
             local chance = math.floor(mana / (hCaster:GetMaxMana() * self.energy_threshold * 0.01)) * self.energy_chance
             if RandomFloat(0, 100) < chance then
-                hCaster:SetContextThink(DoUniqueString("modifier_mage_arcane_bolt"), function ()
+                hCaster:SetContextThink(DoUniqueString("modifier_mage_arcane_bolt"), function()
                     hCaster:FindModifierByName("modifier_mage_arcane_bolt"):IncrementStackCount()
                     EmitSoundOnEntityForPlayer("Rune.Arcane", hCaster, hCaster:GetPlayerOwnerID())
-                end, FrameTime()) 
+                end, FrameTime())
             end
         end
     end
 end
 --飞弹modifiers
 if modifier_mage_arcane_bolt_channel == nil then
-	modifier_mage_arcane_bolt_channel = class({})
+    modifier_mage_arcane_bolt_channel = class({})
 end
 function modifier_mage_arcane_bolt_channel:IsHidden()
     return true
 end
 function modifier_mage_arcane_bolt_channel:IsDebuff()
     return false
-end 
+end
 function modifier_mage_arcane_bolt_channel:IsPurgable()
     return false
 end
 function modifier_mage_arcane_bolt_channel:OnCreated(params)
     if IsServer() then
         self.hTarget = EntIndexToHScript(params.index)
-        self.interval= params.interval
+        self.interval = params.interval
         self:StartIntervalThink(self.interval)
         self:OnIntervalThink()
     end
@@ -188,7 +194,7 @@ end
 function modifier_mage_arcane_bolt_channel:OnIntervalThink()
     if IsServer() then
         local hCaster = self:GetCaster()
-        local hAbility = self:GetAbility()        
+        local hAbility = self:GetAbility()    
         if (not self.hTarget:IsNull()) and self.hTarget ~= nil then
             if not hAbility:IsNull() and hAbility ~= nil then
                 hAbility:bolt(self.hTarget)

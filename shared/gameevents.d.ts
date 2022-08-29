@@ -16,4 +16,24 @@ declare interface CustomGameEventDeclarations {
         hero_index: EntityIndex,
         unequip_slot: number,
     }
+
+    Custom_Cast_Ability: {
+        ability: AbilityEntityIndex,
+        cursor_pos: {
+            x: number,
+            y: number,
+            z: number,
+        }
+        cursor_target?: EntityIndex,
+    }
+}
+
+interface GameEventDeclarations{
+    CustomToggleHud:{
+        hud_name: string,
+        wish_state?: boolean,
+    }
+    UnBindKey: {
+        key: string
+    }
 }

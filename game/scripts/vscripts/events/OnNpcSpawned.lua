@@ -3,7 +3,7 @@ LinkLuaModifier( "modifier_common", "common/combat/modifiers/modifier_common.lua
 function DodoWorld:OnNpcSpawned( params )
     local unit = EntIndexToHScript(params.entindex)
     
-    print("N2O", unit:GetUnitName().."spawned")
+    --print("N2O", unit:GetUnitName().."spawned")
 
     unit:AddNewModifier(unit, nil, "modifier_common", {})
 
@@ -29,9 +29,10 @@ function DodoWorld:OnNpcSpawned( params )
 
     if unit:IsHero() and unit:IsRealHero() then
         local new_schools = CustomNetTables:GetTableValue("hero_schools", tostring(unit:GetPlayerOwnerID())).schools_index
+        
+        unit:AddNewModifier(unit, nil, "modifier_hero_attribute", {})
         Abilities_manager:RefreshAbilitiesToRole({entindex = params.entindex, new_schools = new_schools})
         Abilities_manager:AutoUpgradeAbilities(unit)
-        unit:AddNewModifier(unit, nil, "modifier_hero_attribute", {})
         
         unit:SetContextThink("123", function ()
             AddFOWViewer(unit:GetTeamNumber(), unit:GetAbsOrigin(), 999999, 100, false)

@@ -37,7 +37,7 @@ function mage_concussive_shot:OnSpellStart()
         local count = 0
         local enemies = FindUnitsInRadius(hCaster:GetTeamNumber(), hCaster:GetAbsOrigin(), nil, radius, self:GetAbilityTargetTeam(), self:GetAbilityTargetType(), self:GetAbilityTargetFlags(), FIND_CLOSEST, false)
         for _, enemy in pairs(enemies) do
-            if enemy ~= nil and enemy:IsAlive() then
+            if IsValid(enemy) and enemy:IsAlive() then
                 self:shot(enemy, arcane_stack)
                 local particleID = ParticleManager:CreateParticleForPlayer("particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_cast.vpcf", PATTACH_CUSTOMORIGIN, hCaster, hCaster:GetPlayerOwner())
                 ParticleManager:SetParticleControl(particleID, 0, enemy:GetAbsOrigin())

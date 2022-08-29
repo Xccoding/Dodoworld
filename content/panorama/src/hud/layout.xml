@@ -21,7 +21,7 @@
 		<include src="s2r://panorama/styles/hud/dota_hud_stat_branch.vcss_c"></include>		
 		<include src="s2r://panorama/styles/hud/dota_hud_ability_panel.vcss_c"></include>
         <include src="./main_style.css" />
-        <include src="./bufflist/bufflist.css" />
+        <!-- <include src="./bufflist/bufflist.css" />
         <include src="./hp_mana/hp_mana.css" />
         <include src="./DHPS_Counter/DHPS_Counter.css" />
         <include src="./xpbar/xpbar.css" />
@@ -32,25 +32,9 @@
         <include src="./Common/Close_button.css" />
         <include src="./OverheadBar/OverheadBar.css" />
         <include src="./Item_equip/Item_equip.css" />
-        <include src="./Item_unequip/Item_unequip.css" />
+        <include src="./Item_unequip/Item_unequip.css" /> -->
     </styles>
     <Panel class="root" hittest="false" >
-        <!-- 动作条、血条和buff栏 -->
-        <Panel id="ActionPanel">
-            <DOTAAbilityList id="abilities" hittest="false"/>
-            <Panel id="HealthManaRoot"/>
-            <Panel id="Buffs"/>
-            <Panel id="XpbarRoot" hittest="false"/>
-            <Panel id="ActionPanel_BG" hittest="false"/>
-        </Panel>
-        <Panel id="Right_bottom_button_Root"/>
-        <Panel id="ChangeSchools_Root" hittest="false"/>
-        <Panel id="Backpack_Root" hittest="false"/>
-        <Panel id="OverheadBar_Root" hittest="false"/>
-        <Panel id="OverheadBar_Garbage" hittest="false"/>
-        <!-- DPS和HPS统计 -->
-        <Panel id="DHPS_CounterRoot" hittest="false"/>
-        
         <!-- 预载内容  -->
         <Panel id="precache" hittest="false">
             <!-- 装备 -->

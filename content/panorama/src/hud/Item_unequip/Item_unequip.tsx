@@ -3,20 +3,15 @@ import { createPortal, render, useNetTableKey, useNetTableValues } from '@demon6
 import ReactUtils from "../../utils/React_utils";
 import { print }  from '../Utils'
 
-export function Item_unequip(){
-    //const hero_items = useNetTableValues("hero_items")
+function Item_unequip(){
     const [item_arrays, Setitem_arrays] = useState(update_items)
 
     function update_items(){
         let item_array_group: {type_name: string, item_list: {item_name: string, equip: number}[]}[] = []
-
         let hero_items = CustomNetTables.GetTableValue("hero_items", Players.GetLocalPlayer())
 
-        // print(hero_items)
 
         if(hero_items != undefined){
-            
-            //const player_items = hero_items[Players.GetLocalPlayer()]
             for(const item_type_index in hero_items){
                 let item_array: {item_name: string, equip: number}[] = []
                 for (let j = 0; j < 12; j++) {
@@ -89,7 +84,6 @@ function Item_unequip_type({type_name, item_list}: {type_name: string, item_list
                         }
                     }}>
                     <Item_unequip_slot item_name={item_info.item_name}/>
-                    {/* <Label id='Item_equip_tag' className={"show_equip_tag"} text={item_info.equip}/> */}
                     <Label id='Item_equip_tag' className={item_info.equip == -1? "" : "show_equip_tag"} text={$.Localize("#Item_in_equip_tip")}/>
                     </Button>
                 })

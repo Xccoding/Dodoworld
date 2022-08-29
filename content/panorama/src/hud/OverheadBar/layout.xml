@@ -1,0 +1,21 @@
+<root>
+    <scripts>
+        <include src="./script.tsx" />
+        <!-- Synchronized file from kv files by sync_kv.js, if it is not used, please delete the following line -->
+        <include src="file://{resources}/scripts/sync_keyvalues.js" />
+    </scripts>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.vcss_c"></include>
+        <include src="s2r://panorama/styles/hudstyles.vcss_c"></include>
+        <include src="s2r://panorama/styles/hud/hud_reborn.vcss_c"></include>
+        <include src="s2r://panorama/styles/custom_ui.vcss_c"></include>
+        <include src="s2r://panorama/styles/hud/dota_hud_stat_branch.vcss_c"></include>
+        <include src="s2r://panorama/styles/hud/dota_hud_ability_panel.vcss_c"></include>
+        <include src="./styles.css" />
+    </styles>
+    <Panel class="hud_root" hittest="false">
+        <Panel id="OverheadBar_Root" hittest="false"/>
+        <Panel id="OverheadBar_Garbage" hittest="false"/>
+    </Panel>
+    
+</root>

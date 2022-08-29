@@ -29,8 +29,8 @@
 				[
 					{
 						_class = "RenderMeshFile"
-						name = "mine_cart002"
-						filename = "models/custom/mine_cart002.dmx"
+						name = "mine_cart_custom"
+						filename = "models/custom/mine_cart_custom.fbx"
 						import_scale = 1.0
 						import_filter = 
 						{
@@ -51,12 +51,12 @@
 						[
 							{
 								_class = "Hitbox"
-								parent_bone = "Bone_002"
+								parent_bone = "root"
 								surface_property = ""
 								translation_only = false
 								group_id = 0
-								hitbox_mins = [ -3.162471, -4.625217, -0.349281 ]
-								hitbox_maxs = [ 0.423561, 1.0, 3.119884 ]
+								hitbox_mins = [ 5.462269, -62.315701, -41.655937 ]
+								hitbox_maxs = [ 87.196442, 58.690487, 44.426537 ]
 							},
 						]
 					},
@@ -76,6 +76,7 @@
 						swap_left_and_right_bones = false
 					},
 				]
+				disabled = true
 			},
 			{
 				_class = "AnimationList"
@@ -83,15 +84,7 @@
 				[
 					{
 						_class = "AnimFile"
-						name = "mine_cart002"
-						children = 
-						[
-							{
-								_class = "AnimOffset"
-								translation = [ 0.0, 0.0, 0.0 ]
-								rotation_xyz = [ 0.0, 0.0, 90.0 ]
-							},
-						]
+						name = "mine_cart_custom_run"
 						activity_name = "ACT_DOTA_RUN"
 						activity_weight = 1
 						weight_list_name = ""
@@ -104,10 +97,32 @@
 						anim_markup_ordered = false
 						disable_compression = false
 						animgraph_additive = false
-						source_filename = "models/custom/mine_cart002.dmx"
+						source_filename = "models/custom/mine_cart_custom_run.fbx"
 						import_bone_scales = false
 						start_frame = -1
 						end_frame = -1
+						framerate = -1.0
+						reverse = false
+					},
+					{
+						_class = "AnimFile"
+						name = "mine_cart_custom_idle"
+						activity_name = "ACT_DOTA_IDLE"
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = true
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						animgraph_additive = false
+						source_filename = "models/custom/mine_cart_custom_run.fbx"
+						import_bone_scales = false
+						start_frame = -1
+						end_frame = 0
 						framerate = -1.0
 						reverse = false
 					},

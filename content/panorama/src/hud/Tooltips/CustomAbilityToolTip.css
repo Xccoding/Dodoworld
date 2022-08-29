@@ -1,0 +1,129 @@
+@define PhysicalDamageColor: #ae2f28;
+@define MagicalDamageColor: #5b93d1;
+@define PureDamageColor: #d8ae53;
+#Contents {
+  padding: 0px;
+  border: 0px solid black;
+  background-color: rgba(0, 0, 0, 0.95);
+}
+#Contenets.hud_root {
+  width: 100%;
+  height: 100%;
+}
+#CustomAbilityToolTips {
+  width: 400px;
+  min-height: 100px;
+  height: fit-children;
+  background-color: none;
+  flow-children: down;
+  padding: 12px;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_title {
+  width: 100%;
+  height: 40px;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_title #abilityName {
+  align: left center;
+  text-shadow: 0px 0px 4px 6 #000000;
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
+  text-overflow: shrink;
+  height: 24px;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_title #abilityLevel {
+  align: right center;
+  text-shadow: 0px 0px 4px 6 #000000;
+  font-weight: bold;
+  color: white;
+  font-size: 18px;
+  text-overflow: shrink;
+  height: 22px;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_header {
+  width: 100%;
+  height: 60px;
+  border-top-color: #29353b;
+  border-top-style: solid;
+  border-top-width: 1px;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_header.Passive {
+  height: 32px;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_header #AbilityManaCost {
+  align: left top;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_header #AbilityManaCost.Passive {
+  visibility: collapse;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_header #AbilityCastRange {
+  align: right top;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_header #AbilityCastRange.Passive {
+  visibility: collapse;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_header #AbilityCooldown {
+  align: right bottom;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_header #AbilityCooldown.Passive {
+  align: left center;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_header #AbilityCastPoint {
+  align: left bottom;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_header #AbilityCastPoint.Passive {
+  visibility: collapse;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_header Label {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  vertical-align: center;
+  text-shadow: 0px 0px 4px 6 #000000;
+  font-weight: bold;
+  color: #9ab0cd;
+  font-size: 18px;
+  text-overflow: shrink;
+  height: 22px;
+  visibility: visible;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_main {
+  width: 100%;
+  height: fit-children;
+  border-top-color: #29353b;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-bottom-color: #29353b;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_main #main_description {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-shadow: 0px 0px 2px 3 #000000;
+  font-weight: bold;
+  color: white;
+  font-size: 18px;
+  text-overflow: shrink;
+  height: fit-children;
+  visibility: visible;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_bottom {
+  width: 100%;
+  height: 20px;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_bottom #bottom_text_level {
+  align: left center;
+  text-shadow: 0px 0px 2px 3 #000000;
+  color: #a4c5d6;
+  font-size: 16px;
+  text-overflow: shrink;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_bottom #bottom_text_alt_tip {
+  align: right center;
+  text-shadow: 0px 0px 2px 3 #000000;
+  color: #a4c5d6;
+  font-size: 16px;
+  text-overflow: shrink;
+}

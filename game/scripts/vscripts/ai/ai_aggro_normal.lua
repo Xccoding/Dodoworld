@@ -19,11 +19,13 @@ function NormalThink()
     end
     --存在判断
     if unit == nil then
+        AI_manager:ClearAggroTarget(unit)
         --print("unit == nil")
         return
     end
     --存活判断
     if not unit:IsAlive() then
+        AI_manager:ClearAggroTarget(unit)
         --print("unit is dead")
         return
     end
@@ -33,6 +35,9 @@ function NormalThink()
     local WanderType = unit.kv_ai_table.WanderType or AI_WANDER_TYPE_PASSIVE
 
     local NeedCombatBehavior = false
+    if unit:GetAcquisitionRange() > 0 and not unit:HasModifier("modifier_aggressive")  then
+        unit:AddNewModifier(unit, nil, "modifier_aggressive", {})
+    end
 
     -----------------更新仇恨目标---------------------------
     --超距返回
@@ -61,7 +66,7 @@ function NormalThink()
             return 0.25
         end
     end
-    
+
     --未超距，判断根据什么条件更新
     -- if unit:InCombat() then
     --     unit:C_RefreshAggroTarget(AI_GET_TARGET_ORDER_DHPS, math.max(unit:GetAcquisitionRange(), CombatFindRadius), nil)

@@ -18,11 +18,13 @@ end
 function boss_base_ai:OnCommonThink()
     --存在判断
     if self.me == nil then
+        AI_manager:ClearAggroTarget(self.me)
         --print("unit == nil")
         return -1
     end
     --存活判断
     if not self.me:IsAlive() then
+        AI_manager:ClearAggroTarget(self.me)
         --print("unit is dead")
         return -1
     end
@@ -30,6 +32,10 @@ function boss_base_ai:OnCommonThink()
     local MaxWanderRange = self.me.kv_ai_table.MaxWanderRange or 0
     local CombatFindRadius = self.me.kv_ai_table.CombatFindRadius or 0
     local WanderType = self.me.kv_ai_table.WanderType or AI_WANDER_TYPE_PASSIVE
+
+    if self.me:GetAcquisitionRange() > 0 and not self.me:HasModifier("modifier_aggressive") then
+        self.me:AddNewModifier(self.me, nil, "modifier_aggressive", {})
+    end
 
     --超距脱战返回
     if (self.me:GetAbsOrigin() - self.me.spawn_entity:GetAbsOrigin()):Length2D() > MaxPursueRange then

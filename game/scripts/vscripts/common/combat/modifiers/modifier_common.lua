@@ -23,6 +23,8 @@ function modifier_common:DeclareFunctions()
         MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
         MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
         MODIFIER_PROPERTY_IGNORE_PHYSICAL_ARMOR,
+        MODIFIER_EVENT_ON_ABILITY_START,
+        MODIFIER_EVENT_ON_ABILITY_END_CHANNEL,
     }
 end
 function modifier_common:RemoveOnDeath()
@@ -108,6 +110,24 @@ function modifier_common:OnTakeDamage(params)
     -- end
 
 end
+function modifier_common:OnAbilityStart( params )
+    local hParent = self:GetParent()
+    if params.unit:IsHero() and params.unit == hParent then
+        local casttype = "phase"
+        if params.ability:GetChannelTime() > 0 then
+            casttype = "channel"
+        end
+        if params.ability:GetChannelTime() > 0 or params.ability:GetCastPoint() > 0 then
+            CustomGameEventManager:Send_ServerToPlayer(hParent:GetPlayerOwner(), "AbilityStart", {ability = params.ability:entindex(), casttype = casttype})
+        end
+    end
+end
+function modifier_common:OnAbilityEndChannel( params )
+    local hParent = self:GetParent()
+    if params.unit:IsHero() and params.unit == hParent then
+        CustomGameEventManager:Send_ServerToPlayer(hParent:GetPlayerOwner(), "AbilityEndChannel", {})
+    end
+end
 function modifier_common:GetModifierTotalDamageOutgoing_Percentage( params )
     if not IsServer() then return end
 
@@ -120,11 +140,11 @@ function modifier_common:GetModifierTotalDamageOutgoing_Percentage( params )
         local crit_chance = 0
         local crit_damage = CDOTA_BASE_CRIT_DAMAGE
         if params.damage_type == DAMAGE_TYPE_PHYSICAL then
-            crit_chance = hAttacker:GetUnitAttribute(BONUS_PHYSICAL_CRIT_CHANCE, params, MODIFIER_CALCULATE_TYPE_SUM)
-            crit_damage = hAttacker:GetUnitAttribute(BONUS_PHYSICAL_CRIT_DAMAGE, params, MODIFIER_CALCULATE_TYPE_SUM)
+            crit_chance = crit_chance + hAttacker:GetUnitAttribute(BONUS_PHYSICAL_CRIT_CHANCE, params, MODIFIER_CALCULATE_TYPE_SUM)
+            crit_damage = crit_damage + hAttacker:GetUnitAttribute(BONUS_PHYSICAL_CRIT_DAMAGE, params, MODIFIER_CALCULATE_TYPE_SUM)
         elseif params.damage_type == DAMAGE_TYPE_MAGICAL then
-            crit_chance = hAttacker:GetUnitAttribute(BONUS_MAGICAL_CRIT_CHANCE, params, MODIFIER_CALCULATE_TYPE_SUM)
-            crit_damage = hAttacker:GetUnitAttribute(BONUS_MAGICAL_CRIT_DAMAGE, params, MODIFIER_CALCULATE_TYPE_SUM)
+            crit_chance = crit_chance + hAttacker:GetUnitAttribute(BONUS_MAGICAL_CRIT_CHANCE, params, MODIFIER_CALCULATE_TYPE_SUM)
+            crit_damage = crit_damage + hAttacker:GetUnitAttribute(BONUS_MAGICAL_CRIT_DAMAGE, params, MODIFIER_CALCULATE_TYPE_SUM)
         end
 
         if RandomFloat(0, 100) < crit_chance then
@@ -145,11 +165,11 @@ function modifier_common:GetModifierTotalDamageOutgoing_Percentage( params )
         local crit_chance = 0
         local crit_damage = CDOTA_BASE_CRIT_DAMAGE
         if params.damage_type == DAMAGE_TYPE_PHYSICAL then
-            crit_chance = hAttacker:GetUnitAttribute(BONUS_PHYSICAL_CRIT_CHANCE, params, MODIFIER_CALCULATE_TYPE_SUM)
-            crit_damage = hAttacker:GetUnitAttribute(BONUS_PHYSICAL_CRIT_DAMAGE, params, MODIFIER_CALCULATE_TYPE_SUM)
+            crit_chance = crit_chance + hAttacker:GetUnitAttribute(BONUS_PHYSICAL_CRIT_CHANCE, params, MODIFIER_CALCULATE_TYPE_SUM)
+            crit_damage = crit_damage + hAttacker:GetUnitAttribute(BONUS_PHYSICAL_CRIT_DAMAGE, params, MODIFIER_CALCULATE_TYPE_SUM)
         else
-            crit_chance = hAttacker:GetUnitAttribute(BONUS_MAGICAL_CRIT_CHANCE, params, MODIFIER_CALCULATE_TYPE_SUM)
-            crit_damage = hAttacker:GetUnitAttribute(BONUS_MAGICAL_CRIT_DAMAGE, params, MODIFIER_CALCULATE_TYPE_SUM)
+            crit_chance = crit_chance + hAttacker:GetUnitAttribute(BONUS_MAGICAL_CRIT_CHANCE, params, MODIFIER_CALCULATE_TYPE_SUM)
+            crit_damage = crit_damage + hAttacker:GetUnitAttribute(BONUS_MAGICAL_CRIT_DAMAGE, params, MODIFIER_CALCULATE_TYPE_SUM)
         end
         if RandomFloat(0, 100) < crit_chance then
             --print("数值暴击")

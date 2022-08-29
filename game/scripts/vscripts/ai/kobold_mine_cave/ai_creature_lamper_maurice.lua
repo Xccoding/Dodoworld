@@ -81,7 +81,7 @@ function ai_creature_lamper_maurice:GetDesireFor_lamper_maurice_seek_help(abilit
     if buff.moles ~= nil and type(buff.moles) == "table" then
         local bSleepmoleExist = false
         for _, mole in pairs(buff.moles) do
-            if mole:IsAlive() and mole:HasModifier("modifier_lamper_maurice_seek_help_sleep") then
+            if IsValid(mole) and mole:IsAlive() and mole:HasModifier("modifier_lamper_maurice_seek_help_sleep") then
                 bSleepmoleExist = true
                 break
             end

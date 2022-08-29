@@ -81,7 +81,7 @@ function modifier_mage_ancient_seal:OnDestroy()
 
         local enemies = FindUnitsInRadius(hCaster:GetTeamNumber(), hTarget:GetAbsOrigin(), nil, self.radius, hAbility:GetAbilityTargetTeam(), hAbility:GetAbilityTargetType(), hAbility:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
         for _, enemy in pairs(enemies) do
-            if enemy ~= nil and enemy:IsAlive() then
+            if IsValid(enemy) and enemy:IsAlive() then
                 ApplyDamage({
                     victim = enemy,
                     attacker = hCaster,

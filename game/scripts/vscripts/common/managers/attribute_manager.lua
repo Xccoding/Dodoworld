@@ -1,8 +1,8 @@
 
 --link英雄属性modifier
-LinkLuaModifier( "modifier_hero_attribute", "common/combat/modifiers/modifier_hero_attribute.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_hero_attribute", "common/attributes/modifiers/modifier_hero_attribute.lua", LUA_MODIFIER_MOTION_NONE )
 --link普通单位属性modifier
-LinkLuaModifier( "modifier_basic_attribute", "common/combat/modifiers/modifier_basic_attribute.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_basic_attribute", "common/attributes/modifiers/modifier_basic_attribute.lua", LUA_MODIFIER_MOTION_NONE )
 
 -- _G.ATTR_KEY_READ_ON_SPAWN = {
 --     "ArmorPhysical",
@@ -68,15 +68,19 @@ function BaseNPC:IsUseMana()
     local unit = self
     local label = unit:GetUnitLabel()
     local current_schools = CustomNetTables:GetTableValue("hero_schools", tostring(unit:GetPlayerOwnerID())).schools_index or 0
-    local unit_key = label.."_schools_"..current_schools
+    
+    if KeyValues.SchoolsKv[label] == nil then
+        return false
+    end
 
-    if KeyValues.SchoolsUsemana[unit_key] ~= nil then
-        if KeyValues.SchoolsUsemana[unit_key] == 0 then
-            return false
-        elseif KeyValues.SchoolsUsemana[unit_key] == 1 then
+    if KeyValues.SchoolsKv[label][tostring(current_schools)] ~= nil then
+        if KeyValues.SchoolsKv[label][tostring(current_schools)].usemana == 1 then
             return true
+        else
+            return false
         end
     end
+
     return false
 
 end

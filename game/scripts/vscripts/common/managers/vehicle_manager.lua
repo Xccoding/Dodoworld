@@ -1,8 +1,13 @@
 LinkLuaModifier("modifier_Vehicle", "common/managers/vehicle_manager.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_Vehicle_inside", "common/managers/vehicle_manager.lua", LUA_MODIFIER_MOTION_BOTH)
+LinkLuaModifier("modifier_Vehicle_Bezier", "common/enviroment/modifiers/modifier_Vehicle_Bezier.lua", LUA_MODIFIER_MOTION_BOTH)
 
 VEHICLE_STATE_WAIT = 1
 VEHICLE_STATE_MOVE = 2
+
+--贝塞尔曲线型Motion类型标识
+_G.BEZIER_MOTION_TYPE_NONE = 1 --默认
+_G.BEZIER_MOTION_TYPE_VEHICLE = 2 --上下载具
 
 if Vehicle_manager == nil then
     Vehicle_manager = {}
@@ -22,7 +27,6 @@ function Vehicle_manager:constructor(unit)
     end
 
     self.Vehicle_height = self.VehicleData.Vehicle_height or 130
-    self.TerminalEntity = Entities:FindByName(null, self.VehicleData.TerminalEntity or "")
     
     self.me = unit
     self.Vehicle_modifier = unit:AddNewModifier(unit, nil, "modifier_Vehicle", {})
@@ -81,11 +85,11 @@ function Vehicle_manager:C_OnPassengerGetOn( params )
             bFull = false
         end
     end
-    if bFull and IsValid(self.TerminalEntity) or true then
+    if bFull  or true then
         self.Vehicle_state = VEHICLE_STATE_MOVE
         
-        self.me:SetContextThink(DoUniqueString("VehicleMoving"), function ()
-            if (hCaster:GetAbsOrigin() - self.TerminalEntity:GetAbsOrigin()):Length() < 100 then
+        hCaster:SetContextThink(DoUniqueString("VehicleMoving"), function ()
+            if not hCaster:IsCurrentlyHorizontalMotionControlled() then
                 self.Vehicle_state = VEHICLE_STATE_WAIT
                 return nil
             else
@@ -97,7 +101,7 @@ function Vehicle_manager:C_OnPassengerGetOn( params )
                 return 0         
             end
         end, 0)
-        hCaster:MoveToPosition(self.TerminalEntity:GetAbsOrigin())
+        hCaster:AddNewModifier(hCaster, nil, "modifier_Vehicle_Bezier", {})
     end
 end
 function Vehicle_manager:RemovePassenger( unit )

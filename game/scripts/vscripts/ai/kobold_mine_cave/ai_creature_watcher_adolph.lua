@@ -46,7 +46,7 @@ function ai_creature_watcher_adolph:GetDesireFor_watcher_adolph_dash( ability_na
     local tTargets = FindUnitsInRadius(unit:GetTeamNumber(), unit:GetAbsOrigin(), nil, find_radius, hAbility:GetAbilityTargetTeam(), hAbility:GetAbilityTargetType(), hAbility:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
     if #tTargets > 0 then
         for _, enemy in pairs(tTargets) do
-            if enemy ~= nil and enemy:IsAlive() then
+            if IsValid(enemy) and enemy:IsAlive() then
                 if hTarget == nil then
                     hTarget = enemy   
                 end

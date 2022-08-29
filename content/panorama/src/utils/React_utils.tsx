@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { print } from "../hud/Utils";
 
 namespace ReactUtils {
     // 定时器hook
@@ -27,8 +28,9 @@ namespace ReactUtils {
 		}, deps);
 	}
 
-	export function ToggleHud(hud_name: string){
-		let hud_toggle = $(`#${hud_name}`)
+	function ToggleHud(hud_name: string){
+		let hud_toggle = $(`#ChangeSchools`)
+		// print("N2O", this)
         if(hud_toggle != undefined){
             let Visibleclass = `Show${hud_name}`
             hud_toggle.BHasClass(Visibleclass) ? hud_toggle.SwitchClass("Visible", "") : hud_toggle.SwitchClass("Visible", Visibleclass)

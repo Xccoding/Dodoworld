@@ -1,25 +1,64 @@
 import React from 'react';
 import { render } from '@demon673/react-panorama';
 import ReactUtils from "./../utils/React_utils";
-import { Buffpanel } from './bufflist/bufflist'
-import { ChangeSchools } from './ChangeSchools/ChangeSchools'
-import { DHPS_Counter } from './DHPS_Counter/DHPS_Counter'
-import { HealthMana } from './hp_mana/hp_mana'
-import { Right_bottom_button } from './right_bottom_button/right_bottom_button'
-import { Xpbar } from './xpbar/xpbar'
-import { Backpack } from './Backpack/Backpack';
-import { OverheadBar_Init } from './OverheadBar/OverheadBar';
 import { print}  from './Utils'
 
-render(<Buffpanel />, $("#Buffs")); 
-render(<DHPS_Counter />, $("#DHPS_CounterRoot")); 
-render(<HealthMana />, $("#HealthManaRoot")); 
-render(<Xpbar />, $("#XpbarRoot")); 
-render(<Right_bottom_button />, $("#Right_bottom_button_Root"));
-render(<ChangeSchools />, $("#ChangeSchools_Root"));
-render(<Backpack />, $("#Backpack_Root"));
+// render(<Buffpanel />, $("#Buffs")); 
+// render(<HealthMana />, $("#HealthManaRoot")); 
+// render(<Xpbar />, $("#XpbarRoot")); 
 
-OverheadBar_Init()
+
+
+{
+    let pHud = $.GetContextPanel();
+	while (pHud && pHud.id != "Hud") {
+		pHud = pHud.GetParent() as Panel;
+	}
+    GameUI.CustomUIConfig().HudRoot = pHud
+	
+	GameUI.CustomUIConfig().AbilityKv = {};
+	GameUI.CustomUIConfig().SchoolsKv = {};
+	GameUI.CustomUIConfig().HeroesKv = {};
+	
+
+	// for(const k in GameUI.CustomUIConfig().AbilityKv){
+	// 	print("N2O", k, GameUI.CustomUIConfig().AbilityKv[k])
+	// }
+
+	$.Schedule(Game.GetGameFrameTime(), updateKV);
+
+	function updateKV(){
+		for(const k in GameUI.CustomUIConfig()){
+			if(k.indexOf("_ability") != -1){
+				let thisKV = (GameUI.CustomUIConfig() as any)[k].DOTAAbilities
+				for(const abilityName in thisKV){
+					GameUI.CustomUIConfig().AbilityKv[abilityName] = thisKV[abilityName]
+				}
+			}
+			else if(k.indexOf("_hero") != -1){
+				let thisKV = (GameUI.CustomUIConfig() as any)[k].DOTAHeroes
+				for(const heroName in thisKV){
+					GameUI.CustomUIConfig().HeroesKv[heroName] = thisKV[heroName]
+				}
+			}
+		}
+
+		GameUI.CustomUIConfig().SchoolsKv = (GameUI.CustomUIConfig() as any).Schools.SchoolsList;
+	}
+
+
+
+
+}
+// function HUD_main(){
+
+
+//     return(
+//         <></>
+//     )
+// }
+
+// render(<HUD_main/>, $.GetContextPanel())
 
 
 // function ReactPanoramaPanel(){

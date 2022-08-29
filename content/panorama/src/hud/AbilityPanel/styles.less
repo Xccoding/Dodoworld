@@ -1,0 +1,255 @@
+.hud_root {
+    width: 100%;
+    height: 100%;
+}
+
+#AbilityPanel_main {
+    width: fit-children;
+    height: fit-children;
+    // background-color: black;
+    align: center bottom;
+    flow-children: down;
+    margin-bottom: 34px;
+
+    #AbilityPanel_CastBar {
+        horizontal-align: center;
+        width: fit-children;
+        height: fit-children;
+        background-color: none;
+        transition-duration: .2s;
+        transition-property: opacity;
+        transition-timing-function: ease-in-out;
+        opacity: 1;
+        background-color: #000000ff;
+        margin-bottom: 90px;
+
+
+        #CastBar_progress {
+            width: fit-children;
+            height: fit-children;
+            background-color: #000000ff;
+            height: 34px;
+            border: 2px solid #4137158c;
+            flow-children: right;
+
+            #CastBar_progress_ability_img {
+                height: 34px;
+                width: 34px;
+            }
+
+            #CastBar_progress_main {
+                width: 300px;
+                height: 34px;
+
+                #CastBar_left {
+                    height: 100%;
+                    background-color: gradient(linear, 100% 0%, 0% 0%, from(#B7894666), to(#B7894644));
+                    box-shadow: inset 0px 0px 1px #FAE9AE;
+                    align: left center;
+                }
+
+                #CastBar_right {
+                    height: 100%;
+                    background-color: none;
+                    align: right center;
+                }
+
+                #CastBar_ability_name {
+                    align: left center;
+                    text-shadow: 4px 4px 3px 4 #000000;
+                    color: white;
+                    font-size: 21px;
+                    margin-left: 8px;
+                }
+
+                #CastBar_time {
+                    align: right center;
+                    text-shadow: 4px 4px 3px 4 #000000;
+                    color: white;
+                    font-size: 21px;
+                    margin-right: 8px;
+                }
+            }
+
+
+        }
+
+
+
+        &.Show {
+            opacity: 1;
+        }
+    }
+
+    #AbilityPanel_bar {
+        width: 686px;
+        height: fit-children;
+        flow-children: right-wrap;
+        margin-top: 80px;
+        padding: 4px;
+        background-color: rgb(10, 10, 10);
+
+        #AbilityPanel {
+            width: 56px;
+            height: 56px;
+            background-color: rgb(10, 10, 10);
+
+
+            #AbilityButton {
+                align: center center;
+                width: 48px;
+                height: 48px;
+                overflow: noclip;
+                // background-color: rgba(0, 0, 0, 0.726);
+
+                &.NoMana {
+                    wash-color: #1569be;
+                }
+
+                &.NoChargeorCooldown {
+                    saturation: 0.9;
+                }
+
+                &.NotLearned {
+                    saturation: 0.7;
+                    brightness: 0.2;
+                }
+
+                #AbilityPanel_image {
+                    align: center center;
+                    width: 100%;
+                    height: 100%;
+                }
+
+                #AbilityPanel_Cooldown {
+                    width: 100%;
+                    height: 100%;
+                    align: center center;
+                    visibility: collapse;
+                    background-color: rgba(0, 0, 0, 0.336);
+
+                    &.Show {
+                        visibility: visible;
+                    }
+
+                    #AbilityPanel_CooldownOverlay {
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.842);
+                    }
+
+                    #AbilityPanel_CooldownTimer {
+                        align: center center;
+                        text-shadow: 4px 4px 3px 4 #000000;
+                        color: white;
+                        font-size: 21px;
+                        text-overflow: shrink;
+                    }
+                }
+
+                #AbilityPanel_Charge {
+                    width: 99%;
+                    height: 99%;
+                    align: center center;
+                    visibility: collapse;
+
+                    // #AbilityPanel_Charge_circle {
+                    //     width: 100%;
+                    //     height: 100%;
+                    //     border: 2px solid white;
+                    //     border-radius: 20px;
+                    // }
+
+                    #AbilityPanel_Charge_pointer {
+                        width: 100%;
+                        height: 100%;
+                        background-color: #ffdc5e; //#FAE9AE;
+                    }
+
+                    &.Show {
+                        visibility: visible;
+                    }
+
+                }
+
+                #AbilityPanel_Silenced {
+                    align: center center;
+                    width: 100%;
+                    height: 100%;
+                    visibility: collapse;
+                    background-image: url("s2r://panorama/images/hud/reborn/spells_silenced_psd.vtex");
+                    background-size: 100%;
+                    transition: visibility;
+                    transition-timing-function: ease-in-out;
+                    transition-duration: .22s;
+
+                    &.Show {
+                        visibility: visible;
+                    }
+                }
+
+                #AbilityPanel_Passive {
+                    align: center center;
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0;
+                    transition-property: opacity, box-shadow;
+                    transition-timing-function: ease-in-out;
+                    transition-duration: .33s;
+                    box-shadow: inset #000000 0px 0px 0px 0px;
+
+                    &.Show {
+                        opacity: 1;
+                        box-shadow: inset #000000 0px 0px 8px -2px;
+                    }
+                }
+
+                #AbilityPanel_ToggleActived {
+                    align: center center;
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0;
+                    transition-property: opacity, box-shadow;
+                    transition-timing-function: ease-in-out;
+                    transition-duration: .33s;
+                    box-shadow: inset #fffae8 0px 0px 0px 0px;
+
+                    &.Show {
+                        opacity: 1;
+                        box-shadow: inset #fffae8 0px 0px 4px -2px;
+                    }
+                }
+
+            }
+
+            #Current_Charge {
+                align: right bottom;
+                margin-right: 7px;
+                margin-bottom: 4px;
+                visibility: collapse;
+                text-shadow: 0px 0px 4px 6 #000000;
+                font-weight: bold;
+                color: white;
+                font-size: 20px;
+                text-overflow: shrink;
+
+                &.Show {
+                    visibility: visible;
+                }
+            }
+
+            #HotKey {
+                margin-left: 2px;
+                width: 38px;
+                align: left top;
+                text-shadow: 4px 4px 3px 4 #000000;
+                color: white;
+                font-size: 14px;
+                text-overflow: ellipsis;
+                font-family: Reaver;
+            }
+        }
+    }
+
+
+}

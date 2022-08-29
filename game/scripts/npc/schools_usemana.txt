@@ -1,6 +1,0 @@
-"schools_usemana"{
-    "death_knight_schools_0"  "0"
-    "death_knight_schools_1"  "0"
-    "mage_schools_0"  "1"
-    "mage_schools_1"  "1"
-}
