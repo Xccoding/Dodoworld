@@ -4,18 +4,18 @@ declare interface CustomGameEventDeclarations {
     ChangeRoleMastery: {
         entindex: EntityIndex;
         new_schools: number;
-    }
+    };
 
     EquipItem: {
         hero_index: EntityIndex,
         type_name: string,
         item_index: number,
-    }
+    };
 
     UnEquipItem: {
         hero_index: EntityIndex,
         unequip_slot: number,
-    }
+    };
 
     Custom_Cast_Ability: {
         ability: AbilityEntityIndex,
@@ -23,17 +23,18 @@ declare interface CustomGameEventDeclarations {
             x: number,
             y: number,
             z: number,
-        }
+        };
         cursor_target?: EntityIndex,
+    };
+
+    SelectTalent:{
+        talent_name: string,
     }
 }
 
-interface GameEventDeclarations{
-    CustomToggleHud:{
+interface GameEventDeclarations {
+    CustomToggleHud: {
         hud_name: string,
         wish_state?: boolean,
-    }
-    UnBindKey: {
-        key: string
-    }
+    };
 }

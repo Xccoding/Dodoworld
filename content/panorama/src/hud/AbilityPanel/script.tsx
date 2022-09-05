@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { render, useGameEvent } from '@demon673/react-panorama';
+import React, { useRef, useState } from 'react';
+import { useGameEvent } from '@demon673/react-panorama';
 import ReactUtils from "../../utils/React_utils";
-import { band, FormatString, GetUnitAttribute, print } from '../Utils';
+import { band, FormatString, GetAbilityChargeRestoreTimeRemaining, GetAbilityCurrentCharges, GetAbilityMaxCharges, GetAbilityValue, GetUnitAttribute } from '../Utils';
 
 const DOTA_ITEM_SLOT_MIN = 7;
 const DOTA_ITEM_SLOT_MAX = 12;
 const CUSTOM_ABILITY_SLOT_MIN = 7;
 const CUSTOM_ABILITY_SLOT_MAX = 30;
-const CUSTOM_ABILITY_SLOT_PASSIVE_MIN = 19
+const CUSTOM_ABILITY_SLOT_PASSIVE_MIN = 19;
 
 const KeyMap = new Map(
     [
@@ -156,7 +156,7 @@ export function AbilityBar() {
 
     });
 
-    useGameEvent("AbilityEndChannel", () => {
+    useGameEvent("AbilityEnd", () => {
         if (refCastBar.current != undefined) {
             refCastBar.current.ability = -1 as AbilityEntityIndex;
             refCastBar.current.castType = "";
@@ -169,10 +169,6 @@ export function AbilityBar() {
         if (refCastBar.current.ability != -1 && refCastBar.current.ability != undefined) {
             if (refCastBar.current.startTime != undefined && refCastBar.current.duration != undefined) {
                 fCastPercent = (Game.GetGameTime() - refCastBar.current.startTime) / refCastBar.current.duration;
-            }
-            if (refCastBar.current.castType == "phase" && !Abilities.IsInAbilityPhase(refCastBar.current.ability)) {
-                refCastBar.current.castType = "";
-                refCastBar.current.ability = (-1 as AbilityEntityIndex);
             }
             TextureName = "s2r://panorama/images/spellicons/" + Abilities.GetAbilityTextureName(refCastBar.current.ability) + "_png.vtex";
         }
@@ -209,6 +205,7 @@ export function AbilityBar() {
 
 function AbilityPanel({ ability, bActive, slotindex }: { ability: AbilityEntityIndex, bActive: boolean, slotindex: number; }) {
     let ability_name = Abilities.GetAbilityName(ability);
+    let Level = Abilities.GetLevel(ability);
     let player = Players.GetLocalPlayer();
     let hero = Players.GetPlayerHeroEntityIndex(player);
     let cooldown = Math.max(0.01, Abilities.GetCooldownLength(ability));
@@ -216,15 +213,14 @@ function AbilityPanel({ ability, bActive, slotindex }: { ability: AbilityEntityI
     let cd_remain = Abilities.GetCooldownTimeRemaining(ability);
     let cooldownText = cd_remain;
     let TextureName = "s2r://panorama/images/spellicons/" + Abilities.GetAbilityTextureName(ability) + "_png.vtex";
-    
-    let MaxCharge = Abilities.GetMaxAbilityCharges(ability);
-    let CurrentCharge = Abilities.GetCurrentAbilityCharges(ability);
-    let ChargeRestoreTime = GameUI.CustomUIConfig().AbilityKv[ability_name]?.AbilityChargeRestoreTime * (100 - CooldownReduction) * 0.01 || 0.01;
-    let ChargeRemainTime = Abilities.GetAbilityChargeRestoreTimeRemaining(ability);
+
+    let MaxCharge = GetAbilityMaxCharges(ability, hero)
+    let CurrentCharge = GetAbilityCurrentCharges(ability, hero);
+    let ChargeRestoreTime = Math.max(GetAbilityValue(ability_name, Level, "AbilityChargeRestoreTime") * (100 - CooldownReduction) * 0.01, 0.01);
+    let ChargeRemainTime = GetAbilityChargeRestoreTimeRemaining(ability, hero);
     let ManaCost = Abilities.GetManaCost(ability);
-    let Level = Abilities.GetLevel(ability);
-    let bPassive = Abilities.IsPassive(ability)
-    let Hotkey = ""; 
+    let bPassive = Abilities.IsPassive(ability);
+    let Hotkey = "";
     let key = "";
 
     if (slotindex > DOTA_ITEM_SLOT_MAX) {
@@ -234,23 +230,22 @@ function AbilityPanel({ ability, bActive, slotindex }: { ability: AbilityEntityI
         let hotkey_ability = Entities.GetAbility(Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()), slotindex - (DOTA_ITEM_SLOT_MAX - DOTA_ITEM_SLOT_MIN + 2));
         key = Abilities.GetKeybind(hotkey_ability);
     }
-    
 
     // 技能状态的flag
     let bIsCooldownReady: boolean = (cd_remain <= 0);
-    let bOutofCharge: boolean = (MaxCharge > 0 && CurrentCharge <= 0);
+    let bOutofCharge: boolean = (MaxCharge > 0 && CurrentCharge <= 0 && Level > 0);
     let bManaEnough: boolean = (Entities.GetMana(hero) >= ManaCost);
     let bSilenced: boolean = Entities.IsSilenced(hero);
     let bToggleActived: boolean = Abilities.IsToggle(ability) && Abilities.GetToggleState(ability);
 
-    if ((key != "" || key != Hotkey) && slotindex <CUSTOM_ABILITY_SLOT_PASSIVE_MIN) {
+    if ((key != "" || key != Hotkey) && slotindex < CUSTOM_ABILITY_SLOT_PASSIVE_MIN) {
         Hotkey = key;
         key = KeyMap.get(key) || key;
 
         $.RegisterKeyBind("", "key_" + key, (source, presses, panel) => {
             let IsTyping = GameUI.CustomUIConfig().HudRoot.FindChildTraverse("HUDElements")?.FindChildTraverse("HudChat")?.BHasClass("Active");
             if (!IsTyping && !bPassive) {
-                if (Level <= 0){
+                if (Level <= 0) {
                     GameUI.SendCustomHUDError($.Localize("#AbilityCastError_NotLearned"), "General.CastFail_AbilityNotLearned");
                 }
                 else if (bSilenced) {
@@ -265,7 +260,10 @@ function AbilityPanel({ ability, bActive, slotindex }: { ability: AbilityEntityI
                 else if (!bManaEnough && !(Abilities.IsToggle(ability) && Abilities.GetToggleState(ability))) {
                     GameUI.SendCustomHUDError($.Localize("#AbilityCastError_NoMana"), "General.CastFail_NoMana");
                 }
-
+                else if(band(Abilities.GetBehavior(ability), DOTA_ABILITY_BEHAVIOR.DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES) && Entities.IsRooted(hero))
+                {
+                    GameUI.SendCustomHUDError($.Localize("#AbilityCastError_Rooted"), "General.CastFail_AbilityDisabledByRoot");
+                }
                 else {
                     let cursor_pos = GameUI.GetCursorPosition();
                     let world_pos = Game.ScreenXYToWorld(cursor_pos[0], cursor_pos[1]);
@@ -316,7 +314,6 @@ function AbilityPanel({ ability, bActive, slotindex }: { ability: AbilityEntityI
     // 显示处理
     if (MaxCharge > 0 && CurrentCharge <= 0) {
         cooldownText = Math.max(cd_remain, ChargeRemainTime);
-
     }
     if (cooldownText >= 1) {
         cooldownText = Number(cooldownText.toFixed(0));
@@ -325,15 +322,27 @@ function AbilityPanel({ ability, bActive, slotindex }: { ability: AbilityEntityI
         cooldownText = Number(cooldownText.toFixed(1));
     }
 
-
-
     return <Panel id='AbilityPanel' hittest={true} onactivate={() => {
         if (ability != -1) {
             if (GameUI.IsAltDown()) {
                 Abilities.PingAbility(ability);
+                if(ability_name == "mage_fireblast"){
+                    GameEvents.SendCustomGameEventToServer("SelectTalent", {talent_name: "mage_eternal_flame"})
+                }
+                else
+                {
+                    GameEvents.SendCustomGameEventToServer("SelectTalent", {talent_name: ""})
+                }
+                
             }
             else {
-                Abilities.ExecuteAbility(ability, Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()), false);
+                if (bOutofCharge) {
+                    GameUI.SendCustomHUDError($.Localize("#AbilityCastError_NoCharge"), "General.CastFail_NoCharges");
+                }
+                else {
+                    Abilities.ExecuteAbility(ability, Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()), false);
+                }
+
             }
         }
     }} onmouseover={(p) => {
@@ -356,7 +365,7 @@ function AbilityPanel({ ability, bActive, slotindex }: { ability: AbilityEntityI
         <Panel id='AbilityButton' className={`${!bManaEnough ? "NoMana" : ""} ${(!bIsCooldownReady || bOutofCharge) ? "NoChargeorCooldown" : ""} ${Level <= 0 ? "NotLearned" : ""}`}>
             {/* <DOTAAbilityImage id='AbilityPanel_image' abilityname={ability_name} showtooltip={false} /> */}
             <Image id='AbilityPanel_image' src={TextureName} scaling="stretch-to-cover-preserve-aspect"></Image>
-            <Panel id="AbilityPanel_Charge" hittest={false} className={`${MaxCharge > 0 && CurrentCharge < MaxCharge ? "Show" : ""}`} >
+            <Panel id="AbilityPanel_Charge" hittest={false} className={`${MaxCharge > 0 && CurrentCharge < MaxCharge && Level > 0 ? "Show" : ""}`} >
                 <Panel id="AbilityPanel_Charge_pointer" style={{ clip: `radial(50.0% 50.0%, ${-360 * ChargeRemainTime / ChargeRestoreTime}deg, 15deg` }} />
             </Panel>
             <Panel id="AbilityPanel_Cooldown" hittest={false} className={(!bIsCooldownReady || bOutofCharge) ? "Show" : ""}>

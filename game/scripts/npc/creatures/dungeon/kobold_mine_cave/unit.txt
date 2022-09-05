@@ -1052,7 +1052,7 @@
 			"BountyGain"				"3"
 			"XPGain"					"15"
 		}
-        "vscripts"					"ai/ai_aggro_normal.lua"
+        // "vscripts"					"ai/ai_aggro_normal.lua"
 
 		// 自定义键值
 		"MaxPursueRange"	"2000" // 最大追击距离

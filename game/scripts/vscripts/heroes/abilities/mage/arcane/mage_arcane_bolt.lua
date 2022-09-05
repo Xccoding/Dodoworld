@@ -24,7 +24,7 @@ end
 function mage_arcane_bolt:GetIntrinsicModifierName()
     return "modifier_mage_arcane_bolt"
 end
-function mage_arcane_bolt:OnSpellStart()
+function mage_arcane_bolt:C_OnSpellStart()
     local hCaster = self:GetCaster()
     local hTarget = self:GetCursorTarget()
     local duration = self:GetSpecialValueFor("duration")
@@ -42,7 +42,7 @@ function mage_arcane_bolt:OnSpellStart()
 
     hCaster:AddNewModifier(hCaster, self, "modifier_mage_arcane_bolt_channel", { duration = fDuration, interval = fInterval, index = hTarget:entindex() })
 end
-function mage_arcane_bolt:OnChannelFinish(bInterrupted)
+function mage_arcane_bolt:C_OnChannelFinish(bInterrupted)
     local hCaster = self:GetCaster()
     StopSoundOn("Hero_SkywrathMage.ArcaneBolt.Cast", hCaster)
     hCaster:RemoveModifierByName("modifier_mage_arcane_bolt_channel")
@@ -111,17 +111,18 @@ function modifier_mage_arcane_bolt:DeclareFunctions()
         MODIFIER_PROPERTY_TOOLTIP,
     }
 end
-function modifier_mage_arcane_bolt:OnCreated(params)
+function modifier_mage_arcane_bolt:GetAbilityValues()
     self.energy_chance = self:GetAbilitySpecialValueFor("energy_chance")
     self.energy_threshold = self:GetAbilitySpecialValueFor("energy_threshold")
     self.max_stack = self:GetAbilitySpecialValueFor("max_stack")
+end
+function modifier_mage_arcane_bolt:OnCreated(params)
+    self:GetAbilityValues()
     self:SetStackCount(0)
     self:StartIntervalThink(0)
 end
 function modifier_mage_arcane_bolt:OnRefresh(params)
-    self.energy_chance = self:GetAbilitySpecialValueFor("energy_chance")
-    self.energy_threshold = self:GetAbilitySpecialValueFor("energy_threshold")
-    self.max_stack = self:GetAbilitySpecialValueFor("max_stack")
+    self:GetAbilityValues()
 end
 function modifier_mage_arcane_bolt:OnIntervalThink()
     local hCaster = self:GetCaster()

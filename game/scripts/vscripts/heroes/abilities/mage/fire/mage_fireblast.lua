@@ -11,13 +11,13 @@ function mage_fireblast:GetManaCost(iLevel)
     return self:GetSpecialValueFor("mana_cost_pct") * hCaster:GetMaxMana() * 0.01
 end
 function mage_fireblast:GetBehavior()
-    if self:GetLevel() >= 2 then
-        return tonumber(tostring(self.BaseClass.GetBehavior(self))) + DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
+    if self:GetLevel() >= 3 then
+        return tonumber(tostring(self.BaseClass.GetBehavior(self))) + DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
     else
         return tonumber(tostring(self.BaseClass.GetBehavior(self)))
     end
 end
-function mage_fireblast:OnSpellStart()
+function mage_fireblast:C_OnSpellStart()
     local hCaster = self:GetCaster()
     local target = self:GetCursorTarget()
     local sp_factor = self:GetSpecialValueFor("sp_factor")
@@ -52,6 +52,14 @@ function modifier_mage_fireblast:IsDebuff()
 end 
 function modifier_mage_fireblast:IsPurgable()
     return false
+end
+function modifier_mage_fireblast:GetAbilityValues()
+end
+function modifier_mage_fireblast:OnCreated(params)
+    self:GetAbilityValues()
+end
+function modifier_mage_fireblast:OnRefresh(params)
+    self:GetAbilityValues()
 end
 function modifier_mage_fireblast:CDeclareFunctions()
     return {

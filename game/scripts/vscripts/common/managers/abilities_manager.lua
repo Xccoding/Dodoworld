@@ -89,10 +89,65 @@ function Abilities_manager:AutoUpgradeAbilities(hero)
                         hAbility:SetLevel(1)
                     end
                 end
-                
+
             end
         end
     end
+end
+
+--从KV里找一个键值
+function Abilities_manager:GetAbilityValue(ability, key_name)
+    local hCaster = ability:GetCaster()
+    local school_index = Abilities_manager:GetCurrentSchools(hCaster)
+    local ability_name = ability:GetAbilityName()
+    local ability_level = ability:GetLevel()
+    local ability_kv = KeyValues.AbilityKv[ability_name]
+    local value = 0
+    local value_table = DeepFindKeyValue(ability_kv, key_name)
+    if ability_level == 0 then
+        return 0
+    end
+
+    if value_table ~= nil then
+        if vlua.split(value_table, " ") == nil then
+            value = value_table or 0
+        else
+            value = vlua.split(value_table, " ")[ability_level] or 0
+        end
+    end
+
+    if hCaster:IsConsideredHero() and hCaster.Talent_manager ~= nil then
+        for index, talent_name in pairs(hCaster.Talent_manager.TalentList) do
+            if talent_name ~= "" then            
+                if KeyValues.TalentKv[hCaster:GetUnitLabel()][tostring(school_index)][talent_name].UpgradeAbilities ~= nil then
+                    local thisTalentKv = KeyValues.TalentKv[hCaster:GetUnitLabel()][tostring(school_index)][talent_name]
+                    local UpgradeKeys = thisTalentKv.UpgradeAbilities[ability_name]
+                    if UpgradeKeys ~= nil then
+                        if UpgradeKeys[key_name] ~= nil then
+                            local talent_value = thisTalentKv.UpgradeAbilities[ability_name][key_name].value or 0
+                            local type = thisTalentKv.UpgradeAbilities[ability_name][key_name].UpgradeType
+
+                            type = Talent_KV_UpgradeTypes[type]
+                            if type == Talent_KV_UpgradeTypes.ADD then
+                                value = value + talent_value
+                            elseif type == Talent_KV_UpgradeTypes.MULTI then
+                                value = value * talent_value
+                            else
+                                value = value
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    return value
+end
+
+-- old_GetSpecialValueFor = CDOTABaseAbility.GetSpecialValueFor
+function CDOTABaseAbility:GetSpecialValueFor(key_name)
+    return Abilities_manager:GetAbilityValue(self, key_name)
 end
 
 function Abilities_manager:GetCurrentSchools(unit)

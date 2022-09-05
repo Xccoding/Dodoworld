@@ -2,6 +2,7 @@ node_modules
 content/panorama/layout
 content/panorama/scripts
 game/resource/**/*.*
+!game/resource/addon.csv
 !game/resource/flash3/**/*.*
 !game/resource/overviews/**/*.*
 publish
@@ -27,5 +28,5 @@ game/resource/word_filter_cache_1.dat
 
 
 # kv 生成
-content/panorama/src/declares
-shared/kv
+content/panorama/src/utils/sync_keyvalues.js.d.ts
+content/panorama/src/utils/sync_keyvalues.js

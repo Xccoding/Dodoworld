@@ -7,20 +7,6 @@ function AngleBetweenVectors(v1, v2)
     return math.min(math.abs( angle_1.y - angle_2.y), 360 - math.abs( angle_1.y - angle_2.y))
 end
 
---拷贝?
--- function DeepCopy(t)
---     local new_table = {}
---     for k, v in pairs(t) do
---         if type(v) == "table" then
---             new_table[k] = DeepCopy(v)
---         else
---             new_table[k] = v
---         end
---     end
-
---     return new_table
--- end
-
 --获取表的元素个数
 function GetElementCount(t)
     local count = 0
@@ -81,4 +67,25 @@ end
 --- 判断变量是否是向量
 function IsVector(v)
 	return  type(v.x) == "number" and type(v.y) == "number" and type(v.z) == "number" and type(v) == "userdata"
+end
+
+--从一个表中获取一个键对应的值，深度遍历
+function DeepFindKeyValue(t, key_name)
+    if type(t) == "table" then
+        for k, v in pairs(t) do
+            if k == key_name then
+                return v
+            else
+                if type(v) == "table" then
+                    local x = DeepFindKeyValue(v, key_name)
+                    if x ~= nil then
+                        return x
+                    end
+                end
+            end
+        end
+        return nil
+    else
+        return nil
+    end
 end

@@ -1,11 +1,11 @@
 // Dota Heroes File
-#base heroes/common/common_ability.txt
+#base heroes/common/abilityKv.txt
 
-#base heroes/mage/mage_ability.txt
-#base heroes/death_knight/death_knight_ability.txt
+#base heroes/mage/abilityKv.txt
+#base heroes/death_knight/abilityKv.txt
 
-#base creatures/neutral/shashire/shashire_ability.txt
-#base creatures/dungeon/kobold_mine_cave/kobold_mine_cave_ability.txt
+#base creatures/neutral/shashire/abilityKv.txt
+#base creatures/dungeon/kobold_mine_cave/abilityKv.txt
 
 "DOTAAbilities"
 {

@@ -14,9 +14,8 @@ declare interface CustomUIConfig {
     HeroesKv: {
         [k: string]: any;
     };
+    TalentsKv: {
+        [k: string]: any;
+    }
     HudRoot: Panel;
-}
-
-declare interface Panel {
-    FindAncestor: Function;
 }

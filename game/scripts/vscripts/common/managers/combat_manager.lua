@@ -11,9 +11,10 @@ LinkLuaModifier("modifier_escape", "common/combat/modifiers/modifier_escape.lua"
 LinkLuaModifier("modifier_no_combat_slow", "common/combat/modifiers/modifier_no_combat_slow.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_hide_aggro", "common/combat/modifiers/modifier_hide_aggro.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_channel_watcher", "common/combat/modifiers/modifier_channel_watcher.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_Invulnerable", "common/combat/modifiers/modifier_Invulnerable.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_Invulnerable_custom", "common/combat/modifiers/modifier_Invulnerable_custom.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_Bezier_motion", "common/combat/modifiers/modifier_Bezier_motion.lua", LUA_MODIFIER_MOTION_BOTH)
 LinkLuaModifier("modifier_aggressive", "common/combat/modifiers/modifier_aggressive.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_forcekill_custom", "common/combat/modifiers/modifier_forcekill_custom.lua", LUA_MODIFIER_MOTION_NONE)
 
 LinkLuaModifier("modifier_interactive", "common/enviroment/modifiers/modifier_interactive.lua", LUA_MODIFIER_MOTION_NONE)
 
@@ -66,6 +67,77 @@ elseif IsServer() then
 
     function CDOTA_BaseNPC:GetAggroFactor()
         return Schools[self:GetUnitName()] or 0
+    end
+
+    -- old_function_OnAbilityPhaseStart = CDOTA_Ability_Lua.OnAbilityPhaseStart
+    function CDOTA_Ability_Lua:OnAbilityPhaseStart()
+        --TODO英雄发消息给客户端
+        local hCaster = self:GetCaster()
+        if self:GetCastPoint() > 0 then
+            CustomGameEventManager:Send_ServerToPlayer(hCaster:GetPlayerOwner(), "AbilityStart", { ability = self:entindex(), casttype = "phase" })
+        end
+        if self.C_OnAbilityPhaseStart ~= nil and type(self.C_OnAbilityPhaseStart) == "function" then
+            self:C_OnAbilityPhaseStart()
+        end
+
+        return true
+    end
+
+    -- old_function_OnAbilityPhaseInterrupted = CDOTA_Ability_Lua.OnAbilityPhaseInterrupted
+    function CDOTA_Ability_Lua:OnAbilityPhaseInterrupted()
+        --TODO英雄发消息给客户端
+        local hCaster = self:GetCaster()
+        CustomGameEventManager:Send_ServerToPlayer(hCaster:GetPlayerOwner(), "AbilityEnd", {})
+
+        if self.C_OnAbilityPhaseInterrupted ~= nil and type(self.C_OnAbilityPhaseInterrupted) == "function" then
+            self:C_OnAbilityPhaseInterrupted()
+        end
+
+        return true
+    end
+
+    function CDOTA_Ability_Lua:OnChannelFinish(bInterrupted)
+        local hCaster = self:GetCaster()
+        CustomGameEventManager:Send_ServerToPlayer(hCaster:GetPlayerOwner(), "AbilityEnd", {})
+        if self.C_OnChannelFinish ~= nil and type(self.C_OnChannelFinish) == "function" then
+            self:C_OnChannelFinish(bInterrupted)
+        end
+    end
+
+    function CDOTA_Ability_Lua:OnSpellStart()
+        local hCaster = self:GetCaster()
+        CustomGameEventManager:Send_ServerToPlayer(hCaster:GetPlayerOwner(), "AbilityEnd", {})
+
+        if self.AbilityCharge_manager ~= nil then
+            self.AbilityCharge_manager:SpendCharge()
+            if not self.AbilityCharge_manager:IsCharging() then
+                self.AbilityCharge_manager:StartRestoreCharge()
+            end
+        end
+
+        if self:GetChannelTime() > 0 then
+            CustomGameEventManager:Send_ServerToPlayer(hCaster:GetPlayerOwner(), "AbilityStart", { ability = self:entindex(), casttype = "channel" })
+        end
+
+        if self.C_OnSpellStart ~= nil and type(self.C_OnSpellStart) == "function" then
+            self:C_OnSpellStart()
+        end
+    end
+
+    function CDOTA_Ability_Lua:OnUpgrade()
+        if tonumber(Abilities_manager:GetAbilityValue(self, "CustomAbilityCharges")) > 0 then
+            if self.AbilityCharge_manager == nil then
+                local hCaster = self:GetCaster()
+                self.AbilityCharge_manager = AbilityCharge_manager:constructor(nil, self)
+                self.AbilityCharge_manager.ChargeModifier = hCaster:AddNewModifier(hCaster, self, "modifier_AbilityCharge", {})
+            else
+                local hCaster = self:GetCaster()
+                if self.AbilityCharge_manager.ChargeModifier ~= nil then
+                    self.AbilityCharge_manager:StartRestoreCharge()
+                end
+            end
+
+        end
     end
 
     function AbilityBehaviorFilter(iBehavior_group, iBehavior)

@@ -29,32 +29,54 @@ function BaseNPC:GetUnitAttribute(attrName, params, calculate_type)--根据字�
     local attr = 0--TODO默认属性改回0
     local func_constant = _G["CMODIFIER_PROPERTY_"..attrName.."_CONSTANT"]
     local func_percent = _G["CMODIFIER_PROPERTY_"..attrName.."_PERCENT"]
+    local func_total_percent = _G["CMODIFIER_PROPERTY_"..attrName.."_TOTAL_PERCENT"]
 
     if calculate_type == MODIFIER_CALCULATE_TYPE_SUM then
         --计算固定值部分
-        for _, buff in pairs(buffs) do
-            if buff[func_constant] ~= nil and type(buff[func_constant]) == "function" then
-                attr = attr + buff[func_constant](buff, params)
+        if func_constant ~= nil then
+            for _, buff in pairs(buffs) do
+                if buff[func_constant] ~= nil and type(buff[func_constant]) == "function" then
+                    attr = attr + buff[func_constant](buff, params)
+                end
             end
         end
+        
         --计算百分比部分
-        for _, buff in pairs(buffs) do
-            if buff[func_percent] ~= nil and type(buff[func_percent]) == "function" then
-                attr = attr * ( 100 + buff[func_percent](buff, params)) * 0.01
+        if func_percent ~= nil then
+            local percent_sum = 0
+            for _, buff in pairs(buffs) do
+                if buff[func_percent] ~= nil and type(buff[func_percent]) == "function" then
+                    percent_sum = percent_sum + buff[func_percent](buff, params)
+                end
             end
+            attr = attr * ( 100 + percent_sum) * 0.01
         end
+
+        --总乘算部分
+        if func_total_percent ~= nil then
+            for _, buff in pairs(buffs) do
+                if buff[func_total_percent] ~= nil and type(buff[func_total_percent]) == "function" then
+                    attr = attr * ( 100 + buff[func_total_percent](buff, params)) * 0.01
+                end
+            end 
+        end
+
     elseif calculate_type == MODIFIER_CALCULATE_TYPE_MAX then
         attr = 0
-        for _, buff in pairs(buffs) do
-            if buff[func_constant] ~= nil and type(buff[func_constant]) == "function" then
-                attr = math.max(attr, buff[func_constant](buff, params))
+        if func_constant ~= nil then
+            for _, buff in pairs(buffs) do
+                if buff[func_constant] ~= nil and type(buff[func_constant]) == "function" then
+                    attr = math.max(attr, buff[func_constant](buff, params))
+                end
             end
         end
     elseif calculate_type == MODIFIER_CALCULATE_TYPE_MIN then
         attr = 0
-        for _, buff in pairs(buffs) do
-            if buff[func_constant] ~= nil and type(buff[func_constant]) == "function" then
-                attr = math.min(attr, buff[func_constant](buff, params))
+        if func_constant ~= nil then
+            for _, buff in pairs(buffs) do
+                if buff[func_constant] ~= nil and type(buff[func_constant]) == "function" then
+                    attr = math.min(attr, buff[func_constant](buff, params))
+                end
             end
         end
     end

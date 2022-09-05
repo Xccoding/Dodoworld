@@ -14,7 +14,7 @@ end
 function mage_concussive_shot:GetIntrinsicModifierName()
     return "modifier_mage_concussive_shot"
 end
-function mage_concussive_shot:OnSpellStart()
+function mage_concussive_shot:C_OnSpellStart()
     local hCaster = self:GetCaster()
     local radius = self:GetSpecialValueFor("radius")
     local target_count = self:GetSpecialValueFor("target_count")
@@ -150,7 +150,7 @@ function modifier_mage_concussive_shot:OnTooltip()
         return self.arcane_mana_get_pct * self:GetStackCount()
 	end
 end
-function modifier_mage_concussive_shot:OnCreated( params )
+function modifier_mage_concussive_shot:GetAbilityValues()
     self.max_stack = self:GetAbilitySpecialValueFor("max_stack")
     self.tooltip_orb_damage_pct = self:GetAbilitySpecialValueFor("tooltip_orb_damage_pct")
     self.tooltip_orb_mana_pct = self:GetAbilitySpecialValueFor("tooltip_orb_mana_pct")
@@ -158,19 +158,18 @@ function modifier_mage_concussive_shot:OnCreated( params )
     self.arcane_bonus_damage_pct = self:GetAbilitySpecialValueFor("arcane_bonus_damage_pct")
     self.arcane_bonus_target_count = self:GetAbilitySpecialValueFor("arcane_bonus_target_count")
     self.arcane_mana_get_pct = self:GetAbilitySpecialValueFor("arcane_mana_get_pct")
+end
+function modifier_mage_concussive_shot:OnCreated( params )
+    self:GetAbilityValues()
     self:StartIntervalThink(0)
 end
 function modifier_mage_concussive_shot:OnRefresh( params )
-    self.max_stack = self:GetAbilitySpecialValueFor("max_stack")
-    self.tooltip_orb_damage_pct = self:GetAbilitySpecialValueFor("tooltip_orb_damage_pct")
-    self.tooltip_orb_mana_pct = self:GetAbilitySpecialValueFor("tooltip_orb_mana_pct")
-    self.tooltip_orb_attack_time = self:GetAbilitySpecialValueFor("tooltip_orb_attack_time")
-    self.arcane_bonus_damage_pct = self:GetAbilitySpecialValueFor("arcane_bonus_damage_pct")
-    self.arcane_bonus_target_count = self:GetAbilitySpecialValueFor("arcane_bonus_target_count")
-    self.arcane_mana_get_pct = self:GetAbilitySpecialValueFor("arcane_mana_get_pct")
+    self:GetAbilityValues()
 end
 function modifier_mage_concussive_shot:OnIntervalThink()
     local hCaster = self:GetCaster()
     local arcane_orb = hCaster:FindAbilityByName("mage_arcane_orb")
-    arcane_orb.arcane_stack = self:GetStackCount()
+    if arcane_orb ~= nil then
+        arcane_orb.arcane_stack = self:GetStackCount()
+    end
 end

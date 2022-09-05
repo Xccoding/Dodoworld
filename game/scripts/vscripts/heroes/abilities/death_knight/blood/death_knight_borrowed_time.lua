@@ -35,7 +35,7 @@ end
 function modifier_death_knight_borrowed_time:OnRefresh(params)
 	self.bonus_status_resistance = self:GetAbilitySpecialValueFor("bonus_status_resistance")
 	if IsServer() then
-		self.shield = self.shield + params.shield
+		self.shield = self.shield + (params.shield or 0)
 		self:SetStackCount(self.shield)
 	end
 end

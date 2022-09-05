@@ -38,8 +38,11 @@ function modifier_hero_attribute:DeclareFunctions()
         MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
         MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
         MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
-        -- MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
+        MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
     }
+end
+function modifier_hero_attribute:GetModifierPercentageCooldown()
+    return 50
 end
 function modifier_hero_attribute:OnIntervalThink()
     if IsServer() then

@@ -1,7 +1,0 @@
-"AbilityCastError_Cooldown"  "冷却中......"
-"AbilityCastError_Silenced"  "被沉默"
-"AbilityCastError_NoMana"  "魔法值不足"
-"AbilityCastError_NoCharge"  "没有使用次数"
-"AbilityCastError_InvalidTarget"    "无法对其施放"
-"AbilityCastError_NoTarget" "无目标"
-"AbilityCastError_NotLearned"   "技能尚未学习"

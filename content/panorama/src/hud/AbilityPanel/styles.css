@@ -83,6 +83,7 @@
   width: 48px;
   height: 48px;
   overflow: noclip;
+  background-color: rgba(0, 0, 0, 0.726);
 }
 #AbilityPanel_main #AbilityPanel_bar #AbilityPanel #AbilityButton.NoMana {
   wash-color: #1569be;

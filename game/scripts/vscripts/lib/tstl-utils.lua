@@ -1,6 +1,7 @@
---[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-require("lualib_bundle");
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["5"] = 1,["6"] = 6,["7"] = 7,["9"] = 10,["10"] = 11,["11"] = 12,["12"] = 13,["14"] = 16,["15"] = 17,["16"] = 10});
+local ____lualib = require("lualib_bundle")
+local __TS__ObjectAssign = ____lualib.__TS__ObjectAssign
+local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["6"] = 1,["7"] = 6,["8"] = 7,["10"] = 10,["11"] = 11,["12"] = 12,["13"] = 13,["15"] = 16,["16"] = 17,["17"] = 10});
 local ____exports = {}
 local global = _G
 if global.reloadCache == nil then

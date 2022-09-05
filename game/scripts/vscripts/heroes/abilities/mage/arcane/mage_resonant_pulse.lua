@@ -9,7 +9,7 @@ function mage_resonant_pulse:GetManaCost(iLevel)
     end
     return self:GetSpecialValueFor("mana_cost_pct") * hCaster:GetMaxMana() * 0.01
 end
-function mage_resonant_pulse:OnSpellStart()
+function mage_resonant_pulse:C_OnSpellStart()
 	local hCaster = self:GetCaster()
     local radius = self:GetSpecialValueFor("radius")
 	local sp_factor = self:GetSpecialValueFor("sp_factor")

@@ -1,16 +1,11 @@
-"dota_shops"
-{
-    "custom"
-    {
-        "shashire_equip_shop"
-        {
-            "shashire_equip_shop_weapon"
-            {
+"dota_shops" {
+    "custom" {
+        "shashire_equip_shop" {
+            "shashire_equip_shop_weapon"	{
                 "item"		"item_abaddon_weapon"
                 "item"		"item_wraith_king_weapon"
             }
-			"shashire_equip_shop_armor"
-            {
+			"shashire_equip_shop_armor"	{
                 "item"		"item_abaddon_helmet"
                 "item"		"item_abaddon_cape"
 				"item"		"item_abaddon_shoulder"
@@ -20,34 +15,28 @@
     }
 
 	//第一页
-    "consumables"
-	{
+    "consumables"	{
 
 	}
 
-	"attributes"
-	{
+	"attributes"	{
 		
 	}
 
-    "weapons_armor"
-	{
+    "weapons_armor"	{
 		
 	}
 
-	"misc"
-	{
+	"misc"	{
 		
 	}
 
 	//第二页
-	"basics"
-	{
+	"basics"	{
 		
 	}
 
-	"weapons"
-	{
+	"weapons"	{
 		
 	}
 

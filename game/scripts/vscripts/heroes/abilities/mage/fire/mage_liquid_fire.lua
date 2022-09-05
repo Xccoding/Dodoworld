@@ -32,10 +32,13 @@ function modifier_mage_liquid_fire:CDeclareFunctions()
     return {
     }
 end
-function modifier_mage_liquid_fire:OnCreated(params)
+function modifier_mage_liquid_fire:GetAbilityValues()
     self.duration = self:GetAbilitySpecialValueFor("duration")
     self.int_factor = self:GetAbilitySpecialValueFor("int_factor")
     self.combo_multiple = self:GetAbilitySpecialValueFor("combo_multiple")
+end
+function modifier_mage_liquid_fire:OnCreated(params)
+    self:GetAbilityValues()
     if IsServer() then
         self.dot_pct = self:GetCaster():GetIntellect() * (self.int_factor * 0.01)
         self:SetHasCustomTransmitterData(true)
@@ -43,8 +46,7 @@ function modifier_mage_liquid_fire:OnCreated(params)
     end
 end
 function modifier_mage_liquid_fire:OnRefresh(params)
-    self.duration = self:GetAbilitySpecialValueFor("duration")
-    self.int_factor = self:GetAbilitySpecialValueFor("int_factor")
+    self:GetAbilityValues()
 end
 function modifier_mage_liquid_fire:OnIntervalThink()
     if IsServer() then

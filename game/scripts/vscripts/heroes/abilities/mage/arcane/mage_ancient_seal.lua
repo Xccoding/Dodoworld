@@ -7,7 +7,7 @@ function mage_ancient_seal:GetManaCost(iLevel)
     local hCaster = self:GetCaster()
     return self:GetSpecialValueFor("mana_cost_pct") * hCaster:GetMaxMana() * 0.01
 end
-function mage_ancient_seal:OnSpellStart()
+function mage_ancient_seal:C_OnSpellStart()
     local hCaster = self:GetCaster()
     local hTarget = self:GetCursorTarget()
     local duration = self:GetSpecialValueFor("duration")
@@ -40,11 +40,14 @@ end
 function modifier_mage_ancient_seal:IsPurgable()
     return true
 end
+function modifier_mage_ancient_seal:GetAbilityValues()
+    self.save_pct = self:GetAbilitySpecialValueFor("save_pct")
+    self.radius = self:GetAbilitySpecialValueFor("radius")
+end
 function modifier_mage_ancient_seal:OnCreated(params)
     local hCaster = self:GetCaster()
     local hTarget = self:GetParent()
-    self.save_pct = self:GetAbilitySpecialValueFor("save_pct")
-    self.radius = self:GetAbilitySpecialValueFor("radius")
+    self:GetAbilityValues()
     self.damage_pool = 0
     if IsServer() then
         local particleID = ParticleManager:CreateParticleForPlayer("particles/units/heroes/mage/mage_ancient_sealrune.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget, hCaster:GetPlayerOwner())
@@ -54,8 +57,7 @@ function modifier_mage_ancient_seal:OnCreated(params)
     end
 end
 function modifier_mage_ancient_seal:OnRefresh(params)
-    self.save_pct = self:GetAbilitySpecialValueFor("save_pct")
-    self.radius = self:GetAbilitySpecialValueFor("radius")
+    self:GetAbilityValues()
 end
 function modifier_mage_ancient_seal:DeclareFunctions()
     return {

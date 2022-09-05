@@ -25,8 +25,11 @@ end
 function modifier_mage_flame_cloak_buff:IsPurgable()
 	return false
 end
+function modifier_mage_flame_cloak_buff:GetAbilityValues()
+    self.bonus_magical_crit_chance = self:GetAbilitySpecialValueFor("bonus_magical_crit_chance")
+end
 function modifier_mage_flame_cloak_buff:OnCreated(params)
-	self.bonus_magical_crit_chance = self:GetAbilitySpecialValueFor("bonus_magical_crit_chance")
+	self:GetAbilityValues()
 	if IsServer() then
 		local hCaster = self:GetCaster()
 		local particleID = ParticleManager:CreateParticle("particles/units/heroes/hero_lina/lina_flame_cloak.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster)
@@ -36,9 +39,7 @@ function modifier_mage_flame_cloak_buff:OnCreated(params)
 	end
 end
 function modifier_mage_flame_cloak_buff:OnRefresh(params)
-	self.bonus_magical_crit_chance = self:GetAbilitySpecialValueFor("bonus_magical_crit_chance")
-	if IsServer() then
-	end
+	self:GetAbilityValues()
 end
 function modifier_mage_flame_cloak_buff:GetStatusEffectName()
 	return "particles/status_fx/status_effect_lina_flame_cloak.vpcf" 

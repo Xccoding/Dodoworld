@@ -14,7 +14,7 @@ end
 function mage_dragon_slave:GetIntrinsicModifierName()
     return "modifier_mage_dragon_slave"
 end
-function mage_dragon_slave:OnSpellStart()
+function mage_dragon_slave:C_OnSpellStart()
     local hCaster = self:GetCaster()
     local hTarget = self:GetCursorTarget()
 
@@ -64,12 +64,13 @@ function mage_dragon_slave:OnProjectileHit_ExtraData(hTarget, vLocation, ExtraDa
         end
     end
 
+    local liquid_fire = hCaster:FindAbilityByName("mage_liquid_fire")
     local debuff = hTarget:FindModifierByNameAndCaster("modifier_mage_liquid_fire_debuff", hCaster)
-    if debuff ~= nil then
+    if debuff ~= nil and liquid_fire ~= nil then
         local damage_pool = debuff.damage_pool
         for _, enemy in pairs(enemies) do
             if enemy ~= nil and enemy:IsAlive() and enemy ~= hCaster then
-                enemy:AddNewModifier(hCaster, self, "modifier_mage_liquid_fire_debuff", {duration = duration, damage_pool = damage_pool})
+                enemy:AddNewModifier(hCaster, liquid_fire, "modifier_mage_liquid_fire_debuff", {duration = duration, damage_pool = damage_pool})
             end
         end
     end

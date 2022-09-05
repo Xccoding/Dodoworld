@@ -8,5 +8,6 @@
         "hero_attributes",
         "channel_list",
         "hero_items",
+        "hero_talents",
     ]
 }

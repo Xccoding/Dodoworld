@@ -1,0 +1,63 @@
+"Talent"{
+    "mage"
+    {
+        "0"{
+            "mage_arsonist"
+            {
+                "TalentFloor"   "1"
+                // "Requiredlevel" "1"
+                "UpgradeAbilities"   {
+                    "mage_searing_arrows"
+                    {
+                        "crit_hp_pct"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "90"
+                        }
+                    }
+                    "mage_laguna_blade"
+                    {
+                        "crit_hp_pct"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "90"
+                        }
+                    }
+                }
+
+                // "NewAbility"
+                // {
+                //     "ability_name"
+                // }
+            }
+            "mage_eternal_flame"
+            {
+                "TalentFloor"   "1"
+                // "Requiredlevel" "1"
+                "UpgradeAbilities"   {
+                    "mage_fiery_soul"
+                    {
+                        "reset_chance"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "8"
+                        }
+                    }
+                }
+
+                // "NewAbility"
+                // {
+                //     "ability_name"
+                // }
+            }
+        }
+        
+    }
+
+
+
+    
+
+
+
+}

@@ -209,6 +209,8 @@ function modifier_Vehicle_inside:CheckState()
     if hCaster.Vehicle.Vehicle_state == VEHICLE_STATE_MOVE then
         return {
             [MODIFIER_STATE_STUNNED] = true,
+            [MODIFIER_STATE_SILENCED] = true,
+            [MODIFIER_STATE_ROOTED] = true,
         }
     else
         return {}

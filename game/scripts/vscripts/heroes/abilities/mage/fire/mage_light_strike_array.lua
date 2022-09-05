@@ -43,7 +43,7 @@ function mage_light_strike_array:GetAbilityTextureName()
         return  "lina_light_strike_array"
     end
 end
-function mage_light_strike_array:OnAbilityPhaseStart()
+function mage_light_strike_array:C_OnAbilityPhaseStart()
 	local hCaster = self:GetCaster()
 	local vPos = self:GetCursorPosition()
 	local radius = self:GetSpecialValueFor("radius")
@@ -56,14 +56,14 @@ function mage_light_strike_array:OnAbilityPhaseStart()
 
 	return true
 end
-function mage_light_strike_array:OnAbilityPhaseInterrupted()
+function mage_light_strike_array:C_OnAbilityPhaseInterrupted()
 	local hCaster = self:GetCaster()
 	StopSoundOn("Hero_Invoker.SunStrike.Charge", hCaster)
 	ParticleManager:DestroyParticle(self.particleID_pre, true)
 	self.particleID_pre = nil
 	return true
 end
-function mage_light_strike_array:OnSpellStart()
+function mage_light_strike_array:C_OnSpellStart()
 	local hCaster = self:GetCaster()
 	local duration = self:GetSpecialValueFor("duration")
 	local sp_factor = self:GetSpecialValueFor("sp_factor")
@@ -111,15 +111,14 @@ end
 if modifier_mage_light_strike_array == nil then
 	modifier_mage_light_strike_array = class({})
 end
+function modifier_mage_light_strike_array:GetAbilityValues()
+    self.slow_down_pct = self:GetAbilitySpecialValueFor("slow_down_pct")
+end
 function modifier_mage_light_strike_array:OnCreated(params)
-	self.slow_down_pct = self:GetAbilitySpecialValueFor("slow_down_pct")
-	if IsServer() then
-	end
+	self:GetAbilityValues()
 end
 function modifier_mage_light_strike_array:OnRefresh(params)
-	self.slow_down_pct = self:GetAbilitySpecialValueFor("slow_down_pct")
-	if IsServer() then
-	end
+	self:GetAbilityValues()
 end
 function modifier_mage_light_strike_array:DeclareFunctions()
 	return {

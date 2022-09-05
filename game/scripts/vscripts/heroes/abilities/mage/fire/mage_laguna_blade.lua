@@ -1,4 +1,6 @@
+LinkLuaModifier("modifier_mage_laguna_blade", "heroes/abilities/mage/fire/mage_laguna_blade.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_mage_laguna_blade_debuff", "heroes/abilities/mage/fire/mage_laguna_blade.lua", LUA_MODIFIER_MOTION_NONE)
+
 if mage_laguna_blade == nil then
     mage_laguna_blade = class({})
 end
@@ -33,24 +35,23 @@ function mage_laguna_blade:GetAbilityTextureName()
         return "lina_laguna_blade"
     end
 end
-function mage_laguna_blade:OnAbilityPhaseStart()
+function mage_laguna_blade:C_OnAbilityPhaseStart()
     local hCaster = self:GetCaster()
+
     if not hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
         EmitSoundOnEntityForPlayer("Hero_StormSpirit.ElectricVortex", hCaster, hCaster:GetPlayerOwnerID())
     end
     self.particleID_pre = ParticleManager:CreateParticleForPlayer("particles/units/heroes/hero_wisp/wisp_tether.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster, hCaster:GetPlayerOwner())
     ParticleManager:SetParticleControlEnt(self.particleID_pre, 0, hCaster, PATTACH_POINT_FOLLOW, "attach_attack1", Vector(0, 0, 0), false)
     ParticleManager:SetParticleControlEnt(self.particleID_pre, 1, hCaster, PATTACH_POINT_FOLLOW, "attach_attack2", Vector(0, 0, 0), false)
-    return true
 end
-function mage_laguna_blade:OnAbilityPhaseInterrupted()
+function mage_laguna_blade:C_OnAbilityPhaseInterrupted()
     local hCaster = self:GetCaster()
     StopSoundOn("Hero_StormSpirit.ElectricVortex", hCaster)
     ParticleManager:DestroyParticle(self.particleID_pre, true)
     self.particleID_pre = nil
-    return true
 end
-function mage_laguna_blade:OnSpellStart()
+function mage_laguna_blade:C_OnSpellStart()
     local hCaster = self:GetCaster()
     local hTarget = self:GetCursorTarget()
     local sp_factor = self:GetSpecialValueFor("sp_factor")
@@ -86,8 +87,11 @@ function mage_laguna_blade:OnSpellStart()
     )
 
     if self:GetLevel() >= 2 and hTarget:IsAlive() then
-        hTarget:AddNewModifier(hCaster, self, "modifier_mage_laguna_blade_debuff", {duration = self:GetSpecialValueFor("duration")})
+        hTarget:AddNewModifier(hCaster, self, "modifier_mage_laguna_blade_debuff", { duration = self:GetSpecialValueFor("duration") })
     end
+end
+function mage_laguna_blade:GetIntrinsicModifierName()
+    return "modifier_mage_laguna_blade"
 end
 --=======================================modifier_mage_laguna_blade_debuff=======================================
 if modifier_mage_laguna_blade_debuff == nil then
@@ -105,14 +109,18 @@ end
 function modifier_mage_laguna_blade_debuff:IsPurgeException()
     return true
 end
-function modifier_mage_laguna_blade_debuff:OnCreated(params)
+function modifier_mage_laguna_blade_debuff:GetAbilityValues()
     self.sp_factor_dot = self:GetAbilitySpecialValueFor("sp_factor_dot")
+end
+function modifier_mage_laguna_blade_debuff:OnCreated(params)
+    self:GetAbilityValues()
     if IsServer() then
         self:StartIntervalThink(1)
         self:OnIntervalThink()
     end
 end
 function modifier_mage_laguna_blade_debuff:OnRefresh(params)
+    self:GetAbilityValues()
 end
 function modifier_mage_laguna_blade_debuff:OnDestroy(params)
 end
@@ -141,4 +149,50 @@ function modifier_mage_laguna_blade_debuff:OnIntervalThink()
         ability = self:GetAbility(),
         damage_flags = DOTA_DAMAGE_FLAG_INDIRECT,
     })
+end
+--=======================================mage_laguna_blade=======================================
+if modifier_mage_laguna_blade == nil then
+    modifier_mage_laguna_blade = class({})
+end
+function modifier_mage_laguna_blade:IsHidden()
+    return true
+end
+function modifier_mage_laguna_blade:IsDebuff()
+    return false
+end
+function modifier_mage_laguna_blade:IsPurgable()
+    return false
+end
+function modifier_mage_laguna_blade:IsPurgeException()
+    return false
+end
+function modifier_mage_laguna_blade:GetAbilityValues()
+    self.crit_hp_pct = self:GetAbilitySpecialValueFor("crit_hp_pct")
+end
+function modifier_mage_laguna_blade:OnCreated(params)
+    self:GetAbilityValues()
+end
+function modifier_mage_laguna_blade:OnRefresh(params)
+    self:GetAbilityValues()
+end
+function modifier_mage_laguna_blade:OnDestroy(params)
+end
+function modifier_mage_laguna_blade:DeclareFunctions()
+    return {
+    }
+end
+function modifier_mage_laguna_blade:CDeclareFunctions()
+    return {
+        CMODIFIER_PROPERTY_BONUS_MAGICAL_CRIT_CHANCE_CONSTANT
+    }
+end
+function modifier_mage_laguna_blade:C_GetModifierBonusMagicalCritChance_Constant(params)
+    if params.inflictor ~= nil and params.inflictor == self:GetAbility() then
+        if self.crit_hp_pct > 0 and params.target:GetHealthPercent() > self.crit_hp_pct then
+            return 100
+        end
+        return 0
+    else
+        return 0
+    end
 end

@@ -118,14 +118,14 @@ function modifier_common:OnAbilityStart( params )
             casttype = "channel"
         end
         if params.ability:GetChannelTime() > 0 or params.ability:GetCastPoint() > 0 then
-            CustomGameEventManager:Send_ServerToPlayer(hParent:GetPlayerOwner(), "AbilityStart", {ability = params.ability:entindex(), casttype = casttype})
+            --CustomGameEventManager:Send_ServerToPlayer(hParent:GetPlayerOwner(), "AbilityStart", {ability = params.ability:entindex(), casttype = casttype})
         end
     end
 end
 function modifier_common:OnAbilityEndChannel( params )
     local hParent = self:GetParent()
     if params.unit:IsHero() and params.unit == hParent then
-        CustomGameEventManager:Send_ServerToPlayer(hParent:GetPlayerOwner(), "AbilityEndChannel", {})
+        --CustomGameEventManager:Send_ServerToPlayer(hParent:GetPlayerOwner(), "AbilityEndChannel", {})
     end
 end
 function modifier_common:GetModifierTotalDamageOutgoing_Percentage( params )

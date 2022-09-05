@@ -35,8 +35,8 @@ end
 function modifier_mage_arcane_orb:IsPurgable()
 	return false
 end
-function modifier_mage_arcane_orb:OnCreated(params)
-	self.attack_range_override = self:GetAbilitySpecialValueFor("attack_range_override")
+function modifier_mage_arcane_orb:GetAbilityValues()
+    self.attack_range_override = self:GetAbilitySpecialValueFor("attack_range_override")
 	self.attack_time_override = self:GetAbilitySpecialValueFor("attack_time_override")
 	self.projectile_speed = self:GetAbilitySpecialValueFor("projectile_speed")
 	self.damage_pct = self:GetAbilitySpecialValueFor("damage_pct")
@@ -44,17 +44,13 @@ function modifier_mage_arcane_orb:OnCreated(params)
 	self.mana_cost_pct = self:GetAbilitySpecialValueFor("mana_cost_pct")
 	self.arcane_bonus_damage_pct = self:GetAbilitySpecialValueFor("arcane_bonus_damage_pct")
 	self.arcane_bonus_attack_time = self:GetAbilitySpecialValueFor("arcane_bonus_attack_time")
+end
+function modifier_mage_arcane_orb:OnCreated(params)
+	self:GetAbilityValues()
 	self.records = {}
 end
 function modifier_mage_arcane_orb:OnRefresh(params)
-	self.attack_range_override = self:GetAbilitySpecialValueFor("attack_range_override")
-	self.attack_time_override = self:GetAbilitySpecialValueFor("attack_time_override")
-	self.projectile_speed = self:GetAbilitySpecialValueFor("projectile_speed")
-	self.damage_pct = self:GetAbilitySpecialValueFor("damage_pct")
-	self.sp_factor = self:GetAbilitySpecialValueFor("sp_factor")
-	self.mana_cost_pct = self:GetAbilitySpecialValueFor("mana_cost_pct")
-	self.arcane_bonus_damage_pct = self:GetAbilitySpecialValueFor("arcane_bonus_damage_pct")
-	self.arcane_bonus_attack_time = self:GetAbilitySpecialValueFor("arcane_bonus_attack_time")
+	self:GetAbilityValues()
 end
 function modifier_mage_arcane_orb:CheckState()
 	return {

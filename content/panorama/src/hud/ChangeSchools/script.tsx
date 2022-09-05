@@ -13,7 +13,6 @@ const SCHOOLS_DUTY_TANK = 4;
 
 
 function ChangeSchools() {
-
     const [ShowState, SetShowState] = useToggleHud("ChangeSchools");
     const [schools_array, setschools_array] = useState(GetSchools);
     const Schools_selected = useNetTableValues("hero_schools")[Players.GetLocalPlayer()].schools_index || 0;

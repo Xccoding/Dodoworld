@@ -213,7 +213,7 @@ end
 function modifier_death_knight_chaos_strike_shield:OnRefresh(params)
     local hCaster = self:GetParent()
     if IsServer() then
-        self.shield = self.shield + params.shield
+        self.shield = self.shield + (params.shield or 0)
         self:SendBuffRefreshToClients()
     end
 end

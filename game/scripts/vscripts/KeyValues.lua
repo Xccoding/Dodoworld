@@ -7,6 +7,7 @@ _G.KeyValues = {
     UnitsKv = LoadKeyValues("scripts/npc/npc_units_custom.txt"),
     HeroesKv = LoadKeyValues("scripts/npc/npc_heroes_custom.txt"),
     SchoolsKv = LoadKeyValues("scripts/npc/Schools.txt"),
+    TalentKv = LoadKeyValues("scripts/npc/talentKv.txt"),
 }
 
 function KeyValues:GetUnitSpecialValue( hUnit, sKey )

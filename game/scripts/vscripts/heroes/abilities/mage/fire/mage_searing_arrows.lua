@@ -31,20 +31,20 @@ end
 function modifier_mage_searing_arrows:GetAttributes()
     return MODIFIER_ATTRIBUTE_PERMANENT
 end
-function modifier_mage_searing_arrows:OnCreated(params)
+function modifier_mage_searing_arrows:GetAbilityValues()
     self.attack_range_override = self:GetAbilitySpecialValueFor("attack_range_override")
     self.attack_time_override = self:GetAbilitySpecialValueFor("attack_time_override")
     self.damage_pct = self:GetAbilitySpecialValueFor("damage_pct")
     self.sp_factor = self:GetAbilitySpecialValueFor("sp_factor")
     self.bonus_crit_chance = self:GetAbilitySpecialValueFor("bonus_crit_chance")
+    self.crit_hp_pct = self:GetAbilitySpecialValueFor("crit_hp_pct")
+end
+function modifier_mage_searing_arrows:OnCreated(params)
+    self:GetAbilityValues()
     self.records = {}
 end
 function modifier_mage_searing_arrows:OnRefresh(params)
-    self.attack_range_override = self:GetAbilitySpecialValueFor("attack_range_override")
-    self.attack_time_override = self:GetAbilitySpecialValueFor("attack_time_override")
-    self.damage_pct = self:GetAbilitySpecialValueFor("damage_pct")
-    self.sp_factor = self:GetAbilitySpecialValueFor("sp_factor")
-    self.bonus_crit_chance = self:GetAbilitySpecialValueFor("bonus_crit_chance")
+    self:GetAbilityValues()
 end
 function modifier_mage_searing_arrows:CheckState()
     return {
@@ -174,6 +174,9 @@ function modifier_mage_searing_arrows:C_OnSpellNotCrit(params)
 end
 function modifier_mage_searing_arrows:C_GetModifierBonusMagicalCritChance_Constant(params)
     if params.inflictor ~= nil and params.inflictor == self:GetAbility() then
+        if self.crit_hp_pct > 0 and params.target:GetHealthPercent() > self.crit_hp_pct then
+            return 100
+        end
         return self:GetStackCount() * self.bonus_crit_chance
     else
         return 0

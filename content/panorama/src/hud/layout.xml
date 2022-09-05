@@ -11,7 +11,6 @@
         <!-- <include src="./ChangeSchools.tsx"/> -->
         <!-- <include src="./right_bottom_button.tsx" /> -->
         <!-- Synchronized file from kv files by sync_kv.js, if it is not used, please delete the following line -->
-        <include src="file://{resources}/scripts/sync_keyvalues.js" />
     </scripts>
     <styles>
         <include src="s2r://panorama/styles/dotastyles.vcss_c"></include>

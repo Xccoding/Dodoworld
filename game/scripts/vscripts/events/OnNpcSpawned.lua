@@ -14,7 +14,7 @@ function DodoWorld:OnNpcSpawned( params )
 
     --添加无敌
     if KeyValues:GetUnitSpecialValue(unit, "IsInvulnerable") then
-        unit:AddNewModifier(unit, nil, "modifier_Invulnerable", {})
+        unit:AddNewModifier(unit, nil, "modifier_Invulnerable_custom", {})
     end
 
     --添加可交互NPC的无敌
@@ -31,6 +31,7 @@ function DodoWorld:OnNpcSpawned( params )
         local new_schools = CustomNetTables:GetTableValue("hero_schools", tostring(unit:GetPlayerOwnerID())).schools_index
         
         unit:AddNewModifier(unit, nil, "modifier_hero_attribute", {})
+        unit.Talent_manager = Talent_manager:constructor(unit)
         Abilities_manager:RefreshAbilitiesToRole({entindex = params.entindex, new_schools = new_schools})
         Abilities_manager:AutoUpgradeAbilities(unit)
         

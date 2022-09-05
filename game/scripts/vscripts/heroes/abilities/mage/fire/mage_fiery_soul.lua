@@ -19,23 +19,23 @@ function modifier_mage_fiery_soul:IsDebuff()
     return false
 end
 function modifier_mage_fiery_soul:IsHidden()
-    -- if self:GetStackCount() <= 1 then
-    -- 	return false
-    -- else
-    -- 	return true
-    -- end
     return true
 end
 function modifier_mage_fiery_soul:IsPurgable()
     return false
 end
+function modifier_mage_fiery_soul:GetAbilityValues()
+    self.combo_duration = self:GetAbilitySpecialValueFor("combo_duration")
+end
 function modifier_mage_fiery_soul:OnCreated(params)
+    self:GetAbilityValues()
     self.spell_records = {}
     if IsServer() then
         self:StartIntervalThink(FrameTime())
     end
 end
 function modifier_mage_fiery_soul:OnRefresh(params)
+    self:GetAbilityValues()
     if IsServer() then
     end
 end
@@ -148,7 +148,6 @@ function modifier_mage_fiery_soul:OnIntervalThink()
                     if self.spell_records[i - 1].bCrit == true then
                         --print("炽热连击")
                         local hCaster = self:GetCaster()
-                        local combo_duration = self:GetAbilitySpecialValueFor("combo_duration")
                         local mage_laguna_blade = hCaster:FindAbilityByName("mage_laguna_blade")
                         local mage_light_strike_array = hCaster:FindAbilityByName("mage_light_strike_array")
                         mage_laguna_blade:EndCooldown()
@@ -161,7 +160,7 @@ function modifier_mage_fiery_soul:OnIntervalThink()
                         end
                         self.particle_combo = ParticleManager:CreateParticleForPlayer("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze_double.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster, hCaster:GetPlayerOwner())
 
-                        hCaster:AddNewModifier(hCaster, self:GetAbility(), "modifier_mage_fiery_soul_combo", { duration = combo_duration })
+                        hCaster:AddNewModifier(hCaster, self:GetAbility(), "modifier_mage_fiery_soul_combo", { duration = self.combo_duration })
                         self:SetStackCount(0)
                         for j = i, 1, -1 do
                             table.remove(self.spell_records, j)
@@ -199,8 +198,13 @@ end
 function modifier_mage_fiery_soul_combo:IsPurgable()
     return false
 end
-function modifier_mage_fiery_soul_combo:OnCreated(params)
+function modifier_mage_fiery_soul_combo:GetAbilityValues()
     self.combo_multiple = self:GetAbilitySpecialValueFor("combo_multiple")
+    self.combo_duration = self:GetAbilitySpecialValueFor("combo_duration")
+    self.reset_chance = self:GetAbilitySpecialValueFor("reset_chance")
+end
+function modifier_mage_fiery_soul_combo:OnCreated(params)
+    self:GetAbilityValues()
     local hCaster = self:GetCaster()
     if IsServer() then
         local particleID = ParticleManager:CreateParticleForPlayer("particles/units/heroes/hero_lina/lina_fiery_soul.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster, hCaster:GetPlayerOwner())
@@ -209,14 +213,24 @@ function modifier_mage_fiery_soul_combo:OnCreated(params)
     end
 end
 function modifier_mage_fiery_soul_combo:OnRefresh(params)
-    self.combo_multiple = self:GetAbilitySpecialValueFor("combo_multiple")
-    if IsServer() then
-    end
+    self:GetAbilityValues()
 end
 function modifier_mage_fiery_soul_combo:DeclareFunctions()
     return {
         MODIFIER_PROPERTY_TOOLTIP
     }
+end
+function modifier_mage_fiery_soul_combo:OnDestroy()
+    if IsServer() then
+        local hCaster = self:GetCaster()
+        if RandomFloat(0, 100) < self.reset_chance and self:GetRemainingTime() > 0 then
+            local mage_laguna_blade = hCaster:FindAbilityByName("mage_laguna_blade")
+            local mage_light_strike_array = hCaster:FindAbilityByName("mage_light_strike_array")
+            mage_laguna_blade:EndCooldown()
+            mage_light_strike_array:EndCooldown()
+            hCaster:AddNewModifier(hCaster, self:GetAbility(), "modifier_mage_fiery_soul_combo", { duration = self.combo_duration })
+        end
+    end
 end
 function modifier_mage_fiery_soul_combo:OnTooltip()
     return self.combo_multiple

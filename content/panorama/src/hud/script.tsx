@@ -19,6 +19,7 @@ import { print}  from './Utils'
 	GameUI.CustomUIConfig().AbilityKv = {};
 	GameUI.CustomUIConfig().SchoolsKv = {};
 	GameUI.CustomUIConfig().HeroesKv = {};
+	GameUI.CustomUIConfig().TalentsKv = {};
 	
 
 	// for(const k in GameUI.CustomUIConfig().AbilityKv){
@@ -29,21 +30,22 @@ import { print}  from './Utils'
 
 	function updateKV(){
 		for(const k in GameUI.CustomUIConfig()){
-			if(k.indexOf("_ability") != -1){
-				let thisKV = (GameUI.CustomUIConfig() as any)[k].DOTAAbilities
+			if(k.indexOf("_abilityKv") != -1){
+				let thisKV = (GameUI.CustomUIConfig() as any)[k]
 				for(const abilityName in thisKV){
 					GameUI.CustomUIConfig().AbilityKv[abilityName] = thisKV[abilityName]
 				}
 			}
-			else if(k.indexOf("_hero") != -1){
-				let thisKV = (GameUI.CustomUIConfig() as any)[k].DOTAHeroes
+			else if(k.indexOf("_heroKv") != -1){
+				let thisKV = (GameUI.CustomUIConfig() as any)[k]
 				for(const heroName in thisKV){
 					GameUI.CustomUIConfig().HeroesKv[heroName] = thisKV[heroName]
 				}
 			}
 		}
 
-		GameUI.CustomUIConfig().SchoolsKv = (GameUI.CustomUIConfig() as any).Schools.SchoolsList;
+		GameUI.CustomUIConfig().SchoolsKv = GameUI.CustomUIConfig().Schools;
+		GameUI.CustomUIConfig().TalentsKv = GameUI.CustomUIConfig().talentKv;
 	}
 
 

@@ -13,12 +13,10 @@ export class BaseModifier {
         ability?: CDOTABaseAbility,
         modifierTable?: object,
     ): InstanceType<T> {
-        if (caster == null) caster = target;
-        return target.AddNewModifier(caster, ability, this.name, modifierTable) as any;
+        return target.AddNewModifier(caster, ability, this.name, modifierTable) as unknown as InstanceType<T>;
     }
-
-    public static on<T extends typeof BaseModifier>(this: T, target: CDOTA_BaseNPC): boolean {
-        return target.HasModifier(this.name);
+    public static find_on<T extends typeof BaseModifier>(this: T, target: CDOTA_BaseNPC): InstanceType<T> {
+        return target.FindModifierByName(this.name) as unknown as InstanceType<T>;
     }
 
     public static remove<T extends typeof BaseModifier>(this: T, target: CDOTA_BaseNPC): void {
@@ -51,11 +49,7 @@ export const registerAbility = (name?: string,) => (ability: new () => CDOTA_Abi
 
     const [env] = getFileScope();
 
-    if (env[name]) {
-        clearTable(env[name]);
-    } else {
-        env[name] = {};
-    }
+    env[name] = {};
 
     toDotaClassInstance(env[name], ability);
 
@@ -79,11 +73,7 @@ export const registerModifier = (name?: string) => (modifier: new () => CDOTA_Mo
     const [env, source] = getFileScope();
     const [fileName] = string.gsub(source, ".*scripts[\\/]vscripts[\\/]", "");
 
-    if (env[name]) {
-        clearTable(env[name]);
-    } else {
-        env[name] = {};
-    }
+    env[name] = {};
 
     toDotaClassInstance(env[name], modifier);
 
@@ -140,7 +130,9 @@ function toDotaClassInstance(instance: any, table: new () => any) {
             // Using hasOwnProperty to ignore methods from metatable added by ExtendInstance
             // https://github.com/SteamDatabase/GameTracking-Dota2/blob/7edcaa294bdcf493df0846f8bbcd4d47a5c3bd57/game/core/scripts/vscripts/init.lua#L195
             if (!instance.hasOwnProperty(key)) {
-                instance[key] = prototype[key];
+                if (key != "__index") {
+                    instance[key] = prototype[key];
+                }
             }
         }
 

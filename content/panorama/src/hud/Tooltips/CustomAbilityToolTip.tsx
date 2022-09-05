@@ -81,6 +81,11 @@ function CustomAbilityToolTip({ ability, unit }: { ability: AbilityEntityIndex, 
     let CRange_text = "";
     let CPoint_text = "";
 
+    // 特殊处理不受缩减的冷却时间
+    if(GetAbilityValue(abilityName, Level, "ConstantCooldown") != 0){
+        CooldownTime = GetAbilityValue(abilityName, Level, "ConstantCooldown")
+    }
+
     if (ChargeRestoreTime > CooldownTime) {
         CD_text = ChargeRestoreTime + $.Localize("#AbilityTooltip_ChargeTime");
     }
@@ -115,7 +120,7 @@ function CustomAbilityToolTip({ ability, unit }: { ability: AbilityEntityIndex, 
 
     let abilityNextLevel = $.Localize("#AbilityTooltip_MaxLevel");
     if (Abilities.GetMaxLevel(ability) > Abilities.GetLevel(ability)) {
-        let abilityLevels: string[] = (GameUI.CustomUIConfig().AbilityKv[abilityName].CustomRequiredLevel).split(" ");
+        let abilityLevels: string[] = (GameUI.CustomUIConfig().AbilityKv[abilityName]?.CustomRequiredLevel || "0").split(" ");
         let NextLevel = abilityLevels[(Abilities.GetLevel(ability) - 1) + 1];
         if(Level > 0){
             abilityNextLevel = $.Localize("#AbilityTooltip_NextLevel").replace("[!s:next_level]", NextLevel);

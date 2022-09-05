@@ -83,8 +83,8 @@ export function GetUnitAttribute(attrName: string, unit?: EntityIndex) {
 		let i = FindModifierByName(unit, "modifier_hero_attribute");
 		let t = Buffs.GetTexture(unit, i);
 
-		if(t == ""){
-			return 0
+		if (t == "") {
+			return 0;
 		}
 		if (JSON.parse(t) != undefined && JSON.parse(t)[attrName] != undefined) {
 			return Number(JSON.parse(t)[attrName]);
@@ -100,11 +100,22 @@ export function GetUnitAttribute(attrName: string, unit?: EntityIndex) {
 }
 
 export function GetAbilityValue(ability_name: string, Level: number, key_name: string) {
+	if (GameUI.CustomUIConfig().AbilityKv[ability_name] == undefined) {
+		return 0;
+	}
+	
 	const values = GameUI.CustomUIConfig().AbilityKv[ability_name][key_name];
 	if (values != undefined) {
 		const values_array = values.split(" ");
 		if (Level > 0) {
-			return values_array[Level - 1];
+			if(values_array.length > 1){
+				// print("N2O", values_array)
+				return values_array[Level - 1];
+			}
+			else{
+				return values_array[0];
+			}
+			
 		}
 		else {
 			return values_array[0];
@@ -113,8 +124,45 @@ export function GetAbilityValue(ability_name: string, Level: number, key_name: s
 	else {
 		return 0;
 	}
-
 }
+
+export function GetAbilityMaxCharges(ability: AbilityEntityIndex, unit: EntityIndex){
+	for (let index = 0; index < Entities.GetNumBuffs(unit); index++) {
+		const modifier = Entities.GetBuff(unit, index);
+		const buff_ability = Buffs.GetAbility(unit, modifier);
+		if (buff_ability == ability && Buffs.GetName(unit, modifier) == "modifier_AbilityCharge") {
+			return Number(Buffs.GetTexture(unit, modifier));
+		}
+	}
+	return 0;
+}
+
+export function GetAbilityCurrentCharges(ability: AbilityEntityIndex, unit: EntityIndex) {
+	for (let index = 0; index < Entities.GetNumBuffs(unit); index++) {
+		const modifier = Entities.GetBuff(unit, index);
+		const buff_ability = Buffs.GetAbility(unit, modifier);
+		if (buff_ability == ability && Buffs.GetName(unit, modifier) == "modifier_AbilityCharge") {
+			return Buffs.GetStackCount(unit, modifier);
+		}
+	}
+	return 0;
+}
+
+export function GetAbilityChargeRestoreTimeRemaining(ability: AbilityEntityIndex, unit: EntityIndex) {
+	if (ability == (-1 as AbilityEntityIndex)) {
+		return 0;
+	}
+	for (let index = 0; index < Entities.GetNumBuffs(unit); index++) {
+		const modifier = Entities.GetBuff(unit, index);
+		const buff_ability = Buffs.GetAbility(unit, modifier);
+		if (buff_ability == ability && Buffs.GetName(unit, modifier) == "modifier_AbilityCharge") {
+			return Buffs.GetRemainingTime(unit, modifier);
+		}
+	}
+
+	return 0;
+}
+
 
 export function useToggleHud(hud_name: string): [boolean, (arg0?: boolean) => void] {
 	const [State, SetState] = useState(false);
