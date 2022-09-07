@@ -89,3 +89,14 @@ function DeepFindKeyValue(t, key_name)
         return nil
     end
 end
+
+function TabletoString(t)
+    local str = ""
+
+    for key, value in pairs(t) do
+        str = str..tostring(value).." "
+    end
+
+    str = string.sub(str, 1, -2)
+    return str
+end

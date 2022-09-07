@@ -29,14 +29,14 @@
 
     "mage"  {
         "0" {
-            "Ability1"	"mage_fireblast"
-            "Ability2"	"mage_searing_arrows"
-            "Ability3"	"mage_laguna_blade"
-            "Ability4"	"mage_light_strike_array"
-            "Ability5"	"mage_dragon_slave"
-            "Ability6"	"mage_flame_cloak"
-            "Ability7"	"mage_blink"
-            "Ability8"	"mage_concussive_shot"
+            "Ability1"	"mage_searing_arrows"
+            "Ability2"	"mage_fireblast"
+            "Ability3"	"mage_fire_spirits"
+            "Ability4"	"mage_laguna_blade"
+            "Ability5"	"mage_light_strike_array"
+            "Ability6"	"mage_dragon_slave"
+            "Ability7"	"mage_flame_cloak"
+            "Ability8"	"mage_blink"
             "Ability9"	"mage_resonant_pulse"
             "Ability10"	"mage_arcane_bolt"
             "Ability11"	"mage_ancient_seal"

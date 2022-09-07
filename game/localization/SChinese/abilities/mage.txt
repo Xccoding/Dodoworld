@@ -5,9 +5,9 @@
 "DOTA_Tooltip_ability_mage_fireblast_Description_lv4"	"以一波火焰轰击目标，造成%sp_factor%点魔法伤害。<br>最多拥有%max_charges%层充能，可以在光击阵施法时施放，必定造成暴击。"
 
 "DOTA_Tooltip_ability_mage_searing_arrows"	"灼热之箭"
-"DOTA_Tooltip_ability_mage_searing_arrows_Description_lv1"	"激活后，失去你的全部攻击力，攻击距离固定为%attack_range_override%，攻击间隔提升至%attack_time_override%，将你的攻击替换成燃烧的箭矢，箭矢造成%sp_factor%点魔法伤害且具有克敌机先。"
-"DOTA_Tooltip_ability_mage_searing_arrows_Description_lv2"	"激活后，失去你的全部攻击力，攻击距离固定为%attack_range_override%，攻击间隔提升至%attack_time_override%，将你的攻击替换成燃烧的箭矢，箭矢造成%sp_factor%点魔法伤害且具有克敌机先。<br>每当灼热之箭未能造成暴击，它就会额外获得%bonus_crit_chance%%%的魔法暴击几率，直至它暴击。"
-"DOTA_Tooltip_ability_mage_searing_arrows_Description_lv3"	"激活后，失去你的全部攻击力，攻击距离固定为%attack_range_override%，攻击间隔提升至%attack_time_override%，将你的攻击替换成燃烧的箭矢，箭矢造成%sp_factor%点魔法伤害且具有克敌机先。<br>每当灼热之箭未能造成暴击，它就会额外获得%bonus_crit_chance%%%的魔法暴击几率，直至它暴击。"
+"DOTA_Tooltip_ability_mage_searing_arrows_Description_lv1"	"发射一枚燃烧的箭矢，箭矢造成%sp_factor%点魔法伤害。"
+"DOTA_Tooltip_ability_mage_searing_arrows_Description_lv2"	"发射一枚燃烧的箭矢，箭矢造成%sp_factor%点魔法伤害。<br>每当灼热之箭未能造成暴击，它就会额外获得%bonus_crit_chance%%%的魔法暴击几率，直至它暴击。"
+"DOTA_Tooltip_ability_mage_searing_arrows_Description_lv3"	"发射一枚燃烧的箭矢，箭矢造成%sp_factor%点魔法伤害。<br>每当灼热之箭未能造成暴击，它就会额外获得%bonus_crit_chance%%%的魔法暴击几率，直至它暴击。"
 "DOTA_Tooltip_modifier_mage_searing_arrows"	"灼热之箭"
 "DOTA_Tooltip_modifier_mage_searing_arrows_Description"	"灼热之箭额外拥有%dMODIFIER_PROPERTY_TOOLTIP%%%暴击几率"
 
@@ -30,6 +30,12 @@
 "DOTA_Tooltip_ability_mage_dragon_slave"	"凰破斩"
 "DOTA_Tooltip_ability_mage_dragon_slave_Description_lv1"	"向目标释放一只吐息的凤凰，对目标和附近%radius%范围内的所有敌人造成%sp_factor%点魔法伤害，并将目标身上的【液态火】扩散到周围的敌人身上。<br>最多拥有%max_charges%层充能，必定造成暴击。"
 "DOTA_Tooltip_ability_mage_dragon_slave_Description_lv2"	"向目标释放一只吐息的凤凰，对目标和附近%radius%范围内的所有敌人造成%sp_factor%点魔法伤害，并将目标身上的【液态火】扩散到周围的敌人身上。<br>最多拥有%max_charges%层充能，必定造成暴击。"
+
+"DOTA_Tooltip_ability_mage_fire_spirits"	"烈火精灵"
+"DOTA_Tooltip_ability_mage_fire_spirits_Description_lv1"	"引导一只烈火精灵冲向目标，对其造成%sp_factor%点魔法伤害。<br>可以在移动中施法，但攻击和施放其他技能会中断施法。"
+
+"DOTA_Tooltip_ability_mage_blink"	"闪烁"
+"DOTA_Tooltip_ability_mage_blink_Description_lv1"	"向面向方向传送最远%distance%码，遇到障碍物则会被阻挡。<br>不会打断任何施法。"
 
 "DOTA_Tooltip_ability_mage_fiery_soul"	"炽魂"
 "DOTA_Tooltip_ability_mage_fiery_soul_Description_lv1"	"每当你的连续两个技能造成魔法暴击，就会立刻重置光击阵和神灭斩的冷却时间，并使下一次光击阵或神灭斩变为瞬发，且累积%combo_multiple%%%的液态火伤害。"

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useGameEvent } from '@demon673/react-panorama';
 import ReactUtils from "../../utils/React_utils";
-import { band, FormatString, GetAbilityChargeRestoreTimeRemaining, GetAbilityCurrentCharges, GetAbilityMaxCharges, GetAbilityValue, GetUnitAttribute } from '../Utils';
+import { band, FormatString, GetAbilityChargeRestoreTimeRemaining, GetAbilityCurrentCharges, GetAbilityMaxCharges, GetAbilityValue, GetUnitAttribute, print } from '../Utils';
 
 const DOTA_ITEM_SLOT_MIN = 7;
 const DOTA_ITEM_SLOT_MAX = 12;
@@ -138,19 +138,11 @@ export function AbilityBar() {
     }, []);
 
     useGameEvent("AbilityStart", (event: any) => {
-        let duration = 0.01;
-
-        if (event.casttype == "phase") {
-            duration = Abilities.GetCastPoint(event.ability);
-        }
-        else if (event.casttype == "channel") {
-            duration = Abilities.GetChannelTime(event.ability);
-        }
 
         if (refCastBar.current != undefined) {
             refCastBar.current.ability = event.ability;
             refCastBar.current.startTime = Game.GetGameTime();
-            refCastBar.current.duration = duration;
+            refCastBar.current.duration = event.duration;
             refCastBar.current.castType = event.casttype;
         }
 

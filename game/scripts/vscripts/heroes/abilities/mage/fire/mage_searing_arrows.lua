@@ -7,11 +7,47 @@ end
 function mage_searing_arrows:GetIntrinsicModifierName()
     return "modifier_mage_searing_arrows"
 end
-function mage_searing_arrows:OnToggle()
+function mage_searing_arrows:C_OnSpellStart()
+    local hCaster = self:GetCaster()
+    local hTarget = self:GetCursorTarget()
+    local speed = self:GetSpecialValueFor("speed")
+
+    local info = {
+        Target = hTarget,
+        Source = hCaster,
+        Ability = self,
+        EffectName = "particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf",
+        iMoveSpeed = speed,
+        bDodgeable = true,        
+        vSourceLoc = hCaster:GetAbsOrigin(),
+        bIsAttack = false,                
+        ExtraData = {},
+    }
+
+    ProjectileManager:CreateTrackingProjectile(info)
+
+    EmitSoundOn("Hero_Clinkz.SearingArrows", hCaster)
 end
 function mage_searing_arrows:GetManaCost(iLevel)
     local hCaster = self:GetCaster()
     return self:GetSpecialValueFor("mana_cost_pct") * hCaster:GetMaxMana() * 0.01
+end
+function mage_searing_arrows:OnProjectileHit_ExtraData(hTarget, vLocation, ExtraData)
+    if IsValid(hTarget) then
+        local hCaster = self:GetCaster()
+        local sp_factor = self:GetSpecialValueFor("sp_factor")
+
+        EmitSoundOn("Hero_Clinkz.SearingArrows.Impact", hTarget)
+
+        ApplyDamage({
+            victim = hTarget,
+            attacker = hCaster,
+            damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * sp_factor * 0.01,
+            damage_type = DAMAGE_TYPE_MAGICAL,
+            ability = self,
+            damage_flags = DOTA_DAMAGE_FLAG_DIRECT,
+        })
+    end
 end
 ---------------------------------------------------------------------
 --Modifiers
@@ -28,125 +64,25 @@ end
 function modifier_mage_searing_arrows:IsPurgable()
     return false
 end
-function modifier_mage_searing_arrows:GetAttributes()
-    return MODIFIER_ATTRIBUTE_PERMANENT
+function modifier_mage_searing_arrows:RemoveOnDeath()
+    return false
 end
 function modifier_mage_searing_arrows:GetAbilityValues()
-    self.attack_range_override = self:GetAbilitySpecialValueFor("attack_range_override")
-    self.attack_time_override = self:GetAbilitySpecialValueFor("attack_time_override")
-    self.damage_pct = self:GetAbilitySpecialValueFor("damage_pct")
-    self.sp_factor = self:GetAbilitySpecialValueFor("sp_factor")
     self.bonus_crit_chance = self:GetAbilitySpecialValueFor("bonus_crit_chance")
     self.crit_hp_pct = self:GetAbilitySpecialValueFor("crit_hp_pct")
 end
 function modifier_mage_searing_arrows:OnCreated(params)
     self:GetAbilityValues()
-    self.records = {}
 end
 function modifier_mage_searing_arrows:OnRefresh(params)
     self:GetAbilityValues()
 end
-function modifier_mage_searing_arrows:CheckState()
-    return {
-        [MODIFIER_STATE_CANNOT_MISS] = true,
-    }
-end
 function modifier_mage_searing_arrows:DeclareFunctions()
     return {
-        MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
-        MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
-        MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE,
-        MODIFIER_PROPERTY_MAX_ATTACK_RANGE,
-        MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
-        MODIFIER_PROPERTY_PROJECTILE_NAME,
-        MODIFIER_EVENT_ON_ATTACK_RECORD,
-        MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY,
         MODIFIER_PROPERTY_TOOLTIP,
-        MODIFIER_EVENT_ON_ATTACK_LANDED,
     }
 end
-function modifier_mage_searing_arrows:OnAttackRecord(params)
-    if not IsServer() then
-        return
-    end
-    if params.attacker == self:GetParent() then
-        local hAbility = self:GetAbility()
-        if hAbility:GetToggleState() == true then
-            table.insert(self.records, { iRecord = params.record, bOrb = true })
-        end
-    end
-end
-function modifier_mage_searing_arrows:OnAttackRecordDestroy(params)
-    if not IsServer() then
-        return
-    end
-    if params.attacker == self:GetParent() then
-        if params.record ~= nil then
-            self:RemoveRecord(params.record)
-        end
-    end
-end
-function modifier_mage_searing_arrows:OnAttackLanded(params)
-    if not IsServer() then
-        return
-    end
-    if params.attacker == self:GetParent() then
-        local hCaster = self:GetParent()
-        local hTarget = params.target
-        local hAbility = self:GetAbility()
-        if hTarget:IsNull() or hTarget == nil or (not hTarget:IsAlive()) then
-            return
-        end
-        if self:CheckUseOrb(params.record) then
-            EmitSoundOn("Hero_Clinkz.SearingArrows.Impact", hTarget)
 
-            ApplyDamage({
-                victim = hTarget,
-                attacker = hCaster,
-                damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * self.sp_factor * 0.01,
-                damage_type = DAMAGE_TYPE_MAGICAL,
-                ability = hAbility,
-                damage_flags = DOTA_DAMAGE_FLAG_DIRECT,
-            })
-        end
-    end
-end
-function modifier_mage_searing_arrows:GetModifierDamageOutgoing_Percentage()
-    local hAbility = self:GetAbility()
-    if hAbility:GetToggleState() == true then
-        return -self.damage_pct
-    end
-end
-function modifier_mage_searing_arrows:GetModifierBaseAttackTimeConstant()
-    local hAbility = self:GetAbility()
-    if hAbility:GetToggleState() == true then
-        return self.attack_time_override
-    end
-end
-function modifier_mage_searing_arrows:GetModifierAttackRangeOverride()
-    local hAbility = self:GetAbility()
-    if hAbility:GetToggleState() == true then
-        return self.attack_range_override
-    end
-end
-function modifier_mage_searing_arrows:GetModifierMaxAttackRange()
-    local hAbility = self:GetAbility()
-    if hAbility:GetToggleState() == true then
-        return self.attack_range_override
-    end
-end
-function modifier_mage_searing_arrows:GetModifierProjectileName()
-    local hAbility = self:GetAbility()
-    if hAbility:GetToggleState() == true then
-        return "particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
-    end
-end
-function modifier_mage_searing_arrows:GetAttackSound()
-    local hAbility = self:GetAbility()
-    if hAbility:GetToggleState() == true then
-        return "Hero_Clinkz.SearingArrows"
-    end
-end
 function modifier_mage_searing_arrows:CDeclareFunctions()
     return {
         CMODIFIER_EVENT_ON_SPELL_CRIT,

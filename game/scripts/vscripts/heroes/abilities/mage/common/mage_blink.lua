@@ -2,6 +2,10 @@
 if mage_blink == nil then
     mage_blink = class({})
 end
+function mage_blink:GetManaCost(iLevel)
+    local hCaster = self:GetCaster()
+    return self:GetSpecialValueFor("mana_cost_pct") * hCaster:GetMaxMana() * 0.01
+end
 function mage_blink:C_OnSpellStart()
     local hCaster = self:GetCaster()
     local distance = self:GetSpecialValueFor("distance")

@@ -74,6 +74,7 @@ function CustomAbilityToolTip({ ability, unit }: { ability: AbilityEntityIndex, 
     let CooldownTime = (Level > 0 ? Abilities.GetCooldown(ability) : GetAbilityValue(abilityName, Level, "AbilityCooldown")) * (100 - CooldownReduction) * 0.01; // TODO从kv读取数值后重新计算冷却缩减
     let CastPoint = Number((Level > 0 ? Abilities.GetCastPoint(ability) : Number(GetAbilityValue(abilityName, Level, "AbilityCastPoint"))).toFixed(2));
     let ChannelTime = Abilities.GetChannelTime(ability);
+    let MovingCastTime = GetAbilityValue(abilityName, Level, "MovingCastTime")
     let Costtype = GameUI.CustomUIConfig().AbilityKv[abilityName]?.AbilityCosttype;
     let ChargeRestoreTime = GameUI.CustomUIConfig().AbilityKv[abilityName]?.AbilityChargeRestoreTime * (100 - CooldownReduction) * 0.01 || 0;
     let CD_text = "";
@@ -109,6 +110,9 @@ function CustomAbilityToolTip({ ability, unit }: { ability: AbilityEntityIndex, 
     }
     else if (CastPoint > 0) {
         CPoint_text = CastPoint + $.Localize("#AbilityTooltip_CastPoint");
+    }
+    else if (MovingCastTime > 0) {
+        CPoint_text = MovingCastTime + $.Localize("#AbilityTooltip_CastPoint");
     }
     else {
         CPoint_text = $.Localize("#AbilityTooltip_Prompt");

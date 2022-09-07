@@ -15,6 +15,7 @@ LinkLuaModifier("modifier_Invulnerable_custom", "common/combat/modifiers/modifie
 LinkLuaModifier("modifier_Bezier_motion", "common/combat/modifiers/modifier_Bezier_motion.lua", LUA_MODIFIER_MOTION_BOTH)
 LinkLuaModifier("modifier_aggressive", "common/combat/modifiers/modifier_aggressive.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_forcekill_custom", "common/combat/modifiers/modifier_forcekill_custom.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_hero_movingcast", "common/combat/modifiers/modifier_hero_movingcast.lua", LUA_MODIFIER_MOTION_NONE)
 
 LinkLuaModifier("modifier_interactive", "common/enviroment/modifiers/modifier_interactive.lua", LUA_MODIFIER_MOTION_NONE)
 
@@ -74,7 +75,7 @@ elseif IsServer() then
         --TODO英雄发消息给客户端
         local hCaster = self:GetCaster()
         if self:GetCastPoint() > 0 then
-            CustomGameEventManager:Send_ServerToPlayer(hCaster:GetPlayerOwner(), "AbilityStart", { ability = self:entindex(), casttype = "phase" })
+            CustomGameEventManager:Send_ServerToPlayer(hCaster:GetPlayerOwner(), "AbilityStart", { ability = self:entindex(), casttype = "phase", duration = self:GetCastPoint() })
         end
         if self.C_OnAbilityPhaseStart ~= nil and type(self.C_OnAbilityPhaseStart) == "function" then
             self:C_OnAbilityPhaseStart()
@@ -106,7 +107,9 @@ elseif IsServer() then
 
     function CDOTA_Ability_Lua:OnSpellStart()
         local hCaster = self:GetCaster()
-        CustomGameEventManager:Send_ServerToPlayer(hCaster:GetPlayerOwner(), "AbilityEnd", {})
+        if self:GetCastPoint() > 0 then
+            CustomGameEventManager:Send_ServerToPlayer(hCaster:GetPlayerOwner(), "AbilityEnd", {})
+        end
 
         if self.AbilityCharge_manager ~= nil then
             self.AbilityCharge_manager:SpendCharge()
@@ -116,7 +119,7 @@ elseif IsServer() then
         end
 
         if self:GetChannelTime() > 0 then
-            CustomGameEventManager:Send_ServerToPlayer(hCaster:GetPlayerOwner(), "AbilityStart", { ability = self:entindex(), casttype = "channel" })
+            CustomGameEventManager:Send_ServerToPlayer(hCaster:GetPlayerOwner(), "AbilityStart", { ability = self:entindex(), casttype = "channel", duration = self:GetChannelTime() })
         end
 
         if self.C_OnSpellStart ~= nil and type(self.C_OnSpellStart) == "function" then

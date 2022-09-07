@@ -41,9 +41,9 @@ function modifier_hero_attribute:DeclareFunctions()
         MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
     }
 end
-function modifier_hero_attribute:GetModifierPercentageCooldown()
-    return 50
-end
+-- function modifier_hero_attribute:GetModifierPercentageCooldown()
+--     return 50
+-- end
 function modifier_hero_attribute:OnIntervalThink()
     if IsServer() then
         local hCaster = self:GetCaster()

@@ -1,5 +1,39 @@
 "DOTAAbilities"
 {
+	//火法灼热之箭
+	"mage_searing_arrows"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"clinkz_searing_arrows"
+		"ScriptFile"	"heroes/abilities/mage/fire/mage_searing_arrows"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityCooldown"				"1"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"900"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"1.0"
+		"AnimationPlaybackRate"			"0.3"
+		"AbilityCosttype"				"mana"
+		"MaxLevel"						"3"
+		"CustomRequiredLevel"			"1 33 41"
+
+		"AbilityValues"
+        {
+            "sp_factor"  "93 93 108"
+			"bonus_crit_chance"	"10"
+			"mana_cost_pct"	"2"
+			"speed"		"1600"
+        }
+	}
+
+
 	//火法火焰爆轰
     "mage_fireblast"
 	{
@@ -23,7 +57,7 @@
 		"AbilityChargeRestoreTime"		"12"
 		"AbilityCosttype"				"mana"
 		"MaxLevel"						"4"
-		"CustomRequiredLevel"			"1 18 32 37"
+		"CustomRequiredLevel"			"2 18 32 37"
 		"CustomAbilityCharges"			"1 1 1 2"
 
 		"AbilityValues"
@@ -34,42 +68,36 @@
         }
 	}
 
-	//火法灼热之箭
-	"mage_searing_arrows"
+	//火法烈火精灵
+    "mage_fire_spirits"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"clinkz_searing_arrows"
-		"ScriptFile"	"heroes/abilities/mage/fire/mage_searing_arrows"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"	"phoenix_fire_spirits"
+		"ScriptFile"	"heroes/abilities/mage/fire/mage_fire_spirits"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-        "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+        //"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		// "AnimationPlaybackRate"	"0.3"
 
-		"AbilityCooldown"				"1"
+		"AbilityCooldown"				"0.6"
 		"AbilityManaCost"				"0"
-		// "AbilityCastRange"				"850"
-		// "AbilityCastRangeBuffer"		"250"
-		// "AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		// "AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"900"
+		"AbilityCastRangeBuffer"		"550"
+		// "AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastPoint"				"0"
 		"AbilityCosttype"				"mana"
-		"MaxLevel"						"3"
-		"CustomRequiredLevel"			"1 33 41"
-		
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
-		}
+		"MaxLevel"						"1"
+		"CustomRequiredLevel"			"13"
+		"MovingCastTime"				"0.6"
 
 		"AbilityValues"
         {
-            "sp_factor"  "93 93 108"
-			"attack_range_override"	"850"
-			"attack_time_override"	"2.25"
-			"damage_pct"	"100"
-			"bonus_crit_chance"	"10"
-			"mana_cost_pct"	"0"
+			"sp_factor"	"18"
+			"mana_cost_pct"	"1"
+			"speed"		"1600"
         }
 	}
 
@@ -380,6 +408,7 @@
 		"AbilityValues"
         {
 			"distance"	"700"
+			"mana_cost_pct"	"2"
         }
 	}
 
