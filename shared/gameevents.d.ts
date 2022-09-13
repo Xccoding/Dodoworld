@@ -37,4 +37,8 @@ interface GameEventDeclarations {
         hud_name: string,
         wish_state?: boolean,
     };
+    GetAbilityValue: {
+        ability: AbilityEntityIndex,
+        key_name: string,
+    }
 }

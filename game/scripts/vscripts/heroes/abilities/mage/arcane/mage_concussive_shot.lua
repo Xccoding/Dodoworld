@@ -117,7 +117,7 @@ function modifier_mage_concussive_shot:IsPurgable()
     return false
 end
 function modifier_mage_concussive_shot:GetTexture()
-    return "mage_arcane_supremacy"
+    return "mage/mage_arcane_supremacy"
 end
 function modifier_mage_concussive_shot:GetAttributes()
     return MODIFIER_ATTRIBUTE_PERMANENT

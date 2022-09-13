@@ -42,20 +42,20 @@ function BuffList({ bShowBuff }: { bShowBuff: boolean; }) {
         <Panel id="LineDown" className={sListid == "DebuffList" ? "LeftFlow" : ""}>
             {
                 buff_array.map((buff_index, index) => {
-                    if(index < 6){
+                    if (index < 6) {
                         return <Buff key={buff_index} buff_index={buff_index}></Buff>;
                     }
-                    
+
                 })
             }
         </Panel>
         <Panel id="LineUp" className={sListid == "DebuffList" ? "LeftFlow" : ""}>
-        {
+            {
                 buff_array.map((buff_index, index) => {
-                    if(index >= 6){
+                    if (index >= 6) {
                         return <Buff key={buff_index} buff_index={buff_index}></Buff>;
                     }
-                    
+
                 })
             }
         </Panel>
@@ -83,6 +83,7 @@ function Buff({ buff_index }: { buff_index: number; }) {
 
 
     let fDuration = Buffs.GetDuration(hero, thisBuff);
+
     // 计算时间格式
     let fTimeRemain = Buffs.GetRemainingTime(hero, thisBuff);
     let dTimeRemain = Math.floor(fTimeRemain);
@@ -108,7 +109,7 @@ function Buff({ buff_index }: { buff_index: number; }) {
     }
 
     let backgroundColor = `none`;
-    if (fDuration > 0) {
+    if (fDuration > 0 && fTimeRemain > 0) {
         backgroundColor = `rgba(0,0,0,${((fDuration - fTimeRemain) / fDuration).toFixed(2)})`;
         backgroundColor = RGBToHex(backgroundColor);
     }

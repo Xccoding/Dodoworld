@@ -57,6 +57,6 @@ declare interface CustomNetTableDeclarations {
         }[];
     };
     hero_talents: {
-        [player_index: number]: number[];
+        [player_index: number]: string[];
     };
 }

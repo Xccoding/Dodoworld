@@ -23,8 +23,8 @@ function modifier_common:DeclareFunctions()
         MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
         MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
         MODIFIER_PROPERTY_IGNORE_PHYSICAL_ARMOR,
-        MODIFIER_EVENT_ON_ABILITY_START,
-        MODIFIER_EVENT_ON_ABILITY_END_CHANNEL,
+        MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT,
+        MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
     }
 end
 function modifier_common:RemoveOnDeath()
@@ -109,24 +109,6 @@ function modifier_common:OnTakeDamage(params)
     --     print(self.damage_records[index].crit, self.damage_records[index].record)
     -- end
 
-end
-function modifier_common:OnAbilityStart( params )
-    local hParent = self:GetParent()
-    if params.unit:IsHero() and params.unit == hParent then
-        local casttype = "phase"
-        if params.ability:GetChannelTime() > 0 then
-            casttype = "channel"
-        end
-        if params.ability:GetChannelTime() > 0 or params.ability:GetCastPoint() > 0 then
-            --CustomGameEventManager:Send_ServerToPlayer(hParent:GetPlayerOwner(), "AbilityStart", {ability = params.ability:entindex(), casttype = casttype})
-        end
-    end
-end
-function modifier_common:OnAbilityEndChannel( params )
-    local hParent = self:GetParent()
-    if params.unit:IsHero() and params.unit == hParent then
-        --CustomGameEventManager:Send_ServerToPlayer(hParent:GetPlayerOwner(), "AbilityEndChannel", {})
-    end
 end
 function modifier_common:GetModifierTotalDamageOutgoing_Percentage( params )
     if not IsServer() then return end
@@ -216,6 +198,30 @@ function modifier_common:GetModifierPhysical_ConstantBlock( params )
         end
     end
 end
+function modifier_common:GetModifierTotal_ConstantBlock(params)
+    local hParent = self:GetParent()
+    local new_params = ShallowCopy(params)
+    local allBuffs = hParent:FindAllModifiers()
+    for _, buff in pairs(allBuffs) do
+        if buff.C_GetModifierShieldBlock_Constant ~= nil and type(buff.C_GetModifierShieldBlock_Constant) == "function" then
+            local block_value = buff:C_GetModifierShieldBlock_Constant(new_params)
+            if new_params.damage > block_value then
+                new_params.damage = new_params.damage - block_value
+            else
+                new_params.damage = 0
+            end
+        end
+    end
+
+    if new_params.damage > 0 then
+        return params.damage - new_params.damage
+    else
+        return params.damage
+    end
+end
 function modifier_common:GetModifierIgnorePhysicalArmor()
+    return 1
+end
+function modifier_common:GetModifierIgnoreMovespeedLimit()
     return 1
 end

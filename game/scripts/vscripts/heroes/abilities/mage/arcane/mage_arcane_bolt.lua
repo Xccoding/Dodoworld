@@ -142,10 +142,13 @@ function modifier_mage_arcane_bolt:OnIntervalThink()
         end
     end
     hCaster:FindAbilityByName("mage_arcane_bolt").arcane_bolt_buff = self:GetStackCount()
-    hCaster:FindAbilityByName("mage_resonant_pulse").arcane_bolt_buff = self:GetStackCount()
+    
+    if hCaster:FindAbilityByName("mage_resonant_pulse") ~= nil then
+        hCaster:FindAbilityByName("mage_resonant_pulse").arcane_bolt_buff = self:GetStackCount()
+    end
 end
 function modifier_mage_arcane_bolt:GetTexture()
-    return "mage_arcane_bolt_buff"
+    return "mage/mage_arcane_bolt_buff"
 end
 function modifier_mage_arcane_bolt:OnDestroy()
     if self.particleID ~= nil then

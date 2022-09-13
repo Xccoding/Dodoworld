@@ -12,10 +12,6 @@
 #Contenets.hud_root {
     width: 100%;
     height: 100%;
-    // padding: 0px;
-    // border: 0px solid black;
-    // box-shadow: 0px 0px 0px 0px black;
-    // background-color: none;
 }
 
 #CustomAbilityToolTips {
@@ -58,14 +54,14 @@
         border-top-style: solid;
         border-top-width: 1px;
 
-        &.Passive{
+        &.Passive {
             height: 32px;
         }
 
         #AbilityManaCost {
             align: left top;
 
-            &.Passive{
+            &.Passive {
                 visibility: collapse;
             }
         }
@@ -73,7 +69,7 @@
         #AbilityCastRange {
             align: right top;
 
-            &.Passive{
+            &.Passive {
                 visibility: collapse;
             }
         }
@@ -81,7 +77,7 @@
         #AbilityCooldown {
             align: right bottom;
 
-            &.Passive{
+            &.Passive {
                 align: left center;
             }
         }
@@ -89,7 +85,7 @@
         #AbilityCastPoint {
             align: left bottom;
 
-            &.Passive{
+            &.Passive {
                 visibility: collapse;
             }
         }
@@ -120,6 +116,7 @@
         border-bottom-width: 1px;
         margin-top: 10px;
         margin-bottom: 10px;
+        flow-children: down;
 
         #main_description {
             margin-top: 20px;
@@ -132,11 +129,29 @@
             height: fit-children;
             visibility: visible;
         }
+
+        #talent_description{
+            width: 100%;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            text-shadow: 0px 0px 2px 3 #000000;
+            font-weight: bold;
+            color: white;
+            font-size: 18px;
+            text-overflow: shrink;
+            height: fit-children;
+            visibility: visible;
+        }   
     }
 
     #CustomAbilityToolTips_bottom {
         width: 100%;
         height: 20px;
+        visibility: collapse;
+
+        &.Show {
+            visibility: visible;
+        }
 
         #bottom_text_level {
             align: left center;

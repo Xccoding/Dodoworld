@@ -94,12 +94,19 @@ function modifier_mage_searing_arrows:C_OnSpellCrit(params)
     if not IsServer() then
         return
     end
+    if self:IsHidden() then
+        return
+    end
     if params.inflictor ~= nil and params.inflictor == self:GetAbility() and params.attacker == self:GetParent() then
         self:SetStackCount(0)
     end
 end
 function modifier_mage_searing_arrows:C_OnSpellNotCrit(params)
     if not IsServer() then
+        return
+    end
+
+    if self:IsHidden() then
         return
     end
     if params.inflictor ~= nil and params.inflictor == self:GetAbility() and params.attacker == self:GetParent() then

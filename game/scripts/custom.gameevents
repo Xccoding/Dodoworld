@@ -25,5 +25,10 @@
 		"local"						"1"
 		"hud_name"				"string"
 	}
+	"GetAbilityValue"
+	{
+		"ability"				"short"
+		"key_name"				"string"
+	}
 }
 

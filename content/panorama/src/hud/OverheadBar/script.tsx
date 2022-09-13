@@ -230,7 +230,7 @@ function OverheadBuff({ buff_index, unit_index }: { buff_index: number, unit_ind
     }
 
     let backgroundColor = `none`;
-    if (fDuration > 0) {
+    if (fDuration > 0 && fTimeRemain > 0) {
         backgroundColor = `rgba(0,0,0,${((fDuration - fTimeRemain) / fDuration).toFixed(2)})`;
         backgroundColor = RGBToHex(backgroundColor);
     }

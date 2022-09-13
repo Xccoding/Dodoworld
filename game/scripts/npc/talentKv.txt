@@ -5,7 +5,8 @@
             "mage_arsonist"
             {
                 "TalentFloor"   "1"
-                // "Requiredlevel" "1"
+                "Texture"   "batrider_flamebreak"
+
                 "UpgradeAbilities"   {
                     "mage_searing_arrows"
                     {
@@ -24,16 +25,11 @@
                         }
                     }
                 }
-
-                // "NewAbility"
-                // {
-                //     "ability_name"
-                // }
             }
             "mage_eternal_flame"
             {
                 "TalentFloor"   "1"
-                // "Requiredlevel" "1"
+                "Texture"   "ogre_magi/arcana/ogre_magi_ignite_arcana"
                 "UpgradeAbilities"   {
                     "mage_fiery_soul"
                     {
@@ -44,11 +40,116 @@
                         }
                     }
                 }
+            }
+            "mage_burning_touch"
+            {
+                "TalentFloor"   "1"
+                "Texture"   "phoenix_launch_fire_spirit"
 
-                // "NewAbility"
-                // {
-                //     "ability_name"
-                // }
+                "UpgradeAbilities"   {
+                    "mage_fire_spirits"
+                    {
+                        "bonus_dmg_hp_pct"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "30"
+                        }
+                        "lowhp_bonus_dmg_pct"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "150"
+                        }
+                    }
+                }
+            }
+            "mage_flare"
+            {
+                "TalentFloor"   "2"
+                "Texture"   "antimage_blink"
+
+                "UpgradeAbilities"   {
+                    "mage_blink"
+                    {
+                        "CustomAbilityCharges"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "1"
+                        }
+                    }
+                }
+            }
+            "mage_mad_speed"
+            {
+                "TalentFloor"   "2"
+                "Texture"   "phoenix_icarus_dive"
+                
+                "UpgradeAbilities"   {
+                    "mage_fire_spirits"
+                    {
+                        "bonus_movespeed_pct"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "30"
+                        }
+                        "bonus_movespeed_duration"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "3"
+                        }
+                    }
+                }
+            }
+            "mage_fire_shield"
+            {
+                "TalentFloor"   "2"
+                "Texture"   "ogre_magi_smash"
+
+                "UpgradeAbilities"   {
+                    "mage_blink"
+                    {
+                        "fire_shield_duration"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "60"
+                        }
+                        "fire_shield_max_hp_factor"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "20"
+                        }
+                        "fire_shield_sp_factor"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "13"
+                        }
+                        "fire_shield_speed"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "1800"
+                        }
+                    }
+                }
+            }
+            "mage_flux"
+            {
+                "TalentFloor"   "3"
+                "Texture"   "arc_warden_flux"
+                
+                "NewAbility"    "mage_flux"
+            }
+            "mage_spell_resonance"
+            {
+                "TalentFloor"   "3"
+                "Texture"   "skywrath_mage/crested_dawn_icons/skywrath_mage_concussive_shot"
+                
+                "NewAbility"    "mage_spell_resonance"
+            }
+            "mage_kaya_array"
+            {
+                "TalentFloor"   "3"
+                "Texture"   "mage/mage_kaya_array"
+                
+                "NewAbility"    "mage_kaya_array"
             }
         }
         

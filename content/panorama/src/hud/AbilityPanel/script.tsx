@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useGameEvent } from '@demon673/react-panorama';
 import ReactUtils from "../../utils/React_utils";
-import { band, FormatString, GetAbilityChargeRestoreTimeRemaining, GetAbilityCurrentCharges, GetAbilityMaxCharges, GetAbilityValue, GetUnitAttribute, print } from '../Utils';
+import { band, FormatString, GetAbilityChargeRestoreTimeRemaining, GetAbilityCurrentCharges, GetAbilityMaxCharges, GetAbilityValueFromClient, GetAbilityValueFromKV, GetUnitAttribute, print } from '../Utils';
 
 const DOTA_ITEM_SLOT_MIN = 7;
 const DOTA_ITEM_SLOT_MAX = 12;
@@ -93,6 +93,12 @@ function AbilityTargetFilter(ability: AbilityEntityIndex, target: EntityIndex) {
     }
     if (band(Flags, DOTA_UNIT_TARGET_FLAGS.DOTA_UNIT_TARGET_FLAG_NOT_SUMMONED) && Entities.IsSummoned(target)) {
         FlagPass = false;
+    }
+
+    if (GetAbilityValueFromClient(ability, "CastFilterRejectCaster") == "1"){
+        if (target == Abilities.GetCaster(ability)){
+            return false
+        }
     }
 
     return FlagPass && TeamPass && TypePass;
@@ -208,7 +214,7 @@ function AbilityPanel({ ability, bActive, slotindex }: { ability: AbilityEntityI
 
     let MaxCharge = GetAbilityMaxCharges(ability, hero)
     let CurrentCharge = GetAbilityCurrentCharges(ability, hero);
-    let ChargeRestoreTime = Math.max(GetAbilityValue(ability_name, Level, "AbilityChargeRestoreTime") * (100 - CooldownReduction) * 0.01, 0.01);
+    let ChargeRestoreTime = Math.max(GetAbilityValueFromKV(ability_name, Level, "AbilityChargeRestoreTime") * (100 - CooldownReduction) * 0.01, 0.01);
     let ChargeRemainTime = GetAbilityChargeRestoreTimeRemaining(ability, hero);
     let ManaCost = Abilities.GetManaCost(ability);
     let bPassive = Abilities.IsPassive(ability);
@@ -318,14 +324,6 @@ function AbilityPanel({ ability, bActive, slotindex }: { ability: AbilityEntityI
         if (ability != -1) {
             if (GameUI.IsAltDown()) {
                 Abilities.PingAbility(ability);
-                if(ability_name == "mage_fireblast"){
-                    GameEvents.SendCustomGameEventToServer("SelectTalent", {talent_name: "mage_eternal_flame"})
-                }
-                else
-                {
-                    GameEvents.SendCustomGameEventToServer("SelectTalent", {talent_name: ""})
-                }
-                
             }
             else {
                 if (bOutofCharge) {
@@ -344,7 +342,7 @@ function AbilityPanel({ ability, bActive, slotindex }: { ability: AbilityEntityI
                 p,
                 "CustomAbilityToolTip",
                 `file://{resources}/layout/custom_game/hud/Tooltips/CustomAbilityToolTip.xml`,
-                FormatString({ ability: String(ability), unit: String(hero) })
+                FormatString({ ability: String(ability), forHero: "1" })
             );
         }
 
@@ -358,7 +356,7 @@ function AbilityPanel({ ability, bActive, slotindex }: { ability: AbilityEntityI
             {/* <DOTAAbilityImage id='AbilityPanel_image' abilityname={ability_name} showtooltip={false} /> */}
             <Image id='AbilityPanel_image' src={TextureName} scaling="stretch-to-cover-preserve-aspect"></Image>
             <Panel id="AbilityPanel_Charge" hittest={false} className={`${MaxCharge > 0 && CurrentCharge < MaxCharge && Level > 0 ? "Show" : ""}`} >
-                <Panel id="AbilityPanel_Charge_pointer" style={{ clip: `radial(50.0% 50.0%, ${-360 * ChargeRemainTime / ChargeRestoreTime}deg, 15deg` }} />
+                <Panel id="AbilityPanel_Charge_pointer" style={{ clip: `radial(50.0% 50.0%, ${-360 * (ChargeRemainTime / ChargeRestoreTime)}deg, 15deg` }} />
             </Panel>
             <Panel id="AbilityPanel_Cooldown" hittest={false} className={(!bIsCooldownReady || bOutofCharge) ? "Show" : ""}>
                 <Panel id="AbilityPanel_CooldownOverlay" hittest={false} style={{ clip: "radial(50.0% 50.0%, 0.0deg, " + -360 * cd_remain / cooldown + "deg)" }} />

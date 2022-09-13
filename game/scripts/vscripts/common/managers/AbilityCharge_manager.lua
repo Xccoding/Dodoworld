@@ -64,7 +64,9 @@ end
 
 function AbilityCharge_manager:C_GetRestoreTime()
     local hCaster = self.hAbility:GetCaster()
-    return self.hAbility:GetAbilityChargeRestoreTime(-1) * hCaster:GetCooldownReduction()
+    local hAbility = self.hAbility
+    local restoreTime = tonumber(Abilities_manager:GetAbilityValue(hAbility, "AbilityChargeRestoreTime"))
+    return restoreTime * hCaster:GetCooldownReduction()
 end
 
 function AbilityCharge_manager:C_AddCharges(Charges)

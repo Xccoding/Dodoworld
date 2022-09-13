@@ -18,5 +18,5 @@ function ActionPanel(){
 }
 
 $.Schedule(1, ()=>{
-    render(<ActionPanel/>, $.GetContextPanel())
+    // render(<ActionPanel/>, $.GetContextPanel())
 })

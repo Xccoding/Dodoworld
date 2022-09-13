@@ -5,6 +5,10 @@ if mage_laguna_blade == nil then
     mage_laguna_blade = class({})
 end
 --ability
+function mage_laguna_blade:GetManaCost(iLevel)
+    local hCaster = self:GetCaster()
+    return self:GetSpecialValueFor("mana_cost_pct") * hCaster:GetMaxMana() * 0.01
+end
 function mage_laguna_blade:GetCastAnimation()
     local hCaster = self:GetCaster()
     if hCaster:GetUnitName() == "npc_dota_hero_lina" then
@@ -30,7 +34,7 @@ end
 function mage_laguna_blade:GetAbilityTextureName()
     local hCaster = self:GetCaster()
     if hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
-        return "mage_laguna_blade"
+        return "mage/mage_laguna_blade"
     else
         return "lina_laguna_blade"
     end

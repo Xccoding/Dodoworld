@@ -86,6 +86,7 @@ module.exports = {
                 { import: './hud/ActionPanel/layout.xml', type: 'Hud' },
                 { import: './hud/bufflist/layout.xml', type: 'Hud' },
                 { import: './hud/Tooltips/CustomAbilityToolTip.xml', type: 'Hud' },
+                { import: './hud/Tooltips/CustomTalentToolTip.xml', type: 'Hud' },
                 { import: './hud/hud_talent/layout.xml', type: 'Hud' },
                 { import: './end_screen/layout.xml', type: 'EndScreen' },
             ],

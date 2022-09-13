@@ -22,6 +22,9 @@ function modifier_hero_attribute:OnCreated(params)
 end
 function modifier_hero_attribute:CDeclareFunctions()
     return {
+        CMODIFIER_PROPERTY_AGILITY_CONSTANT,
+        CMODIFIER_PROPERTY_STRENGTH_CONSTANT,
+        CMODIFIER_PROPERTY_INTELLECT_CONSTANT,
         CMODIFIER_PROPERTY_SPELL_POWER_CONSTANT,
         CMODIFIER_PROPERTY_BONUS_MAGICAL_CRIT_CHANCE_CONSTANT,
         CMODIFIER_PROPERTY_BONUS_PHYSICAL_CRIT_CHANCE_CONSTANT,
@@ -47,34 +50,15 @@ end
 function modifier_hero_attribute:OnIntervalThink()
     if IsServer() then
         local hCaster = self:GetCaster()
-        local bUpdate = false
-        local attr_old = CustomNetTables:GetTableValue("hero_attributes", tostring(hCaster:entindex())) or
-        {
-            -- base_attack_damage = 0,--基础攻击力
-            total_attack_damage = 0, --全额攻击力
-            movespeed = 0, --移动速度
-            physical_armor = { 0, 0 }, --护甲
-            magical_armor = 0, --魔法抗性
-            evasion = 0, --闪避
-            attack_speed = 0, --攻击速度
-            cooldown_reduction = 0, --冷却缩减
-            spell_power = 0, --法术强度
-            intellect = 0, --智力
-            strength = 0, --力量
-            agility = 0, --敏捷
-            physical_crit_chance = 0, --物理暴击概率
-            magical_crit_chance = 0, --魔法暴击概率
-            physical_crit_damage = 0, --物理暴击倍率
-            magical_crit_damage = 0, --魔法暴击倍率
-            block = 0, --格挡
-        }
 
         local attr_new =        {
             -- base_attack_damage = math.floor((hCaster:GetBaseDamageMin() + hCaster:GetBaseDamageMax()) * 0.5),--基础攻击力
-            total_attack_damage = math.floor(hCaster:GetAverageTrueAttackDamage(hCaster)), --全额攻击力
+            attack_damage = math.floor(hCaster:GetAverageTrueAttackDamage(hCaster)), --全额攻击力
             movespeed = math.floor(hCaster:GetIdealSpeed()), --移动速度
-            physical_armor = {[0] = string.format("%.1f", hCaster:GetUnitAttribute(PHYSICAL_ARMOR, {}, MODIFIER_CALCULATE_TYPE_SUM)), [1] = hCaster:GetPhysicalDamageReduction() }, --护甲及减伤率
-            magical_armor = {[0] = string.format("%.1f", hCaster:GetUnitAttribute(MAGICAL_ARMOR, {}, MODIFIER_CALCULATE_TYPE_SUM)), [1] = hCaster:GetMagicalDamageReduction() }, --魔法护甲及减伤率
+            physical_armor = string.format("%.1f", hCaster:GetUnitAttribute(PHYSICAL_ARMOR, {}, MODIFIER_CALCULATE_TYPE_SUM)), --护甲
+            physical_armor_value1 = hCaster:GetPhysicalDamageReduction(), --护甲减伤率
+            magical_armor = string.format("%.1f", hCaster:GetUnitAttribute(MAGICAL_ARMOR, {}, MODIFIER_CALCULATE_TYPE_SUM)), --魔法护甲
+            magical_armor_value1 = hCaster:GetMagicalDamageReduction(), --魔法护甲减伤率
             evasion = hCaster:GetEvasion(), --闪避
             attack_speed = hCaster:GetAttacksPerSecond(), --攻击速度(每秒攻击次数)
             cooldown_reduction = math.floor(100 - hCaster:GetCooldownReduction() * 100), --冷却缩减
@@ -86,23 +70,12 @@ function modifier_hero_attribute:OnIntervalThink()
             magical_crit_chance = hCaster:GetUnitAttribute(BONUS_MAGICAL_CRIT_CHANCE, {}, MODIFIER_CALCULATE_TYPE_SUM), --魔法暴击概率
             physical_crit_damage = 100 + CDOTA_BASE_CRIT_DAMAGE + hCaster:GetUnitAttribute(BONUS_PHYSICAL_CRIT_DAMAGE, {}, MODIFIER_CALCULATE_TYPE_SUM), --物理暴击倍率
             magical_crit_damage = 100 + CDOTA_BASE_CRIT_DAMAGE + hCaster:GetUnitAttribute(BONUS_MAGICAL_CRIT_DAMAGE, {}, MODIFIER_CALCULATE_TYPE_SUM), --魔法暴击倍率
-            block = {[0] = hCaster:GetUnitAttribute(BLOCK_CHANCE, {}, MODIFIER_CALCULATE_TYPE_SUM), [1] = hCaster:GetUnitAttribute(BLOCK_PERCENT, {}, MODIFIER_CALCULATE_TYPE_SUM) }, --格挡及减伤率
+            block = hCaster:GetUnitAttribute(BLOCK_CHANCE, {}, MODIFIER_CALCULATE_TYPE_SUM), --格挡率
+            block_value1 = hCaster:GetUnitAttribute(BLOCK_PERCENT, {}, MODIFIER_CALCULATE_TYPE_SUM) --格挡减伤率
         }
 
         self.attributeString = json.encode(attr_new)
         self:SendBuffRefreshToClients()
-
-        for attr, value in pairs(attr_new) do
-            if value ~= attr_old[attr] then
-                bUpdate = true
-                break
-            end
-        end
-
-        if bUpdate then
-            --有属性变化再更新网表
-            CustomNetTables:SetTableValue("hero_attributes", tostring(hCaster:GetPlayerOwnerID()), attr_new)
-        end
 
     end
 end
@@ -113,6 +86,30 @@ function modifier_hero_attribute:AddCustomTransmitterData()
 end
 function modifier_hero_attribute:HandleCustomTransmitterData(data)
     self.attributeString = data.attributeString
+end
+--力量
+function modifier_hero_attribute:C_GetModifierStrength_Constant()
+    local hParent = self:GetParent()
+    local base = hParent:GetBaseStrength()
+    local perlvl = hParent:GetStrengthGain()
+    local level = hParent:GetLevel()
+    return base + (level - 1) * perlvl
+end
+--敏捷
+function modifier_hero_attribute:C_GetModifierAgility_Constant()
+    local hParent = self:GetParent()
+    local base = hParent:GetBaseAgility()
+    local perlvl = hParent:GetAgilityGain()
+    local level = hParent:GetLevel()
+    return base + (level - 1) * perlvl
+end
+--智力
+function modifier_hero_attribute:C_GetModifierIntellect_Constant()
+    local hParent = self:GetParent()
+    local base = hParent:GetBaseIntellect()
+    local perlvl = hParent:GetIntellectGain()
+    local level = hParent:GetLevel()
+    return base + (level - 1) * perlvl
 end
 --额外生命值
 function modifier_hero_attribute:GetModifierHealthBonus()
@@ -181,9 +178,17 @@ function modifier_hero_attribute:GetModifierHealthRegenPercentage()
     end
     return CDOTA_ATTRIBUTE_HEALTH_REGEN_NO_COMBAT
 end
---力量攻击力
+--力量敏捷攻击力
 function modifier_hero_attribute:GetModifierBaseAttack_BonusDamage()
-    return self:GetParent():GetStrength() * CDOTA_ATTRIBUTE_STRENGTH_ATTACK_DAMAGE
+    local hParent = self:GetParent()
+    if hParent:GetPrimaryAttribute() == DOTA_ATTRIBUTE_STRENGTH then
+        return hParent:GetStrength() * (CDOTA_ATTRIBUTE_STRENGTH_ATTACK_DAMAGE + 1)
+    elseif hParent:GetPrimaryAttribute() == DOTA_ATTRIBUTE_AGILITY then
+        return hParent:GetStrength() * CDOTA_ATTRIBUTE_STRENGTH_ATTACK_DAMAGE + hParent:GetAgility()
+    else
+        return hParent:GetStrength() * CDOTA_ATTRIBUTE_STRENGTH_ATTACK_DAMAGE
+    end
+
 end
 --用texture同步属性
 function modifier_hero_attribute:GetTexture()

@@ -9,16 +9,17 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
         "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 
-		"AbilityCooldown"				"1"
+		"AbilityCooldown"				"0.1"
 		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"900"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"				"1.0"
+		"AbilityCastPoint"				"0.6"
 		"AnimationPlaybackRate"			"0.3"
 		"AbilityCosttype"				"mana"
 		"MaxLevel"						"3"
@@ -43,22 +44,22 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetFlag"	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 
-		"AbilityCooldown"				"1"
+		"AbilityCooldown"				"0.1"
 		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"900"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"				"0.0"
 		// "AbilityCharges"				"10 1 1 2"
-		"AbilityChargeRestoreTime"		"12"
 		"AbilityCosttype"				"mana"
 		"MaxLevel"						"4"
 		"CustomRequiredLevel"			"2 18 32 37"
 		"CustomAbilityCharges"			"1 1 1 2"
+		"AbilityChargeRestoreTime"		"12"
 
 		"AbilityValues"
         {
@@ -77,12 +78,13 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
         //"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		// "AnimationPlaybackRate"	"0.3"
 
-		"AbilityCooldown"				"0.6"
+		"AbilityCooldown"				"0.4"
 		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"900"
 		"AbilityCastRangeBuffer"		"550"
@@ -91,7 +93,7 @@
 		"AbilityCosttype"				"mana"
 		"MaxLevel"						"1"
 		"CustomRequiredLevel"			"13"
-		"MovingCastTime"				"0.6"
+		"MovingCastTime"				"0.4"
 
 		"AbilityValues"
         {
@@ -110,6 +112,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
         //"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
@@ -144,9 +147,10 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
-		"AnimationPlaybackRate"	"0.4 0.4"
+		"AnimationPlaybackRate"		"0.4"
 
 		"AbilityCooldown"				"8"
 		"AbilityManaCost"				"0"
@@ -155,7 +159,7 @@
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"				"2 2"
 		"AbilityCosttype"				"mana"
-		"MaxLevel"						"3"
+		"MaxLevel"						"2"
 		"CustomRequiredLevel"			"17 52"
 
 		"AbilityValues"
@@ -178,6 +182,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
         "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
@@ -222,9 +227,10 @@
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"lina_flame_cloak"
 		"ScriptFile"	"heroes/abilities/mage/fire/mage_flame_cloak"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
 		//"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		//"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
         "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
@@ -238,13 +244,6 @@
 		"AbilityCosttype"				"mana"
 		"MaxLevel"						"2"
 		"CustomRequiredLevel"			"29 56"
-		
-
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
-		}
 
 		"AbilityValues"
         {
@@ -262,6 +261,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
         "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
@@ -294,6 +294,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
 		//"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		//"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
         "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
@@ -324,7 +325,8 @@
 		"ScriptFile"	"heroes/abilities/mage/fire/mage_deflagration"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
         "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
@@ -354,7 +356,8 @@
 		"ScriptFile"	"heroes/abilities/mage/fire/mage_supernova"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
         "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
@@ -379,15 +382,117 @@
         }
 	}
 
+	//法师咒术共鸣
+	"mage_spell_resonance"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"skywrath_mage/crested_dawn_icons/skywrath_mage_concussive_shot"
+		"ScriptFile"	"heroes/abilities/mage/common/mage_spell_resonance"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		// "SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+        // "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityCooldown"				"4"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"900"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCosttype"				"mana"
+		"MaxLevel"						"1"
+		"CustomRequiredLevel"			"36"
+		"CastFilterRejectCaster" 		"1"
+		"UnlockTalent"					"mage_spell_resonance"
+
+		"AbilityValues"
+        {
+            "duration"  "1800"
+			"bonus_magical_crit_chance"	"5"
+			"bonus_intellect_pct"	"5"
+			"caster_duration"	"10"
+        }
+	}
+
+	//法师慧光法阵
+	"mage_kaya_array"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"mage/mage_kaya_array"
+		"ScriptFile"	"heroes/abilities/mage/common/mage_kaya_array"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+		//"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		//"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityCooldown"				"10"
+		"AbilityManaCost"				"0"
+		//"AbilityCastRange"				"500"
+		//"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"				"0.5"
+		"AbilityCosttype"				"mana"
+		"MaxLevel"						"1"
+		"CustomRequiredLevel"			"36"
+		"UnlockTalent"					"mage_kaya_array"
+
+		"AbilityValues"
+        {
+			"duration"	"12"
+			"bonus_magical_dmg_pct"	"40"
+			"radius"	"320"
+        }
+	}
+
+	//法师乱流
+	"mage_flux"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"arc_warden_flux"
+		"ScriptFile"	"heroes/abilities/mage/common/mage_flux"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"0"
+		// "AbilityCastRange"				"0"
+		// "AbilityCastRangeBuffer"		"250"
+		// "AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		// "AbilityCastPoint"				"0.0"
+		// "AbilityCosttype"				"mana"
+		"MaxLevel"						"1"
+		"CustomRequiredLevel"			"36"
+		"UnlockTalent"					"mage_flux"
+
+		"AbilityValues"
+        {
+			"bonus_dmg_pct_min"	"4"
+			"bonus_dmg_pct_max"	"22"
+			"stack_ps"		"2"
+        }
+	}
+
 	//法师闪现
 	"mage_blink"
 	{
 		"BaseClass"	"ability_lua"
 		"AbilityTextureName"	"antimage_blink"
 		"ScriptFile"	"heroes/abilities/mage/common/mage_blink"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
 		//"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		//"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
         "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
@@ -399,11 +504,11 @@
 		//"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 		//"AbilityCastPoint"				"0.2"
 		// "AbilityCharges"				"1 2"
-		"AbilityChargeRestoreTime"		"25"
 		"AbilityCosttype"				"mana"
 		"MaxLevel"						"1"
 		"CustomRequiredLevel"			"4"
 		"CustomAbilityCharges"			"1"
+		"AbilityChargeRestoreTime"		"25"
 
 		"AbilityValues"
         {
@@ -510,7 +615,7 @@
 	"mage_resonant_pulse"
 	{
 		"BaseClass"	"ability_lua"
-		"AbilityTextureName"	"mage_resonant_pulse"
+		"AbilityTextureName"	"mage/mage_resonant_pulse"
 		"ScriptFile"	"heroes/abilities/mage/arcane/mage_resonant_pulse"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -652,6 +757,7 @@
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"				"0.1"
 		"AbilityCosttype"				"mana"
+		"AbilityChannelTime"			"6"
 		"MaxLevel"						"3"
 		"CustomRequiredLevel"			"1 33 41"
 

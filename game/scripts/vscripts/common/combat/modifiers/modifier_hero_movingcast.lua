@@ -78,13 +78,27 @@ end
 function modifier_hero_movingcast:OnIntervalThink()
     local hAbility = self:GetAbility()
     local hParent = self:GetParent()
+    local shoudInterrupt = false
+
+    if hParent:IsStunned() or hParent:IsSilenced() or not hParent:IsAlive() then
+        shoudInterrupt = true
+    end
     if bit.band(hAbility:GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) == DOTA_ABILITY_BEHAVIOR_UNIT_TARGET then
         local cast_range = hAbility:GetCastRange(hParent:GetAbsOrigin(), hAbility.hTarget)
         local cast_range_buffer = Abilities_manager:GetAbilityValue(hAbility, "AbilityCastRangeBuffer")
+        
         if cast_range + cast_range_buffer < (hAbility.hTarget:GetAbsOrigin() - hParent:GetAbsOrigin()):Length2D() then
-            self.bInterruputed = true
-            self:Destroy()
+            shoudInterrupt = true
         end
+
+        if hAbility.hTarget:IsInvulnerable() or not hAbility.hTarget:IsAlive() then
+            shoudInterrupt = true
+        end
+    end
+
+    if shoudInterrupt then
+        self.bInterruputed = true
+        self:Destroy()
     end
     --TODO无目标增加鼠标监听
 end

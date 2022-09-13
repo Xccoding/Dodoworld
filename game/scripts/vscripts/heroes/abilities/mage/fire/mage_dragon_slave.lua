@@ -1,15 +1,15 @@
-LinkLuaModifier( "modifier_mage_dragon_slave", "heroes/abilities/mage/fire/mage_dragon_slave.lua", LUA_MODIFIER_MOTION_NONE )
-if  mage_dragon_slave == nil then
+LinkLuaModifier("modifier_mage_dragon_slave", "heroes/abilities/mage/fire/mage_dragon_slave.lua", LUA_MODIFIER_MOTION_NONE)
+if mage_dragon_slave == nil then
     mage_dragon_slave = class({})
 end
 --ability
 function mage_dragon_slave:GetCastAnimation()
-	local hCaster = self:GetCaster()
-	if hCaster:GetUnitName() == "npc_dota_hero_lina" then
-		return ACT_DOTA_CAST_ABILITY_1
-	elseif hCaster:GetUnitName() == "npc_dota_hero_silencer" then
-		return ACT_DOTA_ATTACK
-	end
+    local hCaster = self:GetCaster()
+    if hCaster:GetUnitName() == "npc_dota_hero_lina" then
+        return ACT_DOTA_CAST_ABILITY_1
+    elseif hCaster:GetUnitName() == "npc_dota_hero_silencer" then
+        return ACT_DOTA_ATTACK
+    end
 end
 function mage_dragon_slave:GetIntrinsicModifierName()
     return "modifier_mage_dragon_slave"
@@ -28,14 +28,14 @@ function mage_dragon_slave:blast(hTarget)
     local info = {
         Target = blast_Target,
         Source = hCaster,
-        Ability = self,		
+        Ability = self,    
         EffectName = "particles/units/heroes/mage/mage_dragon_slave.vpcf",
         iMoveSpeed = speed,
-        bDodgeable = true,                           
-        vSourceLoc = hCaster:GetAbsOrigin(),               
-        bIsAttack = false,                                
+        bDodgeable = true,                    
+        vSourceLoc = hCaster:GetAbsOrigin(),        
+        bIsAttack = false,                            
         ExtraData = {},
-        }
+    }
 
     ProjectileManager:CreateTrackingProjectile(info)
 
@@ -65,15 +65,18 @@ function mage_dragon_slave:OnProjectileHit_ExtraData(hTarget, vLocation, ExtraDa
     end
 
     local liquid_fire = hCaster:FindAbilityByName("mage_liquid_fire")
-    local debuff = hTarget:FindModifierByNameAndCaster("modifier_mage_liquid_fire_debuff", hCaster)
-    if debuff ~= nil and liquid_fire ~= nil then
-        local damage_pool = debuff.damage_pool
-        for _, enemy in pairs(enemies) do
-            if enemy ~= nil and enemy:IsAlive() and enemy ~= hCaster then
-                enemy:AddNewModifier(hCaster, liquid_fire, "modifier_mage_liquid_fire_debuff", {duration = duration, damage_pool = damage_pool})
+    if IsValid(hTarget) then
+        local debuff = hTarget:FindModifierByNameAndCaster("modifier_mage_liquid_fire_debuff", hCaster)
+        if debuff ~= nil and liquid_fire ~= nil then
+            local damage_pool = debuff.damage_pool
+            for _, enemy in pairs(enemies) do
+                if enemy ~= nil and enemy:IsAlive() and enemy ~= hCaster then
+                    enemy:AddNewModifier(hCaster, liquid_fire, "modifier_mage_liquid_fire_debuff", { duration = duration, damage_pool = damage_pool })
+                end
             end
         end
     end
+
 
     local particleID = ParticleManager:CreateParticle("particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)
     ParticleManager:SetParticleControl(particleID, 1, Vector(radius, 0, 0))
@@ -112,7 +115,7 @@ function modifier_mage_dragon_slave:CDeclareFunctions()
         CMODIFIER_PROPERTY_BONUS_MAGICAL_CRIT_CHANCE_CONSTANT
     }
 end
-function modifier_mage_dragon_slave:C_GetModifierBonusMagicalCritChance_Constant( params )
+function modifier_mage_dragon_slave:C_GetModifierBonusMagicalCritChance_Constant(params)
     if params.inflictor ~= nil and params.inflictor == self:GetAbility() then
         return 100
     end

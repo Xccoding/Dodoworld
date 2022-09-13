@@ -40,16 +40,18 @@
             <!-- <Image class="Hidden" src="file://{images}/items/gold_bag1.png" hittest="false" /> -->
 
             <!-- 技能 -->
-            <Image class="Hidden" src="file://{images}/spellicons/death_knight_flamethrower.png" hittest="false" />
-            <Image class="Hidden" src="file://{images}/spellicons/death_knight_chaos_strike.png" hittest="false" />
-            <Image class="Hidden" src="file://{images}/spellicons/death_knight_midnight_pulse.png" hittest="false" />
-            <Image class="Hidden" src="file://{images}/spellicons/death_knight_mortal_strike.png" hittest="false" />
-            <Image class="Hidden" src="file://{images}/spellicons/death_knight_reality_rift.png" hittest="false" />
-            <Image class="Hidden" src="file://{images}/spellicons/mage_arcane_bolt_buff.png" hittest="false" />
-            <Image class="Hidden" src="file://{images}/spellicons/mage_arcane_supremacy.png" hittest="false" />
-            <Image class="Hidden" src="file://{images}/spellicons/mage_laguna_blade.png" hittest="false" />
-            <Image class="Hidden" src="file://{images}/spellicons/mage_light_strike_array.png" hittest="false" />
-            <Image class="Hidden" src="file://{images}/spellicons/mage_resonant_pulse.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/spellicons/death_knight/death_knight_chaos_strike.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/spellicons/death_knight/death_knight_midnight_pulse.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/spellicons/death_knight/death_knight_mortal_strike.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/spellicons/death_knight/death_knight_reality_rift.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/spellicons/death_knight/death_knight_flamethrower.png" hittest="false" />
+            <!-- <Image class="Hidden" src="file://{images}/spellicons/mage/mage_fire_flare.png" hittest="false" /> -->
+            <Image class="Hidden" src="file://{images}/spellicons/mage/mage_arcane_bolt_buff.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/spellicons/mage/mage_arcane_supremacy.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/spellicons/mage/mage_laguna_blade.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/spellicons/mage/mage_light_strike_array.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/spellicons/mage/mage_resonant_pulse.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/spellicons/mage/mage_kaya_array.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/spellicons/goose.png" hittest="false" />
             <!-- 控件 -->
             <Image class="Hidden" src="file://{images}/buttons/ChangeSchools_button.png" hittest="false" />
@@ -59,7 +61,7 @@
             <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_intellect.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_strength.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_agility.png" hittest="false" />
-            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_total_attack_damage.png" hittest="false" />
+            <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_attack_damage.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_attack_speed.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_physical_armor.png" hittest="false" />
             <Image class="Hidden" src="file://{images}/hud_icons/character_attribute_magical_armor.png" hittest="false" />

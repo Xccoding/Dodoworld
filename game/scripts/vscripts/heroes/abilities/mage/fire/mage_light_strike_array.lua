@@ -3,6 +3,10 @@ LinkLuaModifier( "modifier_mage_light_strike_array", "heroes/abilities/mage/fire
 if mage_light_strike_array == nil then
 	mage_light_strike_array = class({})
 end
+function mage_light_strike_array:GetManaCost(iLevel)
+    local hCaster = self:GetCaster()
+    return self:GetSpecialValueFor("mana_cost_pct") * hCaster:GetMaxMana() * 0.01
+end
 function mage_light_strike_array:GetCastAnimation()
 	local hCaster = self:GetCaster()
 	if hCaster:GetUnitName() == "npc_dota_hero_lina" then
@@ -38,7 +42,7 @@ end
 function mage_light_strike_array:GetAbilityTextureName()
     local hCaster = self:GetCaster()
     if hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
-        return  "mage_light_strike_array"
+        return  "mage/mage_light_strike_array"
     else
         return  "lina_light_strike_array"
     end

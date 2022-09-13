@@ -92,6 +92,7 @@ function AI_manager:GetAggroTarget(unit)
         for target_index, value in pairs(self.Aggro_Map[unit_index]) do
             if value > max_aggro then
                 max_aggro_target = EntIndexToHScript(target_index)
+                max_aggro = value
             end
         end
     end

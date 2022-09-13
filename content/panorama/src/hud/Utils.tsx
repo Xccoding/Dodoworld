@@ -87,6 +87,7 @@ export function GetUnitAttribute(attrName: string, unit?: EntityIndex) {
 			return 0;
 		}
 		if (JSON.parse(t) != undefined && JSON.parse(t)[attrName] != undefined) {
+			let value = JSON.parse(t)[attrName];
 			return Number(JSON.parse(t)[attrName]);
 		}
 		else {
@@ -99,34 +100,101 @@ export function GetUnitAttribute(attrName: string, unit?: EntityIndex) {
 
 }
 
-export function GetAbilityValue(ability_name: string, Level: number, key_name: string) {
+export function GetAbilityValueFromClient(ability: AbilityEntityIndex, key_name: string) {
+	GameEvents.SendEventClientSide("GetAbilityValue", { ability: ability, key_name: key_name });
+	let getter_ability = Entities.GetAbilityByName(Abilities.GetCaster(ability), "common_AbilityDataGetter");
+	let value = Abilities.GetAbilityTextureName(getter_ability);
+	return value;
+}
+
+export function IsPassive(ability_name: string) {
+	let behavior = GetAbilityValueFromKV(ability_name, 1, "AbilityBehavior") as string;
+
+	return (behavior.indexOf("DOTA_ABILITY_BEHAVIOR_PASSIVE") != -1);
+}
+
+export function GetAbilityValueFromKV(ability_name: string, Level: number, key_name: string) {
 	if (GameUI.CustomUIConfig().AbilityKv[ability_name] == undefined) {
 		return 0;
 	}
-	
-	const values = GameUI.CustomUIConfig().AbilityKv[ability_name][key_name];
-	if (values != undefined) {
-		const values_array = values.split(" ");
-		if (Level > 0) {
-			if(values_array.length > 1){
-				// print("N2O", values_array)
-				return values_array[Level - 1];
-			}
-			else{
-				return values_array[0];
-			}
-			
+
+	if (Level < 1) {
+		Level = 1;
+	}
+
+	const kv = GameUI.CustomUIConfig().AbilityKv[ability_name];
+	if (kv != undefined) {
+		let value = FindValueInObj(kv, key_name);
+		if (value == undefined) {
+			return 0;
 		}
 		else {
-			return values_array[0];
+			let value_array = value.split(" ");
+			if (value_array.length > 1) {
+				return value_array[Level - 1];
+			}
+			else {
+				return value_array[0];
+			}
+
 		}
-	}
-	else {
-		return 0;
 	}
 }
 
-export function GetAbilityMaxCharges(ability: AbilityEntityIndex, unit: EntityIndex){
+export function GetTalentValueFromKV(talent_name: string, key_name: string, hero: EntityIndex) {
+	let TalentKv = GameUI.CustomUIConfig().TalentsKv;
+	let playerID = Entities.GetPlayerOwnerID(hero);
+	let Schools_selected = CustomNetTables.GetTableValue("hero_schools", playerID)?.schools_index || 0;
+
+	for (const roleName in TalentKv) {
+		const role = TalentKv[roleName];
+		if (role[Schools_selected] != undefined) {
+			if (role[Schools_selected][talent_name] != undefined) {
+				const tKV = role[Schools_selected][talent_name];
+				if (tKV.UpgradeAbilities != undefined) {
+					for (const ability_name in tKV.UpgradeAbilities) {
+						for (const upgrade_key in tKV.UpgradeAbilities[ability_name]) {
+							if (upgrade_key == key_name) {
+								return tKV.UpgradeAbilities[ability_name][upgrade_key].value;
+							}
+						}
+					}
+				}
+				else {
+					return 0;
+				}
+			}
+		}
+	}
+	return 0;
+}
+
+export function FindValueInObj(t: any, key_name: string) {
+	if (typeof (t) == "object") {
+		for (const k in t) {
+			if (k == key_name) {
+				return t[k];
+			}
+			else {
+				if (typeof (t[k]) == "object") {
+					let x: any = FindValueInObj(t[k], key_name);
+					if (x != undefined) {
+						return x;
+					}
+					else {
+						continue;
+					}
+				}
+			}
+		}
+		return undefined;
+	}
+	else {
+		return undefined;
+	}
+}
+
+export function GetAbilityMaxCharges(ability: AbilityEntityIndex, unit: EntityIndex) {
 	for (let index = 0; index < Entities.GetNumBuffs(unit); index++) {
 		const modifier = Entities.GetBuff(unit, index);
 		const buff_ability = Buffs.GetAbility(unit, modifier);

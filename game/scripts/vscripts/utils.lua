@@ -90,6 +90,7 @@ function DeepFindKeyValue(t, key_name)
     end
 end
 
+--将一个一层的表转成字符串
 function TabletoString(t)
     local str = ""
 
@@ -99,4 +100,14 @@ function TabletoString(t)
 
     str = string.sub(str, 1, -2)
     return str
+end
+
+--浅拷贝
+function ShallowCopy(t)
+    local a = {}
+    for key, value in pairs(t) do
+        a[key] = value
+    end
+
+    return a
 end

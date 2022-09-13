@@ -1,0 +1,3 @@
+"TalentType_Upgrade"    "强化效果"
+"TalentType_NewAbility"    "解锁技能"
+"Talent"        "天赋"

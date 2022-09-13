@@ -1,0 +1,18 @@
+<root>
+    <scripts>
+        <include src="./CustomTalentToolTip.tsx" />
+        <!-- Synchronized file from kv files by sync_kv.js, if it is not used, please delete the following line -->
+    </scripts>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.vcss_c"></include>
+        <include src="s2r://panorama/styles/hudstyles.vcss_c"></include>
+        <include src="s2r://panorama/styles/hud/hud_reborn.vcss_c"></include>
+        <include src="s2r://panorama/styles/custom_ui.vcss_c"></include>
+        <include src="s2r://panorama/styles/hud/dota_hud_stat_branch.vcss_c"></include>
+        <include src="s2r://panorama/styles/hud/dota_hud_ability_panel.vcss_c"></include>
+        <include src="./CustomTalentToolTip.css" />
+    </styles>
+    <Panel class="hud_root" hittest="false">
+    </Panel>
+    
+</root>

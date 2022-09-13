@@ -18,6 +18,8 @@ if IsClient() then
     BaseNPC = C_DOTA_BaseNPC
 end
 
+
+
 MODIFIER_CALCULATE_TYPE_SUM = 1
 MODIFIER_CALCULATE_TYPE_MAX = MODIFIER_CALCULATE_TYPE_SUM * 2
 MODIFIER_CALCULATE_TYPE_MIN = MODIFIER_CALCULATE_TYPE_MAX * 2
@@ -109,6 +111,18 @@ end
 
 -------------------------------服务端内容-------------------------------
 if IsServer() then
+    function CDOTA_BaseNPC_Hero:GetStrength()
+        return self:GetUnitAttribute("STRENGTH", {}, MODIFIER_CALCULATE_TYPE_SUM)
+    end
+    
+    function CDOTA_BaseNPC_Hero:GetIntellect()
+        return self:GetUnitAttribute("INTELLECT", {}, MODIFIER_CALCULATE_TYPE_SUM)
+    end
+    
+    function CDOTA_BaseNPC_Hero:GetAgility()
+        return self:GetUnitAttribute("AGILITY", {}, MODIFIER_CALCULATE_TYPE_SUM)
+    end
+
     --获取技能伤害基数
     function CDOTA_BaseNPC:GetDamageforAbility( iCalculate_type )
         local dmg = self:GetAverageTrueAttackDamage(self)

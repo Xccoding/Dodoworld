@@ -71,7 +71,7 @@ function modifier_mage_fiery_soul:C_OnSpellCrit(params)
             if schoolData ~= nil then
                 for i = 1, 12 do
                     if schoolData["Ability" .. i] ~= nil then
-                        if hAbility:GetAbilityName() == schoolData["Ability" .. i] then
+                        if hAbility:GetAbilityName() ~= "mage_blink" and hAbility:GetAbilityName() == schoolData["Ability" .. i] then
                             bShoudCount = true
                             break
                         end
@@ -104,31 +104,43 @@ function modifier_mage_fiery_soul:C_OnSpellNotCrit(params)
     local hCaster = self:GetCaster()
     if params.attacker == hCaster then
         local hAbility = params.inflictor
-        if bit.band(params.damage_flags, DOTA_DAMAGE_FLAG_DIRECT) ~= DOTA_DAMAGE_FLAG_DIRECT then
-            return
-        end
+        if bit.band(params.damage_flags, DOTA_DAMAGE_FLAG_DIRECT) == DOTA_DAMAGE_FLAG_DIRECT then
+            local bShoudCount = false
+            local schoolData = nil
+            if KeyValues.SchoolsKv[hCaster:GetUnitLabel()] ~= nil then
+                schoolData = KeyValues.SchoolsKv[hCaster:GetUnitLabel()][tostring(Abilities_manager:GetCurrentSchools(hCaster))]
+            end
 
-        if hAbility:GetAbilityName() == "mage_fireblast"
-        or hAbility:GetAbilityName() == "mage_searing_arrows"
-        or hAbility:GetAbilityName() == "mage_light_strike_array"
-        or hAbility:GetAbilityName() == "mage_laguna_blade" then
-
-            local bAlready_record = false
-            for _, record in pairs(self.spell_records) do
-                if record.hAbility == hAbility and record.time == GameRules:GetGameTime() then
-                    bAlready_record = true
-                else
-                    if record.hAbility == hAbility then
-                        -- print(record.time,GameRules:GetGameTime(),"not equal time")
+            if schoolData ~= nil then
+                for i = 1, 12 do
+                    if schoolData["Ability" .. i] ~= nil then
+                        if hAbility:GetAbilityName() == schoolData["Ability" .. i] then
+                            bShoudCount = true
+                            break
+                        end
                     end
                 end
             end
 
-            if not bAlready_record then
-                table.insert(self.spell_records, { hAbility = hAbility, time = GameRules:GetGameTime(), bCrit = false })
+            if bShoudCount then
+                local bAlready_record = false
+                for _, record in pairs(self.spell_records) do
+                    if record.hAbility == hAbility and record.time == GameRules:GetGameTime() then
+                        bAlready_record = true
+                    else
+                        if record.hAbility == hAbility then
+                            -- print(record.time,GameRules:GetGameTime(),"not equal time")
+                        end
+                    end
+                end
+
+                if not bAlready_record then
+                    table.insert(self.spell_records, { hAbility = hAbility, time = GameRules:GetGameTime(), bCrit = false })
+                end
             end
 
         end
+
     end
 end
 function modifier_mage_fiery_soul:OnIntervalThink()

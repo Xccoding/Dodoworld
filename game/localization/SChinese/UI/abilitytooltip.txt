@@ -4,11 +4,13 @@
 "AbilityTooltip_NoCost" "无消耗"
 "AbilityTooltip_CastRange"  "码"
 "AbilityTooltip_CastPoint"  "秒施法前摇"
+"AbilityTooltip_ChannelTime"  "秒持续施法"
 "AbilityTooltip_NextLevel_NotLearned"   "[!s:next_level]级时可学习"
 "AbilityTooltip_NextLevel"  "下次升级在[!s:next_level]级时"
 "AbilityTooltip_MaxLevel"  "已升至满级"
+"AbilityTooltip_UnlockTalent"   "学习天赋[[!s:talent_name]]以解锁"
 "AbilityTooltip_Level"      "等级"
-"AbilityTooltip_AltTip"      "按下ALT查看伤害系数"
+"AbilityTooltip_AltTip"      "按下ALT查看计算公式"
 
 "AbilityTooltip_Costtype_mana"  "魔法值"
 
