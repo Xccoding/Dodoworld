@@ -1,4 +1,5 @@
 LinkLuaModifier("modifier_mage_searing_arrows", "heroes/abilities/mage/fire/mage_searing_arrows.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_mage_searing_arrows_burning_arrows", "heroes/abilities/mage/fire/mage_searing_arrows.lua", LUA_MODIFIER_MOTION_NONE)
 
 --Abilities
 if mage_searing_arrows == nil then
@@ -18,9 +19,9 @@ function mage_searing_arrows:C_OnSpellStart()
         Ability = self,
         EffectName = "particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf",
         iMoveSpeed = speed,
-        bDodgeable = true,        
+        bDodgeable = true,
         vSourceLoc = hCaster:GetAbsOrigin(),
-        bIsAttack = false,                
+        bIsAttack = false,    
         ExtraData = {},
     }
 
@@ -36,8 +37,13 @@ function mage_searing_arrows:OnProjectileHit_ExtraData(hTarget, vLocation, Extra
     if IsValid(hTarget) then
         local hCaster = self:GetCaster()
         local sp_factor = self:GetSpecialValueFor("sp_factor")
+        local burning_arrows_duration = self:GetSpecialValueFor("burning_arrows_duration")
 
         EmitSoundOn("Hero_Clinkz.SearingArrows.Impact", hTarget)
+
+        if burning_arrows_duration > 0 then
+            hTarget:AddNewModifier(hCaster, self, "modifier_mage_searing_arrows_burning_arrows", {duration = burning_arrows_duration})
+        end
 
         ApplyDamage({
             victim = hTarget,
@@ -70,6 +76,10 @@ end
 function modifier_mage_searing_arrows:GetAbilityValues()
     self.bonus_crit_chance = self:GetAbilitySpecialValueFor("bonus_crit_chance")
     self.crit_hp_pct = self:GetAbilitySpecialValueFor("crit_hp_pct")
+    self.burning_arrows_duration = self:GetAbilitySpecialValueFor("burning_arrows_duration")
+    self.burning_arrows_sp_factor = self:GetAbilitySpecialValueFor("burning_arrows_sp_factor")
+    self.burning_arrows_explode_chance = self:GetAbilitySpecialValueFor("burning_arrows_explode_chance")
+    self.burning_arrows_explode_radius = self:GetAbilitySpecialValueFor("burning_arrows_explode_radius")
 end
 function modifier_mage_searing_arrows:OnCreated(params)
     self:GetAbilityValues()
@@ -80,9 +90,9 @@ end
 function modifier_mage_searing_arrows:DeclareFunctions()
     return {
         MODIFIER_PROPERTY_TOOLTIP,
+        MODIFIER_EVENT_ON_MODIFIER_ADDED,
     }
 end
-
 function modifier_mage_searing_arrows:CDeclareFunctions()
     return {
         CMODIFIER_EVENT_ON_SPELL_CRIT,
@@ -127,4 +137,91 @@ function modifier_mage_searing_arrows:C_GetModifierBonusMagicalCritChance_Consta
 end
 function modifier_mage_searing_arrows:OnTooltip()
     return self:GetStackCount() * self.bonus_crit_chance
+end
+function modifier_mage_searing_arrows:OnModifierAdded(params)
+    local hParent = self:GetParent()
+    local tBuff = params.added_buff
+    local hCaster = tBuff:GetCaster()
+    local hAbility = self:GetAbility()
+
+    if hCaster == hParent and self.burning_arrows_duration > 0 then
+        if tBuff:GetName() == "modifier_mage_searing_arrows_burning_arrows" or tBuff:GetName() == "modifier_mage_liquid_fire_debuff" then
+            if RandomFloat(0, 100) <= self.burning_arrows_explode_chance then
+
+                local particleID = ParticleManager:CreateParticle("particles/units/heroes/hero_clinkz/clinkz_burning_army_start.vpcf", PATTACH_CUSTOMORIGIN, hCaster)
+                ParticleManager:SetParticleControl(particleID, 0, params.unit:GetAbsOrigin())
+                ParticleManager:ReleaseParticleIndex(particleID)
+
+                EmitSoundOn("Hero_Clinkz.WindWalk", params.unit)
+
+                local enemies = FindUnitsInRadius(hCaster:GetTeamNumber(), params.unit:GetAbsOrigin(), nil, self.burning_arrows_explode_radius, hAbility:GetAbilityTargetTeam(), hAbility:GetAbilityTargetType(), hAbility:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
+                for _, enemy in pairs(enemies) do
+                    if IsValid(enemy) and enemy:IsAlive() then
+                        ApplyDamage({
+                            victim = enemy,
+                            attacker = hCaster,
+                            damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * self.burning_arrows_sp_factor * 0.01,
+                            damage_type = DAMAGE_TYPE_MAGICAL,
+                            ability = hAbility,
+                            damage_flags = DOTA_DAMAGE_FLAG_INDIRECT,
+                        })
+                    end
+                end
+
+            end
+        end
+    end
+end
+--=======================================modifier_mage_searing_arrows_burning_arrows=======================================
+if modifier_mage_searing_arrows_burning_arrows == nil then
+    modifier_mage_searing_arrows_burning_arrows = class({})
+end
+function modifier_mage_searing_arrows_burning_arrows:IsHidden()
+    return true
+end
+function modifier_mage_searing_arrows_burning_arrows:IsDebuff()
+    return false
+end
+function modifier_mage_searing_arrows_burning_arrows:IsPurgable()
+    return false
+end
+function modifier_mage_searing_arrows_burning_arrows:IsPurgeException()
+    return false
+end
+function modifier_mage_searing_arrows_burning_arrows:GetAbilityValues()
+    self.burning_arrows_sp_factor_ps = self:GetAbilitySpecialValueFor("burning_arrows_sp_factor_ps")
+    self.burning_arrows_dot_interval = self:GetAbilitySpecialValueFor("burning_arrows_dot_interval")
+end
+function modifier_mage_searing_arrows_burning_arrows:OnCreated(params)
+    self:GetAbilityValues()
+    if IsServer() then
+        self:StartIntervalThink(self.burning_arrows_dot_interval)
+    end
+end
+function modifier_mage_searing_arrows_burning_arrows:OnRefresh(params)
+    self:GetAbilityValues()
+end
+function modifier_mage_searing_arrows_burning_arrows:OnDestroy(params)
+end
+function modifier_mage_searing_arrows_burning_arrows:DeclareFunctions()
+    return {
+    }
+end
+function modifier_mage_searing_arrows_burning_arrows:CDeclareFunctions()
+    return {
+    }
+end
+function modifier_mage_searing_arrows_burning_arrows:OnIntervalThink()
+    local hCaster = self:GetCaster()
+    local hParent = self:GetParent()
+    local hAbility = self:GetAbility()
+    
+    ApplyDamage({
+        victim = hParent,
+        attacker = hCaster,
+        damage = hCaster:GetDamageforAbility(ABILITY_DAMAGE_CALCULATE_TYPE_SP) * self.burning_arrows_sp_factor_ps * 0.01,
+        damage_type = DAMAGE_TYPE_MAGICAL,
+        ability = hAbility,
+        damage_flags = DOTA_DAMAGE_FLAG_INDIRECT,
+    })
 end

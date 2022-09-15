@@ -35,6 +35,8 @@ function mage_laguna_blade:GetAbilityTextureName()
     local hCaster = self:GetCaster()
     if hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
         return "mage/mage_laguna_blade"
+    elseif hCaster:HasModifier("modifier_mage_fiery_soul_charge_blade") then
+        return "greevil_laguna_blade"
     else
         return "lina_laguna_blade"
     end
@@ -64,6 +66,11 @@ function mage_laguna_blade:C_OnSpellStart()
     if hCaster:HasModifier("modifier_mage_fiery_soul_combo") then
         flags = flags + DOTA_DAMAGE_FLAG_FIERY_SOUL_COMBO
         hCaster:RemoveModifierByName("modifier_mage_fiery_soul_combo")
+        self:EndCooldown()
+    elseif hCaster:HasModifier("modifier_mage_fiery_soul_charge_blade") then
+        local charge_blade_bonus_dmg_pct = self:GetSpecialValueFor("charge_blade_bonus_dmg_pct")
+        hCaster:RemoveModifierByName("modifier_mage_fiery_soul_charge_blade")
+        sp_factor = sp_factor * (100 + charge_blade_bonus_dmg_pct) * 0.01
     end
 
     StopSoundOn("Hero_StormSpirit.ElectricVortex", hCaster)

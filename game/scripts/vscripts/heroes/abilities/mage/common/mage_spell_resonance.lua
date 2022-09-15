@@ -3,6 +3,10 @@ LinkLuaModifier("modifier_mage_spell_resonance", "heroes/abilities/mage/common/m
 if mage_spell_resonance == nil then
     mage_spell_resonance = class({})
 end
+function mage_spell_resonance:GetManaCost(iLevel)
+    local hCaster = self:GetCaster()
+    return self:GetSpecialValueFor("mana_cost_pct") * hCaster:GetMaxMana() * 0.01
+end
 function mage_spell_resonance:CastFilterResultTarget(hTarget)
     local hCaster = self:GetCaster()
     if hTarget == hCaster then

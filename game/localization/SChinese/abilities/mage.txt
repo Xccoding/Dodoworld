@@ -1,3 +1,8 @@
+"DOTA_Tooltip_ability_mage_blink"	"闪烁"
+"DOTA_Tooltip_ability_mage_blink_Description_lv1"	"向面向方向传送最远%distance%码，遇到障碍物则会被阻挡。<br>最多拥有%CustomAbilityCharges%层充能。<br>不会打断任何施法，可以在被控制时施放。   "
+"DOTA_Tooltip_modifier_mage_fire_shield"	"火焰护盾"
+"DOTA_Tooltip_modifier_mage_fire_shield_Description"	"吸收%dMODIFIER_PROPERTY_TOOLTIP%点伤害，受到近战攻击时发射一枚火球，对攻击者造成魔法伤害"
+
 "DOTA_Tooltip_ability_mage_fireblast"	"火焰爆轰"
 "DOTA_Tooltip_ability_mage_fireblast_Description_lv1"	"以一波火焰轰击目标，造成%sp_factor%点魔法伤害。<br>最多拥有%max_charges%层充能。"
 "DOTA_Tooltip_ability_mage_fireblast_Description_lv2"	"以一波火焰轰击目标，造成%sp_factor%点魔法伤害。<br>最多拥有%max_charges%层充能，必定造成暴击。"
@@ -34,17 +39,12 @@
 "DOTA_Tooltip_ability_mage_fire_spirits"	"烈火精灵"
 "DOTA_Tooltip_ability_mage_fire_spirits_Description_lv1"	"引导一只烈火精灵冲向目标，对其造成%sp_factor%点魔法伤害。<br>可以在移动中施法，但攻击和施放其他技能会中断施法。"
 
-"DOTA_Tooltip_ability_mage_blink"	"闪烁"
-"DOTA_Tooltip_ability_mage_blink_Description_lv1"	"向面向方向传送最远%distance%码，遇到障碍物则会被阻挡。<br>最多拥有%CustomAbilityCharges%层充能。<br>不会打断任何施法，可以在被控制时施放。   "
-"DOTA_Tooltip_modifier_mage_fire_shield"	"火焰护盾"
-"DOTA_Tooltip_modifier_mage_fire_shield_Description"	"吸收%dMODIFIER_PROPERTY_TOOLTIP%点伤害，受到近战攻击时发射一枚火球，对攻击者造成魔法伤害"
-
 "DOTA_Tooltip_ability_mage_fiery_soul"	"炽魂"
-"DOTA_Tooltip_ability_mage_fiery_soul_Description_lv1"	"每当你的连续两个技能造成魔法暴击，就会立刻重置光击阵和神灭斩的冷却时间，并使下一次光击阵或神灭斩变为瞬发，且累积%combo_multiple%%%的液态火伤害。"
+"DOTA_Tooltip_ability_mage_fiery_soul_Description_lv1"	"每当你的连续两个技能造成魔法暴击，就会立刻重置光击阵和神灭斩的冷却时间，并使下一次光击阵或神灭斩变为瞬发，施放后不会进入冷却，且累积%combo_multiple%%%的液态火伤害。"
 // "DOTA_Tooltip_modifier_mage_fiery_soul"	"炽魂"
 // "DOTA_Tooltip_modifier_mage_fiery_soul_Description"	"你的技能已经连续暴击%dMODIFIER_PROPERTY_TOOLTIP%次"
 "DOTA_Tooltip_modifier_mage_fiery_soul_combo"	"炽魂"
-"DOTA_Tooltip_modifier_mage_fiery_soul_combo_Description"	"下一次光击阵或神灭斩变为瞬发，且累积%dMODIFIER_PROPERTY_TOOLTIP%%%的液态火伤害"
+"DOTA_Tooltip_modifier_mage_fiery_soul_combo_Description"	"下一次光击阵或神灭斩变为瞬发，不进入冷却，且累积%dMODIFIER_PROPERTY_TOOLTIP%%%的液态火伤害"
 
 "DOTA_Tooltip_ability_mage_liquid_fire"	"液态火"
 "DOTA_Tooltip_ability_mage_liquid_fire_Description_lv1"	"每当你的技能造成直接伤害，就会对目标施加液态火，在%duration%秒内造成额外伤害，伤害量为技能伤害的%int_factor%%%。再次施加可以刷新液态火，并继承原有液态火的剩余伤害。"
@@ -78,6 +78,10 @@
 "DOTA_Tooltip_Talent_mage_fire_shield"    "火焰护盾"
 "DOTA_Tooltip_Talent_mage_fire_shield_Desc"    "施放闪烁会使你获得火焰护盾，持续%fire_shield_duration%秒。护盾可以为你抵挡%fire_shield_max_hp_factor%点伤害，当你受到近战攻击时还会发射一枚火球，对攻击者造成%fire_shield_sp_factor%点魔法伤害。"
 
+"DOTA_Tooltip_Talent_mage_chaos_meteor"	"混沌陨石"
+"DOTA_Tooltip_ability_mage_chaos_meteor"	"混沌陨石"
+"DOTA_Tooltip_ability_mage_chaos_meteor_Description_lv1"	"召唤一枚燃烧的流星，%delay%秒后落地，对%radius%码范围内的敌人造成总计%sp_factor%点魔法伤害。流星还会灼烧这片区域，每秒对其中的敌人造成%sp_factor_dot%点魔法伤害，持续%duration%秒。"
+
 "DOTA_Tooltip_Talent_mage_flux"    "乱流"
 "DOTA_Tooltip_ability_mage_flux"	"乱流"
 "DOTA_Tooltip_ability_mage_flux_Description_lv1"	"被动提高你造成的魔法伤害，至少提高%bonus_dmg_pct_min%%%，这个数值会每秒提高%stack_ps%%%，至多提高%bonus_dmg_pct_max%%%，随后回到%bonus_dmg_pct_min%%%。"
@@ -97,6 +101,25 @@
 "DOTA_Tooltip_ability_mage_kaya_array_Description_lv1"	"在脚下展开一个%radius%码大小的能量法阵，持续%duration%秒。当你站在法阵中时，使你造成的魔法伤害提高%bonus_magical_dmg_pct%%%。"
 "DOTA_Tooltip_modifier_mage_kaya_array_effect"	"慧光法阵"
 "DOTA_Tooltip_modifier_mage_kaya_array_effect_Description"	"造成的魔法伤害提高%dMODIFIER_PROPERTY_TOOLTIP%%%"
+
+"DOTA_Tooltip_Talent_mage_flame_dancing"    "飞舞之焰"
+"DOTA_Tooltip_Talent_mage_flame_dancing_Desc"    "火焰爆轰的最大充能层数提高%CustomAbilityCharges%层，充能时间%AbilityChargeRestoreTime%秒。"
+
+"DOTA_Tooltip_Talent_mage_burning_arrows"    "燃烧之箭"
+"DOTA_Tooltip_Talent_mage_burning_arrows_Desc"    "灼热之箭会将目标点燃，每%burning_arrows_dot_interval%秒对其造成%burning_arrows_sp_factor_ps%点魔法伤害，持续%burning_arrows_duration%秒；任何敌人被灼热之箭或液态火点燃时，都有%burning_arrows_explode_chance%%%几率爆炸，对%burning_arrows_explode_radius%码内的所有敌人造成%burning_arrows_sp_factor%点魔法伤害。"
+
+"DOTA_Tooltip_Talent_mage_fire_land"    "烈焰之地"
+"DOTA_Tooltip_Talent_mage_fire_land_Desc"    "光击阵会留下一片烈焰之地，每秒对范围内的敌人造成%fire_land_sp_factor%点魔法伤害，持续%fire_land_duration%秒。"
+
+"DOTA_Tooltip_Talent_mage_flowing_blaze"    "炽焰流转"
+"DOTA_Tooltip_Talent_mage_flowing_blaze_Desc"    "你的灼热之箭、神灭斩、火焰爆轰和龙破斩暴击时会使炽焰外衣的剩余冷却时间减少%flowing_blaze_cd_reduce%秒。"
+
+"DOTA_Tooltip_Talent_mage_charge_blade"    "强蓄力斩"
+"DOTA_Tooltip_Talent_mage_charge_blade_Desc"    "消耗炽魂效果有%charge_blade_chance%%%几率使你%charge_blade_duration%秒内的下一个非瞬发神灭斩伤害提高%charge_blade_bonus_dmg_pct%%%。"
+"DOTA_Tooltip_modifier_mage_fiery_soul_charge_blade"	"强蓄力斩"
+"DOTA_Tooltip_modifier_mage_fiery_soul_charge_blade_Description"	"下一个非瞬发神灭斩的伤害提高%dMODIFIER_PROPERTY_TOOLTIP%%%"
+
+
 
 "DOTA_Tooltip_ability_mage_arcane_orb"	"奥术天球"
 "DOTA_Tooltip_ability_mage_arcane_orb_Description"	"激活后，失去你的全部攻击力，攻击距离固定为%attack_range_override%，攻击间隔提升至%attack_time_override%，将你的攻击替换成高速的奥术法球，法球造成【%sp_factor%%%法术强度】点魔法伤害且具有克敌机先，每次攻击会消耗%mana_cost_pct%%%的最大魔法值，并使你获得%stack_per_time%层奥术至尊。\n奥术至尊：<br>每层使奥术天球的伤害提高%arcane_bonus_damage_pct%%%，消耗的魔法值提高%arcane_mana_cost_pct%%%，攻击间隔降低%arcane_bonus_attack_time%%%；最多叠加%max_stack%层。"

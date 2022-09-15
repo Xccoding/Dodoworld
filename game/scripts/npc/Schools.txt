@@ -39,7 +39,7 @@
             "Ability8"	"mage_blink"
             "Ability9"	"mage_spell_resonance"
             "Ability10"	"mage_kaya_array"
-            "Ability11"	"mage_ancient_seal"
+            "Ability11"	"mage_chaos_meteor"
             "Ability12"	"mage_equilibrium"
             "Ability13"	"mage_liquid_fire"
             "Ability14"	"mage_fiery_soul"

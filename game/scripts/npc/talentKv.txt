@@ -151,6 +151,146 @@
                 
                 "NewAbility"    "mage_kaya_array"
             }
+            "mage_flame_dancing"
+            {
+                "TalentFloor"   "4"
+                "Texture"   "phoenix/phoenix_ti10_immortal_ability_icon/phoenix_ti10_immortal_launch_fire_spirit"
+
+                "UpgradeAbilities"   {
+                    "mage_fireblast"
+                    {
+                        "CustomAbilityCharges"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "1"
+                        }
+                        "AbilityChargeRestoreTime"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "-2"
+                        }
+                    }
+                }
+            }
+            "mage_burning_arrows"
+            {
+                "TalentFloor"   "4"
+                "Texture"   "forged_spirit_melting_strike"
+
+                "UpgradeAbilities"   {
+                    "mage_searing_arrows"
+                    {
+                        "burning_arrows_sp_factor_ps"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "2"
+                        }
+                        "burning_arrows_sp_factor"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "7"
+                        }
+                        "burning_arrows_dot_interval"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "2"
+                        }
+                        "burning_arrows_explode_chance"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "10"
+                        }
+                        "burning_arrows_explode_radius"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "300"
+                        }
+                        "burning_arrows_duration"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "8"
+                        }
+                    }
+                }
+            }
+            "mage_fire_land"
+            {
+                "TalentFloor"   "4"
+                "Texture"   "snapfire_mortimer_kisses"
+
+                "UpgradeAbilities"   {
+                    "mage_light_strike_array"
+                    {
+                        "fire_land_duration"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "8"
+                        }
+                        "fire_land_sp_factor"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "5"
+                        }
+                    }
+                }
+            }
+            "mage_flowing_blaze"
+            {
+                "TalentFloor"   "5"
+                "Texture"   "ogre_magi/antipodeanabilityicons/ogre_magi_ignite"
+
+                "UpgradeAbilities"   {
+                    "mage_flame_cloak"
+                    {
+                        "flowing_blaze_cd_reduce"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "1"
+                        }
+                    }
+                }
+            }
+            "mage_charge_blade"
+            {
+                "TalentFloor"   "5"
+                "Texture"   "greevil_laguna_blade"
+
+                "UpgradeAbilities"   {
+                    "mage_fiery_soul"
+                    {
+                        "charge_blade_duration"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "15"
+                        }
+                        "charge_blade_chance"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "150"
+                        }
+                        "charge_blade_bonus_dmg_pct"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "240"
+                        }
+                    }
+                    "mage_laguna_blade"
+                    {
+                        "charge_blade_bonus_dmg_pct"
+                        {
+                            "UpgradeType"   "ADD"
+                            "value"         "240"
+                        }
+                    }
+                }
+            }
+            "mage_chaos_meteor"
+            {
+                "TalentFloor"   "5"
+                "Texture"   "invoker_chaos_meteor"
+                
+                "NewAbility"    "mage_chaos_meteor"
+            }
         }
         
     }

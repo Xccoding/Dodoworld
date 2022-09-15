@@ -1,5 +1,6 @@
 LinkLuaModifier("modifier_mage_fiery_soul", "heroes/abilities/mage/fire/mage_fiery_soul.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_mage_fiery_soul_combo", "heroes/abilities/mage/fire/mage_fiery_soul.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_mage_fiery_soul_charge_blade", "heroes/abilities/mage/fire/mage_fiery_soul.lua", LUA_MODIFIER_MOTION_NONE)
 
 --Abilities
 if mage_fiery_soul == nil then
@@ -214,6 +215,8 @@ function modifier_mage_fiery_soul_combo:GetAbilityValues()
     self.combo_multiple = self:GetAbilitySpecialValueFor("combo_multiple")
     self.combo_duration = self:GetAbilitySpecialValueFor("combo_duration")
     self.reset_chance = self:GetAbilitySpecialValueFor("reset_chance")
+    self.charge_blade_chance = self:GetAbilitySpecialValueFor("charge_blade_chance")
+    self.charge_blade_duration = self:GetAbilitySpecialValueFor("charge_blade_duration")
 end
 function modifier_mage_fiery_soul_combo:OnCreated(params)
     self:GetAbilityValues()
@@ -235,15 +238,71 @@ end
 function modifier_mage_fiery_soul_combo:OnDestroy()
     if IsServer() then
         local hCaster = self:GetCaster()
-        if RandomFloat(0, 100) < self.reset_chance and self:GetRemainingTime() > 0 then
-            local mage_laguna_blade = hCaster:FindAbilityByName("mage_laguna_blade")
-            local mage_light_strike_array = hCaster:FindAbilityByName("mage_light_strike_array")
-            mage_laguna_blade:EndCooldown()
-            mage_light_strike_array:EndCooldown()
-            hCaster:AddNewModifier(hCaster, self:GetAbility(), "modifier_mage_fiery_soul_combo", { duration = self.combo_duration })
+        if self:GetRemainingTime() > 0 then
+            if RandomFloat(0, 100) < self.reset_chance then
+                local mage_laguna_blade = hCaster:FindAbilityByName("mage_laguna_blade")
+                local mage_light_strike_array = hCaster:FindAbilityByName("mage_light_strike_array")
+                mage_laguna_blade:EndCooldown()
+                mage_light_strike_array:EndCooldown()
+                hCaster:AddNewModifier(hCaster, self:GetAbility(), "modifier_mage_fiery_soul_combo", { duration = self.combo_duration })
+            end
+
+            if RandomFloat(0, 100) < self.charge_blade_chance then
+                hCaster:AddNewModifier(hCaster, self:GetAbility(), "modifier_mage_fiery_soul_charge_blade", { duration = self.charge_blade_duration })
+            end
+
         end
     end
 end
 function modifier_mage_fiery_soul_combo:OnTooltip()
     return self.combo_multiple
+end
+--=======================================modifier_mage_fiery_soul_charge_blade=======================================
+if modifier_mage_fiery_soul_charge_blade == nil then
+    modifier_mage_fiery_soul_charge_blade = class({})
+end
+function modifier_mage_fiery_soul_charge_blade:IsHidden()
+    return false
+end
+function modifier_mage_fiery_soul_charge_blade:IsDebuff()
+    return false
+end
+function modifier_mage_fiery_soul_charge_blade:IsPurgable()
+    return false
+end
+function modifier_mage_fiery_soul_charge_blade:IsPurgeException()
+    return false
+end
+function modifier_mage_fiery_soul_charge_blade:GetAbilityValues()
+    self.charge_blade_bonus_dmg_pct = self:GetAbilitySpecialValueFor("charge_blade_bonus_dmg_pct")
+end
+function modifier_mage_fiery_soul_charge_blade:OnCreated(params)
+    self:GetAbilityValues()
+    if IsServer() then
+        local hParent = self:GetParent()
+        local particleID = ParticleManager:CreateParticle("particles/econ/items/lina/lina_head_headflame/lina_flame_hand_dual_headflame.vpcf", PATTACH_CUSTOMORIGIN, hParent)
+        ParticleManager:SetParticleControlEnt(particleID, 0, hParent, PATTACH_POINT_FOLLOW, "attach_attack1", Vector(0, 0, 0), false)
+        ParticleManager:SetParticleControlEnt(particleID, 1, hParent, PATTACH_POINT_FOLLOW, "attach_attack2", Vector(0, 0, 0), false)
+        self:AddParticle(particleID, false, false, -1, false, false)
+    end
+end
+function modifier_mage_fiery_soul_charge_blade:OnRefresh(params)
+    self:GetAbilityValues()
+end
+function modifier_mage_fiery_soul_charge_blade:OnDestroy(params)
+end
+function modifier_mage_fiery_soul_charge_blade:DeclareFunctions()
+    return {
+        MODIFIER_PROPERTY_TOOLTIP
+    }
+end
+function modifier_mage_fiery_soul_charge_blade:CDeclareFunctions()
+    return {
+    }
+end
+function modifier_mage_fiery_soul_charge_blade:OnTooltip()
+    return self.charge_blade_bonus_dmg_pct
+end
+function modifier_mage_fiery_soul_charge_blade:GetTexture()
+    return "greevil_laguna_blade"
 end

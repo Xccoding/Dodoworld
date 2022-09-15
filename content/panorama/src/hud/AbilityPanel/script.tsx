@@ -214,7 +214,7 @@ function AbilityPanel({ ability, bActive, slotindex }: { ability: AbilityEntityI
 
     let MaxCharge = GetAbilityMaxCharges(ability, hero)
     let CurrentCharge = GetAbilityCurrentCharges(ability, hero);
-    let ChargeRestoreTime = Math.max(GetAbilityValueFromKV(ability_name, Level, "AbilityChargeRestoreTime") * (100 - CooldownReduction) * 0.01, 0.01);
+    let ChargeRestoreTime = Math.max(Number(GetAbilityValueFromClient(ability, "AbilityChargeRestoreTime")) * (100 - CooldownReduction) * 0.01, 0.01);
     let ChargeRemainTime = GetAbilityChargeRestoreTimeRemaining(ability, hero);
     let ManaCost = Abilities.GetManaCost(ability);
     let bPassive = Abilities.IsPassive(ability);

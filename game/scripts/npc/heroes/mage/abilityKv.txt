@@ -20,7 +20,6 @@
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"				"0.6"
-		"AnimationPlaybackRate"			"0.3"
 		"AbilityCosttype"				"mana"
 		"MaxLevel"						"3"
 		"CustomRequiredLevel"			"1 33 41"
@@ -118,7 +117,7 @@
         //"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AnimationPlaybackRate"	"0.3"
 
-		"AbilityCooldown"				"8"
+		"AbilityCooldown"				"7"
 		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"900"
 		"AbilityCastRangeBuffer"		"250"
@@ -152,7 +151,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"AnimationPlaybackRate"		"0.4"
 
-		"AbilityCooldown"				"8"
+		"AbilityCooldown"				"7"
 		"AbilityManaCost"				"0"
 		"AbilityCastRange"				"900"
 		"AbilityCastRangeBuffer"		"250"
@@ -382,6 +381,40 @@
         }
 	}
 
+	//火法混沌陨石
+    "mage_chaos_meteor"
+	{
+		"BaseClass"	"ability_lua"
+		"AbilityTextureName"	"invoker_chaos_meteor"
+		"ScriptFile"	"heroes/abilities/mage/fire/mage_chaos_meteor"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"AbilityCooldown"				"45"
+		"AbilityManaCost"				"0"
+		"AbilityCastRange"				"900"
+		"AbilityCastRangeBuffer"		"250"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"				"0"
+		"AbilityCosttype"				"mana"
+		"MaxLevel"						"1"
+		"CustomRequiredLevel"			"60"
+
+		"AbilityValues"
+        {
+            "duration"  "8.5"
+			"sp_factor"	"260"
+			"radius"	"320"
+			"sp_factor_ps"	"8"
+			"delay"	"3"
+			"mana_cost_pct"	"1"
+        }
+	}
+
 	//法师咒术共鸣
 	"mage_spell_resonance"
 	{
@@ -414,6 +447,7 @@
 			"bonus_magical_crit_chance"	"5"
 			"bonus_intellect_pct"	"5"
 			"caster_duration"	"10"
+			"mana_cost_pct"	"2.5"
         }
 	}
 
@@ -431,7 +465,7 @@
 		//"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
         "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"45"
 		"AbilityManaCost"				"0"
 		//"AbilityCastRange"				"500"
 		//"AbilityCastRangeBuffer"		"250"

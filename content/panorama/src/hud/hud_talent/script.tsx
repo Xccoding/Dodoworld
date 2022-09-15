@@ -6,17 +6,17 @@ function Talent() {
     const playerID = Players.GetLocalPlayer();
     const HeroTalentInfo = useNetTableValues("hero_talents")[playerID];
     const Schools_selected = useNetTableValues("hero_schools")[playerID].schools_index || 0;
-    const [Talent_tree, SetTalent_tree] = useState<{talent_name: string, texture: string}[][]>([]);
+    const [Talent_tree, SetTalent_tree] = useState<{ talent_name: string, texture: string; }[][]>([]);
     let TalentKv = GameUI.CustomUIConfig().TalentsKv;
 
     useEffect(() => {
-        let tree: {talent_name: string, texture: string}[][] = [[], [], []];
+        let tree: { talent_name: string, texture: string; }[][] = [[], [], [], [], []];
         let hero = Players.GetPlayerHeroEntityIndex(playerID);
         let talents = TalentKv[Entities.GetUnitLabel(hero)]?.[Schools_selected] || [];
 
         for (const talent_name in talents) {
             const floor = talents[talent_name].TalentFloor;
-            tree[floor - 1].push({talent_name: talent_name, texture: talents[talent_name].Texture})
+            tree[floor - 1].push({ talent_name: talent_name, texture: talents[talent_name].Texture });
         }
         SetTalent_tree(tree);
         // print("N2O", HeroTalentInfo)
@@ -52,7 +52,7 @@ function Talent() {
                                         onmouseout={(p) => {
                                             $.DispatchEvent("UIHideCustomLayoutTooltip", p, "CustomTalentToolTip");
                                         }}>
-                                        <Image src={TextureName} scaling="stretch-to-cover-preserve-aspect"/>
+                                        <Image src={TextureName} scaling="stretch-to-cover-preserve-aspect" />
                                         <Label text={$.Localize("#DOTA_Tooltip_Talent_" + talentInfo.talent_name)}></Label>
                                     </Panel>
                                 </Panel>;

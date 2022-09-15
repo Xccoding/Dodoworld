@@ -3,6 +3,7 @@ import { render, useGameEvent } from '@demon673/react-panorama';
 import { print } from '../Utils';
 import { FormatDesc } from './TooltipUtils';
 import { CustomAbilityToolTip } from './CustomAbilityToolTip';
+import ReactUtils from '../../utils/React_utils';
 
 const pSelf: Panel = $.GetContextPanel();
 
@@ -57,14 +58,24 @@ function CustomTalentToolTip({ talent_name, hero }: { talent_name: string, hero:
                     }
                 </Panel>
             </Panel>
-
+            <Panel id='CustomTalentToolTips_bottombar' className={TalentType == 'Upgrade' ? "Show" : ""}>
+                <Panel id='bottom_content'>
+                    <Label id='bottom_text_alt_tip' html={true} text={$.Localize("#AbilityTooltip_AltTip")} />
+                </Panel>
+            </Panel>
         </Panel>
     );
 }
 
 export function CustomAbilityUpgrade({ talent_name, hero }: { talent_name: string, hero: EntityIndex; }) {
+    const [AltDown, SetAltDown] = useState(GameUI.IsAltDown());
     let Desc = $.Localize("#DOTA_Tooltip_Talent_" + talent_name + "_Desc");
-    Desc = FormatDesc(Desc, false, talent_name, "talent", hero, -1 as AbilityEntityIndex, 1);
+    Desc = FormatDesc(Desc, AltDown, talent_name, "talent", hero, -1 as AbilityEntityIndex, 1);
+
+    ReactUtils.useSchedule(() => {
+        SetAltDown(GameUI.IsAltDown());
+        return Math.max(Game.GetGameFrameTime(), 1 / 30);
+    }, []);
 
     return (<Panel id='CustomAbilityUpgrade'>
         <Label id='CustomAbilityUpgrade_text' text={Desc}></Label>

@@ -168,7 +168,6 @@ end
 --从KV里找一个键值
 function Abilities_manager:GetAbilityValue(ability, key_name)
     if ability == nil then
-        print("N2O", key_name)
         return 0
     end
     local hCaster = ability:GetCaster()

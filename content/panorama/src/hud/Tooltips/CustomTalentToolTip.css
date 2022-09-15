@@ -96,10 +96,23 @@
   border-bottom-width: 1px;
   margin-top: 10px;
   margin-bottom: 10px;
+  flow-children: down;
 }
 #CustomAbilityToolTips #CustomAbilityToolTips_main #main_description {
   margin-top: 20px;
   margin-bottom: 20px;
+  text-shadow: 0px 0px 2px 3 #000000;
+  font-weight: bold;
+  color: white;
+  font-size: 18px;
+  text-overflow: shrink;
+  height: fit-children;
+  visibility: visible;
+}
+#CustomAbilityToolTips #CustomAbilityToolTips_main #talent_description {
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 8px;
   text-shadow: 0px 0px 2px 3 #000000;
   font-weight: bold;
   color: white;
@@ -144,6 +157,7 @@
   height: fit-children;
   flow-children: down;
   padding-top: 6px;
+  padding-bottom: 6px;
 }
 #CustomTalentToolTips #CustomTalentToolTips_title {
   width: 76%;
@@ -197,6 +211,30 @@
   margin-right: 12px;
   box-shadow: inset 0px 0px 1px 0px #9ab0cd;
   margin-bottom: 10px;
+}
+#CustomTalentToolTips #CustomTalentToolTips_bottombar {
+  width: 100%;
+  height: fit-children;
+  padding-left: 12px;
+  padding-right: 12px;
+  visibility: collapse;
+}
+#CustomTalentToolTips #CustomTalentToolTips_bottombar.Show {
+  visibility: visible;
+}
+#CustomTalentToolTips #CustomTalentToolTips_bottombar #bottom_content {
+  width: 100%;
+  height: 24px;
+  border-top-color: #29353b;
+  border-top-style: solid;
+  border-top-width: 1px;
+}
+#CustomTalentToolTips #CustomTalentToolTips_bottombar #bottom_content #bottom_text_alt_tip {
+  align: right center;
+  text-shadow: 0px 0px 2px 3 #000000;
+  color: #a4c5d6;
+  font-size: 16px;
+  text-overflow: shrink;
 }
 #CustomAbilityUpgrade {
   width: 400px;
